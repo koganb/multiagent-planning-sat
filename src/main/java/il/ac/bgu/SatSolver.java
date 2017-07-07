@@ -53,7 +53,7 @@ public class SatSolver {
         List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
         List<List<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
-        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts();
+        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(1, 2, 3, 4);
 
         List<List<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation = Stream.concat(
                 Stream.concat(initFacts.stream(), planCnfCompilation.stream()),

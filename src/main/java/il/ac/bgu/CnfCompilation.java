@@ -8,6 +8,7 @@ import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
@@ -47,7 +48,9 @@ public class CnfCompilation {
     }
 
 
-    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts() {
+    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts(Integer... failedSteps) {
+        Set<Integer> failedStepsSet = Arrays.stream(failedSteps).collect(Collectors.toSet());
+
         Map<String, ImmutablePair<POPPrecEff, Set<POPPrecEff>>> currentState = new HashMap<>();
 
         //initial state
@@ -57,17 +60,28 @@ public class CnfCompilation {
                 forEach(t -> currentState.put(
                         t.getFunction().toKey(), new ImmutablePair<>(t, Sets.newHashSet())));
 
+        final MutableInt stepCounter = new MutableInt(0);
 
         plan.entrySet().stream().filter(i -> i.getKey() != -1).forEach(t -> {
             Set<POPPrecEff> stepPostTrueState = new HashSet<>();
+            Set<POPPrecEff> stepPostFalseState = new HashSet<>();
+
             Set<POPPrecEff> stepPreTrueState = currentState.values().stream().map(
                     ImmutablePair::getLeft).collect(Collectors.toSet());
 
             //try to run action for step
             t.getValue().stream().forEach(k -> {
-                if (k.getPopPrecs().stream().allMatch(stepPreTrueState::contains)) {
+                if (k.getPopPrecs().stream().allMatch(stepPreTrueState::contains) &&
+                        !failedStepsSet.contains(stepCounter.getValue())) {
                     stepPostTrueState.addAll(k.getPopEffs());
+                    stepPostFalseState.removeAll(k.getPopEffs());
+                } else {
+                    log.info("Failed step {}", k);
+                    stepPostFalseState.addAll(k.getPopEffs());
+                    stepPostTrueState.removeAll(k.getPopEffs());
                 }
+                stepCounter.add(1);
+
             });
 
             //update true state
@@ -85,6 +99,19 @@ public class CnfCompilation {
                         });
             });
 
+            //update false state
+            stepPostFalseState.stream().forEach(v -> {
+                Optional.ofNullable(currentState.putIfAbsent(
+                        v.getFunction().toKey(), new ImmutablePair<>(v, Sets.newHashSet()))).
+                        ifPresent(i -> {
+                            if (ObjectUtils.notEqual(i.getLeft(), v)) {  //add to the false state if not already true
+                                ImmutablePair<POPPrecEff, Set<POPPrecEff>> value = new ImmutablePair<>(i.getKey(),
+                                        Stream.concat(i.getValue().stream(), Stream.of(v)).
+                                                collect(Collectors.toSet()));
+                                currentState.put(v.getFunction().toKey(), value);
+                            }
+                        });
+            });
         });
 
         int maxStep = plan.keySet().stream().mapToInt(Integer::intValue).max().getAsInt() + 1;
