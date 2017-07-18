@@ -1616,12 +1616,12 @@ public class ParserImp implements PDDLParser {
 
     @Override
     public Task parseDomain(String domainFile) throws ParseException, IOException {
-        return parseDomain(new java.io.File(domainFile));
+        return parseDomain(new java.io.File(System.getenv("problems"), domainFile));
     }
 
     @Override
     public void parseProblem(String problemFile, Task planningTask, AgentList agList, String agentName) throws ParseException, IOException {
-        parseProblem(new java.io.File(problemFile), planningTask);
+        parseProblem(new java.io.File(System.getenv("problems"), problemFile), planningTask);
     }
 
     @Override
@@ -1631,13 +1631,13 @@ public class ParserImp implements PDDLParser {
 
     @Override
     public boolean isMAPDDL(String domainFile) throws IOException {
-        String content = readToString(new java.io.FileReader(new java.io.File(domainFile))).toLowerCase();
+        String content = readToString(new java.io.FileReader(new java.io.File(System.getenv("problems"), domainFile))).toLowerCase();
         return content.contains(":factored");
     }
 
     @Override
     public AgentList parseAgentList(String agentsFile) throws ParseException, IOException {
-        String content = readToString(new java.io.FileReader(new java.io.File(agentsFile)));
+        String content = readToString(new java.io.FileReader(new java.io.File(System.getenv("problems"), agentsFile)));
         SynAnalyzer syn = new SynAnalyzer(content);
         AgentList agList = new AgentListImp();
         SynAnalyzer.Token t;

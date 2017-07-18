@@ -15,6 +15,7 @@ public interface Plan {
     static final int UNASSIGNED = -2;
     static final int INITIAL = -1;
 
+
     ArrayList<CausalLink> getCausalLinksArray();
 
     ArrayList<Step> getStepsArray();

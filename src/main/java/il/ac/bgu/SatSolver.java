@@ -5,10 +5,14 @@ import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPAction;
 import org.agreement_technologies.service.map_planner.POPStep;
+import org.apache.commons.cli.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 import org.sat4j.minisat.SolverFactory;
 import org.sat4j.reader.DimacsReader;
 import org.sat4j.reader.Reader;
@@ -18,9 +22,12 @@ import org.sat4j.specs.ISolver;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.Function;
+import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,30 +37,68 @@ import java.util.stream.Stream;
  */
 @Slf4j
 public class SatSolver {
-    public static void main(String[] args) throws IOException {
+
+    static private Map<String, String> problemNames = new Reflections("problems", new ResourcesScanner())
+            .getResources(Pattern.compile(".*\\.problem")).
+                    stream().
+                    collect(Collectors.toMap(c -> c.replace("problems/", ""), Function.identity()));
+
+    public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
+        Options options = new Options();
+        options.addOption(Option.builder("p").
+                desc("problem name = required").
+                longOpt("problem_name").
+                hasArg(true).
+                numberOfArgs(1).
+                required(true).build());
+        options.addOption(Option.builder("f").
+                desc("failed actions indexes (separated by ',') - optional").
+                longOpt("failed index").
+                hasArg(true).
+                numberOfArgs(Option.UNLIMITED_VALUES).
+                required(false).build());
+        options.addOption("h", "help", false, "show help.");
+
+        help(options);
+
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd = parser.parse(options, args);
+
+        String problemName = cmd.getOptionValue('p');
+        Integer[] failedSteps = cmd.hasOption('f') ?
+                Arrays.stream(cmd.getOptionValues('f')).
+                        map(NumberUtils::createInteger).
+                        toArray(Integer[]::new) :
+                new Integer[0];
 
         //get agent definitions from file
-        String[] agentDefs = Files.readAllLines(Paths.get("C:\\MyProjects\\FMAP\\elevator1")).stream().
+        String[] agentDefs = Files.readAllLines(
+                Paths.get(ClassLoader.getSystemResource(problemNames.get(problemName)).toURI())).stream().
                 flatMap(t -> Arrays.stream(t.split("\t"))).
                 toArray(String[]::new);
 
         //calculate solution plan
         TreeMap<Integer, Set<Step>> sortedPlan = calculateSolution(agentDefs);
 
-        Pair<Map<String, Integer>, String> cnfEncoding = compilePlanToCnf(sortedPlan);
-
+        Pair<Map<String, Integer>, String> cnfEncoding = compilePlanToCnf(sortedPlan, failedSteps);
 
         runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
     }
 
+    private static void help(Options options) {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("Main", options);
+    }
 
-    private static Pair<Map<String, Integer>, String> compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan) {
+
+    private static Pair<Map<String, Integer>, String> compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan,
+                                                                       Integer[] failedSteps) {
 
         CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
         List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
         List<List<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
-        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(1, 2, 3, 4);
+        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps);
 
         List<List<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation = Stream.concat(
                 Stream.concat(initFacts.stream(), planCnfCompilation.stream()),

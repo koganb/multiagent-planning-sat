@@ -26,6 +26,9 @@ public class POPIncrementalPlan implements IPlan {
     private ExtendedPlanner POP;
     private boolean isSolution;
 
+
+    private int actionIndex = 0;
+
     public POPIncrementalPlan(POPInternalPlan p, POPIncrementalPlan prev,
                               ExtendedPlanner planner) {
         POP = planner;
@@ -588,12 +591,13 @@ public class POPIncrementalPlan implements IPlan {
         //Print the plan
         //CoDMAP distributed format
         //Print only the sequence of actions of the current agent; print no-ops when necessary
+
         if (output == Plan.CoDMAP_DISTRIBUTED) {
             for (i = 0; i <= makespan; i++) {
                 //found = false;
                 for (j = 2; j < actions.length; j++) {
                     if (actions[j] == i && steps.get(j).getAgent().equals(myAgent)) {
-                        System.out.println(i + ": (" + steps.get(j).getActionName() + ")");
+                        System.out.println(String.format("%2d - %2d: (%s)", actionIndex++, i, steps.get(j).getActionName()));
                         //found = true;
                     }
                 }

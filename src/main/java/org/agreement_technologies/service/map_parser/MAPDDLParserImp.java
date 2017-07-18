@@ -6,6 +6,7 @@ import org.agreement_technologies.common.map_parser.Task;
 import org.agreement_technologies.service.map_parser.SynAnalyzer.Symbol;
 import org.agreement_technologies.service.map_parser.TaskImp.MetricImp;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.text.ParseException;
@@ -70,7 +71,7 @@ public class MAPDDLParserImp implements PDDLParser {
     }
 
     private String readToString(String fileName) throws IOException {
-        Reader source = new java.io.FileReader(fileName);
+        Reader source = new java.io.FileReader(new File(System.getenv("problems"), fileName));
         StringBuilder buf = new StringBuilder();
         try {
             for (int c = source.read(); c != -1; c = source.read()) {
