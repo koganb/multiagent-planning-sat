@@ -76,7 +76,9 @@ public class CnfCompilation {
                     stepPostTrueState.addAll(k.getPopEffs());
                     stepPostFalseState.removeAll(k.getPopEffs());
                 } else {
-                    log.info("Failed step {}", k);
+
+                    System.out.println(String.format("Failed step: %s", k));
+
                     stepPostFalseState.addAll(k.getPopEffs());
                     stepPostTrueState.removeAll(k.getPopEffs());
                 }

@@ -51,8 +51,13 @@ public class SatSolver {
                 hasArg(true).
                 numberOfArgs(1).
                 required(true).build());
+        options.addOption(Option.builder("v").
+                desc("verbose").
+                longOpt("verbose").
+                hasArg(false).
+                required(false).build());
         options.addOption(Option.builder("f").
-                desc("failed actions indexes (separated by ',') - optional").
+                desc("failed actions indexes - optional").
                 longOpt("failed index").
                 hasArg(true).
                 numberOfArgs(Option.UNLIMITED_VALUES).
@@ -63,6 +68,11 @@ public class SatSolver {
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
+
+        if (cmd.hasOption('v')) {
+            org.apache.log4j.Logger logger4j = org.apache.log4j.Logger.getRootLogger();
+            logger4j.setLevel(org.apache.log4j.Level.toLevel("DEBUG"));
+        }
 
         String problemName = cmd.getOptionValue('p');
         Integer[] failedSteps = cmd.hasOption('f') ?
@@ -140,6 +150,9 @@ public class SatSolver {
                         collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (p1, p2) -> p1, TreeMap::new));
 
                 log.info("Action variables {}", actionResultsMap);
+
+                System.out.println(String.format("Failed steps from SAT:  %s", actionResultsMap.entrySet().stream().
+                        filter(i -> !i.getValue()).map(Map.Entry::getKey).collect(Collectors.joining(", "))));
 
 
             } else {
