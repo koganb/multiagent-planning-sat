@@ -8,7 +8,6 @@ import org.agreement_technologies.service.map_planner.POPStep;
 import org.apache.commons.cli.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
@@ -75,11 +74,9 @@ public class SatSolver {
         }
 
         String problemName = cmd.getOptionValue('p');
-        Integer[] failedSteps = cmd.hasOption('f') ?
-                Arrays.stream(cmd.getOptionValues('f')).
-                        map(NumberUtils::createInteger).
-                        toArray(Integer[]::new) :
-                new Integer[0];
+        String[] failedSteps = cmd.hasOption('f') ?
+                cmd.getOptionValues('f') :
+                new String[0];
 
         //get agent definitions from file
         String[] agentDefs = Files.readAllLines(
@@ -102,7 +99,7 @@ public class SatSolver {
 
 
     private static Pair<Map<String, Integer>, String> compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan,
-                                                                       Integer[] failedSteps) {
+                                                                       String[] failedSteps) {
 
         CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
         List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();

@@ -18,11 +18,14 @@ public class POPStep implements Step {
 
     private int timeStep;
 
+    private String uuid;
+
     public POPStep(POPAction act, int i, String ag) {
         this.action = act;
         this.agent = ag;
         this.index = i;
         this.timeStep = -1;
+        this.uuid = String.valueOf(Math.abs((index + getActionName()).hashCode()));
     }
 
     public POPAction getAction() {
@@ -117,5 +120,10 @@ public class POPStep implements Step {
     @Override
     public List<POPPrecEff> getPopEffs() {
         return action.getEffects();
+    }
+
+
+    public String getUuid() {
+        return this.uuid;
     }
 }

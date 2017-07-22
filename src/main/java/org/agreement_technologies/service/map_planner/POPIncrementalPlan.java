@@ -27,7 +27,6 @@ public class POPIncrementalPlan implements IPlan {
     private boolean isSolution;
 
 
-    private int actionIndex = 0;
 
     public POPIncrementalPlan(POPInternalPlan p, POPIncrementalPlan prev,
                               ExtendedPlanner planner) {
@@ -597,7 +596,7 @@ public class POPIncrementalPlan implements IPlan {
                 //found = false;
                 for (j = 2; j < actions.length; j++) {
                     if (actions[j] == i && steps.get(j).getAgent().equals(myAgent)) {
-                        System.out.println(String.format("%2d - %2d: (%s)", actionIndex++, i, steps.get(j).getActionName()));
+                        System.out.println(String.format("%10s - %2d: (%s)", steps.get(j).getUuid(), i, steps.get(j).getActionName()));
                         //found = true;
                     }
                 }

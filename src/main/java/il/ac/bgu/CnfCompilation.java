@@ -8,7 +8,6 @@ import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
@@ -48,8 +47,8 @@ public class CnfCompilation {
     }
 
 
-    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts(Integer... failedSteps) {
-        Set<Integer> failedStepsSet = Arrays.stream(failedSteps).collect(Collectors.toSet());
+    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts(String... failedSteps) {
+        Set<String> failedStepsSet = Arrays.stream(failedSteps).collect(Collectors.toSet());
 
         Map<String, ImmutablePair<POPPrecEff, Set<POPPrecEff>>> currentState = new HashMap<>();
 
@@ -60,7 +59,6 @@ public class CnfCompilation {
                 forEach(t -> currentState.put(
                         t.getFunction().toKey(), new ImmutablePair<>(t, Sets.newHashSet())));
 
-        final MutableInt stepCounter = new MutableInt(0);
 
         plan.entrySet().stream().filter(i -> i.getKey() != -1).forEach(t -> {
             Set<POPPrecEff> stepPostTrueState = new HashSet<>();
@@ -70,9 +68,9 @@ public class CnfCompilation {
                     ImmutablePair::getLeft).collect(Collectors.toSet());
 
             //try to run action for step
-            t.getValue().stream().forEach(k -> {
+            t.getValue().forEach(k -> {
                 if (k.getPopPrecs().stream().allMatch(stepPreTrueState::contains) &&
-                        !failedStepsSet.contains(stepCounter.getValue())) {
+                        !failedStepsSet.contains(k.getUuid())) {
                     stepPostTrueState.addAll(k.getPopEffs());
                     stepPostFalseState.removeAll(k.getPopEffs());
                 } else {
@@ -82,8 +80,6 @@ public class CnfCompilation {
                     stepPostFalseState.addAll(k.getPopEffs());
                     stepPostTrueState.removeAll(k.getPopEffs());
                 }
-                stepCounter.add(1);
-
             });
 
             //update true state

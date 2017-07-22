@@ -28,4 +28,7 @@ public interface Step {
     List<POPPrecEff> getPopPrecs();
 
     List<POPPrecEff> getPopEffs();
+
+    public String getUuid();
+
 }
