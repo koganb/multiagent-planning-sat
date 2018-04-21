@@ -15,11 +15,14 @@ import java.util.stream.Collectors;
  */
 public class CnfEncodingUtils {
 
-    public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> plan) {
+    private static Integer TOP_WEIGHT = Integer.MAX_VALUE;
+
+    public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> plan,
+                                                            List<String> healthClauses) {
         Map<String, Integer> planCodes = new HashMap<>();
         MutableInt currentCode = new MutableInt(0);
 
-        String compilation = plan.stream().map(t -> t.stream().map(f -> {
+        String planCompilation = plan.stream().map(t -> t.stream().map(f -> {
             Integer code = Optional.ofNullable(
                     //in case the code for literal do not exists put it to the map and update the counter
                     planCodes.
@@ -34,13 +37,23 @@ public class CnfEncodingUtils {
         }).
                 //separate the literals with blanks
                         collect(Collectors.joining(" "))).
+                map(clause -> String.format("%s %s 0", TOP_WEIGHT, clause)).
+
+
                 //end zero and new line at the clause end
-                        collect(Collectors.joining(" 0" + System.lineSeparator()));
+                        collect(Collectors.joining(System.lineSeparator()));
 
-        compilation = String.format("p cnf %s %s", planCodes.size(), plan.size()) +
-                System.lineSeparator() + compilation;
 
-        return new ImmutablePair<>(planCodes, compilation);
+        String healthClausesCompilation = healthClauses.stream().
+                map(healthClause -> String.format("%s %s 0", 1, planCodes.get(healthClause))).
+                collect(Collectors.joining(System.lineSeparator()));
+
+
+        planCompilation = String.format("p wcnf %s %s %s",
+                planCodes.size(), plan.size() + healthClauses.size(), TOP_WEIGHT) +
+                System.lineSeparator() + planCompilation + System.lineSeparator() + healthClausesCompilation;
+
+        return new ImmutablePair<>(planCodes, planCompilation);
 
     }
 }

@@ -5,16 +5,17 @@ import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by Boris on 01/07/2017.
@@ -23,18 +24,21 @@ import static java.lang.String.format;
 @Slf4j
 public class CnfCompilation {
 
-    private Map<String, Set<POPPrecEff>> variablesState;
+    private Map<String, Set<ImmutablePair<String, Boolean>>> variablesStateBeforeStepExec;
+    private Map<String, Set<ImmutablePair<String, Boolean>>> variablesStateAfterStepExec;
 
 
     private TreeMap<Integer, Set<Step>> plan;
 
 
-    public CnfCompilation(TreeMap<Integer, Set<Step>> plan) {
+    CnfCompilation(TreeMap<Integer, Set<Step>> plan) {
         this.plan = plan;
-        this.variablesState = plan.get(-1).iterator().next().getPopEffs().stream().collect(
-                Collectors.toMap(t -> t.getFunction().toKey(), Sets::newHashSet));
+        this.variablesStateBeforeStepExec = plan.get(-1).iterator().next().getPopEffs().stream().
+                collect(groupingBy(this::createEffKey,
+                        mapping(eff -> ImmutablePair.of(createEffId(eff), encodeValue(eff, true)), toSet())));
 
-        log.info("Initialized variable state to: {}", variablesState);
+
+        log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
     }
 
 
@@ -42,216 +46,237 @@ public class CnfCompilation {
         return plan.entrySet().stream().filter(i -> i.getKey() == -1).
                 flatMap(t -> t.getValue().stream()).
                 flatMap(t -> t.getPopEffs().stream()).
-                map(t -> Lists.newArrayList(new ImmutablePair<>(encode(t, 0), true))).
+                map(popPrecEff -> ImmutablePair.of(createEffId(popPrecEff, 0),
+                        Optional.ofNullable(BooleanUtils.toBooleanObject(popPrecEff.getValue())).orElse(true))).
+                map(Lists::newArrayList).
+                collect(toList());
+    }
+
+
+    public List<String> encodeHealthClauses() {
+        return plan.entrySet().stream().
+                filter(i -> i.getKey() != -1).
+                flatMap(entry -> entry.getValue().stream().map(
+                        step -> encodeHealthyStep(step, entry.getKey()))).
                 collect(Collectors.toList());
     }
 
 
-    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts(String... failedSteps) {
-        Set<String> failedStepsSet = Arrays.stream(failedSteps).collect(Collectors.toSet());
+//    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts() {
+//        Integer maxStep = plan.keySet().stream().max(Comparator.naturalOrder()).
+//                orElseThrow(() -> new RuntimeException("no max step"));
+//
+//        return variablesStateAfterStepExec.values().
+//                stream().
+//                flatMap(Collection::stream).
+//                map(var -> ImmutablePair.of(createEffId(var.getLeft(), maxStep), var.getRight())).
+//                map(Lists::newArrayList).
+//                collect(Collectors.toList());
+//    }
 
-        Map<String, ImmutablePair<POPPrecEff, Set<POPPrecEff>>> currentState = new HashMap<>();
+
+    public List<List<ImmutablePair<String, Boolean>>> calcFinalFacts(String... failedSteps) {
+
+        log.debug("Start final values calculation");
+
+        Set<String> failedStepsSet = Arrays.stream(failedSteps).collect(toSet());
+
+        Map<String, Set<ImmutablePair<String, Boolean>>> variablesState = new HashMap<>();
 
         //initial state
-        plan.entrySet().stream().filter(i -> i.getKey() == -1).
-                flatMap(t -> t.getValue().stream()).
-                flatMap(t -> t.getPopEffs().stream()).
-                forEach(t -> currentState.put(
-                        t.getFunction().toKey(), new ImmutablePair<>(t, Sets.newHashSet())));
+        plan.entrySet().stream().
+                filter(i -> i.getKey() == -1).                  //filter initial state
+                flatMap(entry -> entry.getValue().stream()).    //get initial state steps
+                flatMap(step -> step.getPopEffs().stream()).    //get initial state effects
+                forEach(popPrecEff -> variablesState.put(                  //create entry for each effect
+                createEffKey(popPrecEff),
+                new HashSet<>(Collections.singletonList(ImmutablePair.of(
+                        createEffId(popPrecEff),
+                        encodeValue(popPrecEff, true)))))
+        );
 
 
-        plan.entrySet().stream().filter(i -> i.getKey() != -1).forEach(t -> {
-            Set<POPPrecEff> stepPostTrueState = new HashSet<>();
-            Set<POPPrecEff> stepPostFalseState = new HashSet<>();
+        plan.entrySet().stream().filter(i -> i.getKey() != -1).forEach(stepEntry -> {
 
-            Set<POPPrecEff> stepPreTrueState = currentState.values().stream().map(
-                    ImmutablePair::getLeft).collect(Collectors.toSet());
+            Set<ImmutablePair<String, Boolean>> currentState =
+                    variablesState.values().stream().flatMap(Collection::stream).collect(toSet());
+
 
             //try to run action for step
-            t.getValue().forEach(k -> {
-                if (k.getPopPrecs().stream().allMatch(stepPreTrueState::contains) &&
-                        !failedStepsSet.contains(k.getUuid())) {
-                    stepPostTrueState.addAll(k.getPopEffs());
-                    stepPostFalseState.removeAll(k.getPopEffs());
+            stepEntry.getValue().forEach(action -> {
+                //all preconditions valid and step is not failed
+                if (action.getPopPrecs().stream().
+                        map(eff -> ImmutablePair.of(createEffId(eff), encodeValue(eff, true))).
+                        allMatch(currentState::contains) &&
+                        !failedStepsSet.contains(action.getUuid())) {
+
+                    action.getPopEffs().forEach(eff ->
+                            variablesState.put(createEffKey(eff),
+                                    updateVariableState(variablesState.get(createEffKey(eff)), eff)));
                 } else {
 
-                    System.out.println(String.format("Failed step: %s", k));
+                    System.out.println(String.format("Failed step: %s", action));
+                    action.getPopEffs().forEach(eff -> {
+                        Set<ImmutablePair<String, Boolean>> variableValues = variablesState.get(createEffKey(eff));
 
-                    stepPostFalseState.addAll(k.getPopEffs());
-                    stepPostTrueState.removeAll(k.getPopEffs());
+                        if (variableValues.stream().map(Pair::getKey).noneMatch(t -> t.equals(createEffId(eff)))) {
+                            variableValues.add(
+                                    ImmutablePair.of(createEffId(eff), encodeValue(eff, false)));
+                        }
+                    });
                 }
-            });
-
-            //update true state
-            stepPostTrueState.stream().forEach(v -> {
-                Optional.ofNullable(currentState.putIfAbsent(
-                        v.getFunction().toKey(), new ImmutablePair<>(v, Sets.newHashSet()))).
-                        ifPresent(i -> {
-                            ImmutablePair<POPPrecEff, Set<POPPrecEff>> value = new ImmutablePair<>(v,
-                                    Stream.concat(i.getValue().stream(), Stream.of(i.getKey())).
-                                            filter(j -> ObjectUtils.notEqual(j, v)).
-                                            collect(Collectors.toSet()));
-
-                            currentState.put(v.getFunction().toKey(), value);
-
-                        });
-            });
-
-            //update false state
-            stepPostFalseState.stream().forEach(v -> {
-                Optional.ofNullable(currentState.putIfAbsent(
-                        v.getFunction().toKey(), new ImmutablePair<>(v, Sets.newHashSet()))).
-                        ifPresent(i -> {
-                            if (ObjectUtils.notEqual(i.getLeft(), v)) {  //add to the false state if not already true
-                                ImmutablePair<POPPrecEff, Set<POPPrecEff>> value = new ImmutablePair<>(i.getKey(),
-                                        Stream.concat(i.getValue().stream(), Stream.of(v)).
-                                                collect(Collectors.toSet()));
-                                currentState.put(v.getFunction().toKey(), value);
-                            }
-                        });
             });
         });
 
+
         int maxStep = plan.keySet().stream().mapToInt(Integer::intValue).max().getAsInt() + 1;
 
-        return currentState.values().stream().flatMap(i ->
-                Stream.concat(
-                        Stream.of(new ImmutablePair<>(encode(i.getLeft(), maxStep), true)),
-                        i.getRight().stream().map(f -> new ImmutablePair<>(encode(f, maxStep), false)))).
-                map(Lists::newArrayList).collect(Collectors.toList());
+        List<List<ImmutablePair<String, Boolean>>> finalValues = variablesState.values().stream().flatMap(
+                pairSet ->
+                        pairSet.stream().map(pair -> ImmutablePair.of(createEffId(pair.getLeft(), maxStep), pair.getRight()))).
+                map(Lists::newArrayList).
+                collect(toList());
+
+        log.debug("\n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("End final values calculation");
+
+
+        return finalValues;
     }
 
-    private Stream<List<ImmutablePair<String, Boolean>>> calculatePassThroughClauses(Integer
-                                                                                             stage, Set<Step> actions) {
+    Stream<List<ImmutablePair<String, Boolean>>> calculatePassThroughClauses(Integer stage, Set<Step> actions) {
         //calculate "pass through" variables
-        Set<String> stageEffectKeys = actions.stream().flatMap(k -> k.getPopEffs().stream().map(f ->
-                f.getFunction().toKey())).collect(Collectors.toSet());
-        Set<String> currentStateKeys = new HashSet<>(variablesState.keySet());
-        Collection<String> passVariables = CollectionUtils.subtract(currentStateKeys, stageEffectKeys);
 
-        log.info("Start pass through...");
+        //get effects keys for stage actions
+        Set<String> effectKeys = actions.stream().flatMap(k ->
+                k.getPopEffs().stream()).map(this::createEffKey).
+                collect(toSet());
 
-        List<List<ImmutablePair<String, Boolean>>> passThroughValues = passVariables.stream().
-                flatMap(g -> variablesState.get(g).stream()).
+        log.debug("Start pass through...");
+
+        List<List<ImmutablePair<String, Boolean>>> passThroughValues = variablesStateBeforeStepExec.entrySet().stream().
+                filter(entry -> !effectKeys.contains(entry.getKey())).
+                map(Map.Entry::getValue).
+                flatMap(Collection::stream).
                 flatMap(g -> Stream.of(
                         Lists.newArrayList(
-                                new ImmutablePair<>(encode(g, stage), false),
-                                new ImmutablePair<>(encode(g, stage + 1), true)),
+                                new ImmutablePair<>(createEffId(g.getKey(), stage), false),
+                                new ImmutablePair<>(createEffId(g.getKey(), stage + 1), true)),
                         Lists.newArrayList(
-                                new ImmutablePair<>(encode(g, stage), true),
-                                new ImmutablePair<>(encode(g, stage + 1), false))
+                                new ImmutablePair<>(createEffId(g.getKey(), stage), true),
+                                new ImmutablePair<>(createEffId(g.getKey(), stage + 1), false))
 
-                )).collect(Collectors.toList());
+                )).collect(toList());
 
-        log.info("\n{}", passThroughValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        log.info("End pass through");
+        log.debug("\n{}", passThroughValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("End pass through");
         return passThroughValues.stream();
     }
 
 
-    private Stream<List<ImmutablePair<String, Boolean>>> calculateHealthyClauses(Integer
-                                                                                         stage, Set<Step> actions) {
-        log.info("Start add healthy clause");
+    Stream<List<ImmutablePair<String, Boolean>>> calculateHealthyClauses(Integer stage, Set<Step> actions) {
+        log.debug("Start add healthy clause");
 
         List<List<ImmutablePair<String, Boolean>>> resultClauses = actions.stream().flatMap(action -> {
 
             List<ImmutablePair<String, Boolean>> preconditionList =
-                    action.getPopPrecs().stream().map(l -> new ImmutablePair<>(encode(l, stage), false)).
-                            collect(Collectors.toList());
+                    action.getPopPrecs().stream().map(l -> new ImmutablePair<>(createEffId(l, stage), encodeValue(l, false))).
+                            collect(toList());
 
             //healthy function
             Stream<ImmutablePair<String, Boolean>> effectStream = action.getPopEffs().stream().flatMap(actionEff -> {
                 //effect variable
-                Stream<ImmutablePair<String, Boolean>> effect = Stream.of(new ImmutablePair<>(
-                        encode(actionEff, stage + 1), true));
-                return Optional.ofNullable(variablesState.get(actionEff.getFunction().toKey())).
-                        //add state variables with false status
+                return Optional.ofNullable(variablesStateAfterStepExec.get(createEffKey(actionEff))).
+                        //add multiple value variable fluents
                                 map(stateVars ->
-                                Stream.concat(effect,
-                                        stateVars.stream().
-                                                filter(x -> ObjectUtils.notEqual(x, actionEff)).
-                                                map(j -> new ImmutablePair<>(encode(j, stage + 1), false)))).
-                                orElse(effect);
+                                stateVars.stream().
+                                        map(effPair -> new ImmutablePair<>(
+                                                createEffId(effPair.getKey(), stage + 1),
+                                                encodeValue(effPair.getValue(), true)))).
+                                orElse(Stream.empty());
             });
 
 
-            Stream<List<ImmutablePair<String, Boolean>>> healthyClauses = effectStream.map(u ->
+            return effectStream.map(u ->
                     Stream.concat(
                             preconditionList.stream(),
-                            Stream.of(new ImmutablePair<>(encode(action, stage), false), u)).
-                            collect(Collectors.toList())
+                            Stream.of(new ImmutablePair<>(encodeHealthyStep(action, stage), false), u)).
+                            collect(toList())
             );
+        }).collect(toList());
 
-            return healthyClauses;
-        }).collect(Collectors.toList());
-
-        log.info("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        log.info("End add healthy clause");
+        log.debug("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("End add healthy clause");
 
         return resultClauses.stream();
     }
 
 
-    private Stream<List<ImmutablePair<String, Boolean>>> calculateActionFailedClauses(Integer
-                                                                                              stage, Set<Step> actions) {
+    Stream<List<ImmutablePair<String, Boolean>>> calculateActionFailedClauses(Integer
+                                                                                      stage, Set<Step> actions) {
 
-        log.info("Start failed clause");
+        log.debug("Start failed clause");
 
-        List<List<ImmutablePair<String, Boolean>>> resultList = actions.stream().flatMap(action -> {
+        List<List<ImmutablePair<String, Boolean>>> actionFailedClauses = actions.stream().flatMap(action -> {
 
-            List<ImmutablePair<String, Boolean>> preconditionList =
-                    action.getPopPrecs().stream().map(l -> new ImmutablePair<>(encode(l, stage), false)).
-                            collect(Collectors.toList());
+            Stream<List<ImmutablePair<String, Boolean>>> preconditionsStream =
+                    Stream.of(action.getPopPrecs().stream().map(l -> new ImmutablePair<>(
+                            createEffId(l, stage), encodeValue(l, false))).collect(toList()));
 
-            Stream<List<ImmutablePair<String, Boolean>>> clauses = action.getPopEffs().stream().flatMap(actionEff -> {
-                Stream<List<ImmutablePair<String, Boolean>>> listStream = Optional.ofNullable(variablesState.get(actionEff.getFunction().toKey())).
-                        map(g -> g.stream().flatMap(stateVar -> Stream.of(
-                                Stream.of(new ImmutablePair<>(encode(stateVar, stage), false),
-                                        new ImmutablePair<>(encode(stateVar, stage + 1), true)),
-                                Stream.of(new ImmutablePair<>(encode(stateVar, stage), true),
-                                        new ImmutablePair<>(encode(stateVar, stage + 1), false))).
-                                map(s -> Stream.concat(preconditionList.stream(),
-                                        Stream.concat(Stream.of(new ImmutablePair<>(encode(action, stage), true)),
-                                                s)).collect(Collectors.toList())))).
-                        orElseGet(Stream::empty);
+            Stream<ImmutablePair<String, Boolean>> effectsStream = action.getPopEffs().stream().flatMap(actionEff ->
+                    Optional.ofNullable(variablesStateBeforeStepExec.get(createEffKey(actionEff))).
+                            map(g -> g.stream().flatMap(stateVar ->
+                                    Stream.of(new ImmutablePair<>(
+                                            createEffId(stateVar.getKey(), stage + 1),
+                                            encodeValue(stateVar.getValue(), true))
+                                    ))).
+                            orElse(Stream.empty()));
 
-                return listStream;
+            return preconditionsStream.flatMap(precs ->
+                    effectsStream.map(eff ->
+                            Stream.concat(
+                                    Stream.concat(precs.stream(),
+                                            Stream.of(new ImmutablePair<>(encodeHealthyStep(action, stage), true))),
+                                    Stream.of(eff)).collect(toList())));
 
+        }).collect(toList());
 
-            });
-
-            return clauses;
-        }).collect(Collectors.toList());
-
-        log.info("\n{}", resultList.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        log.info("End failed clause");
-        return resultList.stream();
+        log.debug("\n{}", actionFailedClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("End failed clause");
+        return actionFailedClauses.stream();
     }
 
 
-    private Stream<List<ImmutablePair<String, Boolean>>> calculateConditionsNotMetClauses(Integer
-                                                                                                  stage, Set<Step> actions) {
+    Stream<List<ImmutablePair<String, Boolean>>> calculateConditionsNotMetClauses(Integer stage, Set<Step> actions) {
 
-        log.info("Start conditions not met clause");
+        log.debug("Start conditions not met clause");
 
-        List<List<ImmutablePair<String, Boolean>>> resultClauses = actions.stream().flatMap(t -> t.getPopPrecs().stream().
-                map(l -> new ImmutablePair<>(encode(l, stage), true)).
-                flatMap(p ->
-                        t.getPopEffs().stream().flatMap(actionEff -> {
-                            Stream<ArrayList<ImmutablePair<String, Boolean>>> arrayListStream = Optional.ofNullable(variablesState.get(actionEff.getFunction().toKey())).
-                                    map(g -> g.stream().flatMap(stateVar -> Stream.of(
-                                            Lists.newArrayList(p,
-                                                    new ImmutablePair<>(encode(stateVar, stage), false),
-                                                    new ImmutablePair<>(encode(stateVar, stage + 1), true)),
-                                            Lists.newArrayList(p,
-                                                    new ImmutablePair<>(encode(stateVar, stage), true),
-                                                    new ImmutablePair<>(encode(stateVar, stage + 1), false))))).
-                                    orElseGet(Stream::empty);
-                            return arrayListStream;
-                        }))).collect(Collectors.toList());
+        List<List<ImmutablePair<String, Boolean>>> resultClauses = actions.stream().flatMap(action -> action.getPopPrecs().stream().
+                map(prec -> new ImmutablePair<>(createEffId(prec, stage), encodeValue(prec, true))).
+                flatMap(prec ->
+                        action.getPopEffs().stream().flatMap(actionEff -> Optional.ofNullable(variablesStateAfterStepExec.get(createEffKey(actionEff))).
+                                map(g -> g.stream().flatMap(stateVar -> Stream.of(
+                                        Lists.newArrayList(prec,
+                                                new ImmutablePair<>(encodeHealthyStep(action, stage), false),
+                                                new ImmutablePair<>(
+                                                        createEffId(stateVar.getKey(), stage),
+                                                        encodeValue(stateVar.getValue(), true)),
+                                                new ImmutablePair<>(
+                                                        createEffId(stateVar.getKey(), stage + 1),
+                                                        encodeValue(stateVar.getValue(), false))),
+                                        Lists.newArrayList(prec,
+                                                new ImmutablePair<>(encodeHealthyStep(action, stage), false),
+                                                new ImmutablePair<>(
+                                                        createEffId(stateVar.getKey(), stage),
+                                                        encodeValue(stateVar.getValue(), false)),
+                                                new ImmutablePair<>(
+                                                        createEffId(stateVar.getKey(), stage + 1),
+                                                        encodeValue(stateVar.getValue(), true)))
+                                ))).
+                                orElseGet(Stream::empty)))).collect(toList());
 
-        log.info("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        log.info("End conditions not met clause");
+        log.debug("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("End conditions not met clause");
 
         return resultClauses.stream();
 
@@ -259,51 +284,132 @@ public class CnfCompilation {
     }
 
     public List<List<ImmutablePair<String, Boolean>>> compileToCnf() {
-        return plan.entrySet().stream().filter(i -> i.getKey() != -1).flatMap(t -> {
-            Stream<List<ImmutablePair<String, Boolean>>> resultStream =
-                    Stream.concat(
+        List<List<ImmutablePair<String, Boolean>>> cnfClauses = plan.entrySet().stream().
+                filter(i -> i.getKey() != -1).
+                flatMap(entry -> {
+                    executeStage(entry.getValue());
+                    return Stream.concat(
                             Stream.concat(
                                     Stream.concat(
-                                            Stream.concat(
-                                                    Stream.concat(Stream.empty(),
-                                                            updateVariableState(t.getKey(), t.getValue())),
-                                                    calculatePassThroughClauses(t.getKey(), t.getValue())),
-                                            calculateHealthyClauses(t.getKey(), t.getValue())),
-                                    calculateActionFailedClauses(t.getKey(), t.getValue())),
-                            calculateConditionsNotMetClauses(t.getKey(), t.getValue()));
+                                            Stream.concat(Stream.empty(),
+                                                    calculatePassThroughClauses(entry.getKey(), entry.getValue())),
+                                            calculateHealthyClauses(entry.getKey(), entry.getValue())),
+                                    calculateActionFailedClauses(entry.getKey(), entry.getValue())),
+                            calculateConditionsNotMetClauses(entry.getKey(), entry.getValue())
+                    );
+                }).collect(toList());
 
-            return resultStream;
-        }).collect(Collectors.toList());
+        return cnfClauses;
     }
 
 
-    private Stream<List<ImmutablePair<String, Boolean>>> updateVariableState(Integer stage, Set<Step> actions) {
-        log.info("Start update variable state clause");
+    void executeStage(Set<Step> actions) {
+        log.debug("Add new fluents to the variable state");
 
-        List<List<ImmutablePair<String, Boolean>>> updateVariableState = actions.stream().flatMap(g -> g.getPopEffs().stream()).flatMap(u -> {
-            variablesState.putIfAbsent(u.getFunction().toKey(), Sets.newHashSet());
+        if (variablesStateAfterStepExec != null) {
+            //copy after state to before state
+            variablesStateBeforeStepExec = variablesStateAfterStepExec.entrySet().stream().map(entry ->
+                    ImmutablePair.of(entry.getKey(), new HashSet<>(entry.getValue()))).
+                    collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+        }
 
-            Set<POPPrecEff> popPrecEffs = variablesState.get(u.getFunction().toKey());
-            if (popPrecEffs.contains(u)) {
-                return Stream.empty();
+        //add all preconditions to variable state
+        actions.forEach(action -> action.getPopPrecs().forEach(eff -> {
+            String effKey = createEffKey(eff);
+
+            ImmutablePair<String, Boolean> precondition =
+                    ImmutablePair.of(createEffId(eff), encodeValue(eff, true));
+
+            variablesStateBeforeStepExec.putIfAbsent(effKey, Sets.newHashSet());
+            if (variablesStateBeforeStepExec.get(effKey).stream().
+                    noneMatch(effect -> effect.getLeft().equals(precondition.getLeft()))) {
+                log.debug("Adding precondition to the var state {}", precondition);
+                variablesStateBeforeStepExec.get(effKey).add(precondition);
             }
-            popPrecEffs.add(u);
+        }));
 
-            //add new variable as false clause
-            return Stream.of(Lists.newArrayList(new ImmutablePair<>(encode(u, stage), false)));
-        }).collect(Collectors.toList());
 
-        log.info("\n{}", updateVariableState.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        log.info("End update variable state clause");
+        //copy before state to after state
+        variablesStateAfterStepExec = variablesStateBeforeStepExec.entrySet().stream().map(entry ->
+                ImmutablePair.of(entry.getKey(), new HashSet<>(entry.getValue()))).
+                collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
 
-        return updateVariableState.stream();
+        //update state according to step effects
+        actions.stream().flatMap(action -> action.getPopEffs().stream()).
+                forEach(eff -> {
+                    String effKey = createEffKey(eff);
+                    variablesStateAfterStepExec.putIfAbsent(effKey, Sets.newHashSet());
+                    variablesStateAfterStepExec.put(effKey,
+                            updateVariableState(variablesStateAfterStepExec.get(effKey), eff));
+                });
+
+
+        //add all preconditions to variable state
+        actions.forEach(action -> action.getPopEffs().forEach(eff -> {
+            String effKey = createEffKey(eff);
+
+            ImmutablePair<String, Boolean> precondition =
+                    ImmutablePair.of(createEffId(eff), false);
+
+            variablesStateBeforeStepExec.putIfAbsent(effKey, Sets.newHashSet());
+            if (!variablesStateBeforeStepExec.get(effKey).stream().
+                    allMatch(effect -> effect.getLeft().equals(precondition.getLeft()))) {
+                log.debug("Adding effect to the var state {}", precondition);
+                variablesStateBeforeStepExec.get(effKey).add(precondition);
+            }
+        }));
+
+
     }
 
-    private String encode(POPPrecEff precEff, Integer stage) {
-        return format("%s:%s=%s", stage, precEff.getFunction().toKey().replace(" ", "~"), precEff.getValue());
+
+    private Set<ImmutablePair<String, Boolean>> updateVariableState
+            (Set<ImmutablePair<String, Boolean>> prevState,
+             POPPrecEff eff) {
+        return Stream.concat(
+                //update previous values
+                prevState.stream().
+                        filter(pair -> !pair.getKey().equals(createEffId(eff))).
+                        map(pair -> ImmutablePair.of(pair.getKey(), encodeValue(eff, false))),
+                Stream.of(ImmutablePair.of(createEffId(eff), encodeValue(eff, true)))).
+                collect(Collectors.toSet());
+
     }
 
-    private String encode(Step step, Integer stage) {
+
+    private Boolean encodeValue(POPPrecEff precEff, Boolean encodeValue) {
+        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
+                map(v -> this.encodeValue(v, encodeValue)).
+                orElse(encodeValue);
+
+    }
+
+    private Boolean encodeValue(Boolean currentValue, Boolean encodeValue) {
+        return currentValue == encodeValue;
+
+    }
+
+    private String createEffKey(POPPrecEff precEff) {
+        return precEff.getFunction().toKey().replace(" ", "~");
+    }
+
+    private String createEffId(POPPrecEff precEff) {
+        String effKey = createEffKey(precEff);
+        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
+                map(val -> format("%s", effKey)).  //boolean effect
+                orElse(format("%s=%s", effKey, precEff.getValue()));
+    }
+
+    private String createEffId(POPPrecEff precEff, Integer stage) {
+        return format("%s:%s", stage, createEffId(precEff));
+    }
+
+    private String createEffId(String effKey, Integer stage) {
+        return format("%s:%s", stage, effKey);
+    }
+
+
+    private String encodeHealthyStep(Step step, Integer stage) {
         return format("%s:h(%s)", stage, step.getActionName().replace(" ", "~"));
 
     }

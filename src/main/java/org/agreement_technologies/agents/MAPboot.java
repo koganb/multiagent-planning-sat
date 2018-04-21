@@ -79,9 +79,9 @@ public class MAPboot {
 
         if (args.length < 3) {
             printUsage();
-        } else if (args.length <= 4) {
-            String agentFile = args.length == 4 ? args[3] : null;
-            launchAgent(args[0], args[1], args[2], agentFile);
+//        } else if (args.length <= 4) {
+//            String agentFile = args.length == 4 ? args[3] : null;
+//            launchAgent(args[0], args[1], args[2], agentFile);
         } else {    // Several agents at once
             AgentList agList;
             int last = args.length - 1;
@@ -114,12 +114,8 @@ public class MAPboot {
                 for (PlanningAgent ag : planningAgents)
                     ag.join();
 
-            } catch (ParseException ex) {
-                System.out.println(ex.getMessage() + ", at line " + ex.getErrorOffset() + " (" + args[last] + ")");
-            } catch (IOException ex) {
-                System.out.println("Read error: " + ex.getMessage() + " (" + args[last] + ")");
             } catch (Exception ex) {
-                System.out.println("Error  " + ex.getMessage());
+                throw new RuntimeException(ex);
             }
         }
         return solutionPlans;

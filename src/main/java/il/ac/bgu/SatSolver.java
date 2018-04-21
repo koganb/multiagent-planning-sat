@@ -1,5 +1,6 @@
 package il.ac.bgu;
 
+import com.google.common.base.CharMatcher;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
@@ -8,15 +9,15 @@ import org.agreement_technologies.service.map_planner.POPStep;
 import org.apache.commons.cli.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
-import org.sat4j.minisat.SolverFactory;
-import org.sat4j.reader.DimacsReader;
+import org.sat4j.maxsat.WeightedMaxSatDecorator;
+import org.sat4j.maxsat.reader.WDimacsReader;
 import org.sat4j.reader.Reader;
 import org.sat4j.specs.IProblem;
-import org.sat4j.specs.ISolver;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,7 +41,7 @@ public class SatSolver {
     static private Map<String, String> problemNames = new Reflections("problems", new ResourcesScanner())
             .getResources(Pattern.compile(".*\\.problem")).
                     stream().
-                    collect(Collectors.toMap(c -> c.replace("problems/", ""), Function.identity()));
+                    collect(Collectors.toMap(c -> CharMatcher.invisible().removeFrom(c.replace("problems/", "")), Function.identity()));
 
     public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
         Options options = new Options();
@@ -84,12 +85,17 @@ public class SatSolver {
                 flatMap(t -> Arrays.stream(t.split("\t"))).
                 toArray(String[]::new);
 
+        List<String> failedActions = calculateDiagnostics(agentDefs, failedSteps);
+        log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
+    }
+
+    public static List<String> calculateDiagnostics(String[] agentDefs, String[] failedSteps) {
         //calculate solution plan
         TreeMap<Integer, Set<Step>> sortedPlan = calculateSolution(agentDefs);
 
         Pair<Map<String, Integer>, String> cnfEncoding = compilePlanToCnf(sortedPlan, failedSteps);
 
-        runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
+        return runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
     }
 
     private static void help(Options options) {
@@ -102,26 +108,35 @@ public class SatSolver {
                                                                        String[] failedSteps) {
 
         CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
-        List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
         List<List<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
         List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps);
 
-        List<List<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation = Stream.concat(
-                Stream.concat(initFacts.stream(), planCnfCompilation.stream()),
-                finalFacts.stream()).
-                collect(Collectors.toList());
+        List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
+        List<List<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation =
+                Stream.concat(Stream.concat(initFacts.stream(), planCnfCompilation.stream()),
+                        finalFacts.stream()).
+                        collect(Collectors.toList());
 
-        Pair<Map<String, Integer>, String> cnfEncoding = CnfEncodingUtils.encode(fullPlanCnfCompilation);
+        log.info("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        List<String> healthClauses = cnfCompilation.encodeHealthClauses();
+        log.info("healthy clauses:\n{}", healthClauses.stream().collect(Collectors.joining("\n")));
+
+        Pair<Map<String, Integer>, String> cnfEncoding = CnfEncodingUtils.encode(fullPlanCnfCompilation, healthClauses);
+
+        log.debug("code map:\n{}", cnfEncoding.getKey());
+        log.debug("cnf compilation output:\n{}", cnfEncoding.getValue());
 
         return cnfEncoding;
+
     }
 
-    private static void runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
-        ISolver solver = SolverFactory.newDefault();
-        solver.setTimeout(3600); // 1 hour timeout
-        Reader reader = new DimacsReader(solver);
+    private static List<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
+//        ISolver solver = org.sat4j.maxsat.SolverFactory.newMiniMaxSAT();
+//        solver.setTimeout(3600); // 1 hour timeout
+        Reader reader = new WDimacsReader(new WeightedMaxSatDecorator(
+                org.sat4j.pb.SolverFactory.newSATUNSAT()));
 
         try {
             IProblem problem = reader.parseInstance(IOUtils.toInputStream(cnfPlan, "UTF-8"));
@@ -141,26 +156,29 @@ public class SatSolver {
                         Collectors.toMap(Map.Entry::getKey, t -> codeResultsMap.get(t.getValue()),
                                 (p1, p2) -> p1, TreeMap::new));
 
-                log.info("variables result {}", variablesResult);
+                log.info("variables result \n{}", variablesResult.entrySet().stream().
+                        map(Object::toString).
+                        collect(Collectors.joining("\n")));
                 TreeMap<String, Boolean> actionResultsMap = variablesResult.entrySet().stream().
                         filter(t -> t.getKey().contains("h(")).
                         collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (p1, p2) -> p1, TreeMap::new));
 
-                log.info("Action variables {}", actionResultsMap);
+                log.debug("Action variables {}", actionResultsMap);
 
-                System.out.println(String.format("Failed steps from SAT:  %s", actionResultsMap.entrySet().stream().
-                        filter(i -> !i.getValue()).map(Map.Entry::getKey).collect(Collectors.joining(", "))));
+                return actionResultsMap.entrySet().stream().
+                        filter(i -> !i.getValue()).
+                        map(Map.Entry::getKey).collect(Collectors.toList());
 
 
             } else {
-                log.warn(" Unsatisfiable !");
+                throw new RuntimeException(" Unsatisfiable !");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static TreeMap<Integer, Set<Step>> calculateSolution(String[] agentDefs) {
+    static TreeMap<Integer, Set<Step>> calculateSolution(String[] agentDefs) {
         Set<Map<Integer, Set<Step>>> solutionPlans = MAPboot.runCommandLine(agentDefs);
 
         Map<Integer, Set<Set<Step>>> solutionsBySteps = solutionPlans.stream().
@@ -170,7 +188,7 @@ public class SatSolver {
                                 Map.Entry::getValue,
                                 Collectors.toSet())));
 
-        TreeMap<Integer, Set<Step>> sortedPlan = solutionsBySteps.entrySet().stream().map(
+        return solutionsBySteps.entrySet().stream().map(
                 i -> new ImmutablePair<>(i.getKey(), mergeStageStepsOfDifferentPlans(i.getValue()))).
 
                 collect(Collectors.groupingBy(Pair::getLeft, TreeMap::new,
@@ -183,8 +201,6 @@ public class SatSolver {
                                     return r1;
                                 }
                         )));
-
-        return sortedPlan;
 
     }
 

@@ -1,0 +1,15 @@
+fast0
+elevators/Pfile30/DomainElevators.pddl
+elevators/Pfile30/ProblemElevatorsfast0.pddl
+fast1
+elevators/Pfile30/DomainElevators.pddl
+elevators/Pfile30/ProblemElevatorsfast1.pddl
+slow0-0
+elevators/Pfile30/DomainElevators.pddl
+elevators/Pfile30/ProblemElevatorsslow0-0.pddl
+slow1-0
+elevators/Pfile30/DomainElevators.pddl
+elevators/Pfile30/ProblemElevatorsslow1-0.pddl
+slow2-0
+elevators/Pfile30/DomainElevators.pddl
+elevators/Pfile30/ProblemElevatorsslow2-0.pddl

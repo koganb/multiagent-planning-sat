@@ -291,7 +291,7 @@ public abstract class Planner implements ExtendedPlanner {
         //if (comm.batonAgent())
         //	memoization.histogram();
 
-        if (this.comm.getAgentIndex(myAgent) == 1) {
+        if (this.comm.getAgentIndex(myAgent) == 0) {
             System.out.println("\nCoDMAP Distributed format");
             System.out.println("-------------------------");
             for (int i = 0; i < comm.getAgentList().size(); i++) {
