@@ -1,5 +1,8 @@
 package il.ac.bgu;
 
+import org.agreement_technologies.common.map_planner.Step;
+import org.agreement_technologies.service.map_planner.POPPrecEff;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -10,12 +13,56 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.lang.String.format;
+
 /**
  * Created by Boris on 02/07/2017.
  */
 public class CnfEncodingUtils {
 
     private static Integer TOP_WEIGHT = Integer.MAX_VALUE;
+
+    public static Boolean encodeValue(POPPrecEff precEff, Boolean encodeValue) {
+        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
+                map(v -> encodeValue(v, encodeValue)).
+                orElse(encodeValue);
+
+    }
+
+    public static Boolean encodeValue(Boolean currentValue, Boolean encodeValue) {
+        return currentValue == encodeValue;
+
+    }
+
+    public static String createEffKey(POPPrecEff precEff) {
+        return precEff.getFunction().toKey().replace(" ", "~");
+    }
+
+    public static String createEffId(POPPrecEff precEff) {
+        String effKey = createEffKey(precEff);
+        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
+                map(val -> format("%s", effKey)).  //boolean effect
+                orElse(format("%s=%s", effKey, precEff.getValue()));
+    }
+
+    public static String createEffId(POPPrecEff precEff, Integer stage) {
+        return format("%s:%s", stage, createEffId(precEff));
+    }
+
+    public static String createEffId(String effKey, Integer stage) {
+        return format("%s:%s", stage, effKey);
+    }
+
+    public static String encodeAction(Step step) {
+        return step.getActionName().replace(" ", "~");
+    }
+
+
+    public static String encodeHealthyStep(Step step, Integer stage) {
+        return format("%s:h(%s)", stage, encodeAction(step));
+
+    }
+
 
     public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> plan,
                                                             List<String> healthClauses) {

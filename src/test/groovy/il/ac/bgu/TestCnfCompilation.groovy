@@ -83,7 +83,7 @@ class TestCnfCompilation extends Specification {
 
     def "test that variables that exist in the effects are added to variable state"() {
         expect:
-        cnfCompilation.executeStage(0, sortedPlan.get(0)).
+        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0)).
                 collect(Collectors.toList()) == [
         ]
     }

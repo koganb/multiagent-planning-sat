@@ -14,6 +14,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
+import org.sat4j.maxsat.SolverFactory;
 import org.sat4j.maxsat.WeightedMaxSatDecorator;
 import org.sat4j.maxsat.reader.WDimacsReader;
 import org.sat4j.reader.Reader;
@@ -31,6 +32,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by Boris on 26/05/2017.
@@ -85,13 +88,16 @@ public class SatSolver {
                 flatMap(t -> Arrays.stream(t.split("\t"))).
                 toArray(String[]::new);
 
-        List<String> failedActions = calculateDiagnostics(agentDefs, failedSteps);
+        //calculate solution plan
+        TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
+
+
+        List<String> failedActions = calculateDiagnostics(sortedPlan, new HashSet<>(Arrays.asList(failedSteps)));
         log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
     }
 
-    public static List<String> calculateDiagnostics(String[] agentDefs, String[] failedSteps) {
-        //calculate solution plan
-        TreeMap<Integer, Set<Step>> sortedPlan = calculateSolution(agentDefs);
+    public static List<String> calculateDiagnostics(TreeMap<Integer, Set<Step>> sortedPlan, Set<String> failedSteps) {
+
 
         Pair<Map<String, Integer>, String> cnfEncoding = compilePlanToCnf(sortedPlan, failedSteps);
 
@@ -105,12 +111,12 @@ public class SatSolver {
 
 
     private static Pair<Map<String, Integer>, String> compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan,
-                                                                       String[] failedSteps) {
+                                                                       Set<String> failedSteps) {
 
         CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
 
         List<List<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
-        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps);
+        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps.toArray(new String[0]));
 
         List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
@@ -125,8 +131,35 @@ public class SatSolver {
 
         Pair<Map<String, Integer>, String> cnfEncoding = CnfEncodingUtils.encode(fullPlanCnfCompilation, healthClauses);
 
-        log.debug("code map:\n{}", cnfEncoding.getKey());
-        log.debug("cnf compilation output:\n{}", cnfEncoding.getValue());
+        log.info("code map:\n{}", cnfEncoding.getKey());
+
+        Map<String, Integer> variableToCodeMap = cnfEncoding.getKey();
+
+        //inverted code map
+        Map<Integer, String> codeToVariableMap =
+                variableToCodeMap.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+
+        log.info("cnf compilation output:\n{}",
+                Arrays.stream(cnfEncoding.getValue().split("\\R")).
+                        skip(1).
+                        map(line ->
+                                Arrays.stream(line.split(" ")).
+                                        skip(1).
+                                        filter(token -> !Objects.equals(token, "0")).
+                                        map(Integer::parseInt).
+                                        flatMap(token -> Stream.of(token.toString(), ImmutablePair.of(codeToVariableMap.get(Math.abs(token)), token > 0).toString())).
+                                        collect(Collectors.partitioningBy(token -> isNumeric(token) || token.startsWith("-")))).
+                        map(partResultMap ->
+                                partResultMap.get(Boolean.TRUE).stream().collect(Collectors.joining(","))
+                                        +
+                                        "  "
+                                        +
+                                        partResultMap.get(Boolean.FALSE).stream().collect(Collectors.joining(","))
+                        ).
+                        map(Objects::toString).
+                        collect(Collectors.joining("\n")));
+
+        //log.trace("cnf compilation output:\n{}", cnfEncoding.getValue());
 
         return cnfEncoding;
 
@@ -135,8 +168,9 @@ public class SatSolver {
     private static List<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
 //        ISolver solver = org.sat4j.maxsat.SolverFactory.newMiniMaxSAT();
 //        solver.setTimeout(3600); // 1 hour timeout
-        Reader reader = new WDimacsReader(new WeightedMaxSatDecorator(
-                org.sat4j.pb.SolverFactory.newSATUNSAT()));
+        WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
+        //solver.setVerbose(true);
+        Reader reader = new WDimacsReader(solver);
 
         try {
             IProblem problem = reader.parseInstance(IOUtils.toInputStream(cnfPlan, "UTF-8"));
