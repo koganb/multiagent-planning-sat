@@ -53,11 +53,12 @@ public class CnfCompilation {
     }
 
 
-    public List<String> encodeHealthClauses() {
+    public List<List<ImmutablePair<String, Boolean>>> encodeHealthyClauses() {
         return plan.entrySet().stream().
                 filter(i -> i.getKey() != -1).
                 flatMap(entry -> entry.getValue().stream().map(
-                        step -> encodeHealthyStep(step, entry.getKey()))).
+                        step -> Lists.newArrayList(ImmutablePair.of(
+                                encodeHealthyStep(step, entry.getKey()), true)))).
                 collect(Collectors.toList());
     }
 
@@ -137,7 +138,7 @@ public class CnfCompilation {
                 map(Lists::newArrayList).
                 collect(toList());
 
-        log.debug("\n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("Final Values: \n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End final values calculation");
 
 
@@ -208,7 +209,7 @@ public class CnfCompilation {
             );
         }).collect(toList());
 
-        log.debug("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("healthy clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End add healthy clause");
 
         return resultClauses.stream();
@@ -247,7 +248,7 @@ public class CnfCompilation {
             );
         }).collect(toList());
 
-        log.debug("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("failed clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End failed clause");
 
         return resultClauses.stream();
@@ -296,25 +297,28 @@ public class CnfCompilation {
         List<List<ImmutablePair<String, Boolean>>> resultClauses = actions.stream().flatMap(action -> action.getPopPrecs().stream().
                 map(prec -> new ImmutablePair<>(createEffId(prec, stage), encodeValue(prec, true))).
                 flatMap(prec ->
-                        action.getPopEffs().stream().flatMap(actionEff -> Optional.ofNullable(variablesStateAfterStepExec.get(createEffKey(actionEff))).
-                                map(g -> g.stream().flatMap(stateVar -> Stream.of(
-                                        Lists.newArrayList(prec, new ImmutablePair<>(encodeHealthyStep(action, stage), true)),
-                                        Lists.newArrayList(prec,
-                                                new ImmutablePair<>(
-                                                        createEffId(stateVar.getKey(), stage),
-                                                        encodeValue(stateVar.getValue(), true)),
-                                                new ImmutablePair<>(
-                                                        createEffId(stateVar.getKey(), stage + 1),
-                                                        encodeValue(stateVar.getValue(), false))),
-                                        Lists.newArrayList(prec,
-                                                new ImmutablePair<>(
-                                                        createEffId(stateVar.getKey(), stage),
-                                                        encodeValue(stateVar.getValue(), false)),
-                                                new ImmutablePair<>(
-                                                        createEffId(stateVar.getKey(), stage + 1),
-                                                        encodeValue(stateVar.getValue(), true)))
-                                ))).
-                                orElseGet(Stream::empty)))).collect(toList());
+                        Stream.concat(
+                                Stream.of(Lists.newArrayList(prec, new ImmutablePair<>(encodeHealthyStep(action, stage), true))),
+                                action.getPopEffs().stream().flatMap(actionEff -> Optional.ofNullable(variablesStateAfterStepExec.get(createEffKey(actionEff))).
+                                        map(g -> g.stream().flatMap(stateVar -> Stream.of(
+                                                Lists.newArrayList(prec,
+                                                        new ImmutablePair<>(
+                                                                createEffId(stateVar.getKey(), stage),
+                                                                encodeValue(stateVar.getValue(), true)),
+                                                        new ImmutablePair<>(
+                                                                createEffId(stateVar.getKey(), stage + 1),
+                                                                encodeValue(stateVar.getValue(), false))),
+                                                Lists.newArrayList(prec,
+                                                        new ImmutablePair<>(
+                                                                createEffId(stateVar.getKey(), stage),
+                                                                encodeValue(stateVar.getValue(), false)),
+                                                        new ImmutablePair<>(
+                                                                createEffId(stateVar.getKey(), stage + 1),
+                                                                encodeValue(stateVar.getValue(), true)))
+                                        ))).
+                                        orElseGet(Stream::empty))
+
+                        ))).collect(toList());
 
         log.debug("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End conditions not met clause");
@@ -398,8 +402,8 @@ public class CnfCompilation {
                     ImmutablePair.of(createEffId(eff), encodeValue(eff, false));
 
             variablesStateBeforeStepExec.putIfAbsent(effKey, Sets.newHashSet());
-            if (!variablesStateBeforeStepExec.get(effKey).stream().
-                    allMatch(effect -> effect.getLeft().equals(precondition.getLeft()))) {
+            if (variablesStateBeforeStepExec.get(effKey).stream().
+                    noneMatch(effect -> effect.getLeft().equals(precondition.getLeft()))) {
                 log.debug("Adding effect to the var state {}", precondition);
                 variablesStateBeforeStepExec.get(effKey).add(precondition);
                 newFluents.add(ImmutablePair.of(createEffId(eff, stage), encodeValue(eff, false)));

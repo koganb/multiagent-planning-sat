@@ -29,6 +29,7 @@ public class ActionDependencyCalculation {
                 forEach(step -> {
                     String stepUuid = step.getUuid();
                     uuidToAction.put(stepUuid, step);
+                    actionDependencies.computeIfAbsent(stepUuid, k -> new HashSet<>());
 
                     step.getPopPrecs().forEach(prec -> {
                                 Step dependentStep = effectsToStepMap.get(ImmutablePair.of(
@@ -36,8 +37,7 @@ public class ActionDependencyCalculation {
 
                                 if (dependentStep != null) {
                                     //add dependent steps
-                                    actionDependencies.computeIfAbsent(stepUuid, k -> new HashSet<>()).
-                                            add(dependentStep.getUuid());
+                                    actionDependencies.get(stepUuid).add(dependentStep.getUuid());
                                 }
                             }
                     );

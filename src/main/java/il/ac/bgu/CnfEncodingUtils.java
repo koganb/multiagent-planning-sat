@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.String.format;
 
@@ -20,7 +21,8 @@ import static java.lang.String.format;
  */
 public class CnfEncodingUtils {
 
-    private static Integer TOP_WEIGHT = Integer.MAX_VALUE;
+    private static Integer HARD_CONSTRAINTS_WEIGHT = Integer.MAX_VALUE;
+    private static Integer SOFT_CONSTRAINTS_WEIGHT = 1;
 
     public static Boolean encodeValue(POPPrecEff precEff, Boolean encodeValue) {
         return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
@@ -64,41 +66,41 @@ public class CnfEncodingUtils {
     }
 
 
-    public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> plan,
-                                                            List<String> healthClauses) {
+    public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> hardConstraints,
+                                                            List<List<ImmutablePair<String, Boolean>>> softConstraints) {
         Map<String, Integer> planCodes = new HashMap<>();
         MutableInt currentCode = new MutableInt(0);
 
-        String planCompilation = plan.stream().map(t -> t.stream().map(f -> {
-            Integer code = Optional.ofNullable(
-                    //in case the code for literal do not exists put it to the map and update the counter
-                    planCodes.
-                            putIfAbsent(f.getKey(), currentCode.getValue() + 1)).orElseGet(() -> {
-                currentCode.setValue(currentCode.getValue() + 1);
-                return currentCode.getValue();
+        String cnfCompilation = Stream.of(ImmutablePair.of(HARD_CONSTRAINTS_WEIGHT, hardConstraints),
+                ImmutablePair.of(SOFT_CONSTRAINTS_WEIGHT, softConstraints)).
+                flatMap(pair -> pair.getRight().stream().map(t -> ImmutablePair.of(pair.getLeft(), t))).
+                map(pair -> {
+                    String cnfClauseString = pair.getRight().stream().map(f -> {
+                        Integer code = Optional.ofNullable(
+                                //in case the code for literal do not exists put it to the map and update the counter
+                                planCodes.
+                                        putIfAbsent(f.getKey(), currentCode.getValue() + 1)).orElseGet(() -> {
+                            currentCode.setValue(currentCode.getValue() + 1);
+                            return currentCode.getValue();
 
-            });
+                        });
 
-            return f.getRight() ? Integer.toString(code) : "-" + Integer.toString(code);
+                        return f.getRight() ? Integer.toString(code) : "-" + Integer.toString(code);
 
-        }).
-                //separate the literals with blanks
-                        collect(Collectors.joining(" "))).
-                map(clause -> String.format("%s %s 0", TOP_WEIGHT, clause)).
-
+                    }).collect(Collectors.joining(" "));
+                    return ImmutablePair.of(pair.getLeft(), cnfClauseString);
+                }).
+                map(pair -> String.format("%s %s 0",
+                        pair.left,  //clause weight
+                        pair.right  //clause
+                )).
 
                 //end zero and new line at the clause end
                         collect(Collectors.joining(System.lineSeparator()));
 
-
-        String healthClausesCompilation = healthClauses.stream().
-                map(healthClause -> String.format("%s %s 0", 1, planCodes.get(healthClause))).
-                collect(Collectors.joining(System.lineSeparator()));
-
-
-        planCompilation = String.format("p wcnf %s %s %s",
-                planCodes.size(), plan.size() + healthClauses.size(), TOP_WEIGHT) +
-                System.lineSeparator() + planCompilation + System.lineSeparator() + healthClausesCompilation;
+        String planCompilation = String.format("p wcnf %s %s %s",
+                planCodes.size(), hardConstraints.size() + softConstraints.size(), HARD_CONSTRAINTS_WEIGHT) +
+                System.lineSeparator() + cnfCompilation;
 
         return new ImmutablePair<>(planCodes, planCompilation);
 

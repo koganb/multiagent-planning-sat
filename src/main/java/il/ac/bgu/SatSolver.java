@@ -1,6 +1,8 @@
 package il.ac.bgu;
 
 import com.google.common.base.CharMatcher;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
@@ -32,8 +34,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by Boris on 26/05/2017.
@@ -91,18 +91,17 @@ public class SatSolver {
         //calculate solution plan
         TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
 
+        Pair<List<List<ImmutablePair<String, Boolean>>>, List<List<ImmutablePair<String, Boolean>>>> compilePlanToCnf =
+                compilePlanToCnf(sortedPlan, new HashSet<>(Arrays.asList(failedSteps)));
 
-        List<String> failedActions = calculateDiagnostics(sortedPlan, new HashSet<>(Arrays.asList(failedSteps)));
+        Pair<Map<String, Integer>, String> cnfEncoding =
+                CnfEncodingUtils.encode(compilePlanToCnf.getLeft(), compilePlanToCnf.getRight());
+
+        Set<String> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
+
         log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
     }
 
-    public static List<String> calculateDiagnostics(TreeMap<Integer, Set<Step>> sortedPlan, Set<String> failedSteps) {
-
-
-        Pair<Map<String, Integer>, String> cnfEncoding = compilePlanToCnf(sortedPlan, failedSteps);
-
-        return runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
-    }
 
     private static void help(Options options) {
         HelpFormatter formatter = new HelpFormatter();
@@ -110,8 +109,11 @@ public class SatSolver {
     }
 
 
-    private static Pair<Map<String, Integer>, String> compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan,
-                                                                       Set<String> failedSteps) {
+    public static Pair<
+            List<List<ImmutablePair<String, Boolean>>>,
+            List<List<ImmutablePair<String, Boolean>>>
+            > compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan,
+                               Set<String> failedSteps) {
 
         CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
 
@@ -126,11 +128,13 @@ public class SatSolver {
                         collect(Collectors.toList());
 
         log.info("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        List<String> healthClauses = cnfCompilation.encodeHealthClauses();
-        log.info("healthy clauses:\n{}", healthClauses.stream().collect(Collectors.joining("\n")));
+        List<List<ImmutablePair<String, Boolean>>> healthClauses = cnfCompilation.encodeHealthyClauses();
+        log.info("healthy clauses:\n{}", healthClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
 
-        Pair<Map<String, Integer>, String> cnfEncoding = CnfEncodingUtils.encode(fullPlanCnfCompilation, healthClauses);
+        return ImmutablePair.of(fullPlanCnfCompilation, healthClauses);
 
+
+        /*
         log.info("code map:\n{}", cnfEncoding.getKey());
 
         Map<String, Integer> variableToCodeMap = cnfEncoding.getKey();
@@ -160,12 +164,38 @@ public class SatSolver {
                         collect(Collectors.joining("\n")));
 
         //log.trace("cnf compilation output:\n{}", cnfEncoding.getValue());
-
-        return cnfEncoding;
+        */
+        //return cnfEncoding;
 
     }
 
-    private static List<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
+    public static void getAllPossibleDiagnosis(List<List<ImmutablePair<String, Boolean>>> hardConstraints,
+                                               List<List<ImmutablePair<String, Boolean>>> softConstraints,
+                                               Set<Set<String>> diagnosisSet) {
+
+
+        Pair<Map<String, Integer>, String> cnfEncoding =
+                CnfEncodingUtils.encode(hardConstraints, softConstraints);
+
+        Set<String> possibleDiagnosis = SatSolver.runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
+        log.warn("Possible diagnosis {}", possibleDiagnosis);
+
+        if (!possibleDiagnosis.isEmpty() && !diagnosisSet.contains(possibleDiagnosis)) {
+            diagnosisSet.add(possibleDiagnosis);
+            possibleDiagnosis.forEach(diagnosis -> {
+                List<List<ImmutablePair<String, Boolean>>> hardConstraintsCopy = new ArrayList<>(hardConstraints);
+
+                log.warn("Add hard constraint {}", diagnosis);
+                log.warn("hardConstraints: {}", hardConstraints);
+
+                hardConstraintsCopy.add(Lists.newArrayList(ImmutablePair.of(diagnosis, true)));
+                getAllPossibleDiagnosis(hardConstraintsCopy, softConstraints, diagnosisSet);
+            });
+
+        }
+    }
+
+    public static Set<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
 //        ISolver solver = org.sat4j.maxsat.SolverFactory.newMiniMaxSAT();
 //        solver.setTimeout(3600); // 1 hour timeout
         WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
@@ -201,11 +231,12 @@ public class SatSolver {
 
                 return actionResultsMap.entrySet().stream().
                         filter(i -> !i.getValue()).
-                        map(Map.Entry::getKey).collect(Collectors.toList());
+                        map(Map.Entry::getKey).collect(Collectors.toSet());
 
 
             } else {
-                throw new RuntimeException(" Unsatisfiable !");
+                log.warn(" Unsatisfiable !");
+                return Sets.newHashSet();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
