@@ -3,6 +3,7 @@ package org.agreement_technologies.service.map_grounding;
 import org.agreement_technologies.common.map_grounding.*;
 import org.agreement_technologies.common.map_parser.*;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -2016,7 +2017,7 @@ public class GroundedTaskImp implements GroundedTask {
         }
     }
 
-    public class GroundedMetric {
+    public class GroundedMetric implements Serializable {
 
         public static final int MT_PREFERENCE = 0;
         public static final int MT_ADD = 1;

@@ -3,6 +3,7 @@ package org.agreement_technologies.service.map_planner;
 import org.agreement_technologies.common.map_planner.Condition;
 import org.agreement_technologies.common.map_planner.Step;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author Alex
  */
-public class POPStep implements Step {
+public class POPStep implements Step, Serializable {
     private POPAction action;
     private String agent;
     private int index;

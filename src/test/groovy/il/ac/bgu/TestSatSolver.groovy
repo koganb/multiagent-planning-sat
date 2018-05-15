@@ -3,6 +3,7 @@ package il.ac.bgu
 import com.google.common.collect.Sets
 import com.google.common.collect.Streams
 import org.agreement_technologies.common.map_planner.Step
+import org.apache.commons.lang3.SerializationUtils
 import org.apache.commons.lang3.tuple.ImmutablePair
 import org.apache.commons.lang3.tuple.Pair
 import spock.lang.Shared
@@ -19,6 +20,7 @@ import static il.ac.bgu.CnfEncodingUtils.ActionState.FAILED
 @Unroll
 class TestSatSolver extends Specification {
 
+    public static final String PROBLEM_NAME = "satellite20.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
 
@@ -27,25 +29,22 @@ class TestSatSolver extends Specification {
 
     def setupSpec() {
         String[] agentDefs = Files.readAllLines(
-                Paths.get(this.getClass().getClassLoader().getResource("problems/satellite20.problem").toURI())).stream().
+                Paths.get(this.getClass().getClassLoader().getResource("problems/" + PROBLEM_NAME).toURI())).stream().
                 flatMap({ t -> Arrays.stream(t.split("\t")) }).
                 collect(Collectors.toList()).toArray(new String[0])
 
         def planningStartMils = System.currentTimeMillis()
 
 
-        try {
+        def serPlanFileName = PROBLEM_NAME + ".ser"
+        if (!new File(serPlanFileName).exists()) {
             sortedPlan = SatSolver.calculateSolution(agentDefs)
-            FileOutputStream fileOut =
-                    new FileOutputStream("plan_satellite20.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(sortedPlan);
-            out.close();
-            fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
+            SerializationUtils.serialize(sortedPlan, new FileOutputStream(serPlanFileName))
+            println "Planning time mils: " + (System.currentTimeMillis() - planningStartMils)
+        } else {
+            println "Loaded serialized plan: " + serPlanFileName
+            sortedPlan = SerializationUtils.deserialize(new FileInputStream(serPlanFileName))
         }
-        println "Planning time mils: " + (System.currentTimeMillis() - planningStartMils)
 
     }
 
@@ -122,9 +121,9 @@ class TestSatSolver extends Specification {
         testTimeSum += (System.currentTimeMillis() - planningStartMils)
 
         where:
-        actionsToTest << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream().
+        actionsToTest << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(3).stream().
 //               skip(407).
-//                limit(1).
+                limit(10000).
 
                 collect(Collectors.toList())
 

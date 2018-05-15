@@ -5,7 +5,9 @@ import org.agreement_technologies.common.map_grounding.GroundedEff;
 import org.agreement_technologies.common.map_planner.Condition;
 import org.agreement_technologies.common.map_planner.PlannerFactory;
 
-public class POPCondition implements Condition {
+import java.io.Serializable;
+
+public class POPCondition implements Condition, Serializable {
     private int type;
     private int var;
     private int value;

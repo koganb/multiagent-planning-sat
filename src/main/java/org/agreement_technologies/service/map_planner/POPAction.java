@@ -3,11 +3,12 @@ package org.agreement_technologies.service.map_planner;
 import org.agreement_technologies.common.map_grounding.Action;
 import org.agreement_technologies.common.map_planner.Condition;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 //Acciones para el POP; sustituye a la antigua clase PDDLAction
-public class POPAction {
+public class POPAction implements Serializable {
     private String actionName;
     //private Action operator;
     //private ArrayList<String> params;

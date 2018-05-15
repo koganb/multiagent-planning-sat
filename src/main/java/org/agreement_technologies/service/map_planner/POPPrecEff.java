@@ -2,13 +2,15 @@ package org.agreement_technologies.service.map_planner;
 
 import org.agreement_technologies.common.map_planner.Condition;
 
+import java.io.Serializable;
+
 /**
  * Function-value tuple that defines preconditions and effects in a POP; implements the PreconditionEffect interface.
  * Parameters: reference to the original grounded condition, variable, current value, condition (equal o distinct).
  *
  * @author Alex
  */
-public class POPPrecEff {
+public class POPPrecEff implements Serializable {
     static final int EQUAL = 1;
     static final int DISTINCT = 2;
     static final boolean IS_PREC = true;

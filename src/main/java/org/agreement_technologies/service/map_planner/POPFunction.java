@@ -2,6 +2,7 @@ package org.agreement_technologies.service.map_planner;
 
 import org.agreement_technologies.common.map_grounding.GroundedVar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * @author Alex
  */
 //Variables para el POP; sustituye a la antigua clase PDDLLiteral
-public class POPFunction {
+public class POPFunction implements Serializable {
     //Parámetros: referencia a la variable original, nombre, parámetros, lista de tipos, valor verdadero inicial, valores falsos iniciales, valores alcanzables
     private GroundedVar var;
     private String name;
