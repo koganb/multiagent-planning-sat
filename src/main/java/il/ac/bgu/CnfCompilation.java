@@ -14,6 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static il.ac.bgu.CnfEncodingUtils.ActionState.*;
 import static il.ac.bgu.CnfEncodingUtils.*;
 import static java.util.stream.Collectors.*;
 
@@ -31,14 +32,51 @@ public class CnfCompilation {
     private TreeMap<Integer, Set<Step>> plan;
 
 
+    private Map<String, String> reverseActions;
+
+
     CnfCompilation(TreeMap<Integer, Set<Step>> plan) {
         this.plan = plan;
         this.variablesStateBeforeStepExec = plan.get(-1).iterator().next().getPopEffs().stream().
                 collect(groupingBy(CnfEncodingUtils::createEffKey,
                         mapping(eff -> ImmutablePair.of(createEffId(eff), encodeValue(eff, true)), toSet())));
 
+        this.reverseActions = calculateReversibleActions(plan);
 
         log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
+    }
+
+    private Map<String, String> calculateReversibleActions(TreeMap<Integer, Set<Step>> plan) {
+        Map<String, List<String>> groupedActions = plan.entrySet().stream().
+                filter(i -> i.getKey() != -1).
+                flatMap(entry ->
+                        entry.getValue().stream().map(step -> {
+                            String preconditions = step.getPopPrecs().stream().
+                                    map(CnfEncodingUtils::createEffId).
+                                    sorted().
+                                    collect(Collectors.joining(","));
+                            String effects = step.getPopEffs().stream().
+                                    map(CnfEncodingUtils::createEffId).
+                                    sorted().
+                                    collect(Collectors.joining(","));
+
+                            String key = Stream.of(preconditions, effects).sorted().collect(Collectors.joining("#"));
+                            return ImmutablePair.of(key, CnfEncodingUtils.encodeActionKey(step, entry.getKey(), HEALTHY));
+                        })).collect(Collectors.groupingBy(Pair::getLeft, Collectors.mapping(Pair::getRight, Collectors.toList())));
+
+
+        Map<String, String> reversibleActions = new HashMap<>();
+        groupedActions.values().stream().
+                filter(actions -> actions.size() > 1).
+                map(actions -> actions.stream().sorted().collect(Collectors.toList())).
+                forEach(actions -> {
+                    for (int i = 0; i < actions.size() - 1; i++) {
+                        reversibleActions.put(actions.get(i), actions.get(i + 1));
+                    }
+                });
+        return reversibleActions;
+
+
     }
 
 
@@ -56,9 +94,11 @@ public class CnfCompilation {
     public List<List<ImmutablePair<String, Boolean>>> encodeHealthyClauses() {
         return plan.entrySet().stream().
                 filter(i -> i.getKey() != -1).
-                flatMap(entry -> entry.getValue().stream().map(
-                        step -> Lists.newArrayList(ImmutablePair.of(
-                                encodeHealthyStep(step, entry.getKey()), true)))).
+                flatMap(entry -> entry.getValue().stream().flatMap(
+                        step -> Stream.of(
+                                Lists.newArrayList(encodeActionState(step, entry.getKey(), HEALTHY, true))
+                                //,Lists.newArrayList(encodeActionState(step, entry.getKey(), FAILED, true))
+                        ))).
                 collect(Collectors.toList());
     }
 
@@ -204,7 +244,7 @@ public class CnfCompilation {
             return effectStream.map(u ->
                     Stream.concat(
                             preconditionList.stream(),
-                            Stream.of(new ImmutablePair<>(encodeHealthyStep(action, stage), false), u)).
+                            Stream.of(encodeActionState(action, stage, HEALTHY, false), u)).
                             collect(toList())
             );
         }).collect(toList());
@@ -243,7 +283,7 @@ public class CnfCompilation {
             return effectStream.map(u ->
                     Stream.concat(
                             preconditionList.stream(),
-                            Stream.of(new ImmutablePair<>(encodeHealthyStep(action, stage), true), u)).
+                            Stream.of(encodeActionState(action, stage, FAILED, false), u)).
                             collect(toList())
             );
         }).collect(toList());
@@ -279,7 +319,7 @@ public class CnfCompilation {
 //                    effectsStream.map(eff ->
 //                            Stream.concat(
 //                                    Stream.concat(precs.stream(),
-//                                            Stream.of(new ImmutablePair<>(encodeHealthyStep(action, stage), true))),
+//                                            Stream.of(new ImmutablePair<>(encodeActionState(action, stage), true))),
 //                                    Stream.of(eff)).collect(toList())));
 //
 //        }).collect(toList());
@@ -294,39 +334,99 @@ public class CnfCompilation {
 
         log.debug("Start conditions not met clause");
 
-        List<List<ImmutablePair<String, Boolean>>> resultClauses = actions.stream().flatMap(action -> action.getPopPrecs().stream().
-                map(prec -> new ImmutablePair<>(createEffId(prec, stage), encodeValue(prec, true))).
-                flatMap(prec ->
-                        Stream.concat(
-                                Stream.of(Lists.newArrayList(prec, new ImmutablePair<>(encodeHealthyStep(action, stage), true))),
-                                action.getPopEffs().stream().flatMap(actionEff -> Optional.ofNullable(variablesStateAfterStepExec.get(createEffKey(actionEff))).
-                                        map(g -> g.stream().flatMap(stateVar -> Stream.of(
-                                                Lists.newArrayList(prec,
-                                                        new ImmutablePair<>(
-                                                                createEffId(stateVar.getKey(), stage),
-                                                                encodeValue(stateVar.getValue(), true)),
-                                                        new ImmutablePair<>(
-                                                                createEffId(stateVar.getKey(), stage + 1),
-                                                                encodeValue(stateVar.getValue(), false))),
-                                                Lists.newArrayList(prec,
-                                                        new ImmutablePair<>(
-                                                                createEffId(stateVar.getKey(), stage),
-                                                                encodeValue(stateVar.getValue(), false)),
-                                                        new ImmutablePair<>(
-                                                                createEffId(stateVar.getKey(), stage + 1),
-                                                                encodeValue(stateVar.getValue(), true)))
-                                        ))).
-                                        orElseGet(Stream::empty))
+        List<List<ImmutablePair<String, Boolean>>> resultClauses = actions.stream().flatMap(action -> {
 
-                        ))).collect(toList());
+            // unknown -> not(prec1) v not(prec2) => not(unknown) v not(prec1) v not(prec2)
+            Stream<List<ImmutablePair<String, Boolean>>> precClauses1 = Stream.of(Stream.concat(
+                    Stream.of(encodeActionState(action, stage, UNKNOWN, false)),
+                    action.getPopPrecs().stream().flatMap(actionPrec ->
+                            Optional.ofNullable(variablesStateBeforeStepExec.get(createEffKey(actionPrec))).
+                                    map(g -> g.stream().map(stateVar ->
+                                            new ImmutablePair<>(
+                                                    createEffId(stateVar.getKey(), stage),
+                                                    encodeValue(stateVar.getValue(), false))
+                                    )).
+                                    orElseGet(Stream::empty))).collect(toList()));
+
+
+            // not(prec1) v not(prec2) -> unknown => (prec1 v unknown) ^  (prec2 v unknown)
+            Stream<ArrayList<ImmutablePair<String, Boolean>>> precClauses2 = action.getPopPrecs().stream().flatMap(actionPrec ->
+                    Optional.ofNullable(variablesStateBeforeStepExec.get(createEffKey(actionPrec))).
+                            map(g -> g.stream().map(stateVar ->
+                                    Lists.newArrayList(
+                                            encodeActionState(action, stage, UNKNOWN, true),
+                                            new ImmutablePair<>(
+                                                    createEffId(stateVar.getKey(), stage),
+                                                    encodeValue(stateVar.getValue(), true)))
+                            )).
+                            orElseGet(Stream::empty));
+
+            Stream<ArrayList<ImmutablePair<String, Boolean>>> effectClauses = action.getPopEffs().stream().flatMap(actionEff ->
+                    Optional.ofNullable(variablesStateAfterStepExec.get(createEffKey(actionEff))).
+                            map(g -> g.stream().flatMap(stateVar -> Stream.of(
+                                    Lists.newArrayList(encodeActionState(action, stage, UNKNOWN, false),
+                                            new ImmutablePair<>(
+                                                    createEffId(stateVar.getKey(), stage),
+                                                    encodeValue(stateVar.getValue(), true)),
+                                            new ImmutablePair<>(
+                                                    createEffId(stateVar.getKey(), stage + 1),
+                                                    encodeValue(stateVar.getValue(), false))),
+                                    Lists.newArrayList(
+                                            encodeActionState(action, stage, UNKNOWN, false),
+                                            new ImmutablePair<>(
+                                                    createEffId(stateVar.getKey(), stage),
+                                                    encodeValue(stateVar.getValue(), false)),
+                                            new ImmutablePair<>(
+                                                    createEffId(stateVar.getKey(), stage + 1),
+                                                    encodeValue(stateVar.getValue(), true)))
+                            ))).
+                            orElseGet(Stream::empty));
+
+            return Stream.concat(Stream.concat(precClauses1, precClauses2), effectClauses);
+
+        }).collect(toList());
+
 
         log.debug("\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End conditions not met clause");
 
         return resultClauses.stream();
 
-
     }
+
+
+    Stream<List<ImmutablePair<String, Boolean>>> addActionHealthyStatusConstraints(Integer stage, Set<Step> actions) {
+        return actions.stream().flatMap(action ->
+                Stream.of(
+                        Lists.newArrayList(
+                                encodeActionState(action, stage, HEALTHY, true),
+                                encodeActionState(action, stage, FAILED, true),
+                                encodeActionState(action, stage, UNKNOWN, true)
+                        ),
+                        Lists.newArrayList(
+                                encodeActionState(action, stage, HEALTHY, true),
+                                encodeActionState(action, stage, FAILED, false),
+                                encodeActionState(action, stage, UNKNOWN, false)
+                        ),
+                        Lists.newArrayList(
+                                encodeActionState(action, stage, HEALTHY, false),
+                                encodeActionState(action, stage, FAILED, true),
+                                encodeActionState(action, stage, UNKNOWN, false)
+                        ),
+                        Lists.newArrayList(
+                                encodeActionState(action, stage, HEALTHY, false),
+                                encodeActionState(action, stage, FAILED, false),
+                                encodeActionState(action, stage, UNKNOWN, true)
+                        ),
+                        Lists.newArrayList(
+                                encodeActionState(action, stage, HEALTHY, false),
+                                encodeActionState(action, stage, FAILED, false),
+                                encodeActionState(action, stage, UNKNOWN, false)
+                        )
+
+                ));
+    }
+
 
     public List<List<ImmutablePair<String, Boolean>>> compileToCnf() {
         List<List<ImmutablePair<String, Boolean>>> cnfClauses = plan.entrySet().stream().
@@ -337,7 +437,7 @@ public class CnfCompilation {
                                     Stream.concat(
                                             Stream.concat(
                                                     Stream.concat(
-                                                            Stream.empty(),
+                                                            addActionHealthyStatusConstraints(entry.getKey(), entry.getValue()),
                                                             executeStageAndAddFluents(entry.getKey(), entry.getValue())),
                                                     calculatePassThroughClauses(entry.getKey(), entry.getValue())),
                                             calculateHealthyClauses(entry.getKey(), entry.getValue())),
@@ -430,4 +530,7 @@ public class CnfCompilation {
     }
 
 
+    public Map<String, String> getReverseActions() {
+        return reverseActions;
+    }
 }

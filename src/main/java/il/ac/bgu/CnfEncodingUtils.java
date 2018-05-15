@@ -21,6 +21,7 @@ import static java.lang.String.format;
  */
 public class CnfEncodingUtils {
 
+    public static final String STATE_FORMAT = "Index:%02d, State:%s";
     private static Integer HARD_CONSTRAINTS_WEIGHT = Integer.MAX_VALUE;
     private static Integer SOFT_CONSTRAINTS_WEIGHT = 1;
 
@@ -48,22 +49,30 @@ public class CnfEncodingUtils {
     }
 
     public static String createEffId(POPPrecEff precEff, Integer stage) {
-        return format("%s:%s", stage, createEffId(precEff));
+        return format(STATE_FORMAT, stage, createEffId(precEff));
     }
 
     public static String createEffId(String effKey, Integer stage) {
-        return format("%s:%s", stage, effKey);
+        return format(STATE_FORMAT, stage, effKey);
     }
 
     public static String encodeAction(Step step) {
         return step.getActionName().replace(" ", "~");
     }
 
-
-    public static String encodeHealthyStep(Step step, Integer stage) {
-        return format("%s:h(%s)", stage, encodeAction(step));
+    public static String encodeActionKey(Step step, Integer stage, ActionState actionState) {
+        return format("Index:%02d,Agent:%s,Action:%s=%s", stage, step.getAgent(), encodeAction(step), actionState.name());
 
     }
+
+    public static ImmutablePair<String, Boolean> encodeActionState(Step step, Integer stage, ActionState actionState,
+                                                                   Boolean focusActionStateValue) {
+        String actionFormat = format("Index:%02d,Agent:%s,Action:%s=%s", stage, step.getAgent(), encodeAction(step), actionState.name());
+        return ImmutablePair.of(encodeActionKey(step, stage, actionState), focusActionStateValue);
+
+    }
+
+    public enum ActionState {HEALTHY, FAILED, UNKNOWN}
 
 
     public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> hardConstraints,

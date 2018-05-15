@@ -3,6 +3,7 @@ package il.ac.bgu;
 import com.google.common.base.CharMatcher;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.common.collect.Streams;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
@@ -33,7 +34,11 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static il.ac.bgu.CnfEncodingUtils.ActionState.*;
+import static java.lang.String.format;
 
 /**
  * Created by Boris on 26/05/2017.
@@ -91,15 +96,18 @@ public class SatSolver {
         //calculate solution plan
         TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
 
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
+
+
         Pair<List<List<ImmutablePair<String, Boolean>>>, List<List<ImmutablePair<String, Boolean>>>> compilePlanToCnf =
-                compilePlanToCnf(sortedPlan, new HashSet<>(Arrays.asList(failedSteps)));
+                compilePlanToCnf(cnfCompilation, new HashSet<>(Arrays.asList(failedSteps)));
 
         Pair<Map<String, Integer>, String> cnfEncoding =
                 CnfEncodingUtils.encode(compilePlanToCnf.getLeft(), compilePlanToCnf.getRight());
 
-        Set<String> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
+        Pair<Set<String>, Set<String>> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft(), cnfCompilation.getReverseActions());
 
-        log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
+        //log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
     }
 
 
@@ -109,13 +117,9 @@ public class SatSolver {
     }
 
 
-    public static Pair<
-            List<List<ImmutablePair<String, Boolean>>>,
-            List<List<ImmutablePair<String, Boolean>>>
-            > compilePlanToCnf(TreeMap<Integer, Set<Step>> sortedPlan,
-                               Set<String> failedSteps) {
+    public static Pair<List<List<ImmutablePair<String, Boolean>>>,
+            List<List<ImmutablePair<String, Boolean>>>> compilePlanToCnf(CnfCompilation cnfCompilation, Set<String> failedSteps) {
 
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
 
         List<List<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
         List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps.toArray(new String[0]));
@@ -171,31 +175,61 @@ public class SatSolver {
 
     public static void getAllPossibleDiagnosis(List<List<ImmutablePair<String, Boolean>>> hardConstraints,
                                                List<List<ImmutablePair<String, Boolean>>> softConstraints,
-                                               Set<Set<String>> diagnosisSet) {
+                                               Set<Set<String>> diagnosisSet, Map<String, String> reversableActions) {
 
 
         Pair<Map<String, Integer>, String> cnfEncoding =
                 CnfEncodingUtils.encode(hardConstraints, softConstraints);
 
-        Set<String> possibleDiagnosis = SatSolver.runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
-        log.warn("Possible diagnosis {}", possibleDiagnosis);
+        Pair<Set<String>, Set<String>> possibleDiagnosis = SatSolver.runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft(), reversableActions);
 
-        if (!possibleDiagnosis.isEmpty() && !diagnosisSet.contains(possibleDiagnosis)) {
-            diagnosisSet.add(possibleDiagnosis);
-            possibleDiagnosis.forEach(diagnosis -> {
-                List<List<ImmutablePair<String, Boolean>>> hardConstraintsCopy = new ArrayList<>(hardConstraints);
+        log.info("Possible diagnosis {}", possibleDiagnosis);
 
-                log.warn("Add hard constraint {}", diagnosis);
-                log.warn("hardConstraints: {}", hardConstraints);
+        Set<String> mustDiagnosis = possibleDiagnosis.getLeft();
+        Set<String> optionalDiagnosis = possibleDiagnosis.getRight();
 
-                hardConstraintsCopy.add(Lists.newArrayList(ImmutablePair.of(diagnosis, true)));
-                getAllPossibleDiagnosis(hardConstraintsCopy, softConstraints, diagnosisSet);
-            });
+        if (!mustDiagnosis.isEmpty()) {
 
+            Set<Set<String>> optionalFailuresCombinations = optionalDiagnosis.size() > 0 ?
+                    IntStream.range(0, (int) Math.pow(2, optionalDiagnosis.size())).
+                            mapToObj(i -> String.format("%0" + optionalDiagnosis.size() + "d",
+                                    Integer.parseInt(Integer.toBinaryString(i))).split("")).
+                            map(i ->
+                                    Streams.zip(
+                                            Arrays.stream(i).map(j -> j.equals("1")),
+                                            optionalDiagnosis.stream(),
+                                            ImmutablePair::of
+                                    ).
+                                            filter(pair -> pair.left).
+                                            map(pair -> pair.right).
+                                            collect(Collectors.toSet())
+                            ).
+                            collect(Collectors.toSet()) :
+                    Stream.of(mustDiagnosis).collect(Collectors.toSet());
+
+            Set<Set<String>> diagnosisCandidates = optionalFailuresCombinations.stream().
+                    map(optionalFailure -> Sets.union(Sets.newHashSet(optionalFailure), mustDiagnosis)).
+                    collect(Collectors.toSet());
+
+            if (!diagnosisSet.contains(mustDiagnosis)) {
+                diagnosisSet.addAll(diagnosisCandidates);
+                mustDiagnosis.forEach(diag -> {
+                            List<List<ImmutablePair<String, Boolean>>> hardConstraintsCopy = new ArrayList<>(hardConstraints);
+
+                            log.warn("Add hard constraint {}", diag);
+                            log.warn("hardConstraints: {}", hardConstraints);
+
+                            hardConstraintsCopy.add(Lists.newArrayList(ImmutablePair.of(diag, false)));
+                            getAllPossibleDiagnosis(hardConstraintsCopy, softConstraints, diagnosisSet, reversableActions);
+                        }
+                );
+            }
         }
+
     }
 
-    public static Set<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
+    public static Pair<Set<String>, Set<String>> runSatSolver(String cnfPlan, Map<String, Integer> codeMap,
+                                                              Map<String, String> reversibleActions) {
 //        ISolver solver = org.sat4j.maxsat.SolverFactory.newMiniMaxSAT();
 //        solver.setTimeout(3600); // 1 hour timeout
         WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
@@ -223,20 +257,41 @@ public class SatSolver {
                 log.info("variables result \n{}", variablesResult.entrySet().stream().
                         map(Object::toString).
                         collect(Collectors.joining("\n")));
-                TreeMap<String, Boolean> actionResultsMap = variablesResult.entrySet().stream().
-                        filter(t -> t.getKey().contains("h(")).
-                        collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (p1, p2) -> p1, TreeMap::new));
 
-                log.debug("Action variables {}", actionResultsMap);
+                Map<String, List<String>> actionsByAgent = variablesResult.entrySet().stream().filter(entry -> entry.getKey().matches(".+Agent.+")).
+                        filter(Map.Entry::getValue).
+                        map(Map.Entry::getKey).
+                        collect(Collectors.groupingBy(actionVar -> actionVar.split(",")[1]));
 
-                return actionResultsMap.entrySet().stream().
-                        filter(i -> !i.getValue()).
-                        map(Map.Entry::getKey).collect(Collectors.toSet());
+                Set<String> possibleFailures = new HashSet<>();
+                Set<String> actionFailures = new HashSet<>();
+                for (List<String> actionList : actionsByAgent.values()) {
+                    String actionCandidate = null;
 
+                    for (String action : actionList) {
+                        if (reversibleActions.get(action) != null) {
+                            actionCandidate = action;
+                        } else if (action.matches(format(".*%s.*", HEALTHY.name())) &&
+                                actionCandidate != null &&
+                                action.equals(reversibleActions.get(actionCandidate))) {
+                            possibleFailures.add(actionCandidate.replace(HEALTHY.name(), FAILED.name()));
+                            actionCandidate = null;
+                        } else if (!action.matches(format(".*%s.*", UNKNOWN.name()))) {
+                            actionCandidate = null;
+
+                            if (action.matches(format(".*%s.*", FAILED.name()))) {
+                                actionFailures.add(action);
+                            }
+                        }
+                    }
+
+                }
+
+                return ImmutablePair.of(actionFailures, possibleFailures);
 
             } else {
                 log.warn(" Unsatisfiable !");
-                return Sets.newHashSet();
+                return ImmutablePair.of(Sets.newHashSet(), Sets.newHashSet());
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
