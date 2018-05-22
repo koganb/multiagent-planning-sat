@@ -20,7 +20,7 @@ import static il.ac.bgu.CnfEncodingUtils.ActionState.FAILED
 @Unroll
 class TestSatSolver extends Specification {
 
-    public static final String PROBLEM_NAME = "satellite20.problem"
+    public static final String PROBLEM_NAME = "deports18.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
 
@@ -121,7 +121,7 @@ class TestSatSolver extends Specification {
         testTimeSum += (System.currentTimeMillis() - planningStartMils)
 
         where:
-        actionsToTest << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(3).stream().
+        actionsToTest << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream().
 //               skip(407).
                 limit(10000).
 
