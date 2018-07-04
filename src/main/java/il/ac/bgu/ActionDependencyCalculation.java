@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.CnfEncodingUtils.createEffId;
-import static il.ac.bgu.CnfEncodingUtils.encodeValue;
 
 public class ActionDependencyCalculation {
 
@@ -33,7 +32,7 @@ public class ActionDependencyCalculation {
 
                     step.getPopPrecs().forEach(prec -> {
                                 Step dependentStep = effectsToStepMap.get(ImmutablePair.of(
-                                        createEffId(prec), encodeValue(prec, true)));
+                                        createEffId(prec, prec.getValue()), true));
 
                                 if (dependentStep != null) {
                                     //add dependent steps
@@ -43,9 +42,7 @@ public class ActionDependencyCalculation {
                     );
 
                     step.getPopEffs().forEach(eff -> {
-                        effectsToStepMap.put(ImmutablePair.of(
-                                createEffId(eff), encodeValue(eff, true)),
-                                step);
+                        effectsToStepMap.put(ImmutablePair.of(createEffId(eff, eff.getValue()), true), step);
                     });
 
                 });

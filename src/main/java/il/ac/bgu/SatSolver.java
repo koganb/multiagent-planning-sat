@@ -1,9 +1,9 @@
 package il.ac.bgu;
 
 import com.google.common.base.CharMatcher;
-import com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import com.google.common.collect.Streams;
+import il.ac.bgu.failureModel.NoEffectFailureModel;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
@@ -34,10 +34,9 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfEncodingUtils.ActionState.*;
+import static il.ac.bgu.CnfEncodingUtils.ActionState.FAILED;
 import static java.lang.String.format;
 
 /**
@@ -96,16 +95,16 @@ public class SatSolver {
         //calculate solution plan
         TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
 
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan);
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel());
 
 
-        Pair<List<List<ImmutablePair<String, Boolean>>>, List<List<ImmutablePair<String, Boolean>>>> compilePlanToCnf =
+        Pair<ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>, ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>> compilePlanToCnf =
                 compilePlanToCnf(cnfCompilation, new HashSet<>(Arrays.asList(failedSteps)));
 
         Pair<Map<String, Integer>, String> cnfEncoding =
                 CnfEncodingUtils.encode(compilePlanToCnf.getLeft(), compilePlanToCnf.getRight());
 
-        Pair<Set<String>, Set<String>> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft(), cnfCompilation.getReverseActions());
+        Set<String> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
 
         //log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
     }
@@ -117,23 +116,23 @@ public class SatSolver {
     }
 
 
-    public static Pair<List<List<ImmutablePair<String, Boolean>>>,
-            List<List<ImmutablePair<String, Boolean>>>> compilePlanToCnf(CnfCompilation cnfCompilation, Set<String> failedSteps) {
+    public static Pair<ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>,
+            ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>> compilePlanToCnf(CnfCompilation cnfCompilation, Set<String> failedSteps) {
 
 
-        List<List<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
-        List<List<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps.toArray(new String[0]));
+        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
+        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps.toArray(new String[0]));
 
-        List<List<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
+        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
-        List<List<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation =
+        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation =
                 Stream.concat(Stream.concat(initFacts.stream(), planCnfCompilation.stream()),
                         finalFacts.stream()).
-                        collect(Collectors.toList());
+                        collect(ImmutableSet.toImmutableSet());
 
-        log.info("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        List<List<ImmutablePair<String, Boolean>>> healthClauses = cnfCompilation.encodeHealthyClauses();
-        log.info("healthy clauses:\n{}", healthClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        log.debug("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> healthClauses = cnfCompilation.encodeHealthyClauses();
+        log.debug("healthy clauses:\n{}", healthClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
 
         return ImmutablePair.of(fullPlanCnfCompilation, healthClauses);
 
@@ -173,63 +172,8 @@ public class SatSolver {
 
     }
 
-    public static void getAllPossibleDiagnosis(List<List<ImmutablePair<String, Boolean>>> hardConstraints,
-                                               List<List<ImmutablePair<String, Boolean>>> softConstraints,
-                                               Set<Set<String>> diagnosisSet, Map<String, String> reversableActions) {
 
-
-        Pair<Map<String, Integer>, String> cnfEncoding =
-                CnfEncodingUtils.encode(hardConstraints, softConstraints);
-
-        Pair<Set<String>, Set<String>> possibleDiagnosis = SatSolver.runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft(), reversableActions);
-
-        log.info("Possible diagnosis {}", possibleDiagnosis);
-
-        Set<String> mustDiagnosis = possibleDiagnosis.getLeft();
-        Set<String> optionalDiagnosis = possibleDiagnosis.getRight();
-
-        if (!mustDiagnosis.isEmpty()) {
-
-            Set<Set<String>> optionalFailuresCombinations = optionalDiagnosis.size() > 0 ?
-                    IntStream.range(0, (int) Math.pow(2, optionalDiagnosis.size())).
-                            mapToObj(i -> String.format("%0" + optionalDiagnosis.size() + "d",
-                                    Integer.parseInt(Integer.toBinaryString(i))).split("")).
-                            map(i ->
-                                    Streams.zip(
-                                            Arrays.stream(i).map(j -> j.equals("1")),
-                                            optionalDiagnosis.stream(),
-                                            ImmutablePair::of
-                                    ).
-                                            filter(pair -> pair.left).
-                                            map(pair -> pair.right).
-                                            collect(Collectors.toSet())
-                            ).
-                            collect(Collectors.toSet()) :
-                    Stream.of(mustDiagnosis).collect(Collectors.toSet());
-
-            Set<Set<String>> diagnosisCandidates = optionalFailuresCombinations.stream().
-                    map(optionalFailure -> Sets.union(Sets.newHashSet(optionalFailure), mustDiagnosis)).
-                    collect(Collectors.toSet());
-
-            if (!diagnosisSet.contains(mustDiagnosis)) {
-                diagnosisSet.addAll(diagnosisCandidates);
-                mustDiagnosis.forEach(diag -> {
-                            List<List<ImmutablePair<String, Boolean>>> hardConstraintsCopy = new ArrayList<>(hardConstraints);
-
-                            log.warn("Add hard constraint {}", diag);
-                            log.warn("hardConstraints: {}", hardConstraints);
-
-                            hardConstraintsCopy.add(Lists.newArrayList(ImmutablePair.of(diag, false)));
-                            getAllPossibleDiagnosis(hardConstraintsCopy, softConstraints, diagnosisSet, reversableActions);
-                        }
-                );
-            }
-        }
-
-    }
-
-    public static Pair<Set<String>, Set<String>> runSatSolver(String cnfPlan, Map<String, Integer> codeMap,
-                                                              Map<String, String> reversibleActions) {
+    public static Set<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
 //        ISolver solver = org.sat4j.maxsat.SolverFactory.newMiniMaxSAT();
 //        solver.setTimeout(3600); // 1 hour timeout
         WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
@@ -258,40 +202,13 @@ public class SatSolver {
                         map(Object::toString).
                         collect(Collectors.joining("\n")));
 
-                Map<String, List<String>> actionsByAgent = variablesResult.entrySet().stream().filter(entry -> entry.getKey().matches(".+Agent.+")).
-                        filter(Map.Entry::getValue).
-                        map(Map.Entry::getKey).
-                        collect(Collectors.groupingBy(actionVar -> actionVar.split(",")[1]));
-
-                Set<String> possibleFailures = new HashSet<>();
-                Set<String> actionFailures = new HashSet<>();
-                for (List<String> actionList : actionsByAgent.values()) {
-                    String actionCandidate = null;
-
-                    for (String action : actionList) {
-                        if (reversibleActions.get(action) != null) {
-                            actionCandidate = action;
-                        } else if (action.matches(format(".*%s.*", HEALTHY.name())) &&
-                                actionCandidate != null &&
-                                action.equals(reversibleActions.get(actionCandidate))) {
-                            possibleFailures.add(actionCandidate.replace(HEALTHY.name(), FAILED.name()));
-                            actionCandidate = null;
-                        } else if (!action.matches(format(".*%s.*", UNKNOWN.name()))) {
-                            actionCandidate = null;
-
-                            if (action.matches(format(".*%s.*", FAILED.name()))) {
-                                actionFailures.add(action);
-                            }
-                        }
-                    }
-
-                }
-
-                return ImmutablePair.of(actionFailures, possibleFailures);
+                return variablesResult.entrySet().stream().
+                        filter(entry -> entry.getKey().matches(format(".*%s.*", FAILED.name())) &&
+                                entry.getValue()).map(Map.Entry::getKey).collect(Collectors.toSet());
 
             } else {
                 log.warn(" Unsatisfiable !");
-                return ImmutablePair.of(Sets.newHashSet(), Sets.newHashSet());
+                return Sets.newHashSet();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

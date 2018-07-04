@@ -1,5 +1,6 @@
 package il.ac.bgu
 
+import com.google.common.collect.ImmutableSet
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.tuple.ImmutablePair
 import spock.lang.Shared
@@ -8,6 +9,9 @@ import spock.lang.Specification
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.stream.Collectors
+
+import static il.ac.bgu.CnfEncodingUtils.createEffId
+import static il.ac.bgu.CnfEncodingUtils.encodeValue
 
 class TestCnfCompilation extends Specification {
 
@@ -26,7 +30,12 @@ class TestCnfCompilation extends Specification {
         //calculate solution plan
         sortedPlan = SatSolver.calculateSolution(agentDefs)
 
-        cnfCompilation = new CnfCompilation(sortedPlan)
+        cnfCompilation = new CnfCompilation(sortedPlan,
+                { ImmutablePair<String, Boolean> eff, Integer stage ->
+                    ImmutableSet.of(ImmutablePair.of(
+                            createEffId(eff.getKey(), stage + 1),
+                            encodeValue(eff.getValue(), true)))
+                })
 
 
     }

@@ -1,14 +1,13 @@
 package il.ac.bgu;
 
+import com.google.common.collect.ImmutableSet;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,34 +25,42 @@ public class CnfEncodingUtils {
     private static Integer SOFT_CONSTRAINTS_WEIGHT = 1;
 
     public static Boolean encodeValue(POPPrecEff precEff, Boolean encodeValue) {
-        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
-                map(v -> encodeValue(v, encodeValue)).
-                orElse(encodeValue);
+//        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
+//                map(v -> encodeValue(v, encodeValue)).
+//                orElse(encodeValue);
 
+        //TODO remove function
+        return encodeValue;
     }
 
     public static Boolean encodeValue(Boolean currentValue, Boolean encodeValue) {
         return currentValue == encodeValue;
-
     }
 
     public static String createEffKey(POPPrecEff precEff) {
         return precEff.getFunction().toKey().replace(" ", "~");
     }
 
-    public static String createEffId(POPPrecEff precEff) {
+
+    public static String createEffId(POPPrecEff precEff, String value) {
         String effKey = createEffKey(precEff);
-        return Optional.ofNullable(BooleanUtils.toBooleanObject(precEff.getValue())).
-                map(val -> format("%s", effKey)).  //boolean effect
-                orElse(format("%s=%s", effKey, precEff.getValue()));
+        return createEffId(effKey, value);
     }
 
-    public static String createEffId(POPPrecEff precEff, Integer stage) {
-        return format(STATE_FORMAT, stage, createEffId(precEff));
+    public static String createEffId(String effKey, String value) {
+        return format("%s=%s", effKey, value);
     }
 
-    public static String createEffId(String effKey, Integer stage) {
-        return format(STATE_FORMAT, stage, effKey);
+    public static String createEffInstance(POPPrecEff precEff, Integer stage, String value) {
+        return format(STATE_FORMAT, stage, createEffId(precEff, value));
+    }
+
+    public static String createEffInstance(String effKey, Integer stage, String value) {
+        return format(STATE_FORMAT, stage, createEffId(effKey, value));
+    }
+
+    public static String createEffInstance(String effKeyWithValue, Integer stage) {
+        return format(STATE_FORMAT, stage, effKeyWithValue);
     }
 
     public static String encodeAction(Step step) {
@@ -67,7 +74,6 @@ public class CnfEncodingUtils {
 
     public static ImmutablePair<String, Boolean> encodeActionState(Step step, Integer stage, ActionState actionState,
                                                                    Boolean focusActionStateValue) {
-        String actionFormat = format("Index:%02d,Agent:%s,Action:%s=%s", stage, step.getAgent(), encodeAction(step), actionState.name());
         return ImmutablePair.of(encodeActionKey(step, stage, actionState), focusActionStateValue);
 
     }
@@ -75,8 +81,8 @@ public class CnfEncodingUtils {
     public enum ActionState {HEALTHY, FAILED, UNKNOWN}
 
 
-    public static Pair<Map<String, Integer>, String> encode(List<List<ImmutablePair<String, Boolean>>> hardConstraints,
-                                                            List<List<ImmutablePair<String, Boolean>>> softConstraints) {
+    public static Pair<Map<String, Integer>, String> encode(ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> hardConstraints,
+                                                            ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> softConstraints) {
         Map<String, Integer> planCodes = new HashMap<>();
         MutableInt currentCode = new MutableInt(0);
 
