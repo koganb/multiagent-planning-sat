@@ -2,7 +2,9 @@ package il.ac.bgu
 
 import com.google.common.collect.ImmutableSet
 import com.google.common.collect.Streams
-import il.ac.bgu.failureModel.NoEffectFailureModel
+import il.ac.bgu.dataModel.Action
+import il.ac.bgu.dataModel.Formattable
+import il.ac.bgu.failureModel.NewNoEffectFailureModel
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
 import org.agreement_technologies.common.map_planner.Step
@@ -16,8 +18,6 @@ import spock.lang.Unroll
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.stream.Collectors
-
-import static il.ac.bgu.CnfEncodingUtils.ActionState.FAILED
 
 @Unroll
 class TestSatSolver extends Specification {
@@ -59,82 +59,44 @@ class TestSatSolver extends Specification {
 
     }
 
-    def "test diagnostics calculation"() {
+    def "test diagnostics calculation"(Set<Action> failedActions) {
         expect:
         def planningStartMils = System.currentTimeMillis()
 
 
-        def actionToUuid = sortedPlan.entrySet().stream().flatMap { entry ->
-            entry.value.stream().
-                    map { step -> ImmutablePair.of(entry.key, step) }
-        }.
-                collect(Collectors.toMap(
-                        { Pair pair -> CnfEncodingUtils.encodeActionKey(pair.getValue(), pair.getKey(), FAILED) },
-                        { Pair pair -> pair.value.getUuid() }))
-
-        ImmutableSet<String> actualFailedActions = actionsToTest.stream().map { pair ->
-            Integer actionIndex = sortedPlan.entrySet().stream().
-                    filter { entry ->
-                        entry.getValue().stream().
-                                map { step -> step.getUuid() }.
-                                anyMatch { uuid -> uuid == pair.getValue().getUuid() }
-                    }.
-                    findFirst().get().getKey()
-
-            CnfEncodingUtils.encodeActionState(pair.getValue(), actionIndex, FAILED, true).getLeft()
-        }.collect(ImmutableSet.toImmutableSet())
-
-        println "Failed actions:" + actualFailedActions
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel())
+        println "Failed actions:" + failedActions
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NewNoEffectFailureModel())
+        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new NewNoEffectFailureModel()).getFinalVariableState(failedActions)
 
 
-        actionsToTest.stream().map { pair -> pair.getKey() }.collect(Collectors.toSet())
-        def finalFactsWithFailedActions = cnfCompilation.calcFinalFacts(
-                actionsToTest.stream().map { pair -> pair.getKey() }.toArray { size -> new String[size] }).
-                stream().
-                flatMap { t -> t.stream() }.
-                sorted().
-                collect(ImmutableSet.toImmutableSet())
-        def finalFactsWithoutFailedActions = cnfCompilation.calcFinalFacts().
-                stream().
-                flatMap { t -> t.stream() }.
-                sorted().
-                collect(ImmutableSet.toImmutableSet())
-
-        if (finalFactsWithFailedActions != finalFactsWithoutFailedActions) {
-
-            //calculate solution plan
-            Set<String> failedSteps = actionsToTest.stream().map { pair -> pair.getKey() }.collect(Collectors.toSet())
-
-            Pair<ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>,
-                    ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>> compilePlanToCnf =
-                    SatSolver.compilePlanToCnf(cnfCompilation, failedSteps)
+        Pair<ImmutableSet<ImmutableSet<ImmutablePair<? extends Formattable, Boolean>>>,
+                ImmutableSet<ImmutablePair<? extends Formattable, Boolean>>> compilePlanToCnf =
+                SatSolver.compilePlanToCnf(cnfCompilation, failedActions)
 
 
-            def solutionIterator = new SolutionIterator(
-                    compilePlanToCnf.getLeft(), compilePlanToCnf.getRight(), new SatSolutionSolver())
+        def solutionIterator = new SolutionIterator(
+                compilePlanToCnf.getLeft(), compilePlanToCnf.getRight(), new SatSolutionSolver())
 
 
-            if (Streams.stream(solutionIterator).
-                    filter { solution -> solution.isPresent() }.
-                    map { solution -> solution.get() }.
-                    filter { solution ->
-                        def solutionUuids = solution.stream().map { solutionClause -> actionToUuid.get(solutionClause) }.toArray { size -> new String[size] }
+        if (Streams.stream(solutionIterator).
+                filter { solution -> solution.isPresent() }.
+                map { solution -> solution.get() }.
+                filter { solution ->
+                    def solutionUuids = solution.stream().map { solutionClause -> actionToUuid.get(solutionClause) }.toArray { size -> new String[size] }
 
-                        def solutionFinalState = cnfCompilation.calcFinalFacts(solutionUuids).
-                                stream().
-                                flatMap { t -> t.stream() }.
-                                sorted().
-                                collect(ImmutableSet.toImmutableSet())
+                    def solutionFinalState = cnfCompilation.calcFinalFacts(solutionUuids).
+                            stream().
+                            flatMap { t -> t.stream() }.
+                            sorted().
+                            collect(ImmutableSet.toImmutableSet())
 
-                        return (solutionFinalState == finalFactsWithFailedActions &&
-                                actualFailedActions.containsAll(solution))
-                    }.findFirst().
-                    isPresent()) {
-                assert true
-            } else {
-                assert false
-            }
+                    return (solutionFinalState == finalFactsWithFailedActions &&
+                            actualFailedActions.containsAll(solution))
+                }.findFirst().
+                isPresent()) {
+            assert true
+        } else {
+            assert false
         }
 
 
@@ -143,7 +105,7 @@ class TestSatSolver extends Specification {
         testTimeSum += (System.currentTimeMillis() - planningStartMils)
 
         where:
-        actionsToTest << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream().
+        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream().
         //skip(2).
                 limit(100).
 
