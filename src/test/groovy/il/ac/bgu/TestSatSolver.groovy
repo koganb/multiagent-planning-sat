@@ -22,7 +22,7 @@ import java.util.stream.Collectors
 @Unroll
 class TestSatSolver extends Specification {
 
-    public static final String PROBLEM_NAME = "elevator30.problem"
+    public static final String PROBLEM_NAME = "elevator1.problem"
     //public static final String PROBLEM_NAME = "deports17.problem"
     //public static final String PROBLEM_NAME = "satellite20.problem"
     @Shared
@@ -107,7 +107,7 @@ class TestSatSolver extends Specification {
         where:
         failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream().
         //skip(2).
-                limit(100).
+                limit(1).
 
                 collect(Collectors.toList())
 
