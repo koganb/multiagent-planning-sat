@@ -1,9 +1,14 @@
 package il.ac.bgu;
 
-import com.google.common.collect.ImmutableSet;
+import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.dataModel.Variable;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -14,18 +19,35 @@ import java.util.stream.Stream;
 public class CnfCompilationUtils {
 
 
-    public static ImmutableSet<ImmutablePair<String, Boolean>> updateVariableState
-            (ImmutableSet<ImmutablePair<String, Boolean>> variableState, String effId) {
-        //update previous values
-        ImmutableSet<ImmutablePair<String, Boolean>> updatedVariableState = Stream.concat(
-                //update previous values
-                variableState.stream().
-                        filter(pair -> !pair.getKey().equals(effId)).
-                        map(pair -> ImmutablePair.of(pair.getKey(), false)),
-                Stream.of(ImmutablePair.of(effId, true))).
-                collect(ImmutableSet.toImmutableSet());
-        return updatedVariableState;
+    public static Stream<FormattableValue<Variable>> updateVariables
+            (Collection<FormattableValue<Variable>> variables, FormattableValue<Variable> trueVariable, Integer stage) {
+
+        Map<Boolean, List<FormattableValue<Variable>>> splitByFunctionKey = variables.stream()
+                .collect(Collectors.partitioningBy(var -> var.getFormattable().formatFunctionKey()
+                        .equals(trueVariable.getFormattable().formatFunctionKey())));
+
+        return Stream.concat(
+                Stream.concat(
+                        Stream.of(trueVariable),  //true variable
+                        splitByFunctionKey.get(Boolean.TRUE).stream()   //false variables
+                                .filter(var -> !var.getFormattable().formatFunctionKeyWithValue()
+                                        .equals(trueVariable.getFormattable().formatFunctionKeyWithValue()))
+                                .map(var -> FormattableValue.of(var.getFormattable().toBuilder().stage(stage).build(), false))),
+                splitByFunctionKey.get(Boolean.FALSE).stream()  //not effected variables
+        );
+
+    }
 
 
+    public static Stream<FormattableValue<Variable>> updateVariableSet(
+            Stream<FormattableValue<Variable>> oldVariables, Stream<FormattableValue<Variable>> newVariables) {
+
+        Map<String, FormattableValue<Variable>> variablesMap = oldVariables
+                .collect(Collectors.toMap(t -> t.getFormattable().formatFunctionKeyWithValue(), Function.identity()));
+
+        newVariables
+                .forEach(var -> variablesMap.put(var.getFormattable().formatFunctionKeyWithValue(), var));
+
+        return variablesMap.values().stream();
     }
 }

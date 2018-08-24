@@ -1,59 +1,55 @@
 package il.ac.bgu;
 
 import com.google.common.collect.Streams;
+import il.ac.bgu.dataModel.Action;
+import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.dataModel.Variable;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.math3.util.Combinations;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfEncodingUtils.createEffId;
-
 public class ActionDependencyCalculation {
 
-    private Map<String, Step> uuidToAction = new HashMap<>();
-
-    private Map<String, Set<String>> actionDependenciesFull = new HashMap<>();
+    private Map<Action, Set<Action>> actionDependenciesFull = new HashMap<>();
 
     public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan) {
-        Map<Pair<String, Boolean>, Step> effectsToStepMap = new HashMap<>();
-        Map<String, Set<String>> actionDependencies = new HashMap<>();
+        Map<FormattableValue, Action> effectsToStepMap = new HashMap<>();
+        Map<Action, Set<Action>> actionDependencies = new HashMap<>();
 
         plan.entrySet().stream().filter(i -> i.getKey() != -1).
-                flatMap(entry -> entry.getValue().stream()).
-                forEach(step -> {
-                    String stepUuid = step.getUuid();
-                    uuidToAction.put(stepUuid, step);
-                    actionDependencies.computeIfAbsent(stepUuid, k -> new HashSet<>());
+                flatMap(entry -> entry.getValue().stream().map(step ->
+                        ImmutablePair.of(entry.getKey(), step))).
+                forEach(pair -> {
+                    Action action = Action.of(pair.right, pair.left);
+                    actionDependencies.computeIfAbsent(action, k -> new HashSet<>());
 
-                    step.getPopPrecs().forEach(prec -> {
-                                Step dependentStep = effectsToStepMap.get(ImmutablePair.of(
-                                        createEffId(prec, prec.getValue()), true));
+                    pair.getRight().getPopPrecs().forEach(prec -> {
+                        FormattableValue<Variable> variableValue = FormattableValue.of(
+                                Variable.of(prec), true);
+                        Action dependentAction = effectsToStepMap.get(variableValue);
 
-                                if (dependentStep != null) {
+                        if (dependentAction != null) {
                                     //add dependent steps
-                                    actionDependencies.get(stepUuid).add(dependentStep.getUuid());
+                            actionDependencies.get(action).add(dependentAction);
                                 }
+
+                        effectsToStepMap.put(variableValue, action);
                             }
                     );
-
-                    step.getPopEffs().forEach(eff -> {
-                        effectsToStepMap.put(ImmutablePair.of(createEffId(eff, eff.getValue()), true), step);
-                    });
-
                 });
         actionDependencies.keySet().forEach(dependency ->
                 createActionDependenciesFull(actionDependencies, dependency, dependency));
     }
 
 
-    private void createActionDependenciesFull(Map<String, Set<String>> actionDependencies,
-                                              String actionKey, String currActionKey) {
-        Set<String> dependencies = actionDependencies.get(currActionKey);
+    private void createActionDependenciesFull(Map<Action, Set<Action>> actionDependencies,
+                                              Action actionKey, Action currAction) {
+        Set<Action> dependencies = actionDependencies.get(currAction);
         if (dependencies != null) {
             actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>()).
                     addAll(dependencies);
@@ -62,21 +58,22 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public List<Set<ImmutablePair<String, Step>>> getIndependentActionsList(int listSize) {
-        List<String> keys = new ArrayList<>(actionDependenciesFull.keySet());
+    public List<Set<Action>> getIndependentActionsList(int listSize) {
+        List<Action> keys = new ArrayList<>(actionDependenciesFull.keySet());
 
-        return Streams.stream(new Combinations(actionDependenciesFull.size(), listSize).iterator()).flatMap(
+        List<Set<Action>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), listSize).iterator()).flatMap(
                 combination -> {
-                    Set<String> actionKeys = Arrays.stream(combination).
+                    Set<Action> actionKeys = Arrays.stream(combination).
                             mapToObj(keys::get).
                             collect(Collectors.toSet());
-                    Set<String> dependentActions = actionKeys.stream().
+                    Set<Action> dependentActions = actionKeys.stream().
                             flatMap(key -> actionDependenciesFull.get(key).stream()).
                             collect(Collectors.toSet());
 
                     return CollectionUtils.intersection(actionKeys, dependentActions).isEmpty() ?
                             Stream.of(actionKeys) : Stream.empty();
                 }
-        ).map(keysSet -> keysSet.stream().map(key -> ImmutablePair.of(key, uuidToAction.get(key))).collect(Collectors.toSet())).collect(Collectors.toList());
+        ).collect(Collectors.toList());
+        return independentActions;
     }
 }

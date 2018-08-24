@@ -1,7 +1,8 @@
 package il.ac.bgu;
 
-import com.google.common.collect.ImmutableSet;
-import org.agreement_technologies.common.map_planner.Step;
+import com.google.common.collect.ImmutableList;
+import il.ac.bgu.dataModel.Formattable;
+import il.ac.bgu.dataModel.FormattableValue;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -63,44 +64,48 @@ public class CnfEncodingUtils {
         return format(STATE_FORMAT, stage, effKeyWithValue);
     }
 
-    public static String encodeAction(Step step) {
-        return step.getActionName().replace(" ", "~");
-    }
+//    public static String encodeAction(Step step) {
+//        return step.getActionName().replace(" ", "~");
+//    }
 
-    public static String encodeActionKey(Step step, Integer stage, ActionState actionState) {
-        return format("Index:%02d,Agent:%s,Action:%s=%s", stage, step.getAgent(), encodeAction(step), actionState.name());
+//    public static String encodeActionKey(Step step, Integer stage, ActionState actionState) {
+//        return format("Index:%02d,Agent:%s,Action:%s=%s", stage, step.getAgent(), encodeAction(step), actionState.name());
+//
+//    }
 
-    }
+//    public static ImmutablePair<String, Boolean> encodeActionState(Step step, Integer stage, ActionState actionState,
+//                                                                   Boolean focusActionStateValue) {
+//        return ImmutablePair.of(encodeActionKey(step, stage, actionState), focusActionStateValue);
+//
+//    }
 
-    public static ImmutablePair<String, Boolean> encodeActionState(Step step, Integer stage, ActionState actionState,
-                                                                   Boolean focusActionStateValue) {
-        return ImmutablePair.of(encodeActionKey(step, stage, actionState), focusActionStateValue);
-
-    }
-
-    public enum ActionState {HEALTHY, FAILED, UNKNOWN}
+    // public enum ActionState {HEALTHY, FAILED, UNKNOWN}
 
 
-    public static Pair<Map<String, Integer>, String> encode(ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> hardConstraints,
-                                                            ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> softConstraints) {
-        Map<String, Integer> planCodes = new HashMap<>();
+    public static Pair<Map<Formattable, Integer>, String> encode(
+            ImmutableList<ImmutableList<FormattableValue<Formattable>>> hardConstraints,
+            ImmutableList<FormattableValue<Formattable>> softConstraints) {
+        Map<Formattable, Integer> planCodes = new HashMap<>();
         MutableInt currentCode = new MutableInt(0);
 
-        String cnfCompilation = Stream.of(ImmutablePair.of(HARD_CONSTRAINTS_WEIGHT, hardConstraints),
-                ImmutablePair.of(SOFT_CONSTRAINTS_WEIGHT, softConstraints)).
+        String cnfCompilation = Stream.of(
+                ImmutablePair.of(HARD_CONSTRAINTS_WEIGHT, hardConstraints),
+                ImmutablePair.of(SOFT_CONSTRAINTS_WEIGHT, softConstraints.stream()
+                        .map(ImmutableList::of)
+                        .collect(ImmutableList.toImmutableList()))).
                 flatMap(pair -> pair.getRight().stream().map(t -> ImmutablePair.of(pair.getLeft(), t))).
                 map(pair -> {
                     String cnfClauseString = pair.getRight().stream().map(f -> {
                         Integer code = Optional.ofNullable(
                                 //in case the code for literal do not exists put it to the map and update the counter
                                 planCodes.
-                                        putIfAbsent(f.getKey(), currentCode.getValue() + 1)).orElseGet(() -> {
+                                        putIfAbsent(f.getFormattable(), currentCode.getValue() + 1)).orElseGet(() -> {
                             currentCode.setValue(currentCode.getValue() + 1);
                             return currentCode.getValue();
 
                         });
 
-                        return f.getRight() ? Integer.toString(code) : "-" + Integer.toString(code);
+                        return f.getValue() ? Integer.toString(code) : "-" + Integer.toString(code);
 
                     }).collect(Collectors.joining(" "));
                     return ImmutablePair.of(pair.getLeft(), cnfClauseString);

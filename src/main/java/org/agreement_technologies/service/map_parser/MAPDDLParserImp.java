@@ -1082,7 +1082,7 @@ public class MAPDDLParserImp implements PDDLParser {
                     try {
                         m.term.add(task.new MetricImp(Double.parseDouble(token.getDesc())));
                     } catch (NumberFormatException e) {
-                        syn.notifyError("Invalid number format in metric: " + token.getDesc());
+                        syn.notifyError("Invalid number formatData in metric: " + token.getDesc());
                     }
                 }
                 token = syn.readSym(Symbol.SS_OPEN_PAR, Symbol.SS_CLOSE_PAR, Symbol.SS_NUMBER);

@@ -588,7 +588,7 @@ public class POPIncrementalPlan implements IPlan {
         }
 
         //Print the plan
-        //CoDMAP distributed format
+        //CoDMAP distributed formatData
         //Print only the sequence of actions of the current agent; print no-ops when necessary
 
         if (output == Plan.CoDMAP_DISTRIBUTED) {
@@ -604,7 +604,7 @@ public class POPIncrementalPlan implements IPlan {
                 //    System.out.println("(no-op)");
             }
         }
-        //Regular and CoDMAP Centralized format
+        //Regular and CoDMAP Centralized formatData
         //Print actions of the plan ordered by time step
         else {
             //Only the first agent in the list shall print the plan
@@ -646,7 +646,7 @@ public class POPIncrementalPlan implements IPlan {
         }
 
         switch (mode) {
-            //CoDMAP competition - centralized track format (linear plan)
+            //CoDMAP competition - centralized track formatData (linear plan)
             case Plan.CoDMAP_CENTRALIZED:
                 for (level = 0; level <= actions.length - 2; level++) {
                     for (i = 2; i < actions.length; i++) {
@@ -670,7 +670,7 @@ public class POPIncrementalPlan implements IPlan {
                     }
                 }
                 break;
-            //CoDMAP competition - distributed track format (a sequence of actions per agent)
+            //CoDMAP competition - distributed track formatData (a sequence of actions per agent)
             case Plan.CoDMAP_DISTRIBUTED:
                 int[] succSequenceSizes = new int[actions.length];
                 for (i = 0; i < succSequenceSizes.length; i++)
@@ -767,7 +767,7 @@ public class POPIncrementalPlan implements IPlan {
                     level++;
                 }
                 break;
-            //POP format - actions scheduled as early as possible
+            //POP formatData - actions scheduled as early as possible
             default:
                 level = 0;
                 assigned = 0;

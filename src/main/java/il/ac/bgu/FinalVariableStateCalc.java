@@ -1,137 +1,90 @@
 package il.ac.bgu;
 
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
+import il.ac.bgu.dataModel.Action;
+import il.ac.bgu.dataModel.Formattable;
+import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.failureModel.NewFailureModelFunction;
+import il.ac.bgu.failureModel.NewSuccessVariableModel;
+import il.ac.bgu.failureModel.NewVariableModelFunction;
 import org.agreement_technologies.common.map_planner.Step;
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
+import org.agreement_technologies.service.map_planner.POPPrecEff;
+import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfCompilation.UNDEFINED;
-import static il.ac.bgu.CnfEncodingUtils.createEffId;
-import static java.util.stream.Collectors.toSet;
 
 public class FinalVariableStateCalc {
-
-
     private TreeMap<Integer, Set<Step>> plan;
-    private NewFailureModelFunction failureModelFunction;
+    private NewVariableModelFunction failureModelFunction;
+    private NewVariableModelFunction successModelFunction = new NewSuccessVariableModel();
 
-
-    public FinalVariableStateCalc(TreeMap<Integer, Set<Step>> plan, NewFailureModelFunction failureModelFunction) {
+    public FinalVariableStateCalc(TreeMap<Integer, Set<Step>> plan, NewVariableModelFunction failureModelFunction) {
         this.plan = plan;
         this.failureModelFunction = failureModelFunction;
     }
 
-    private ImmutableMap<String, ImmutablePair<Variable, Boolean>> getVarsGroupedByFunctionKeyWithValue(
-            Integer currentStage, ImmutableSet<ImmutablePair<Variable, Boolean>> variables) {
-        Map<String, ImmutableSet<ImmutablePair<Variable, Boolean>>> groupedById =
-                variables.stream().
-                        filter(v -> v.getKey().getStage() <= currentStage).
-                        collect(Collectors.groupingBy(v -> v.getKey().formatFunctionKeyWithValue(), ImmutableSet.toImmutableSet()));
+    public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Set<Action> failedActions) {
 
-        return groupedById.values().stream().map(vars ->
-                vars.stream().max(Comparator.comparing(v -> v.getKey().getStage())).
-                        orElseThrow(() -> new RuntimeException("No values for vars " + vars)))
-                .collect(ImmutableMap.toImmutableMap(v -> v.getKey().formatFunctionKeyWithValue(), Function.identity()));
-    }
+        Set<String> failedActionKeys = failedActions.stream().map(Action::formatData).collect(Collectors.toSet());
 
-    private ImmutableMap<String, ImmutableSet<ImmutablePair<Variable, Boolean>>> getVarsGroupedByFunctionKey(
-            ImmutableMap<String, ImmutablePair<Variable, Boolean>> variableState) {
-        return ImmutableMap.copyOf(variableState.values().stream()
-                .collect(Collectors.toMap(v -> v.getKey().formatFunctionKeyWithValue(), Function.identity(), (p, q) -> p))
-                .values().stream()
-                .collect(Collectors.groupingBy(v -> v.getKey().formatFunctionKey(),
-                        Collectors.mapping(Function.identity(), ImmutableSet.toImmutableSet()))));
+        ImmutableList<FormattableValue<Variable>> currentVars = ImmutableList.of();
+        for (Map.Entry<Integer, Set<Step>> stepEntry : plan.entrySet()) {
+            ImmutableList<FormattableValue<Variable>> prevStageVars = ImmutableList.copyOf(currentVars);
 
-    }
-
-    public ImmutableCollection<ImmutablePair<Variable, Boolean>> getFinalVariableState(String... failedSteps) {
-        Set<String> failedStepsSet = Arrays.stream(failedSteps).collect(toSet());
-
-        final ImmutableSet.Builder<ImmutablePair<Variable, Boolean>> varsBuilder = ImmutableSet.builder();
-
-        plan.get(-1).iterator().next().getPopEffs()
-                .forEach(eff -> {
-                    Variable variable = new Variable(eff, -1);
-                    varsBuilder.add(ImmutablePair.of(variable, true));
-                    varsBuilder.add(ImmutablePair.of(variable.toBuilder().functionValue(UNDEFINED).build(), false));
-                });
-
-        plan.entrySet().stream().filter(i -> i.getKey() != -1).forEach(stepEntry -> {
-            //keyWithValue to variable
-
-            ImmutableSet<ImmutablePair<Variable, Boolean>> vars = varsBuilder.build();
-            ImmutableMap<String, ImmutablePair<Variable, Boolean>> varsGroupedByKeyValue = getVarsGroupedByFunctionKeyWithValue(stepEntry.getKey(), vars);
-            ImmutableMap<String, ImmutableSet<ImmutablePair<Variable, Boolean>>> varsGroupedByKey =
-                    getVarsGroupedByFunctionKey(varsGroupedByKeyValue);
-
-
-            stepEntry.getValue().forEach(action -> {
-
+            for (Step step : stepEntry.getValue()) {
                 //step is failed
-                if (failedStepsSet.contains(action.getUuid())) {
-                    action.getPopEffs().forEach(eff -> {
-                        Variable variable = new Variable(eff, stepEntry.getKey());
-                        this.failureModelFunction.apply(variable, varsGroupedByKeyValue.values())
-                                .forEach(varsBuilder::add);
-                    });
+                if (failedActionKeys.contains(Action.of(step, stepEntry.getKey()).formatData())) {
+                    for (POPPrecEff eff : step.getPopEffs()) {
+                        currentVars = this.failureModelFunction.apply(new Variable(eff, stepEntry.getKey()), currentVars)
+                                .collect(ImmutableList.toImmutableList());
+                    }
                 }
                 //all preconditions valid
-                else if (action.getPopPrecs().stream().
-                        map(eff -> createEffId(eff, eff.getValue())).
-                        allMatch(key -> Optional.ofNullable(varsGroupedByKeyValue.get(key)).
-                                map(Pair::getValue).orElse(false))) {
+                else if (CollectionUtils.isEmpty(step.getPopPrecs()) ||
+                        step.getPopPrecs().stream()
+                                .allMatch(eff -> prevStageVars.stream()
+                                        .filter(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+                                                Variable.of(eff).formatFunctionKeyWithValue()))
+                                        .findFirst()
+                                        .map(FormattableValue::getValue)
+                                        .orElse(false))) {  //check key, value, state are equal
 
-                    action.getPopEffs().forEach(eff -> {
-                        Variable trueVariable = new Variable(eff, stepEntry.getKey());
-                        updateVariables(varsGroupedByKey.get(trueVariable.formatFunctionKey()),
-                                trueVariable, stepEntry.getKey())
-                                .forEach(varsBuilder::add);
-                    });
+                    for (POPPrecEff eff : step.getPopEffs()) {
+                        currentVars = successModelFunction.apply(new Variable(eff, stepEntry.getKey()), currentVars)
+                                .collect(ImmutableList.toImmutableList());
+                    }
                 } else {
                     //preconditions are not valid
-                    action.getPopEffs().forEach(eff -> {
-                        Variable variable = new Variable(eff, stepEntry.getKey());
-                        this.failureModelFunction.apply(variable, varsGroupedByKeyValue.values())
-                                .forEach(varsBuilder::add);
-                    });
-
+                    for (POPPrecEff eff : step.getPopEffs()) {
+                        currentVars = this.failureModelFunction.apply(new Variable(eff, stepEntry.getKey()), currentVars)
+                                .collect(ImmutableList.toImmutableList());
+                    }
                 }
-            });
-
-
-        });
-
+            }
+        }
         Integer maxStep = plan.keySet().stream().max(Integer::compareTo)
                 .orElseThrow(() -> new RuntimeException("No max step for plan" + plan));
 
-        ImmutableSet<ImmutablePair<Variable, Boolean>> finalVars = varsBuilder.build().stream()
-                .collect(ImmutableSet.toImmutableSet());
+        //add UNDEFINED variables to the final state
+        currentVars =
+                Stream.concat(
+                        currentVars.stream(),
+                        currentVars.stream()
+                                .collect(Collectors.groupingBy(t -> t.getFormattable().formatFunctionKey()))
+                                .values().stream()
+                                .map(list -> FormattableValue.of(
+                                        list.get(0).getFormattable().toBuilder().functionValue(Variable.UNDEFINED).build(), false)))
+                        .collect(ImmutableList.toImmutableList());
 
-        ImmutableCollection<ImmutablePair<Variable, Boolean>> variablesState = getVarsGroupedByFunctionKeyWithValue(maxStep, finalVars).values();
-        return variablesState.stream()
-                .map(pair -> ImmutablePair.of(pair.getKey().toBuilder().stage(maxStep + 1).build(), pair.getRight()))
-                .collect(ImmutableSet.toImmutableSet());
-    }
-
-    private Stream<ImmutablePair<Variable, Boolean>> updateVariables
-            (ImmutableCollection<ImmutablePair<Variable, Boolean>> falseVariable, Variable trueVariable, Integer stage) {
-        ImmutableList<ImmutablePair<Variable, Boolean>> updateResult = Stream.concat(
-                falseVariable.stream()
-                        .filter(v -> !v.getKey().formatFunctionKeyWithValue().equals(trueVariable.formatFunctionKeyWithValue()))
-                        .map(v -> ImmutablePair.of(v.getKey().toBuilder().stage(stage).build(), false)),
-                Stream.of(ImmutablePair.of(trueVariable.toBuilder().stage(stage).build(), true)))
+        return currentVars.stream()
+                .map(formattableValue -> FormattableValue.<Formattable>of(
+                        formattableValue.getFormattable().toBuilder().stage(maxStep + 1).build(),
+                        formattableValue.getValue()))
                 .collect(ImmutableList.toImmutableList());
-
-        return updateResult.stream();
     }
 }

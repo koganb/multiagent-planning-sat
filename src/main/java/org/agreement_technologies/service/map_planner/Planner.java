@@ -292,16 +292,16 @@ public abstract class Planner implements ExtendedPlanner {
         //	memoization.histogram();
 
         if (this.comm.getAgentIndex(myAgent) == 0) {
-            System.out.println("\nCoDMAP Distributed format");
+            System.out.println("\nCoDMAP Distributed formatData");
             System.out.println("-------------------------");
             for (int i = 0; i < comm.getAgentList().size(); i++) {
                 System.out.println("- Agent " + comm.getAgentList().get(i));
                 solution.printPlan(Plan.CoDMAP_DISTRIBUTED, comm.getAgentList().get(i), comm.getAgentList());
             }
-            System.out.println("\nCoDMAP Centralized format");
+            System.out.println("\nCoDMAP Centralized formatData");
             System.out.println("-------------------------");
             solution.printPlan(Plan.CoDMAP_CENTRALIZED, myAgent, comm.getAgentList());
-            System.out.println("\nRegular format");
+            System.out.println("\nRegular formatData");
             System.out.println("--------------");
             solution.printPlan(Plan.REGULAR, myAgent, comm.getAgentList());
             System.out.println("\n");

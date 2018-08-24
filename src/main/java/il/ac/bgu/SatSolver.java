@@ -1,15 +1,19 @@
 package il.ac.bgu;
 
 import com.google.common.base.CharMatcher;
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
-import il.ac.bgu.failureModel.NoEffectFailureModel;
+import il.ac.bgu.dataModel.Action;
+import il.ac.bgu.dataModel.Formattable;
+import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.dataModel.Variable;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPAction;
 import org.agreement_technologies.service.map_planner.POPStep;
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,12 +27,8 @@ import org.sat4j.maxsat.reader.WDimacsReader;
 import org.sat4j.reader.Reader;
 import org.sat4j.specs.IProblem;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -36,8 +36,8 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfEncodingUtils.ActionState.FAILED;
 import static java.lang.String.format;
+
 
 /**
  * Created by Boris on 26/05/2017.
@@ -50,64 +50,66 @@ public class SatSolver {
                     stream().
                     collect(Collectors.toMap(c -> CharMatcher.invisible().removeFrom(c.replace("problems/", "")), Function.identity()));
 
-    public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
-        Options options = new Options();
-        options.addOption(Option.builder("p").
-                desc("problem name = required").
-                longOpt("problem_name").
-                hasArg(true).
-                numberOfArgs(1).
-                required(true).build());
-        options.addOption(Option.builder("v").
-                desc("verbose").
-                longOpt("verbose").
-                hasArg(false).
-                required(false).build());
-        options.addOption(Option.builder("f").
-                desc("failed actions indexes - optional").
-                longOpt("failed index").
-                hasArg(true).
-                numberOfArgs(Option.UNLIMITED_VALUES).
-                required(false).build());
-        options.addOption("h", "help", false, "show help.");
-
-        help(options);
-
-        CommandLineParser parser = new DefaultParser();
-        CommandLine cmd = parser.parse(options, args);
-
-        if (cmd.hasOption('v')) {
-            org.apache.log4j.Logger logger4j = org.apache.log4j.Logger.getRootLogger();
-            logger4j.setLevel(org.apache.log4j.Level.toLevel("DEBUG"));
-        }
-
-        String problemName = cmd.getOptionValue('p');
-        String[] failedSteps = cmd.hasOption('f') ?
-                cmd.getOptionValues('f') :
-                new String[0];
-
-        //get agent definitions from file
-        String[] agentDefs = Files.readAllLines(
-                Paths.get(ClassLoader.getSystemResource(problemNames.get(problemName)).toURI())).stream().
-                flatMap(t -> Arrays.stream(t.split("\t"))).
-                toArray(String[]::new);
-
-        //calculate solution plan
-        TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
-
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel());
-
-
-        Pair<ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>, ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>> compilePlanToCnf =
-                compilePlanToCnf(cnfCompilation, new HashSet<>(Arrays.asList(failedSteps)));
-
-        Pair<Map<String, Integer>, String> cnfEncoding =
-                CnfEncodingUtils.encode(compilePlanToCnf.getLeft(), compilePlanToCnf.getRight());
-
-        Set<String> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
-
-        //log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
-    }
+//    public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
+//        Options options = new Options();
+//        options.addOption(Option.builder("p").
+//                desc("problem name = required").
+//                longOpt("problem_name").
+//                hasArg(true).
+//                numberOfArgs(1).
+//                required(true).build());
+//        options.addOption(Option.builder("v").
+//                desc("verbose").
+//                longOpt("verbose").
+//                hasArg(false).
+//                required(false).build());
+//        options.addOption(Option.builder("f").
+//                desc("failed actions indexes - optional").
+//                longOpt("failed index").
+//                hasArg(true).
+//                numberOfArgs(Option.UNLIMITED_VALUES).
+//                required(false).build());
+//        options.addOption("h", "help", false, "show help.");
+//
+//        help(options);
+//
+//        CommandLineParser parser = new DefaultParser();
+//        CommandLine cmd = parser.parse(options, args);
+//
+//        if (cmd.hasOption('v')) {
+//            org.apache.log4j.Logger logger4j = org.apache.log4j.Logger.getRootLogger();
+//            logger4j.setLevel(org.apache.log4j.Level.toLevel("DEBUG"));
+//        }
+//
+//        String problemName = cmd.getOptionValue('p');
+//        String[] failedSteps = cmd.hasOption('f') ?
+//                cmd.getOptionValues('f') :
+//                new String[0];
+//
+//        //get agent definitions from file
+//        String[] agentDefs = Files.readAllLines(
+//                Paths.get(ClassLoader.getSystemResource(problemNames.get(problemName)).toURI())).stream().
+//                flatMap(t -> Arrays.stream(t.split("\t"))).
+//                toArray(String[]::new);
+//
+//        //calculate solution plan
+//        TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
+//
+//        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NewNoEffectFailureModel());
+//
+//
+//        Pair<
+//                ImmutableSet<ImmutableSet<ImmutablePair<? extends Formattable, Boolean>>>,
+//                ImmutableSet<ImmutablePair<? extends Formattable, Boolean>>> compilePlanToCnf =
+//                compilePlanToCnf(cnfCompilation, new HashSet<>(Arrays.asList(failedSteps)));
+//
+//        Pair<Map<Formattable, Integer>, String> cnfEncoding =
+//                CnfEncodingUtils.encode(compilePlanToCnf.getLeft(), compilePlanToCnf.getRight());
+//
+//        Set<? extends Formattable> failedActions = runSatSolver(cnfEncoding.getRight(), cnfEncoding.getLeft());
+//
+//        //log.info("Failed steps from SAT:\n{}", failedActions.stream().map(t -> StringUtils.join("\t", t, ",")).collect(Collectors.joining("\n")));
+//    }
 
 
     private static void help(Options options) {
@@ -116,22 +118,30 @@ public class SatSolver {
     }
 
 
-    public static Pair<ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>,
-            ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>>> compilePlanToCnf(CnfCompilation cnfCompilation, Set<String> failedSteps) {
+    public static Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
+            ImmutableList<FormattableValue<Formattable>>> compilePlanToCnf(CnfCompilation cnfCompilation, Set<Action> failedActions) {
 
 
-        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> initFacts = cnfCompilation.calcInitFacts();
-        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> finalFacts = cnfCompilation.calcFinalFacts(failedSteps.toArray(new String[0]));
+        Collection<FormattableValue<Variable>> initFacts = cnfCompilation.calcInitFacts();
+        Collection<FormattableValue<Formattable>> finalFacts = cnfCompilation.calcFinalFacts(failedActions);
 
-        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> planCnfCompilation = cnfCompilation.compileToCnf();
+        ImmutableList<ImmutableList<FormattableValue<Formattable>>> planCnfCompilation = cnfCompilation.compileToCnf();
 
-        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> fullPlanCnfCompilation =
-                Stream.concat(Stream.concat(initFacts.stream(), planCnfCompilation.stream()),
-                        finalFacts.stream()).
-                        collect(ImmutableSet.toImmutableSet());
+        Stream<ImmutableList<FormattableValue<Formattable>>> fullPlanCnfCompilationStream =
+                Stream.concat(
+                        Stream.concat(
+                                initFacts.stream().map(t ->
+                                        ImmutableList.of(FormattableValue.of(t.getFormattable(), t.getValue()))),
+                                planCnfCompilation.stream()
+                        ),
+                        finalFacts.stream().map(ImmutableList::of)
+                );
+
+        ImmutableList<ImmutableList<FormattableValue<Formattable>>> fullPlanCnfCompilation =
+                fullPlanCnfCompilationStream.collect(ImmutableList.toImmutableList());
 
         log.debug("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        ImmutableSet<ImmutableSet<ImmutablePair<String, Boolean>>> healthClauses = cnfCompilation.encodeHealthyClauses();
+        ImmutableList<FormattableValue<Formattable>> healthClauses = cnfCompilation.encodeHealthyClauses();
         log.debug("healthy clauses:\n{}", healthClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
 
         return ImmutablePair.of(fullPlanCnfCompilation, healthClauses);
@@ -173,7 +183,7 @@ public class SatSolver {
     }
 
 
-    public static Set<String> runSatSolver(String cnfPlan, Map<String, Integer> codeMap) {
+    public static Set<Formattable> runSatSolver(String cnfPlan, Map<Formattable, Integer> codeMap) {
 //        ISolver solver = org.sat4j.maxsat.SolverFactory.newMiniMaxSAT();
 //        solver.setTimeout(3600); // 1 hour timeout
         WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
@@ -194,7 +204,7 @@ public class SatSolver {
                         collect(Collectors.toMap(t -> Math.abs(Integer.parseInt(t)),
                                 t -> Integer.parseInt(t) > 0));
 
-                Map<String, Boolean> variablesResult = codeMap.entrySet().stream().collect(
+                Map<Formattable, Boolean> variablesResult = codeMap.entrySet().stream().collect(
                         Collectors.toMap(Map.Entry::getKey, t -> codeResultsMap.get(t.getValue()),
                                 (p1, p2) -> p1, TreeMap::new));
 
@@ -203,7 +213,7 @@ public class SatSolver {
                         collect(Collectors.joining("\n")));
 
                 return variablesResult.entrySet().stream().
-                        filter(entry -> entry.getKey().matches(format(".*%s.*", FAILED.name())) &&
+                        filter(entry -> entry.getKey().getValue().matches(format(".*%s.*", Action.State.FAILED.name())) &&
                                 entry.getValue()).map(Map.Entry::getKey).collect(Collectors.toSet());
 
             } else {

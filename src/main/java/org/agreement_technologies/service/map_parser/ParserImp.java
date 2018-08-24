@@ -180,14 +180,14 @@ public class ParserImp implements PDDLParser {
                         syn.notifyError("Self-interest level must be defined bewteen 0 and 1");
                     }
                 } catch (NumberFormatException e) {
-                    syn.notifyError("Invalid number format for self-interest level: " + token.getDesc());
+                    syn.notifyError("Invalid number formatData for self-interest level: " + token.getDesc());
                 }
             } else if (token.isSym(Symbol.SS_METRIC_THRESHOLD)) {
                 try {
                     token = syn.readSym(Symbol.SS_NUMBER);
                     task.metricThreshold = Double.parseDouble(token.getDesc());
                 } catch (NumberFormatException e) {
-                    syn.notifyError("Invalid number format for metric threshold: " + token.getDesc());
+                    syn.notifyError("Invalid number formatData for metric threshold: " + token.getDesc());
                 }
             }
             syn.closePar();
@@ -229,7 +229,7 @@ public class ParserImp implements PDDLParser {
                     try {
                         m.term.add(task.new MetricImp(Double.parseDouble(token.getDesc())));
                     } catch (NumberFormatException e) {
-                        syn.notifyError("Invalid number format in metric: " + token.getDesc());
+                        syn.notifyError("Invalid number formatData in metric: " + token.getDesc());
                     }
                 }
                 token = syn.readSym(Symbol.SS_OPEN_PAR, Symbol.SS_CLOSE_PAR, Symbol.SS_NUMBER);
