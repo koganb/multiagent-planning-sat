@@ -7,7 +7,7 @@ import il.ac.bgu.dataModel.Variable;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-public class NewSuccessVariableModel implements NewVariableModelFunction {
+public class SuccessVariableModel implements VariableModelFunction {
     @Override
     public Stream<FormattableValue<Variable>> apply(
             Variable variable, Collection<FormattableValue<Variable>> currentVariableSet) {

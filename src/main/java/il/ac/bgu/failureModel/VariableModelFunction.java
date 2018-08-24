@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.stream.Stream;
 
 @FunctionalInterface
-public interface NewVariableModelFunction {
+public interface VariableModelFunction {
     Stream<FormattableValue<Variable>> apply(
             Variable variable, Collection<FormattableValue<Variable>> currentVariableSet);
 }

@@ -1,28 +1,24 @@
 package il.ac.bgu.failureModel;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
+import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.dataModel.Variable;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.Collection;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfEncodingUtils.createEffInstance;
-import static il.ac.bgu.CnfEncodingUtils.encodeValue;
-
-public class NoEffectFailureModel implements FailureModelFunction {
+public class NoEffectFailureModel implements VariableModelFunction {
     @Override
-    public Stream<ImmutablePair<String, Boolean>> apply(Integer stage,
-                                                        String variableKey,
-                                                        Set<ImmutablePair<String, Boolean>> variableSetBeforeAction,
-                                                        Set<ImmutablePair<String, Boolean>> variableSetAfterAction) {
-        return Optional.ofNullable(variableSetBeforeAction).
-                //add multiple value variable fluents
-                        map(stateVars ->
-                        stateVars.stream().
-                                map(effPair -> new ImmutablePair<>(
-                                        createEffInstance(effPair.getKey(), stage + 1),
-                                        encodeValue(effPair.getValue(), true)))).
-                        orElse(Stream.empty());
+    public Stream<FormattableValue<Variable>> apply(
+            Variable variable, Collection<FormattableValue<Variable>> currentVariableSet) {
 
+        if (currentVariableSet.stream().anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue()
+                .equals(variable.formatFunctionKeyWithValue()))) {
+            return currentVariableSet.stream();
+        }
+        return Stream.concat(
+                Stream.of(FormattableValue.of(variable, false)),
+                currentVariableSet.stream().filter(var -> !var.getFormattable().formatFunctionKeyWithValue()
+                        .equals(variable.formatFunctionKeyWithValue()))
+        );
     }
 }

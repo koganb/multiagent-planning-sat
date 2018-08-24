@@ -95,7 +95,7 @@ public class SatSolver {
 //        //calculate solution plan
 //        TreeMap<Integer, Set<Step>> sortedPlan = SatSolver.calculateSolution(agentDefs);
 //
-//        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NewNoEffectFailureModel());
+//        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel());
 //
 //
 //        Pair<

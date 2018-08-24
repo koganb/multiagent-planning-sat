@@ -5,8 +5,8 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.failureModel.NewSuccessVariableModel;
-import il.ac.bgu.failureModel.NewVariableModelFunction;
+import il.ac.bgu.failureModel.SuccessVariableModel;
+import il.ac.bgu.failureModel.VariableModelFunction;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.collections4.CollectionUtils;
@@ -20,10 +20,10 @@ import java.util.stream.Stream;
 
 public class FinalVariableStateCalc {
     private TreeMap<Integer, Set<Step>> plan;
-    private NewVariableModelFunction failureModelFunction;
-    private NewVariableModelFunction successModelFunction = new NewSuccessVariableModel();
+    private VariableModelFunction failureModelFunction;
+    private VariableModelFunction successModelFunction = new SuccessVariableModel();
 
-    public FinalVariableStateCalc(TreeMap<Integer, Set<Step>> plan, NewVariableModelFunction failureModelFunction) {
+    public FinalVariableStateCalc(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
         this.plan = plan;
         this.failureModelFunction = failureModelFunction;
     }

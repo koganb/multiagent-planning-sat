@@ -5,8 +5,8 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.failureModel.NewNoEffectFailureModel;
-import il.ac.bgu.failureModel.NewVariableModelFunction;
+import il.ac.bgu.failureModel.NoEffectFailureModel;
+import il.ac.bgu.failureModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
@@ -34,10 +34,10 @@ public class CnfCompilation {
 
     private TreeMap<Integer, Set<Step>> plan;
 
-    private NewVariableModelFunction failureModel;
+    private VariableModelFunction failureModel;
 
 
-    CnfCompilation(TreeMap<Integer, Set<Step>> plan, NewVariableModelFunction failureModel) {
+    CnfCompilation(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModel) {
         this.plan = plan;
         this.failureModel = failureModel;
         this.variablesStateBeforeStepExec = calcInitFacts();
@@ -79,7 +79,7 @@ public class CnfCompilation {
         log.debug("Start final values calculation");
 
         ImmutableList<FormattableValue<Formattable>> finalValues =
-                new FinalVariableStateCalc(plan, new NewNoEffectFailureModel()).getFinalVariableState(failedActions);
+                new FinalVariableStateCalc(plan, new NoEffectFailureModel()).getFinalVariableState(failedActions);
         log.debug("Final Values: \n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End final values calculation");
 

@@ -5,7 +5,7 @@ import com.google.common.collect.Streams
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
-import il.ac.bgu.failureModel.NewNoEffectFailureModel
+import il.ac.bgu.failureModel.NoEffectFailureModel
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
 import org.agreement_technologies.common.map_planner.Step
@@ -65,8 +65,8 @@ class TestSatSolver extends Specification {
 
 
         println "Failed actions:" + failedActions
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NewNoEffectFailureModel())
-        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new NewNoEffectFailureModel()).getFinalVariableState(failedActions)
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel())
+        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new NoEffectFailureModel()).getFinalVariableState(failedActions)
 
 
         Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
