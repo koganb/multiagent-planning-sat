@@ -11,8 +11,9 @@ public class NoEffectFailureModel implements VariableModelFunction {
     public Stream<FormattableValue<Variable>> apply(
             Variable variable, Collection<FormattableValue<Variable>> currentVariableSet) {
 
-        if (currentVariableSet.stream().anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue()
-                .equals(variable.formatFunctionKeyWithValue()))) {
+        if (currentVariableSet.stream().anyMatch(var ->
+                var.getFormattable().formatFunctionKeyWithValue().equals(
+                        variable.formatFunctionKeyWithValue()))) {
             return currentVariableSet.stream();
         }
         return Stream.concat(

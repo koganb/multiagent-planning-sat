@@ -5,7 +5,8 @@ import com.google.common.collect.Streams
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
-import il.ac.bgu.failureModel.NoEffectFailureModel
+import il.ac.bgu.failureModel.DelayFailureModel
+import il.ac.bgu.failureModel.VariableModelFunction
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
 import org.agreement_technologies.common.map_planner.Step
@@ -23,13 +24,16 @@ import java.util.stream.Collectors
 class TestSatSolver extends Specification {
 
     //public static final String PROBLEM_NAME = "elevator1.problem"
-    //public static final String PROBLEM_NAME = "elevator1.problem"
+    //public static final String PROBLEM_NAME = "deports0.problem"
     public static final String PROBLEM_NAME = "satellite20.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
 
     @Shared
     private Long testTimeSum = 0
+
+    @Shared
+    private VariableModelFunction failureModel = new DelayFailureModel()
 
     def setupSpec() {
         String[] agentDefs = Files.readAllLines(
@@ -65,8 +69,8 @@ class TestSatSolver extends Specification {
 
 
         println "Failed actions:" + failedActions
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel())
-        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new NoEffectFailureModel()).getFinalVariableState(failedActions)
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, failureModel)
+        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, failureModel).getFinalVariableState(failedActions)
 
 
         Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
@@ -101,7 +105,7 @@ class TestSatSolver extends Specification {
         testTimeSum += (System.currentTimeMillis() - planningStartMils)
 
         where:
-        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(2).stream().
+        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream().
 
                 collect(Collectors.toList())
 

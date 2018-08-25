@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 import static java.lang.String.format;
 
 @Builder(toBuilder = true)
@@ -54,7 +56,7 @@ public class Variable implements Formattable {
     }
 
     public String formatData() {
-        return format("Index:%02d, State:%s", stage, formatFunctionKeyWithValue());
+        return format("Stage:%02d, State:%s", stage, formatFunctionKeyWithValue());
     }
 
     @Override
@@ -62,9 +64,9 @@ public class Variable implements Formattable {
         return functionValue;
     }
 
-    @Nullable
-    public Integer getStage() {
-        return stage;
+
+    public Optional<Integer> getStage() {
+        return Optional.ofNullable(stage);
     }
 
     @Override
