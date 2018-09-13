@@ -72,8 +72,9 @@ public class ActionDependencyCalculation {
 
                     return CollectionUtils.intersection(actionKeys, dependentActions).isEmpty() ?
                             Stream.of(actionKeys) : Stream.empty();
-                }
-        ).collect(Collectors.toList());
+                })
+
+                .collect(Collectors.toList());
         return independentActions;
     }
 }

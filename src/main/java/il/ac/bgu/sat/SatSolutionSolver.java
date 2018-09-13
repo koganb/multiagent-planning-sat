@@ -51,9 +51,10 @@ public class SatSolutionSolver implements SatSolutionSolverInter {
                         map(Object::toString).
                         collect(Collectors.joining("\n")));
 
-                return Optional.of(variablesResult.entrySet().stream().
+                ImmutableList<Formattable> failedActions = variablesResult.entrySet().stream().
                         filter(entry -> entry.getKey().getValue().matches(Action.State.FAILED.name()) &&
-                                entry.getValue()).map(Map.Entry::getKey).collect(ImmutableList.toImmutableList()));
+                                entry.getValue()).map(Map.Entry::getKey).collect(ImmutableList.toImmutableList());
+                return failedActions.isEmpty() ? Optional.empty() : Optional.of(failedActions);
 
             } else {
                 log.warn(" Unsatisfiable !");

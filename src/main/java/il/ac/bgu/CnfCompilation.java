@@ -5,6 +5,7 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.failureModel.NoEffectFailureModel;
 import il.ac.bgu.failureModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
@@ -78,7 +79,7 @@ public class CnfCompilation {
         log.debug("Start final values calculation");
 
         ImmutableList<FormattableValue<Formattable>> finalValues =
-                new FinalVariableStateCalc(plan, failureModel).getFinalVariableState(failedActions);
+                new FinalVariableStateCalc(plan, new NoEffectFailureModel()).getFinalVariableState(failedActions);
         log.debug("Final Values: \n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End final values calculation");
 
@@ -171,7 +172,7 @@ public class CnfCompilation {
                 List<FormattableValue<Formattable>> failureModelResult =
                         failureModel.apply(variable, variablesStateBeforeStepExec)
                                 .filter(var -> var.getFormattable().formatFunctionKey().equals(variable.formatFunctionKey()))
-                                .map(var -> FormattableValue.<Formattable>of(var.getFormattable(), var.getValue()))
+                                .map(var -> FormattableValue.<Formattable>of(var.getFormattable().toBuilder().stage(stage + 1).build(), var.getValue()))
                                 .collect(toList());
                 return failureModelResult.stream();
             });

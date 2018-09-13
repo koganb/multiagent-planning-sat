@@ -2,6 +2,7 @@ package il.ac.bgu.dataModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.NotImplementedException;
 import org.jetbrains.annotations.Nullable;
@@ -12,6 +13,7 @@ import static java.lang.String.format;
 
 @Builder(toBuilder = true)
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Action implements Formattable {
 
     private final String uuid;
@@ -36,6 +38,10 @@ public class Action implements Formattable {
 
     public static Action of(Step step, Integer stage) {
         return new Action(step, stage);
+    }
+
+    public static Action of(Step step, Integer stage, State state) {
+        return new Action(step, stage, state);
     }
 
     public String formatActionName() {
