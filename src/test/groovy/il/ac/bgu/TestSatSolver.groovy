@@ -23,7 +23,7 @@ import java.util.stream.Collectors
 class TestSatSolver extends Specification {
 
     //public static final String PROBLEM_NAME = "elevator1.problem"
-    public static final String PROBLEM_NAME = "deports17.problem"
+    public static final String PROBLEM_NAME = "satellite20.problem"
     //public static final String PROBLEM_NAME = "deports0.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
@@ -51,6 +51,12 @@ class TestSatSolver extends Specification {
             sortedPlan = SerializationUtils.deserialize(new FileInputStream(serPlanFileName))
         }
 
+        sortedPlan.entrySet().stream()
+                .filter({ entry -> entry.key != -1 })
+                .forEach({ entry ->
+            printf("Step: %s\n", entry.key)
+            entry.value.forEach({ step -> printf("\t%-13s: %s\n", step.agent, step) })
+        })
     }
 
 
@@ -104,12 +110,16 @@ class TestSatSolver extends Specification {
         testTimeSum += (System.currentTimeMillis() - planningStartMils)
 
         where:
-        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(2).stream()
+        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(3).stream()
                 .map({ actionList ->
             actionList.stream()
                     .map({ action -> action.toBuilder().state(Action.State.FAILED).build() }).collect(Collectors.toSet())
         })
+        //.skip(2)
+                .limit(300)
                 .collect(Collectors.toList())
 
     }
 }
+
+

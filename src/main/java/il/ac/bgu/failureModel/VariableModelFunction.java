@@ -9,5 +9,5 @@ import java.util.stream.Stream;
 @FunctionalInterface
 public interface VariableModelFunction {
     Stream<FormattableValue<Variable>> apply(
-            Variable variable, Collection<FormattableValue<Variable>> currentVariableSet);
+            Variable variable, Integer currentStage, Collection<FormattableValue<Variable>> currentVariableSet);
 }

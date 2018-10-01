@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 import static java.lang.String.format;
 
 @Builder(toBuilder = true)
@@ -15,19 +17,19 @@ import static java.lang.String.format;
 @EqualsAndHashCode
 public class Variable implements Formattable {
 
-    public static final String UNDEFINED = "UNDEFINED";
+    public static final String LOCKED_FOR_UPDATE = "LOCKED_FOR_UPDATE";
 
     @Nullable
     private Integer stage;
     private String functionKey;
     private String functionValue;
 
-    public Variable(POPPrecEff eff, @Nullable Integer stage) {
+    private Variable(POPPrecEff eff, @Nullable Integer stage) {
         this(eff);
         this.stage = stage;
     }
 
-    public Variable(POPPrecEff eff, String functionValue, Integer stage) {
+    private Variable(POPPrecEff eff, String functionValue, Integer stage) {
         this(eff, stage);
         this.functionValue = functionValue;
     }
@@ -45,6 +47,11 @@ public class Variable implements Formattable {
         return new Variable(eff, stage);
     }
 
+    public static Variable of(POPPrecEff eff, String functionValue, Integer stage) {
+        return new Variable(eff, functionValue, stage);
+    }
+
+
     public String formatFunctionKey() {
         return functionKey.replace(" ", "~");
     }
@@ -54,7 +61,7 @@ public class Variable implements Formattable {
     }
 
     public String formatData() {
-        return format("Index:%02d, State:%s", stage, formatFunctionKeyWithValue());
+        return format("Stage:%02d, State:%s", stage, formatFunctionKeyWithValue());
     }
 
     @Override
@@ -62,9 +69,8 @@ public class Variable implements Formattable {
         return functionValue;
     }
 
-    @Nullable
-    public Integer getStage() {
-        return stage;
+    public Optional<Integer> getStage() {
+        return Optional.ofNullable(stage);
     }
 
     @Override

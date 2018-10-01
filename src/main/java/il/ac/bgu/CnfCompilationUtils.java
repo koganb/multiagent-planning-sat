@@ -20,18 +20,18 @@ public class CnfCompilationUtils {
 
 
     public static Stream<FormattableValue<Variable>> updateVariables
-            (Collection<FormattableValue<Variable>> variables, FormattableValue<Variable> trueVariable, Integer stage) {
+            (Collection<FormattableValue<Variable>> variables, Variable trueVariable, Integer stage) {
 
         Map<Boolean, List<FormattableValue<Variable>>> splitByFunctionKey = variables.stream()
                 .collect(Collectors.partitioningBy(var -> var.getFormattable().formatFunctionKey()
-                        .equals(trueVariable.getFormattable().formatFunctionKey())));
+                        .equals(trueVariable.formatFunctionKey())));
 
         return Stream.concat(
                 Stream.concat(
-                        Stream.of(trueVariable),  //true variable
+                        Stream.of(FormattableValue.of(trueVariable.toBuilder().stage(stage).build(), true)),  //true variable
                         splitByFunctionKey.get(Boolean.TRUE).stream()   //false variables
                                 .filter(var -> !var.getFormattable().formatFunctionKeyWithValue()
-                                        .equals(trueVariable.getFormattable().formatFunctionKeyWithValue()))
+                                        .equals(trueVariable.formatFunctionKeyWithValue()))
                                 .map(var -> FormattableValue.of(var.getFormattable().toBuilder().stage(stage).build(), false))),
                 splitByFunctionKey.get(Boolean.FALSE).stream()  //not effected variables
         );

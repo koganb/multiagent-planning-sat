@@ -2,8 +2,8 @@ package il.ac.bgu;
 
 import com.google.common.collect.Streams;
 import il.ac.bgu.dataModel.Action;
-import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import lombok.EqualsAndHashCode;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -15,30 +15,28 @@ import java.util.stream.Stream;
 
 public class ActionDependencyCalculation {
 
-    private Map<Action, Set<Action>> actionDependenciesFull = new HashMap<>();
+    private Map<ActionKey, Set<Action>> actionDependenciesFull = new HashMap<>();
 
     public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan) {
-        Map<FormattableValue, Action> effectsToStepMap = new HashMap<>();
-        Map<Action, Set<Action>> actionDependencies = new HashMap<>();
+        Map<VariableKey, Action> preconditionsToAction = new HashMap<>();
+        Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
 
         plan.entrySet().stream().filter(i -> i.getKey() != -1).
                 flatMap(entry -> entry.getValue().stream().map(step ->
                         ImmutablePair.of(entry.getKey(), step))).
                 forEach(pair -> {
                     Action action = Action.of(pair.right, pair.left);
-                    actionDependencies.computeIfAbsent(action, k -> new HashSet<>());
+                    ActionKey actionKey = new ActionKey(action);
+                    actionDependencies.computeIfAbsent(actionKey, k -> new HashSet<>());
 
                     pair.getRight().getPopPrecs().forEach(prec -> {
-                        FormattableValue<Variable> variableValue = FormattableValue.of(
-                                Variable.of(prec), true);
-                        Action dependentAction = effectsToStepMap.get(variableValue);
-
+                        VariableKey preconditionKey = new VariableKey(Variable.of(prec));
+                        Action dependentAction = preconditionsToAction.get(preconditionKey);
                         if (dependentAction != null) {
                                     //add dependent steps
-                            actionDependencies.get(action).add(dependentAction);
+                            actionDependencies.get(actionKey).add(dependentAction);
                                 }
-
-                        effectsToStepMap.put(variableValue, action);
+                        preconditionsToAction.put(preconditionKey, action);
                             }
                     );
                 });
@@ -46,35 +44,61 @@ public class ActionDependencyCalculation {
                 createActionDependenciesFull(actionDependencies, dependency, dependency));
     }
 
-
-    private void createActionDependenciesFull(Map<Action, Set<Action>> actionDependencies,
-                                              Action actionKey, Action currAction) {
+    private void createActionDependenciesFull(Map<ActionKey, Set<Action>> actionDependencies,
+                                              ActionKey actionKey, ActionKey currAction) {
         Set<Action> dependencies = actionDependencies.get(currAction);
         if (dependencies != null) {
             actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>()).
                     addAll(dependencies);
             dependencies.forEach(dependency ->
-                    createActionDependenciesFull(actionDependencies, actionKey, dependency));
+                    createActionDependenciesFull(actionDependencies, actionKey, new ActionKey(dependency)));
         }
     }
 
     public List<Set<Action>> getIndependentActionsList(int listSize) {
-        List<Action> keys = new ArrayList<>(actionDependenciesFull.keySet());
+        List<ActionKey> keys = new ArrayList<>(actionDependenciesFull.keySet());
 
         List<Set<Action>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), listSize).iterator()).flatMap(
                 combination -> {
-                    Set<Action> actionKeys = Arrays.stream(combination).
+                    Set<ActionKey> actionKeys = Arrays.stream(combination).
                             mapToObj(keys::get).
                             collect(Collectors.toSet());
-                    Set<Action> dependentActions = actionKeys.stream().
+                    Set<ActionKey> dependentActions = actionKeys.stream().
                             flatMap(key -> actionDependenciesFull.get(key).stream()).
+                            map(ActionKey::new).
                             collect(Collectors.toSet());
 
                     return CollectionUtils.intersection(actionKeys, dependentActions).isEmpty() ?
-                            Stream.of(actionKeys) : Stream.empty();
+                            Stream.of(actionKeys.stream()
+                                    .map(ActionKey::getAction)
+                                    .collect(Collectors.toSet())) : Stream.empty();
                 })
 
                 .collect(Collectors.toList());
         return independentActions;
+    }
+
+    @EqualsAndHashCode(of = "variableKey")
+    private static class VariableKey {
+        private String variableKey;
+
+        public VariableKey(Variable variable) {
+            this.variableKey = variable.formatFunctionKeyWithValue();
+        }
+    }
+
+    @EqualsAndHashCode(of = "actionKey")
+    private static class ActionKey {
+        private String actionKey;
+        private Action action;
+
+        public ActionKey(Action action) {
+            this.actionKey = action.formatData();
+            this.action = action;
+        }
+
+        public Action getAction() {
+            return action;
+        }
     }
 }

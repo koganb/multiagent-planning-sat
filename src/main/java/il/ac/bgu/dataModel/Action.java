@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.NotImplementedException;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -20,10 +19,9 @@ public class Action implements Formattable {
     private final String agentName;
     private String actionName;
     private Integer stage;
-    @Nullable
     private State state;
 
-    public Action(Step step, Integer stage, State state) {
+    private Action(Step step, Integer stage, State state) {
         this(step, stage);
         this.state = state;
     }
@@ -50,7 +48,8 @@ public class Action implements Formattable {
 
     @Override
     public String formatData() {
-        return format("Index:%02d, Agent:%s,Action:%s=%s", stage, agentName, formatActionName(), getValue());
+        String format = format("Index:%02d, Agent:%s,Action:%s", stage, agentName, formatActionName());
+        return Optional.ofNullable(state).isPresent() ? format + "=" + state.name() : format;
     }
 
     @Override
@@ -68,5 +67,5 @@ public class Action implements Formattable {
         throw new NotImplementedException("implemented for Values only");
     }
 
-    public enum State {HEALTHY, FAILED, UNKNOWN;}
+    public enum State {HEALTHY, FAILED, CONDITIONS_NOT_MET;}
 }

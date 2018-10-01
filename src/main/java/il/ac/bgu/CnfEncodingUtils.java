@@ -79,7 +79,7 @@ public class CnfEncodingUtils {
 //
 //    }
 
-    // public enum ActionState {HEALTHY, FAILED, UNKNOWN}
+    // public enum ActionState {HEALTHY, FAILED, CONDITIONS_NOT_MET}
 
 
     public static Pair<Map<Formattable, Integer>, String> encode(

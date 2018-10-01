@@ -5,9 +5,9 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.failureModel.NoEffectFailureModel;
 import il.ac.bgu.failureModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.*;
-import static il.ac.bgu.dataModel.Variable.UNDEFINED;
+import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
@@ -50,8 +50,8 @@ public class CnfCompilation {
                 flatMap(t -> t.getValue().stream()).
                 flatMap(t -> t.getPopEffs().stream()).
                 flatMap(eff -> Stream.of(
-                        FormattableValue.of(new Variable(eff, 0), true),
-                        FormattableValue.of(new Variable(eff, UNDEFINED, 0), false)
+                        FormattableValue.of(Variable.of(eff, 0), true),
+                        FormattableValue.of(Variable.of(eff, LOCKED_FOR_UPDATE, 0), false)
                 )).
                 collect(Collectors.toList());
     }
@@ -65,7 +65,7 @@ public class CnfCompilation {
                         filter(i -> i.getKey() != -1).
                         flatMap(entry -> entry.getValue().stream().flatMap(
                                 step -> Stream.of(
-                                        FormattableValue.<Formattable>of(new Action(step, entry.getKey(), HEALTHY), true)
+                                        FormattableValue.<Formattable>of(Action.of(step, entry.getKey(), HEALTHY), true)
                                 ))).
                         collect(ImmutableList.toImmutableList());
 
@@ -79,7 +79,7 @@ public class CnfCompilation {
         log.debug("Start final values calculation");
 
         ImmutableList<FormattableValue<Formattable>> finalValues =
-                new FinalVariableStateCalc(plan, new NoEffectFailureModel()).getFinalVariableState(failedActions);
+                new FinalVariableStateCalc(plan, failureModel).getFinalVariableState(failedActions);
         log.debug("Final Values: \n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End final values calculation");
 
@@ -124,9 +124,15 @@ public class CnfCompilation {
         Collection<ImmutableList<FormattableValue<Formattable>>> resultClauses = actions.stream().flatMap(action -> {
 
             ImmutableList<FormattableValue<Formattable>> preconditionList =
-                    action.getPopPrecs().stream().
-                            map(actionPrec -> FormattableValue.<Formattable>of(new Variable(actionPrec, stage), false)).
-                            collect(ImmutableList.toImmutableList());
+                    Stream.concat(
+
+                            action.getPopPrecs().stream().
+                                    map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, stage), false)),
+
+                            action.getPopEffs().stream().
+                                    map(actionEff -> FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true))
+                    ).collect(ImmutableList.toImmutableList());
+
 
             //healthy function
             Stream<FormattableValue<Formattable>> effectStream = action.getPopEffs().stream().flatMap(actionEff -> {
@@ -145,7 +151,7 @@ public class CnfCompilation {
             return effectStream.map(u ->
                     Stream.concat(
                             preconditionList.stream(),
-                            Stream.of(FormattableValue.<Formattable>of(new Action(action, stage, HEALTHY), false), u)).
+                            Stream.of(FormattableValue.<Formattable>of(Action.of(action, stage, HEALTHY), false), u)).
                             collect(ImmutableList.toImmutableList())
             );
         }).collect(ImmutableList.toImmutableList());
@@ -163,16 +169,21 @@ public class CnfCompilation {
         Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = actions.stream().flatMap(action -> {
 
             ImmutableList<FormattableValue<Formattable>> preconditionList =
-                    action.getPopPrecs().stream().
-                            map(actionPrec -> FormattableValue.<Formattable>of(new Variable(actionPrec, stage), false)).
-                            collect(ImmutableList.toImmutableList());
+                    Stream.concat(
+                            action.getPopPrecs().stream()
+                                    .map(actionPrec -> FormattableValue.<Formattable>of(
+                                            Variable.of(actionPrec, stage), false)),
+                            action.getPopEffs().stream()
+                                    .map(actionEff -> FormattableValue.<Formattable>of(
+                                            Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true))
+                    ).collect(ImmutableList.toImmutableList());
 
             Stream<FormattableValue<Formattable>> effectStream = action.getPopEffs().stream().flatMap(actionEff -> {
-                Variable variable = new Variable(actionEff, stage);
+                Variable variable = Variable.of(actionEff);
                 List<FormattableValue<Formattable>> failureModelResult =
-                        failureModel.apply(variable, variablesStateBeforeStepExec)
+                        failureModel.apply(variable, stage, variablesStateBeforeStepExec)
                                 .filter(var -> var.getFormattable().formatFunctionKey().equals(variable.formatFunctionKey()))
-                                .map(var -> FormattableValue.<Formattable>of(var.getFormattable().toBuilder().stage(stage + 1).build(), var.getValue()))
+                                .map(var -> FormattableValue.<Formattable>of(var.getFormattable(), var.getValue()))
                                 .collect(toList());
                 return failureModelResult.stream();
             });
@@ -183,7 +194,7 @@ public class CnfCompilation {
             return effects.stream().map(u ->
                     Stream.concat(
                             preconditionList.stream(),
-                            Stream.of(FormattableValue.<Formattable>of(new Action(action, stage, FAILED), false), u)).
+                            Stream.of(FormattableValue.<Formattable>of(Action.of(action, stage, FAILED), false), u)).
                             collect(ImmutableList.toImmutableList())
             );
         });
@@ -204,22 +215,30 @@ public class CnfCompilation {
 
         Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = actions.stream().flatMap(action -> {
 
-            // unknown -> not(prec1) v not(prec2) => not(unknown) v not(prec1) v not(prec2)
-            Stream<ImmutableList<FormattableValue<Formattable>>> precClauses1 = Stream.of(Stream.concat(
-                    Stream.of(FormattableValue.<Formattable>of(new Action(action, stage, UNKNOWN), false)),
-                    action.getPopPrecs().stream().map(actionPrec ->
-                            FormattableValue.<Formattable>of(Variable.of(actionPrec, stage), false)
-                    )
-            )
-                    .collect(ImmutableList.toImmutableList()));
+            // CONDITIONS_NOT_MET -> not(prec1) v not(prec2) => not(unknown) v not(prec1) v not(prec2)
+            Stream<ImmutableList<FormattableValue<Formattable>>> precClauses1 = Stream.of(
+                    StreamEx.<FormattableValue<Formattable>>of()
+                            .append(Stream.of(FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)))
+                            .append(action.getPopPrecs().stream().map(actionPrec ->
+                                    FormattableValue.of(Variable.of(actionPrec, stage), false)))
+                            .append(action.getPopEffs().stream().map(actionPrec ->
+                                    FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE, stage), true)))
+                            .collect(ImmutableList.toImmutableList()));
 
 
-            // not(prec1) v not(prec2) -> unknown => (prec1 v unknown) ^  (prec2 v unknown)
+            // not(prec1) v not(prec2) -> CONDITIONS_NOT_MET => (prec1 v CONDITIONS_NOT_MET) ^  (prec2 v CONDITIONS_NOT_MET)
             Stream<ImmutableList<FormattableValue<Formattable>>> precClauses2 = action.getPopPrecs().stream()
                     .map(actionPrec ->
                             ImmutableList.of(
-                                    FormattableValue.of(new Action(action, stage, UNKNOWN), true),
+                                    FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), true),
                                     FormattableValue.of(Variable.of(actionPrec, stage), true)
+                            ));
+            // (eff1=LOCKED_FOR_UPDATE) v (eff2=LOCKED_FOR_UPDATE) -> CONDITIONS_NOT_MET => (not eff1=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET) ^  (not eff2=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET)
+            Stream<ImmutableList<FormattableValue<Formattable>>> precClauses3 = action.getPopEffs().stream()
+                    .map(actionPrec ->
+                            ImmutableList.of(
+                                    FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), true),
+                                    FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE, stage), false)
                             ));
 
             Stream<ImmutableList<FormattableValue<Formattable>>> effectClauses = action.getPopEffs().stream().
@@ -230,14 +249,14 @@ public class CnfCompilation {
                                     .flatMap(stateVar -> Stream.of(
                                             ImmutableList.of(
                                                     FormattableValue.of(
-                                                            new Action(action, stage, UNKNOWN), false),
+                                                            Action.of(action, stage, CONDITIONS_NOT_MET), false),
                                                     FormattableValue.of(
                                                             stateVar.getFormattable().toBuilder().stage(stage).build(), true),
                                                     FormattableValue.of(
                                                             stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)),
                                             ImmutableList.of(
                                                     FormattableValue.of(
-                                                            new Action(action, stage, UNKNOWN), false),
+                                                            Action.of(action, stage, CONDITIONS_NOT_MET), false),
                                                     FormattableValue.of(
                                                             stateVar.getFormattable().toBuilder().stage(stage).build(), false),
                                                     FormattableValue.of(
@@ -245,7 +264,7 @@ public class CnfCompilation {
                                     )));
 
             List<ImmutableList<FormattableValue<Formattable>>> result = Stream.concat(
-                    Stream.concat(precClauses1, precClauses2), effectClauses).collect(Collectors.toList());
+                    StreamEx.of(precClauses1).append(precClauses2).append(precClauses3), effectClauses).collect(Collectors.toList());
             return result.stream();
 
         });
@@ -270,29 +289,29 @@ public class CnfCompilation {
         Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = actions.stream().flatMap(action ->
                 Stream.of(
                         ImmutableList.of(
-                                FormattableValue.of(new Action(action, stage, HEALTHY), true),
-                                FormattableValue.of(new Action(action, stage, FAILED), true),
-                                FormattableValue.of(new Action(action, stage, UNKNOWN), true)
+                                FormattableValue.of(Action.of(action, stage, HEALTHY), true),
+                                FormattableValue.of(Action.of(action, stage, FAILED), true),
+                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), true)
                         ),
                         ImmutableList.of(
-                                FormattableValue.of(new Action(action, stage, HEALTHY), true),
-                                FormattableValue.of(new Action(action, stage, FAILED), false),
-                                FormattableValue.of(new Action(action, stage, UNKNOWN), false)
+                                FormattableValue.of(Action.of(action, stage, HEALTHY), true),
+                                FormattableValue.of(Action.of(action, stage, FAILED), false),
+                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)
                         ),
                         ImmutableList.of(
-                                FormattableValue.of(new Action(action, stage, HEALTHY), false),
-                                FormattableValue.of(new Action(action, stage, FAILED), true),
-                                FormattableValue.of(new Action(action, stage, UNKNOWN), false)
+                                FormattableValue.of(Action.of(action, stage, HEALTHY), false),
+                                FormattableValue.of(Action.of(action, stage, FAILED), true),
+                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)
                         ),
                         ImmutableList.of(
-                                FormattableValue.of(new Action(action, stage, HEALTHY), false),
-                                FormattableValue.of(new Action(action, stage, FAILED), false),
-                                FormattableValue.of(new Action(action, stage, UNKNOWN), true)
+                                FormattableValue.of(Action.of(action, stage, HEALTHY), false),
+                                FormattableValue.of(Action.of(action, stage, FAILED), false),
+                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), true)
                         ),
                         ImmutableList.of(
-                                FormattableValue.of(new Action(action, stage, HEALTHY), false),
-                                FormattableValue.of(new Action(action, stage, FAILED), false),
-                                FormattableValue.of(new Action(action, stage, UNKNOWN), false)
+                                FormattableValue.of(Action.of(action, stage, HEALTHY), false),
+                                FormattableValue.of(Action.of(action, stage, FAILED), false),
+                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)
                         )
 
                 ));
@@ -338,7 +357,7 @@ public class CnfCompilation {
 
         //add all preconditions to variable state
         actions.forEach(action -> action.getPopPrecs().forEach(eff -> {
-            FormattableValue<Variable> precondition = FormattableValue.of(new Variable(eff, stage), true);
+            FormattableValue<Variable> precondition = FormattableValue.of(Variable.of(eff, stage), true);
 
             if (variablesStateBeforeStepExec.stream().noneMatch(var ->
                     var.getFormattable().formatFunctionKeyWithValue().equals(
@@ -346,7 +365,7 @@ public class CnfCompilation {
                 log.debug("Adding precondition to the var state {}", precondition);
 
                 variablesStateBeforeStepExec.add(precondition);
-                newFluents.add(FormattableValue.of(new Variable(eff, stage), false));
+                newFluents.add(FormattableValue.of(Variable.of(eff, stage), false));
             }
         }));
 
@@ -355,7 +374,7 @@ public class CnfCompilation {
         for (Step action : actions) {
             for (POPPrecEff eff : action.getPopEffs()) {
                 variablesStateAfterStepExec = CnfCompilationUtils.updateVariables(
-                        variablesStateAfterStepExec, FormattableValue.of(Variable.of(eff, stage), true), stage)
+                        variablesStateAfterStepExec, Variable.of(eff), stage)
                         .collect(toList());
 
             }
