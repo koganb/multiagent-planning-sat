@@ -1,17 +1,14 @@
 package il.ac.bgu
 
 import com.google.common.collect.ImmutableSet
+import il.ac.bgu.dataModel.Action
+import il.ac.bgu.failureModel.NoEffectFailureModel
 import org.agreement_technologies.common.map_planner.Step
-import org.apache.commons.lang3.tuple.ImmutablePair
+import org.apache.commons.lang3.SerializationUtils
 import spock.lang.Shared
 import spock.lang.Specification
 
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.util.stream.Collectors
-
-import static il.ac.bgu.CnfEncodingUtils.createEffId
-import static il.ac.bgu.CnfEncodingUtils.encodeValue
 
 class TestCnfCompilation extends Specification {
 
@@ -22,36 +19,49 @@ class TestCnfCompilation extends Specification {
     CnfCompilation cnfCompilation
 
     def setupSpec() {
-        String[] agentDefs = Files.readAllLines(
-                Paths.get(this.getClass().getClassLoader().getResource("problems/‏‏‏‏‏‏‏‏satelate1.problem").toURI())).stream().
-                flatMap({ t -> Arrays.stream(t.split("\t")) }).
-                collect(Collectors.toList()).toArray(new String[0])
+        sortedPlan = SerializationUtils.deserialize(new FileInputStream("deports0.problem.ser"))
+    }
 
-        //calculate solution plan
-        sortedPlan = SatSolver.calculateSolution(agentDefs)
-
-        cnfCompilation = new CnfCompilation(sortedPlan,
-                { ImmutablePair<String, Boolean> eff, Integer stage ->
-                    ImmutableSet.of(ImmutablePair.of(
-                            createEffId(eff.getKey(), stage + 1),
-                            encodeValue(eff.getValue(), true)))
-                })
-
+    def setup() {
+        cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel())
 
     }
 
+
     def "test initial facts calculation"() {
-        //TODO check why multi-functions are not part of the initial state
         expect:
-        cnfCompilation.calcInitFacts().stream().
-                collect(Collectors.toList()) == [
-                [ImmutablePair.of("0:power_avail~satellite0", true)],
-                [ImmutablePair.of("0:power_on~instrument0", false)],
-                [ImmutablePair.of("0:calibrated~instrument0", false)],
-                [ImmutablePair.of("0:have_image~phenomenon4~thermograph0", false)],
-                [ImmutablePair.of("0:have_image~star5~thermograph0", false)],
-                [ImmutablePair.of("0:have_image~phenomenon6~thermograph0", false)],
-                [ImmutablePair.of("0:pointing~satellite0=phenomenon6", true)]
+        cnfCompilation.calcInitFacts().stream()
+                .map({ val -> val.toString() })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Stage:00, State:at~truck0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:at~truck0=distributor1}=true",
+                "{Stage:00, State:at~truck1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:at~truck1=depot0}=true",
+                "{Stage:00, State:clear~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~crate0=true}=true",
+                "{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~crate1=true}=true",
+                "{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~hoist0=true}=true",
+                "{Stage:00, State:clear~hoist1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~hoist1=true}=true",
+                "{Stage:00, State:clear~hoist2=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~hoist2=true}=true",
+                "{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~pallet0=false}=true",
+                "{Stage:00, State:clear~pallet1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~pallet1=false}=true",
+                "{Stage:00, State:clear~pallet2=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~pallet2=true}=true",
+                "{Stage:00, State:on~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:on~crate0=pallet1}=true",
+                "{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:on~crate1=pallet0}=true",
+                "{Stage:00, State:pos~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:pos~crate0=distributor0}=true",
+                "{Stage:00, State:pos~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:pos~crate1=depot0}=true",
         ]
     }
 
@@ -60,149 +70,204 @@ class TestCnfCompilation extends Specification {
         expect:
         //TODO check the possibility to convert predicates to the boolean fluents
 
-        cnfCompilation.calcFinalFacts().stream().
-                collect(Collectors.toList()) == [
-
-                [
-                        ImmutablePair.of("1:have_image~star5~thermograph0", false)
-                ],
-                //goal
-                [
-                        ImmutablePair.of("1:pointing~satellite0=phenomenon6", true)
-                ],
-                //goal
-                [
-                        ImmutablePair.of("1:calibrated~instrument0", false)
-                ],
-                [
-                        ImmutablePair.of("1:have_image~phenomenon4~thermograph0", false)
-                ],
-                [
-                        ImmutablePair.of("1:have_image~phenomenon6~thermograph0", false)
-                ],
-                [
-                        ImmutablePair.of("1:power_on~instrument0", true)
-                ],
-                [
-                        ImmutablePair.of("1:power_avail~satellite0", false)
-                ],
+        cnfCompilation.calcFinalFacts(ImmutableSet.of(
+                Action.of("Load hoist0 crate1 truck1 depot0", "truck1", "912531260", 1))).stream()
+                .map({ val -> val.toString() })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Stage:02, State:at~truck0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:at~truck0=distributor1}=true",
+                "{Stage:02, State:at~truck1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:at~truck1=depot0}=true",
+                "{Stage:02, State:clear~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~crate0=true}=true",
+                "{Stage:02, State:clear~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~crate1=false}=false",
+                "{Stage:02, State:clear~crate1=true}=true",
+                "{Stage:02, State:clear~hoist0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~hoist0=false}=false",
+                "{Stage:02, State:clear~hoist0=true}=true",
+                "{Stage:02, State:clear~hoist1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~hoist1=true}=true",
+                "{Stage:02, State:clear~hoist2=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~hoist2=true}=true",
+                "{Stage:02, State:clear~pallet0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~pallet0=false}=false",
+                "{Stage:02, State:clear~pallet0=true}=true",
+                "{Stage:02, State:clear~pallet1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~pallet1=false}=true",
+                "{Stage:02, State:clear~pallet2=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:clear~pallet2=true}=true",
+                "{Stage:02, State:on~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:on~crate0=pallet1}=true",
+                "{Stage:02, State:on~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:on~crate1=hoist0}=false",
+                "{Stage:02, State:on~crate1=pallet0}=false",
+                "{Stage:02, State:on~crate1=truck1}=true",
+                "{Stage:02, State:pos~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:pos~crate0=distributor0}=true",
+                "{Stage:02, State:pos~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:02, State:pos~crate1=depot0}=false",
+                "{Stage:02, State:pos~crate1=truck1}=true",
         ]
     }
 
 
     def "test that variables that exist in the effects are added to variable state"() {
         expect:
-        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0)).
-                collect(Collectors.toList()) == [
+        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0))
+                .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Stage:00, State:clear~crate1=false}=false",
+                "{Stage:00, State:clear~hoist0=false}=false",
+                "{Stage:00, State:clear~pallet0=true}=false",
+                "{Stage:00, State:on~crate1=hoist0}=false",
         ]
     }
 
     def "test pass through clauses calculation"() {
-        expect:
-        cnfCompilation.calculatePassThroughClauses(0, sortedPlan.get(0)).
-                collect(Collectors.toList()).sort() == [
-                [
-                        ImmutablePair.of("0:have_image~star5~thermograph0", false),
-                        ImmutablePair.of("1:have_image~star5~thermograph0", true)
-                ],
-                [
-                        ImmutablePair.of("0:have_image~star5~thermograph0", true),
-                        ImmutablePair.of("1:have_image~star5~thermograph0", false)
-                ],
-                [
-                        ImmutablePair.of("0:have_image~phenomenon4~thermograph0", false),
-                        ImmutablePair.of("1:have_image~phenomenon4~thermograph0", true)
-                ],
-                [
-                        ImmutablePair.of("0:have_image~phenomenon4~thermograph0", true),
-                        ImmutablePair.of("1:have_image~phenomenon4~thermograph0", false)
-                ],
-                [
-                        ImmutablePair.of("0:pointing~satellite0=phenomenon6", false),
-                        ImmutablePair.of("1:pointing~satellite0=phenomenon6", true)
-                ],
-                [
-                        ImmutablePair.of("0:pointing~satellite0=phenomenon6", true),
-                        ImmutablePair.of("1:pointing~satellite0=phenomenon6", false)
-                ],
-                [
-                        ImmutablePair.of("0:have_image~phenomenon6~thermograph0", false),
-                        ImmutablePair.of("1:have_image~phenomenon6~thermograph0", true)
-                ],
-                [
-                        ImmutablePair.of("0:have_image~phenomenon6~thermograph0", true),
-                        ImmutablePair.of("1:have_image~phenomenon6~thermograph0", false)
-                ]
-        ].sort()
+        when:
+        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0))
+        then:
+        cnfCompilation.calculatePassThroughClauses(0, sortedPlan.get(0))
+                .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Stage:00, State:at~truck0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:at~truck0=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:at~truck0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:at~truck0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:at~truck0=distributor1}=false,{Stage:01, State:at~truck0=distributor1}=true",
+                "{Stage:00, State:at~truck0=distributor1}=true,{Stage:01, State:at~truck0=distributor1}=false",
+                "{Stage:00, State:at~truck1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:at~truck1=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:at~truck1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:at~truck1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:at~truck1=depot0}=false,{Stage:01, State:at~truck1=depot0}=true",
+                "{Stage:00, State:at~truck1=depot0}=true,{Stage:01, State:at~truck1=depot0}=false",
+                "{Stage:00, State:clear~crate0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~crate0=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:clear~crate0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~crate0=true}=false,{Stage:01, State:clear~crate0=true}=true",
+                "{Stage:00, State:clear~crate0=true}=true,{Stage:01, State:clear~crate0=true}=false",
+                "{Stage:00, State:clear~hoist1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~hoist1=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:clear~hoist1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~hoist1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~hoist1=true}=false,{Stage:01, State:clear~hoist1=true}=true",
+                "{Stage:00, State:clear~hoist1=true}=true,{Stage:01, State:clear~hoist1=true}=false",
+                "{Stage:00, State:clear~hoist2=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~hoist2=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:clear~hoist2=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~hoist2=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~hoist2=true}=false,{Stage:01, State:clear~hoist2=true}=true",
+                "{Stage:00, State:clear~hoist2=true}=true,{Stage:01, State:clear~hoist2=true}=false",
+                "{Stage:00, State:clear~pallet1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~pallet1=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:clear~pallet1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~pallet1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~pallet1=false}=false,{Stage:01, State:clear~pallet1=false}=true",
+                "{Stage:00, State:clear~pallet1=false}=true,{Stage:01, State:clear~pallet1=false}=false",
+                "{Stage:00, State:clear~pallet2=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~pallet2=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:clear~pallet2=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~pallet2=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:clear~pallet2=true}=false,{Stage:01, State:clear~pallet2=true}=true",
+                "{Stage:00, State:clear~pallet2=true}=true,{Stage:01, State:clear~pallet2=true}=false",
+                "{Stage:00, State:on~crate0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:on~crate0=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:on~crate0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:on~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:on~crate0=pallet1}=false,{Stage:01, State:on~crate0=pallet1}=true",
+                "{Stage:00, State:on~crate0=pallet1}=true,{Stage:01, State:on~crate0=pallet1}=false",
+                "{Stage:00, State:pos~crate0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:pos~crate0=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:pos~crate0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:pos~crate0=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:pos~crate0=distributor0}=false,{Stage:01, State:pos~crate0=distributor0}=true",
+                "{Stage:00, State:pos~crate0=distributor0}=true,{Stage:01, State:pos~crate0=distributor0}=false",
+                "{Stage:00, State:pos~crate1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:pos~crate1=LOCKED_FOR_UPDATE}=true",
+                "{Stage:00, State:pos~crate1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:pos~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:pos~crate1=depot0}=true",
+                "{Stage:00, State:pos~crate1=depot0}=true,{Stage:01, State:pos~crate1=depot0}=false",
+
+        ]
     }
 
 
     def "test healthy clauses calculation"() {
-        expect:
-        cnfCompilation.calculateHealthyClauses(0, sortedPlan.get(0)).
-                collect(Collectors.toList()) == [
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", false),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", false),
-                        ImmutablePair.of("1:power_on~instrument0", true),
-                ],
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", false),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", false),
-                        ImmutablePair.of("1:calibrated~instrument0", false),
-                ],
-
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", false),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", false),
-                        ImmutablePair.of("1:power_avail~satellite0", false),
-                ],
+        when:
+        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0))
+        then:
+        cnfCompilation.calculateHealthyClauses(0, sortedPlan.get(0))
+                .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~crate1=false}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~crate1=true}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~hoist0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~hoist0=false}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~hoist0=true}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~pallet0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~pallet0=false}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~pallet0=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:on~crate1=hoist0}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:on~crate1=pallet0}=false",
         ]
     }
 
     def "test failed clauses calculation"() {
-        expect:
-        cnfCompilation.calculateActionFailedClauses(0, sortedPlan.get(0)).
-                collect(Collectors.toList()) == [
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", false),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", true),
-                        ImmutablePair.of("1:power_on~instrument0", false)
-                ],
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", false),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", true),
-                        ImmutablePair.of("1:calibrated~instrument0", false)
-                ],
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", false),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", true),
-                        ImmutablePair.of("1:power_avail~satellite0", true)
-                ]
+        when:
+        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0))
+        then:
+        cnfCompilation.calculateActionFailedClauses(0, sortedPlan.get(0))
+                .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~crate1=false}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~crate1=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~hoist0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~hoist0=false}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~hoist0=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~pallet0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~pallet0=false}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:clear~pallet0=true}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:on~crate1=hoist0}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false,{Stage:01, State:on~crate1=pallet0}=true",
         ]
 
     }
 
     def "test condition not met clauses calculation"() {
-        expect:
-        cnfCompilation.calculateConditionsNotMetClauses(0, sortedPlan.get(0)).
-                collect(Collectors.toList()) == [
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", true),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", false),
-                        ImmutablePair.of("1:power_on~instrument0", false)
-                ],
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", true),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", false),
-                        ImmutablePair.of("1:calibrated~instrument0", false)
-                ],
+        when:
+        cnfCompilation.executeStageAndAddFluents(0, sortedPlan.get(0))
+        then:
+        cnfCompilation.calculateConditionsNotMetClauses(0, sortedPlan.get(0))
+                .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
+                .sorted()
+                .collect(Collectors.toList()) == [
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~crate1=LOCKED_FOR_UPDATE}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~crate1=true}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:clear~hoist0=true}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:on~crate1=pallet0}=false,{Stage:00, State:pos~crate1=depot0}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=false}=false,{Stage:01, State:clear~crate1=false}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=false}=true,{Stage:01, State:clear~crate1=false}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=true}=false,{Stage:01, State:clear~crate1=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=true}=true,{Stage:01, State:clear~crate1=true}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~hoist0=LOCKED_FOR_UPDATE}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~hoist0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~hoist0=false}=false,{Stage:01, State:clear~hoist0=false}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~hoist0=false}=true,{Stage:01, State:clear~hoist0=false}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~hoist0=true}=false,{Stage:01, State:clear~hoist0=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~hoist0=true}=true,{Stage:01, State:clear~hoist0=true}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~pallet0=LOCKED_FOR_UPDATE}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:clear~pallet0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~pallet0=false}=false,{Stage:01, State:clear~pallet0=false}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~pallet0=false}=true,{Stage:01, State:clear~pallet0=false}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~pallet0=true}=false,{Stage:01, State:clear~pallet0=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~pallet0=true}=true,{Stage:01, State:clear~pallet0=true}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=hoist0}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=hoist0}=true,{Stage:01, State:on~crate1=hoist0}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=pallet0}=false,{Stage:01, State:on~crate1=pallet0}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=pallet0}=true,{Stage:01, State:on~crate1=pallet0}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:clear~crate1=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:clear~hoist0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:clear~hoist0=true}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:clear~pallet0=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=false",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:on~crate1=pallet0}=true",
+                "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:pos~crate1=depot0}=true",
 
-                [
-                        ImmutablePair.of("0:power_avail~satellite0", true),
-                        ImmutablePair.of("0:h(switch_on~instrument0~satellite0)", false),
-                        ImmutablePair.of("1:power_avail~satellite0", true)
-                ]
         ]
     }
 

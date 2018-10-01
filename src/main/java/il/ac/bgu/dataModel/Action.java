@@ -28,11 +28,16 @@ public class Action implements Formattable {
 
 
     private Action(Step step, Integer stage) {
-        this.actionName = step.getActionName();
-        this.agentName = step.getAgent();
-        this.uuid = step.getUuid();
+        this(step.getActionName(), step.getAgent(), step.getUuid(), stage);
+    }
+
+    private Action(String actionName, String agentName, String uuid, Integer stage) {
+        this.actionName = actionName;
+        this.agentName = agentName;
+        this.uuid = uuid;
         this.stage = stage;
     }
+
 
     public static Action of(Step step, Integer stage) {
         return new Action(step, stage);
@@ -40,6 +45,10 @@ public class Action implements Formattable {
 
     public static Action of(Step step, Integer stage, State state) {
         return new Action(step, stage, state);
+    }
+
+    public static Action of(String actionName, String agentName, String uuid, Integer stage) {
+        return new Action(actionName, agentName, uuid, stage);
     }
 
     public String formatActionName() {
