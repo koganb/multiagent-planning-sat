@@ -3,6 +3,7 @@ package il.ac.bgu;
 import com.google.common.base.CharMatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
+import il.ac.bgu.cnfCompilation.CnfCompilation;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;

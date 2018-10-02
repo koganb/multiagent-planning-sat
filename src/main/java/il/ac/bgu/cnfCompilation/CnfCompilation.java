@@ -1,6 +1,9 @@
-package il.ac.bgu;
+package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
+import il.ac.bgu.CnfCompilationUtils;
+import il.ac.bgu.CnfEncodingUtils;
+import il.ac.bgu.FinalVariableStateCalc;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -37,7 +40,7 @@ public class CnfCompilation {
     private VariableModelFunction failureModel;
 
 
-    CnfCompilation(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModel) {
+    public CnfCompilation(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModel) {
         this.plan = plan;
         this.failureModel = failureModel;
         this.variablesStateBeforeStepExec = calcInitFacts();

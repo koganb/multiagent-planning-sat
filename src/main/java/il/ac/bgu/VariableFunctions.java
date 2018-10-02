@@ -17,6 +17,12 @@ public class VariableFunctions {
             variable -> var -> var.getFormattable().formatFunctionKeyWithValue()
                     .equals(variable.formatFunctionKeyWithValue());
 
+    public static final Function<FormattableValue<Variable>, String> getVariableKey =
+            variable -> variable.getFormattable().formatFunctionKey();
+
+    public static final Function<FormattableValue<Variable>, String> getVariablenKeyWithValue =
+            variable -> variable.getFormattable().formatFunctionKeyWithValue();
+
     public static final Function<Variable, Predicate<FormattableValue<Variable>>> variableKeyFilter =
             variable -> var -> var.getFormattable().formatFunctionKey().equals(variable.formatFunctionKey());
 

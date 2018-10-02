@@ -2,6 +2,7 @@ package il.ac.bgu
 
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Streams
+import il.ac.bgu.cnfCompilation.CnfCompilation
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
@@ -23,8 +24,8 @@ import java.util.stream.Collectors
 class TestSatSolver extends Specification {
 
     //public static final String PROBLEM_NAME = "elevator1.problem"
-    public static final String PROBLEM_NAME = "satellite20.problem"
-    //public static final String PROBLEM_NAME = "deports0.problem"
+    //public static final String PROBLEM_NAME = "satellite20.problem"
+    public static final String PROBLEM_NAME = "deports0.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
 
@@ -110,7 +111,7 @@ class TestSatSolver extends Specification {
         testTimeSum += (System.currentTimeMillis() - planningStartMils)
 
         where:
-        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(3).stream()
+        failedActions << new ActionDependencyCalculation(sortedPlan).getIndependentActionsList(1).stream()
                 .map({ actionList ->
             actionList.stream()
                     .map({ action -> action.toBuilder().state(Action.State.FAILED).build() }).collect(Collectors.toSet())
