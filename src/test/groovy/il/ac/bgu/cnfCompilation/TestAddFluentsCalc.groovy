@@ -28,8 +28,17 @@ class TestAddFluentsCalc extends Specification {
 
 
         where:
-        serializedPlanFilename << ['deports0.problem.ser', 'elevator1.problem.ser', 'satellite1.problem.ser']
-        failureModel << [new NoEffectFailureModel(), new NoEffectFailureModel(), new NoEffectFailureModel()]
+        serializedPlanFilename << ['deports0.problem.ser',
+                                   'elevator1.problem.ser',
+                                   'satellite1.problem.ser',
+                                   'satellite20.problem.ser'
+        ]
+        failureModel << [
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel()
+        ]
         expectedClauses << [
                 [
                         "{Stage:00, State:clear~crate1=false}=false",
@@ -45,6 +54,12 @@ class TestAddFluentsCalc extends Specification {
                 ],
                 [
                         "{Stage:00, State:pointing~satellite0=groundstation2}=false",
+                ],
+                [
+                        "{Stage:00, State:pointing~satellite3=star2}=false",
+                        "{Stage:00, State:pointing~satellite4=groundstation1}=false",
+                        "{Stage:00, State:power_avail~satellite1=false}=false",
+                        "{Stage:00, State:power_on~instrument11=true}=false",
                 ]
 
 

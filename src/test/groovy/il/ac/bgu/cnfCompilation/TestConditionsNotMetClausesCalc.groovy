@@ -31,8 +31,15 @@ class TestConditionsNotMetClausesCalc extends Specification {
                 .collect(Collectors.toList()) == expectedClauses
 
         where:
-        serializedPlanFilename << ['deports0.problem.ser', 'elevator1.problem.ser', 'satellite1.problem.ser']
-        failureModel << [new NoEffectFailureModel(), new NoEffectFailureModel(), new NoEffectFailureModel()]
+        serializedPlanFilename << ['deports0.problem.ser',
+                                   'elevator1.problem.ser',
+                                   'satellite1.problem.ser',
+                                   'satellite20.problem.ser'
+        ]
+        failureModel << [new NoEffectFailureModel(),
+                         new NoEffectFailureModel(),
+                         new NoEffectFailureModel(),
+                         new NoEffectFailureModel()]
         expectedClauses << [
                 [
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~crate1=LOCKED_FOR_UPDATE}=true",
@@ -119,6 +126,48 @@ class TestConditionsNotMetClausesCalc extends Specification {
                         "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=phenomenon6}=true,{Stage:01, State:pointing~satellite0=phenomenon6}=false",
                         "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite0=LOCKED_FOR_UPDATE}=false",
                         "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite0=phenomenon6}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:calibrated~instrument11=LOCKED_FOR_UPDATE}=false,{Stage:01, State:calibrated~instrument11=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:calibrated~instrument11=LOCKED_FOR_UPDATE}=true,{Stage:00, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:00, State:power_avail~satellite1=true}=false,{Stage:00, State:power_on~instrument11=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:calibrated~instrument11=LOCKED_FOR_UPDATE}=true,{Stage:01, State:calibrated~instrument11=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:calibrated~instrument11=false}=false,{Stage:01, State:calibrated~instrument11=false}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:calibrated~instrument11=false}=true,{Stage:01, State:calibrated~instrument11=false}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:01, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_avail~satellite1=false}=false,{Stage:01, State:power_avail~satellite1=false}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_avail~satellite1=false}=true,{Stage:01, State:power_avail~satellite1=false}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_avail~satellite1=true}=false,{Stage:01, State:power_avail~satellite1=true}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_avail~satellite1=true}=true,{Stage:01, State:power_avail~satellite1=true}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_on~instrument11=LOCKED_FOR_UPDATE}=false,{Stage:01, State:power_on~instrument11=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_on~instrument11=LOCKED_FOR_UPDATE}=true,{Stage:01, State:power_on~instrument11=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_on~instrument11=false}=false,{Stage:01, State:power_on~instrument11=false}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_on~instrument11=false}=true,{Stage:01, State:power_on~instrument11=false}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_on~instrument11=true}=false,{Stage:01, State:power_on~instrument11=true}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=false,{Stage:00, State:power_on~instrument11=true}=true,{Stage:01, State:power_on~instrument11=true}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=true,{Stage:00, State:calibrated~instrument11=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=true,{Stage:00, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=true,{Stage:00, State:power_avail~satellite1=true}=true",
+                        "{Index:00, Agent:satellite1,Action:switch_on~instrument11~satellite1=CONDITIONS_NOT_MET}=true,{Stage:00, State:power_on~instrument11=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=LOCKED_FOR_UPDATE}=false,{Stage:01, State:pointing~satellite3=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=LOCKED_FOR_UPDATE}=true,{Stage:00, State:pointing~satellite3=star10}=false",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=LOCKED_FOR_UPDATE}=true,{Stage:01, State:pointing~satellite3=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=star10}=false,{Stage:01, State:pointing~satellite3=star10}=true",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=star10}=true,{Stage:01, State:pointing~satellite3=star10}=false",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=star2}=false,{Stage:01, State:pointing~satellite3=star2}=true",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite3=star2}=true,{Stage:01, State:pointing~satellite3=star2}=false",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite3=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite3,Action:turn_to~satellite3~star2~star10=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite3=star10}=true",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=LOCKED_FOR_UPDATE}=false,{Stage:01, State:pointing~satellite4=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=LOCKED_FOR_UPDATE}=true,{Stage:00, State:pointing~satellite4=star16}=false",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=LOCKED_FOR_UPDATE}=true,{Stage:01, State:pointing~satellite4=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=groundstation1}=false,{Stage:01, State:pointing~satellite4=groundstation1}=true",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=groundstation1}=true,{Stage:01, State:pointing~satellite4=groundstation1}=false",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=star16}=false,{Stage:01, State:pointing~satellite4=star16}=true",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite4=star16}=true,{Stage:01, State:pointing~satellite4=star16}=false",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite4=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite4,Action:turn_to~satellite4~groundstation1~star16=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite4=star16}=true",
 
                 ]
         ]
