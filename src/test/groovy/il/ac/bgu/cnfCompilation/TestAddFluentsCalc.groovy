@@ -5,9 +5,11 @@ import il.ac.bgu.failureModel.VariableModelFunction
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import java.util.stream.Collectors
 
+@Unroll
 class TestAddFluentsCalc extends Specification {
 
 
@@ -26,14 +28,23 @@ class TestAddFluentsCalc extends Specification {
 
 
         where:
-        serializedPlanFilename << ['deports0.problem.ser']
-        failureModel << [new NoEffectFailureModel()]
+        serializedPlanFilename << ['deports0.problem.ser', 'elevator1.problem.ser', 'satellite1.problem.ser']
+        failureModel << [new NoEffectFailureModel(), new NoEffectFailureModel(), new NoEffectFailureModel()]
         expectedClauses << [
                 [
                         "{Stage:00, State:clear~crate1=false}=false",
                         "{Stage:00, State:clear~hoist0=false}=false",
                         "{Stage:00, State:clear~pallet0=true}=false",
                         "{Stage:00, State:on~crate1=hoist0}=false",
+                ],
+                [
+                        "{Stage:00, State:at~p2=slow0-0}=false",
+                        "{Stage:00, State:lift-at~fast0=n2}=false",
+                        "{Stage:00, State:lift-at~slow1-0=n6}=false",
+                        "{Stage:00, State:passengers~slow0-0=n1}=false",
+                ],
+                [
+                        "{Stage:00, State:pointing~satellite0=groundstation2}=false",
                 ]
 
 

@@ -5,9 +5,12 @@ import il.ac.bgu.failureModel.VariableModelFunction
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import java.util.stream.Collectors
 
+
+@Unroll
 class TestConditionsNotMetClausesCalc extends Specification {
 
 
@@ -28,8 +31,8 @@ class TestConditionsNotMetClausesCalc extends Specification {
                 .collect(Collectors.toList()) == expectedClauses
 
         where:
-        serializedPlanFilename << ['deports0.problem.ser']
-        failureModel << [new NoEffectFailureModel()]
+        serializedPlanFilename << ['deports0.problem.ser', 'elevator1.problem.ser', 'satellite1.problem.ser']
+        failureModel << [new NoEffectFailureModel(), new NoEffectFailureModel(), new NoEffectFailureModel()]
         expectedClauses << [
                 [
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:clear~crate1=LOCKED_FOR_UPDATE}=false,{Stage:01, State:clear~crate1=LOCKED_FOR_UPDATE}=true",
@@ -65,6 +68,57 @@ class TestConditionsNotMetClausesCalc extends Specification {
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=false",
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:on~crate1=pallet0}=true",
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:pos~crate1=depot0}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:lift-at~fast0=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:lift-at~fast0=n0}=false",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:lift-at~fast0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=n0}=false,{Stage:01, State:lift-at~fast0=n0}=true",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=n0}=true,{Stage:01, State:lift-at~fast0=n0}=false",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=n2}=false,{Stage:01, State:lift-at~fast0=n2}=true",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~fast0=n2}=true,{Stage:01, State:lift-at~fast0=n2}=false",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=true,{Stage:00, State:lift-at~fast0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=CONDITIONS_NOT_MET}=true,{Stage:00, State:lift-at~fast0=n0}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=LOCKED_FOR_UPDATE}=false,{Stage:01, State:at~p2=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=LOCKED_FOR_UPDATE}=true,{Stage:00, State:at~p2=n2}=false,{Stage:00, State:lift-at~slow0-0=n2}=false,{Stage:00, State:passengers~slow0-0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:passengers~slow0-0=n0}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=LOCKED_FOR_UPDATE}=true,{Stage:01, State:at~p2=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=n2}=false,{Stage:01, State:at~p2=n2}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=n2}=true,{Stage:01, State:at~p2=n2}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=slow0-0}=false,{Stage:01, State:at~p2=slow0-0}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:at~p2=slow0-0}=true,{Stage:01, State:at~p2=slow0-0}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:passengers~slow0-0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:passengers~slow0-0=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:passengers~slow0-0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:passengers~slow0-0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:passengers~slow0-0=n0}=false,{Stage:01, State:passengers~slow0-0=n0}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:passengers~slow0-0=n0}=true,{Stage:01, State:passengers~slow0-0=n0}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:passengers~slow0-0=n1}=false,{Stage:01, State:passengers~slow0-0=n1}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=false,{Stage:00, State:passengers~slow0-0=n1}=true,{Stage:01, State:passengers~slow0-0=n1}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=true,{Stage:00, State:at~p2=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=true,{Stage:00, State:at~p2=n2}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=true,{Stage:00, State:lift-at~slow0-0=n2}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=true,{Stage:00, State:passengers~slow0-0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=CONDITIONS_NOT_MET}=true,{Stage:00, State:passengers~slow0-0=n0}=true",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:lift-at~slow1-0=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:lift-at~slow1-0=n4}=false",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:lift-at~slow1-0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=n4}=false,{Stage:01, State:lift-at~slow1-0=n4}=true",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=n4}=true,{Stage:01, State:lift-at~slow1-0=n4}=false",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=n6}=false,{Stage:01, State:lift-at~slow1-0=n6}=true",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=false,{Stage:00, State:lift-at~slow1-0=n6}=true,{Stage:01, State:lift-at~slow1-0=n6}=false",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=true,{Stage:00, State:lift-at~slow1-0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=CONDITIONS_NOT_MET}=true,{Stage:00, State:lift-at~slow1-0=n4}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=LOCKED_FOR_UPDATE}=false,{Stage:01, State:pointing~satellite0=LOCKED_FOR_UPDATE}=true",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=LOCKED_FOR_UPDATE}=true,{Stage:00, State:pointing~satellite0=phenomenon6}=false",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=LOCKED_FOR_UPDATE}=true,{Stage:01, State:pointing~satellite0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=groundstation2}=false,{Stage:01, State:pointing~satellite0=groundstation2}=true",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=groundstation2}=true,{Stage:01, State:pointing~satellite0=groundstation2}=false",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=phenomenon6}=false,{Stage:01, State:pointing~satellite0=phenomenon6}=true",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=false,{Stage:00, State:pointing~satellite0=phenomenon6}=true,{Stage:01, State:pointing~satellite0=phenomenon6}=false",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite0=LOCKED_FOR_UPDATE}=false",
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=CONDITIONS_NOT_MET}=true,{Stage:00, State:pointing~satellite0=phenomenon6}=true",
 
                 ]
         ]
