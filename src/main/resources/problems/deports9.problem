@@ -1,0 +1,15 @@
+depot0
+depots\Pfile9\DomainDepotsDepot.pddl
+depots\Pfile9\ProblemDepotsdepot0.pddl
+distributor0
+depots\Pfile9\DomainDepotsDepot.pddl
+depots\Pfile9\ProblemDepotsdistributor0.pddl
+distributor1
+depots\Pfile9\DomainDepotsDepot.pddl
+depots\Pfile9\ProblemDepotsdistributor1.pddl
+truck0
+depots\Pfile9\DomainDepotsTruck.pddl
+depots\Pfile9\ProblemDepotstruck0.pddl
+truck1
+depots\Pfile9\DomainDepotsTruck.pddl
+depots\Pfile9\ProblemDepotstruck1.pddl
