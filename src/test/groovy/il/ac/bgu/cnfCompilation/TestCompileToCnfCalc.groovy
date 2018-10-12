@@ -19,21 +19,30 @@ class TestCompileToCnfCalc extends Specification {
     def "test compile to CNF #serializedPlanFilename"(String serializedPlanFilename,
                                                       VariableModelFunction failureModel,
                                                       Action failedAction,
-                                                      expectedClauses) {
+                                                      expectedHardConstraints,
+                                                      expectedSoftConstraints) {
         setup:
         TreeMap<Integer, Set<Step>> plan = SerializationUtils.deserialize(new FileInputStream(
                 serializedPlanFilename))
         CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
 
 
+        def compilationResult = SatSolver.compilePlanToCnf(cnfCompilation, ImmutableSet.of(failedAction))
         expect:
 
-        def res = SatSolver.compilePlanToCnf(cnfCompilation, ImmutableSet.of(failedAction)).key
+        def hardConstraints = compilationResult.key
                 .stream()
                 .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
                 .sorted()
                 .collect(Collectors.toList())
-        res == expectedClauses
+        hardConstraints == expectedHardConstraints
+
+        def softConstraints = compilationResult.value
+                .stream()
+                .map({ v -> v.toString() })
+                .sorted()
+                .collect(Collectors.toList())
+        softConstraints == expectedSoftConstraints
 
         where:
         serializedPlanFilename << [
@@ -63,7 +72,8 @@ class TestCompileToCnfCalc extends Specification {
                 Action.of("Unload hoist0 crate1 truck0 depot0", "truck0", "175530028", 2),
 
         ]
-        expectedClauses << [
+
+        expectedHardConstraints << [
                 [
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false",
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=true",
@@ -11132,6 +11142,114 @@ class TestCompileToCnfCalc extends Specification {
 
                 ]
         ]
+
+
+        expectedSoftConstraints << [
+                [
+                        "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=true",
+                        "{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=HEALTHY}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:fast0,Action:move-up-fast~fast0~n0~n2=HEALTHY}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=HEALTHY}=true",
+                        "{Index:00, Agent:slow1-0,Action:move-up-slow~slow1-0~n4~n6=HEALTHY}=true",
+                        "{Index:01, Agent:slow0-0,Action:move-down-slow~slow0-0~n2~n1=HEALTHY}=true",
+                        "{Index:01, Agent:slow1-0,Action:move-up-slow~slow1-0~n6~n8=HEALTHY}=true",
+                        "{Index:02, Agent:slow0-0,Action:leave~p2~slow0-0~n1~n1~n0=HEALTHY}=true",
+                        "{Index:02, Agent:slow1-0,Action:board~p0~slow1-0~n8~n0~n1=HEALTHY}=true",
+                        "{Index:03, Agent:slow0-0,Action:move-up-slow~slow0-0~n1~n3=HEALTHY}=true",
+                        "{Index:03, Agent:slow1-0,Action:move-down-slow~slow1-0~n8~n4=HEALTHY}=true",
+                        "{Index:04, Agent:slow0-0,Action:board~p1~slow0-0~n3~n0~n1=HEALTHY}=true",
+                        "{Index:04, Agent:slow1-0,Action:leave~p0~slow1-0~n4~n1~n0=HEALTHY}=true",
+                        "{Index:05, Agent:slow0-0,Action:move-down-slow~slow0-0~n3~n2=HEALTHY}=true",
+                        "{Index:06, Agent:slow0-0,Action:leave~p1~slow0-0~n2~n1~n0=HEALTHY}=true",
+                        "{Index:07, Agent:fast0,Action:board~p1~fast0~n2~n0~n1=HEALTHY}=true",
+                        "{Index:08, Agent:fast0,Action:move-up-fast~fast0~n2~n6=HEALTHY}=true",
+                        "{Index:09, Agent:fast0,Action:leave~p1~fast0~n6~n1~n0=HEALTHY}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:satellite0,Action:turn_to~satellite0~groundstation2~phenomenon6=HEALTHY}=true",
+                        "{Index:01, Agent:satellite0,Action:switch_on~instrument0~satellite0=HEALTHY}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:fast0,Action:board~p0~fast0~n0~n0~n1=HEALTHY}=true",
+                        "{Index:00, Agent:slow0-0,Action:board~p2~slow0-0~n2~n0~n1=HEALTHY}=true",
+                        "{Index:01, Agent:fast0,Action:move-up-fast~fast0~n0~n4=HEALTHY}=true",
+                        "{Index:01, Agent:slow0-0,Action:move-down-slow~slow0-0~n2~n1=HEALTHY}=true",
+                        "{Index:02, Agent:fast0,Action:board~p1~fast0~n4~n1~n2=HEALTHY}=true",
+                        "{Index:02, Agent:slow0-0,Action:leave~p2~slow0-0~n1~n1~n0=HEALTHY}=true",
+                        "{Index:03, Agent:fast0,Action:leave~p0~fast0~n4~n2~n1=HEALTHY}=true",
+                        "{Index:04, Agent:fast0,Action:move-up-fast~fast0~n4~n6=HEALTHY}=true",
+                        "{Index:05, Agent:fast0,Action:leave~p1~fast0~n6~n1~n0=HEALTHY}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:satellite1,Action:turn_to~satellite1~star0~star4=HEALTHY}=true",
+                        "{Index:00, Agent:satellite2,Action:switch_on~instrument7~satellite2=HEALTHY}=true",
+                        "{Index:01, Agent:satellite1,Action:switch_on~instrument5~satellite1=HEALTHY}=true",
+                        "{Index:01, Agent:satellite2,Action:turn_to~satellite2~star0~star6=HEALTHY}=true",
+                        "{Index:02, Agent:satellite1,Action:calibrate~satellite1~instrument5~star0=HEALTHY}=true",
+                        "{Index:02, Agent:satellite2,Action:calibrate~satellite2~instrument7~star0=HEALTHY}=true",
+                        "{Index:03, Agent:satellite1,Action:turn_to~satellite1~star7~star0=HEALTHY}=true",
+                        "{Index:03, Agent:satellite2,Action:turn_to~satellite2~phenomenon5~star0=HEALTHY}=true",
+                        "{Index:04, Agent:satellite1,Action:take_image~satellite1~star7~instrument5~spectrograph3=HEALTHY}=true",
+                        "{Index:04, Agent:satellite2,Action:take_image~satellite2~phenomenon5~instrument7~thermograph1=HEALTHY}=true",
+                        "{Index:05, Agent:satellite1,Action:turn_to~satellite1~star10~star7=HEALTHY}=true",
+                        "{Index:05, Agent:satellite2,Action:turn_to~satellite2~star6~phenomenon5=HEALTHY}=true",
+                        "{Index:06, Agent:satellite1,Action:take_image~satellite1~star10~instrument5~spectrograph3=HEALTHY}=true",
+                        "{Index:06, Agent:satellite2,Action:take_image~satellite2~star6~instrument7~thermograph1=HEALTHY}=true",
+                        "{Index:07, Agent:satellite1,Action:turn_to~satellite1~phenomenon13~star10=HEALTHY}=true",
+                        "{Index:07, Agent:satellite2,Action:turn_to~satellite2~phenomenon8~star6=HEALTHY}=true",
+                        "{Index:08, Agent:satellite1,Action:take_image~satellite1~phenomenon13~instrument5~thermograph1=HEALTHY}=true",
+                        "{Index:08, Agent:satellite2,Action:take_image~satellite2~phenomenon8~instrument7~image0=HEALTHY}=true",
+                        "{Index:09, Agent:satellite1,Action:turn_to~satellite1~phenomenon14~phenomenon13=HEALTHY}=true",
+                        "{Index:09, Agent:satellite2,Action:turn_to~satellite2~phenomenon9~phenomenon8=HEALTHY}=true",
+                        "{Index:10, Agent:satellite1,Action:take_image~satellite1~phenomenon14~instrument5~thermograph2=HEALTHY}=true",
+                        "{Index:10, Agent:satellite2,Action:take_image~satellite2~phenomenon9~instrument7~image0=HEALTHY}=true",
+                        "{Index:11, Agent:satellite2,Action:turn_to~satellite2~planet11~phenomenon9=HEALTHY}=true",
+                        "{Index:12, Agent:satellite2,Action:take_image~satellite2~planet11~instrument7~thermograph2=HEALTHY}=true",
+                        "{Index:13, Agent:satellite2,Action:turn_to~satellite2~phenomenon12~planet11=HEALTHY}=true",
+                        "{Index:14, Agent:satellite2,Action:take_image~satellite2~phenomenon12~instrument7~image0=HEALTHY}=true",
+
+                ],
+                [
+                        "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=true",
+                        "{Index:00, Agent:distributor0,Action:LiftC~hoist1~crate4~crate3~distributor0=HEALTHY}=true",
+                        "{Index:00, Agent:distributor1,Action:LiftC~hoist2~crate5~crate2~distributor1=HEALTHY}=true",
+                        "{Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=HEALTHY}=true",
+                        "{Index:02, Agent:truck0,Action:Unload~hoist0~crate1~truck0~depot0=HEALTHY}=true",
+                        "{Index:03, Agent:truck0,Action:Drive~truck0~depot0~distributor0=HEALTHY}=true",
+                        "{Index:04, Agent:truck0,Action:Load~hoist1~crate4~truck0~distributor0=HEALTHY}=true",
+                        "{Index:05, Agent:distributor0,Action:LiftC~hoist1~crate3~crate0~distributor0=HEALTHY}=true",
+                        "{Index:06, Agent:truck0,Action:Load~hoist1~crate3~truck0~distributor0=HEALTHY}=true",
+                        "{Index:07, Agent:distributor0,Action:LiftP~hoist1~crate0~pallet1~distributor0=HEALTHY}=true",
+                        "{Index:08, Agent:truck0,Action:Load~hoist1~crate0~truck0~distributor0=HEALTHY}=true",
+                        "{Index:09, Agent:truck0,Action:Unload~hoist1~crate4~truck0~distributor0=HEALTHY}=true",
+                        "{Index:10, Agent:distributor0,Action:DropP~hoist1~crate4~pallet1~distributor0=HEALTHY}=true",
+                        "{Index:10, Agent:truck0,Action:Drive~truck0~distributor0~distributor1=HEALTHY}=true",
+                        "{Index:11, Agent:truck0,Action:Load~hoist2~crate5~truck0~distributor1=HEALTHY}=true",
+                        "{Index:12, Agent:distributor1,Action:LiftP~hoist2~crate2~pallet2~distributor1=HEALTHY}=true",
+                        "{Index:13, Agent:truck0,Action:Load~hoist2~crate2~truck0~distributor1=HEALTHY}=true",
+                        "{Index:14, Agent:truck0,Action:Drive~truck0~distributor1~depot0=HEALTHY}=true",
+                        "{Index:15, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=HEALTHY}=true",
+                        "{Index:16, Agent:truck0,Action:Unload~hoist0~crate2~truck0~depot0=HEALTHY}=true",
+                        "{Index:17, Agent:depot0,Action:DropP~hoist0~crate2~pallet0~depot0=HEALTHY}=true",
+                        "{Index:18, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=HEALTHY}=true",
+                        "{Index:19, Agent:depot0,Action:DropC~hoist0~crate3~crate2~depot0=HEALTHY}=true",
+                        "{Index:19, Agent:truck0,Action:Drive~truck0~depot0~distributor1=HEALTHY}=true",
+                        "{Index:20, Agent:truck0,Action:Unload~hoist2~crate1~truck0~distributor1=HEALTHY}=true",
+                        "{Index:21, Agent:distributor1,Action:DropP~hoist2~crate1~pallet2~distributor1=HEALTHY}=true",
+                        "{Index:22, Agent:truck0,Action:Unload~hoist2~crate0~truck0~distributor1=HEALTHY}=true",
+                        "{Index:23, Agent:distributor1,Action:DropC~hoist2~crate0~crate1~distributor1=HEALTHY}=true",
+                        "{Index:24, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor1=HEALTHY}=true",
+                        "{Index:25, Agent:distributor1,Action:DropC~hoist2~crate5~crate0~distributor1=HEALTHY}=true",
+                ],
+        ]
+
+
     }
 
 
