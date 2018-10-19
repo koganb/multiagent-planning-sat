@@ -391,7 +391,8 @@ public class CnfCompilation {
                 .filter(var -> !beforeKeyWithValue.contains(
                         var.getFormattable().formatFunctionKeyWithValue()))
                 .forEach(var ->
-                        newFluents.add(FormattableValue.of(var.getFormattable(), false)));
+                        newFluents.add(FormattableValue.of(
+                                var.getFormattable().toBuilder().stage(stage).build(), false)));
 
 
         log.debug("Adding effect to the var state {}\n", newFluents.stream().map(Objects::toString).collect(Collectors.joining("\n")));

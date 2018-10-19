@@ -25,8 +25,8 @@ class TestSatSolver extends Specification {
 
     //   public static final String PROBLEM_NAME = "elevator1.problem"
     //   public static final String PROBLEM_NAME = "satellite1.problem"
-    public static final String PROBLEM_NAME = "satellite20.problem"
-    //public static final String PROBLEM_NAME = "deports0.problem"
+    //public static final String PROBLEM_NAME = "satellite20.problem"
+    public static final String PROBLEM_NAME = "deports17.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
 
