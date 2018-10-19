@@ -58,7 +58,7 @@ public class FinalVariableStateCalc {
                 else if (checkPreconditionsValidity(step.getPopPrecs(), prevStageVars) &&
                         checkEffectsValidity(step.getPopEffs(), prevStageVars)) {
                     for (POPPrecEff eff : step.getPopEffs()) {
-                        currentVars = successModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars)
+                        currentVars = successModelFunction.apply(Variable.of(eff), stepEntry.getKey() + 1, currentVars)
                                 .collect(ImmutableList.toImmutableList());
                     }
                 } else {

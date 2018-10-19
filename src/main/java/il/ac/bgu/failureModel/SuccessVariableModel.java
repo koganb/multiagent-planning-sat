@@ -11,7 +11,7 @@ public class SuccessVariableModel implements VariableModelFunction {
     @Override
     public Stream<FormattableValue<Variable>> apply(
             Variable variable, Integer stage, Collection<FormattableValue<Variable>> currentVariableSet) {
-        return CnfCompilationUtils.updateVariables(currentVariableSet, variable, stage + 1);
+        return CnfCompilationUtils.updateVariables(currentVariableSet, variable, stage);
 
     }
 

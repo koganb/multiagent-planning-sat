@@ -1,13 +1,13 @@
 package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
-import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.CnfEncodingUtils;
 import il.ac.bgu.FinalVariableStateCalc;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.failureModel.SuccessVariableModel;
 import il.ac.bgu.failureModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
@@ -43,6 +43,7 @@ public class CnfCompilation {
     private TreeMap<Integer, Set<Step>> plan;
 
     private VariableModelFunction failureModel;
+    private VariableModelFunction sucessModel = new SuccessVariableModel();
 
 
     public CnfCompilation(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModel) {
@@ -383,8 +384,8 @@ public class CnfCompilation {
         variablesStateAfterStepExec = ImmutableList.copyOf(variablesStateBeforeStepExec);
         for (Step action : actions) {
             for (POPPrecEff eff : action.getPopEffs()) {
-                variablesStateAfterStepExec = CnfCompilationUtils.updateVariables(
-                        variablesStateAfterStepExec, Variable.of(eff), stage + 1)
+                variablesStateAfterStepExec = this.sucessModel.apply(
+                        Variable.of(eff), stage + 1, variablesStateAfterStepExec)
                         .collect(toList());
 
             }
