@@ -31,22 +31,44 @@ class TestFinalFactsCalc extends Specification {
                 .collect(Collectors.toList()) == expectedClauses
 
         where:
-        serializedPlanFilename << [
-                'deports0.problem.ser',
-                'elevator1.problem.ser',
-                'satellite1.problem.ser',
-                'satellite20.problem.ser'
+        serializedPlanFilename << ['deports0.problem.ser',
+                                   'elevator1.problem.ser',
+                                   'satellite1.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'satellite20.problem.ser',
+                                   'elevator30.problem.ser',
         ]
         failureModel << [
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),
-                new NoEffectFailureModel()]
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),
+        ]
+
         failedAction << [
                 Action.of("Load hoist0 crate1 truck1 depot0", "truck1", "912531260", 1),
                 Action.of("move-down-slow slow1-0 n8 n4", "slow1-0", "1319841323", 1),
                 Action.of("switch_on instrument0 satellite0", "satellite0", "1940263925", 1),
-                Action.of("turn_to~satellite1~planet13~phenomenon8", "satellite1", "2015976336", 68)
+                Action.of("turn_to~satellite1~planet13~phenomenon8", "satellite1", "2015976336", 68),
+                Action.of("take_image satellite1 planet18 instrument11 thermograph7", "", "521104520", 16),
+                Action.of("turn_to satellite1 star24 phenomenon19", "", "283183698", 42),
+                Action.of("turn_to satellite3 star11 star6", "", "305933187", 7),
+                Action.of("turn_to satellite1 star6 star10", "", "177845995", 29),
+                Action.of("take_image satellite1 phenomenon8 instrument10 spectrograph6", "", "580750331", 34),
+                Action.of("calibrate satellite3 instrument21 star2", "", "1011106168", 2),
+                Action.of("board p5 fast1 n4 n2 n3", "fast1", "543484380", 5),
         ]
         expectedClauses << [
                 [
