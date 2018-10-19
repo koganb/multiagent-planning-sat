@@ -35,7 +35,7 @@ class TestCompileToCnfCalc extends Specification {
                 .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
                 .sorted()
                 .collect(Collectors.toList())
-        hardConstraints == expectedHardConstraints
+        hardConstraints == expectedHardConstraints.stream().sorted().collect(Collectors.toList())
 
         def softConstraints = compilationResult.value
                 .stream()

@@ -106,7 +106,7 @@ public class CnfCompilation {
         log.debug("Start pass through...");
 
         Stream<ImmutableList<FormattableValue<Formattable>>> passThroughValuesStream =
-                variablesStateBeforeStepExec.stream().
+                calcVariableState(variablesStateBeforeStepExec.stream(), stage).
                         filter(value -> !effectKeys.contains(value.getFormattable().formatFunctionKey())).
                         flatMap(g -> Stream.of(
                                 ImmutableList.of(
@@ -384,17 +384,17 @@ public class CnfCompilation {
         for (Step action : actions) {
             for (POPPrecEff eff : action.getPopEffs()) {
                 variablesStateAfterStepExec = CnfCompilationUtils.updateVariables(
-                        variablesStateAfterStepExec, Variable.of(eff), stage)
+                        variablesStateAfterStepExec, Variable.of(eff), stage + 1)
                         .collect(toList());
 
             }
         }
 
         //find the difference between before and after
-        Set<String> beforeKeyWithValue = variablesStateBeforeStepExec.stream()
+        Set<String> beforeKeyWithValue = calcVariableState(variablesStateBeforeStepExec.stream(), stage)
                 .map(var -> var.getFormattable().formatFunctionKeyWithValue())
                 .collect(toSet());
-        variablesStateAfterStepExec.stream()
+        calcVariableState(variablesStateAfterStepExec.stream(), stage + 1)
                 .filter(var -> !beforeKeyWithValue.contains(
                         var.getFormattable().formatFunctionKeyWithValue()))
                 .forEach(var ->
