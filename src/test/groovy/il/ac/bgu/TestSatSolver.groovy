@@ -23,7 +23,7 @@ import java.util.stream.Collectors
 @Unroll
 class TestSatSolver extends Specification {
 
-    //   public static final String PROBLEM_NAME = "elevator1.problem"
+    //public static final String PROBLEM_NAME = "elevator30.problem"
     //   public static final String PROBLEM_NAME = "satellite1.problem"
     //public static final String PROBLEM_NAME = "satellite20.problem"
     public static final String PROBLEM_NAME = "deports17.problem"
@@ -117,8 +117,8 @@ class TestSatSolver extends Specification {
             actionList.stream()
                     .map({ action -> action.toBuilder().state(Action.State.FAILED).build() }).collect(Collectors.toSet())
         })
-        //.skip(2)
-                .limit(300)
+        //.skip(14)
+        //        .limit(1)
                 .collect(Collectors.toList())
 
     }

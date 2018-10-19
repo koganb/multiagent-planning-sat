@@ -15,9 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,28 +32,16 @@ public class FinalVariableStateCalc {
         this.failureModelFunction = failureModelFunction;
     }
 
-
-    private ImmutableList<FormattableValue<Variable>> getStageVariableState(
-            ImmutableList<FormattableValue<Variable>> currentVars, Integer stage) {
-
-
-        Predicate<FormattableValue<Variable>> currentStage = v -> v.getFormattable().getStage().get() <= stage;
-        BinaryOperator<FormattableValue<Variable>> filterByGreaterStage = (v1, v2) -> v1.getFormattable().getStage().get() > v2.getFormattable().getStage().get() ? v1 : v2;
-
-        return currentVars.stream()
-                .filter(v -> v.getFormattable().getStage().isPresent())
-                .filter(currentStage)
-                .collect(Collectors.toMap(v -> v.getFormattable().formatFunctionKeyWithValue(),
-                        Function.identity(), filterByGreaterStage))
-                .values().stream().collect(ImmutableList.toImmutableList());
-    }
-
     public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Set<Action> failedActions) {
 
 
         ImmutableList<FormattableValue<Variable>> currentVars = ImmutableList.of();
         for (Map.Entry<Integer, Set<Step>> stepEntry : plan.entrySet()) {
-            ImmutableList<FormattableValue<Variable>> prevStageVars = getStageVariableState(currentVars, stepEntry.getKey());
+
+
+            ImmutableList<FormattableValue<Variable>> prevStageVars =
+                    CnfCompilationUtils.calcVariableState(currentVars.stream(), stepEntry.getKey())
+                            .collect(ImmutableList.toImmutableList());
 
             for (Step step : stepEntry.getValue()) {
 
@@ -88,7 +73,8 @@ public class FinalVariableStateCalc {
         Integer maxStep = plan.keySet().stream().max(Integer::compareTo)
                 .orElseThrow(() -> new RuntimeException("No max step for plan" + plan));
 
-        ImmutableList<FormattableValue<Variable>> finalVariableState = getStageVariableState(currentVars, maxStep + 1);
+        ImmutableList<FormattableValue<Variable>> finalVariableState = CnfCompilationUtils.calcVariableState(
+                currentVars.stream(), maxStep + 1).collect(ImmutableList.toImmutableList());
 
         //add LOCKED_FOR_UPDATE variables to the final state
         Set<String> variablesWithUndefinedValues = finalVariableState.stream()

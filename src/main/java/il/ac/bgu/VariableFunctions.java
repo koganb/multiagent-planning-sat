@@ -20,10 +20,15 @@ public class VariableFunctions {
     public static final Function<FormattableValue<Variable>, String> getVariableKey =
             variable -> variable.getFormattable().formatFunctionKey();
 
-    public static final Function<FormattableValue<Variable>, String> getVariablenKeyWithValue =
+    public static final Function<FormattableValue<Variable>, String> variableKeyWithValue =
             variable -> variable.getFormattable().formatFunctionKeyWithValue();
 
     public static final Function<Variable, Predicate<FormattableValue<Variable>>> variableKeyFilter =
-            variable -> var -> var.getFormattable().formatFunctionKey().equals(variable.formatFunctionKey());
+            variable -> var ->
+                    var.getFormattable().formatFunctionKey().equals(variable.formatFunctionKey());
+
+    public static final Function<Variable, Predicate<FormattableValue<Variable>>> variableKeyWithValueFilter =
+            variable -> var ->
+                    var.getFormattable().formatFunctionKeyWithValue().equals(variable.formatFunctionKeyWithValue());
 
 }
