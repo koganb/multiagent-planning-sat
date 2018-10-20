@@ -24,7 +24,7 @@ import java.util.stream.Collectors
 class TestSatSolver extends Specification {
 
     //public static final String PROBLEM_NAME = "elevator30.problem"
-    //   public static final String PROBLEM_NAME = "satellite1.problem"
+    //public static final String PROBLEM_NAME = "elevator1.problem"
     public static final String PROBLEM_NAME = "satellite20.problem"
     //public static final String PROBLEM_NAME = "deports0.problem"
     @Shared
@@ -91,7 +91,9 @@ class TestSatSolver extends Specification {
                 map { solution -> solution.get() }.
                 filter { solution ->
 
-                    def solutionFinalState = cnfCompilation.calcFinalFacts(failedActions);
+                    def solutionFinalState = cnfCompilation.calcFinalFacts(failedActions)
+
+                    println("Solution candidate: " + solution);
 
                     return (!solution.isEmpty() &&
                             solutionFinalState.containsAll(finalFactsWithFailedActions) &&
