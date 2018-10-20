@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import org.agreement_technologies.common.map_planner.Step;
-import org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
 
@@ -15,7 +15,6 @@ import static java.lang.String.format;
 @EqualsAndHashCode
 public class Action implements Formattable {
 
-    private final String uuid;
     private final String agentName;
     private String actionName;
     private Integer stage;
@@ -28,13 +27,17 @@ public class Action implements Formattable {
 
 
     private Action(Step step, Integer stage) {
-        this(step.getActionName(), step.getAgent(), step.getUuid(), stage);
+        this(step.getActionName(), step.getAgent(), stage);
     }
 
-    private Action(String actionName, String agentName, String uuid, Integer stage) {
+    private Action(String actionName, String agentName, Integer stage) {
+        assert StringUtils.isNotEmpty(actionName) &&
+                stage != null && stage >= -1 &&
+                (stage == -1 || StringUtils.isNotEmpty(agentName)) //no agent name for initial state
+                : String.format("params: actionName: %s, agentName:%s, stage %s", actionName, agentName, stage);
+
         this.actionName = actionName;
         this.agentName = agentName;
-        this.uuid = uuid;
         this.stage = stage;
     }
 
@@ -47,18 +50,19 @@ public class Action implements Formattable {
         return new Action(step, stage, state);
     }
 
-    public static Action of(String actionName, String agentName, String uuid, Integer stage) {
-        return new Action(actionName, agentName, uuid, stage);
+    public static Action of(String actionName, String agentName, Integer stage) {
+        return new Action(actionName, agentName, stage);
     }
 
     public String formatActionName() {
         return actionName.replace(" ", "~");
     }
 
+
     @Override
     public String formatData() {
-        String format = format("Index:%02d, Agent:%s,Action:%s", stage, agentName, formatActionName());
-        return Optional.ofNullable(state).isPresent() ? format + "=" + state.name() : format;
+        String actionKey = formatFunctionKey();
+        return Optional.ofNullable(state).isPresent() ? actionKey + "=" + state.name() : actionKey;
     }
 
     @Override
@@ -73,7 +77,7 @@ public class Action implements Formattable {
 
     @Override
     public String formatFunctionKey() {
-        throw new NotImplementedException("implemented for Values only");
+        return format("Index:%02d, Agent:%s,Action:%s", stage, agentName, formatActionName());
     }
 
     public enum State {HEALTHY, FAILED, CONDITIONS_NOT_MET;}

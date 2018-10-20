@@ -1,5 +1,6 @@
 package il.ac.bgu.cnfCompilation
 
+import il.ac.bgu.failureModel.DelayStageFailureModel
 import il.ac.bgu.failureModel.NoEffectFailureModel
 import il.ac.bgu.failureModel.VariableModelFunction
 import org.agreement_technologies.common.map_planner.Step
@@ -28,18 +29,21 @@ class TestAddFluentsCalc extends Specification {
 
 
         where:
-        serializedPlanFilename << ['deports0.problem.ser',
-                                   'elevator1.problem.ser',
-                                   'satellite1.problem.ser',
-                                   'satellite20.problem.ser',
-                                   'satellite20.problem.ser',
-                                   'satellite20.problem.ser',
-                                   'satellite20.problem.ser',
-                                   'satellite20.problem.ser',
-                                   'satellite20.problem.ser',
-                                   'satellite20.problem.ser',
+        serializedPlanFilename << [
+                'deports0.problem.ser',
+                'deports0.problem.ser',
+                'elevator1.problem.ser',
+                'satellite1.problem.ser',
+                'satellite20.problem.ser',
+                'satellite20.problem.ser',
+                'satellite20.problem.ser',
+                'satellite20.problem.ser',
+                'satellite20.problem.ser',
+                'satellite20.problem.ser',
+                'satellite20.problem.ser',
         ]
         failureModel << [
+                new DelayStageFailureModel(1),
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),
@@ -51,8 +55,14 @@ class TestAddFluentsCalc extends Specification {
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),
         ]
-        step << [0, 0, 0, 0, 10, 20, 30, 40, 50, 60]
+        step << [0, 0, 0, 0, 0, 10, 20, 30, 40, 50, 60]
         expectedClauses << [
+                [
+                        "{Stage:00, State:clear~crate1=false}=false",
+                        "{Stage:00, State:clear~hoist0=false}=false",
+                        "{Stage:00, State:clear~pallet0=true}=false",
+                        "{Stage:00, State:on~crate1=hoist0}=false",
+                ],
                 [
                         "{Stage:00, State:clear~crate1=false}=false",
                         "{Stage:00, State:clear~hoist0=false}=false",

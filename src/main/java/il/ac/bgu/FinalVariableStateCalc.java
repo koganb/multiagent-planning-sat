@@ -10,6 +10,7 @@ import il.ac.bgu.failureModel.SuccessVariableModel;
 import il.ac.bgu.failureModel.VariableModelFunction;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -34,8 +35,13 @@ public class FinalVariableStateCalc {
 
     public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Set<Action> failedActions) {
 
+        Set<String> failedActionsKeys = failedActions.stream()
+                .map(Action::formatFunctionKey)
+                .collect(Collectors.toSet());
 
         ImmutableList<FormattableValue<Variable>> currentVars = ImmutableList.of();
+
+
         for (Map.Entry<Integer, Set<Step>> stepEntry : plan.entrySet()) {
 
 
@@ -46,8 +52,12 @@ public class FinalVariableStateCalc {
             for (Step step : stepEntry.getValue()) {
 
                 //step is failed and effects are not locked
-                if (failedActions.contains(Action.of(step, stepEntry.getKey(), Action.State.FAILED)) &&
-                        checkEffectsValidity(step.getPopEffs(), prevStageVars)) {
+                String actionKey = Action.of(step, stepEntry.getKey()).formatFunctionKey();
+                if (failedActionsKeys.contains(actionKey) && checkEffectsValidity(step.getPopEffs(), prevStageVars)) {
+
+                    //remove key from failedActionKeys
+                    failedActionsKeys.remove(actionKey);
+
                     for (POPPrecEff eff : step.getPopEffs()) {
                         currentVars = this.failureModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars)
                                 .collect(ImmutableList.toImmutableList());
@@ -58,7 +68,7 @@ public class FinalVariableStateCalc {
                 else if (checkPreconditionsValidity(step.getPopPrecs(), prevStageVars) &&
                         checkEffectsValidity(step.getPopEffs(), prevStageVars)) {
                     for (POPPrecEff eff : step.getPopEffs()) {
-                        currentVars = successModelFunction.apply(Variable.of(eff), stepEntry.getKey() + 1, currentVars)
+                        currentVars = successModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars)
                                 .collect(ImmutableList.toImmutableList());
                     }
                 } else {
@@ -90,6 +100,10 @@ public class FinalVariableStateCalc {
                         .map(entry -> FormattableValue.of(
                                 entry.getValue().get(0).getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).build(), false)))
                 .collect(ImmutableList.toImmutableList());
+
+        if (CollectionUtils.isNotEmpty(failedActionsKeys)) {
+            throw new RuntimeException("Failed actions not found: " + failedActionsKeys);
+        }
 
         return finalVariableState.stream()
                 .map(formattableValue -> FormattableValue.<Formattable>of(

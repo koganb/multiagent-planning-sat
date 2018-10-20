@@ -30,6 +30,9 @@ public class DelayStageFailureModel implements VariableModelFunction {
                             .build(), stage)
                     .collect(ImmutableList.toImmutableList());
         }
-        return CnfCompilationUtils.updateVariables(currentVars, variable, targetStage);
+        currentVars = CnfCompilationUtils.updateVariables(currentVars, variable, targetStage)
+                .collect(ImmutableList.toImmutableList());
+
+        return currentVars.stream();
     }
 }

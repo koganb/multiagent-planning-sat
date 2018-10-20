@@ -43,7 +43,7 @@ public class CnfCompilation {
     private TreeMap<Integer, Set<Step>> plan;
 
     private VariableModelFunction failureModel;
-    private VariableModelFunction sucessModel = new SuccessVariableModel();
+    private VariableModelFunction successModel = new SuccessVariableModel();
 
 
     public CnfCompilation(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModel) {
@@ -189,8 +189,7 @@ public class CnfCompilation {
                 Variable variable = Variable.of(actionEff);
                 Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(variable);
                 List<FormattableValue<Formattable>> failureModelResult =
-                        calcVariableState(
-                                failureModel.apply(variable, stage, variablesStateBeforeStepExec), stage + 1)
+                        calcVariableState(failureModel.apply(variable, stage, variablesStateBeforeStepExec), stage + 1)
                                 .filter(variableKeyPredicate)
                                 .map(var -> FormattableValue.<Formattable>of(var.getFormattable().toBuilder().stage(stage + 1).build(),
                                         var.getValue()))
@@ -384,8 +383,8 @@ public class CnfCompilation {
         variablesStateAfterStepExec = ImmutableList.copyOf(variablesStateBeforeStepExec);
         for (Step action : actions) {
             for (POPPrecEff eff : action.getPopEffs()) {
-                variablesStateAfterStepExec = this.sucessModel.apply(
-                        Variable.of(eff), stage + 1, variablesStateAfterStepExec)
+                variablesStateAfterStepExec = this.successModel.apply(
+                        Variable.of(eff), stage, variablesStateAfterStepExec)
                         .collect(toList());
 
             }

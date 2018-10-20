@@ -47,6 +47,7 @@ class TestCompileToCnfCalc extends Specification {
         where:
         serializedPlanFilename << [
                 'deports0.problem.ser',
+//                'deports0.problem.ser',
                 'elevator1.problem.ser',
                 'satellite1.problem.ser',
                 'elevator2.problem.ser',
@@ -56,14 +57,16 @@ class TestCompileToCnfCalc extends Specification {
         ]
 
         failureModel << [
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
+//                new DelayStageFailureModel(1),
+new NoEffectFailureModel(),
+new NoEffectFailureModel(),
+new NoEffectFailureModel(),
+new NoEffectFailureModel(),
+new NoEffectFailureModel(),
+new NoEffectFailureModel(),
         ]
         failedAction << [
+                //            Action.of("Load hoist0 crate1 truck1 depot0", "truck1", "912531260", 1),
                 Action.of("Load hoist0 crate1 truck1 depot0", "truck1", "912531260", 1),
                 Action.of("move-down-slow slow1-0 n8 n4", "slow1-0", "1319841323", 1),
                 Action.of("switch_on instrument0 satellite0", "satellite0", "1940263925", 1),
@@ -74,6 +77,7 @@ class TestCompileToCnfCalc extends Specification {
         ]
 
         expectedHardConstraints << [
+                //  [],
                 [
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=false",
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=CONDITIONS_NOT_MET}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED}=false,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=true",
@@ -11145,6 +11149,7 @@ class TestCompileToCnfCalc extends Specification {
 
 
         expectedSoftConstraints << [
+                //  [],
                 [
                         "{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=HEALTHY}=true",
                         "{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=HEALTHY}=true",
@@ -11247,6 +11252,7 @@ class TestCompileToCnfCalc extends Specification {
                         "{Index:24, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor1=HEALTHY}=true",
                         "{Index:25, Agent:distributor1,Action:DropC~hoist2~crate5~crate0~distributor1=HEALTHY}=true",
                 ],
+
         ]
 
 
