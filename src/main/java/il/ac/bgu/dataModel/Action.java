@@ -1,6 +1,5 @@
 package il.ac.bgu.dataModel;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import org.agreement_technologies.common.map_planner.Step;
@@ -11,13 +10,12 @@ import java.util.Optional;
 import static java.lang.String.format;
 
 @Builder(toBuilder = true)
-@AllArgsConstructor
 @EqualsAndHashCode
 public class Action implements Formattable {
 
+    private final String actionName;
     private final String agentName;
-    private String actionName;
-    private Integer stage;
+    private final Integer stage;
     private State state;
 
     private Action(Step step, Integer stage, State state) {
@@ -41,6 +39,11 @@ public class Action implements Formattable {
         this.stage = stage;
     }
 
+    private Action(String actionName, String agentName, Integer stage, State state) {
+        this(actionName, agentName, stage);
+        this.state = state;
+    }
+
 
     public static Action of(Step step, Integer stage) {
         return new Action(step, stage);
@@ -52,6 +55,10 @@ public class Action implements Formattable {
 
     public static Action of(String actionName, String agentName, Integer stage) {
         return new Action(actionName, agentName, stage);
+    }
+
+    public static Action of(String actionName, String agentName, Integer stage, State state) {
+        return new Action(actionName, agentName, stage, state);
     }
 
     public String formatActionName() {

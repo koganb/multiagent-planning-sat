@@ -6,7 +6,7 @@ import il.ac.bgu.cnfCompilation.CnfCompilation
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
-import il.ac.bgu.failureModel.NoEffectFailureModel
+import il.ac.bgu.failureModel.DelayStageFailureModel
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
 import org.agreement_technologies.common.map_planner.Step
@@ -23,10 +23,11 @@ import java.util.stream.Collectors
 @Unroll
 class TestSatSolver extends Specification {
 
-    //public static final String PROBLEM_NAME = "elevator30.problem"
+    public static final String PROBLEM_NAME = "elevator30.problem"
     //public static final String PROBLEM_NAME = "elevator1.problem"
-    public static final String PROBLEM_NAME = "satellite20.problem"
-    //public static final String PROBLEM_NAME = "deports0.problem"
+    //public static final String PROBLEM_NAME = "satellite20.problem"
+    //public static final String PROBLEM_NAME = "deports-1.problem"
+    //public static final String PROBLEM_NAME = "deports1.problem"
     @Shared
     private TreeMap<Integer, Set<Step>> sortedPlan
 
@@ -73,8 +74,8 @@ class TestSatSolver extends Specification {
 
 
         println "Failed actions:" + failedActions
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new NoEffectFailureModel())
-        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new NoEffectFailureModel()).getFinalVariableState(failedActions)
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new DelayStageFailureModel(1))
+        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new DelayStageFailureModel(1)).getFinalVariableState(failedActions)
 
 
         Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,

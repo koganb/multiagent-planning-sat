@@ -25,12 +25,12 @@ public class NoEffectFailureModel implements VariableModelFunction {
                 .orElse(FormattableValue.of(variable, false));
 
         FormattableValue<Variable> updatedVariable = FormattableValue.of(
-                effectedVariable.getFormattable().toBuilder().stage(currentStage + 1).build(),
+                effectedVariable.getFormattable().toBuilder().stage(currentStage + NEXT_STEP_ADDITION).build(),
                 effectedVariable.getValue());
 
         return CnfCompilationUtils.calcVariableState(Stream.concat(
                 Stream.of(updatedVariable),
-                currentVariableSet.stream()), currentStage + 1);
+                currentVariableSet.stream()), currentStage + NEXT_STEP_ADDITION);
 
 
     }

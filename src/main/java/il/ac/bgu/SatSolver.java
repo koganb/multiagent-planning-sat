@@ -120,7 +120,7 @@ public class SatSolver {
 
 
     public static Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
-            ImmutableList<FormattableValue<Formattable>>> compilePlanToCnf(CnfCompilation cnfCompilation, Set<Action> failedActions) {
+            ImmutableList<FormattableValue<Formattable>>> compilePlanToCnf(CnfCompilation cnfCompilation, Collection<Action> failedActions) {
 
 
         Collection<FormattableValue<Variable>> initFacts = cnfCompilation.calcInitFacts();

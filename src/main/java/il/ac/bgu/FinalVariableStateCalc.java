@@ -12,10 +12,7 @@ import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,7 +30,7 @@ public class FinalVariableStateCalc {
         this.failureModelFunction = failureModelFunction;
     }
 
-    public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Set<Action> failedActions) {
+    public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Collection<Action> failedActions) {
 
         Set<String> failedActionsKeys = failedActions.stream()
                 .map(Action::formatFunctionKey)
