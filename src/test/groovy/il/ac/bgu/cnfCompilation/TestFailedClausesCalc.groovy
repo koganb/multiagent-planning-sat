@@ -108,7 +108,6 @@ class TestFailedClausesCalc extends Specification {
                 ],
                 [
                         "{Index:10, Agent:satellite1,Action:turn_to~satellite1~phenomenon14~phenomenon12=FAILED}=false,{Stage:10, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:10, State:pointing~satellite1=phenomenon12}=false,{Stage:11, State:pointing~satellite1=LOCKED_FOR_UPDATE}=false",
-                        "{Index:10, Agent:satellite1,Action:turn_to~satellite1~phenomenon14~phenomenon12=FAILED}=false,{Stage:10, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:10, State:pointing~satellite1=phenomenon12}=false,{Stage:11, State:pointing~satellite1=phenomenon12}=true",
                         "{Index:10, Agent:satellite1,Action:turn_to~satellite1~phenomenon14~phenomenon12=FAILED}=false,{Stage:10, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:10, State:pointing~satellite1=phenomenon12}=false,{Stage:11, State:pointing~satellite1=phenomenon14}=false",
                         "{Index:10, Agent:satellite1,Action:turn_to~satellite1~phenomenon14~phenomenon12=FAILED}=false,{Stage:10, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:10, State:pointing~satellite1=phenomenon12}=false,{Stage:11, State:pointing~satellite1=phenomenon19}=true",
                         "{Index:10, Agent:satellite3,Action:take_image~satellite3~planet15~instrument21~image3=FAILED}=false,{Stage:10, State:calibrated~instrument21=true}=false,{Stage:10, State:have_image~planet15~image3=LOCKED_FOR_UPDATE}=true,{Stage:10, State:pointing~satellite3=planet15}=false,{Stage:10, State:power_on~instrument21=true}=false,{Stage:11, State:have_image~planet15~image3=LOCKED_FOR_UPDATE}=false",
@@ -133,7 +132,6 @@ class TestFailedClausesCalc extends Specification {
                 [
                         "{Index:50, Agent:satellite1,Action:turn_to~satellite1~planet22~phenomenon21=FAILED}=false,{Stage:50, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:50, State:pointing~satellite1=phenomenon21}=false,{Stage:51, State:pointing~satellite1=LOCKED_FOR_UPDATE}=false",
                         "{Index:50, Agent:satellite1,Action:turn_to~satellite1~planet22~phenomenon21=FAILED}=false,{Stage:50, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:50, State:pointing~satellite1=phenomenon21}=false,{Stage:51, State:pointing~satellite1=phenomenon19}=true",
-                        "{Index:50, Agent:satellite1,Action:turn_to~satellite1~planet22~phenomenon21=FAILED}=false,{Stage:50, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:50, State:pointing~satellite1=phenomenon21}=false,{Stage:51, State:pointing~satellite1=phenomenon21}=true",
                         "{Index:50, Agent:satellite1,Action:turn_to~satellite1~planet22~phenomenon21=FAILED}=false,{Stage:50, State:pointing~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:50, State:pointing~satellite1=phenomenon21}=false,{Stage:51, State:pointing~satellite1=planet22}=false",
                 ],
                 [
@@ -141,7 +139,6 @@ class TestFailedClausesCalc extends Specification {
                         "{Index:60, Agent:satellite1,Action:switch_off~instrument13~satellite1=FAILED}=false,{Stage:60, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=true}=false,{Stage:61, State:power_avail~satellite1=true}=true",
                         "{Index:60, Agent:satellite1,Action:switch_off~instrument13~satellite1=FAILED}=false,{Stage:60, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=true}=false,{Stage:61, State:power_on~instrument13=LOCKED_FOR_UPDATE}=false",
                         "{Index:60, Agent:satellite1,Action:switch_off~instrument13~satellite1=FAILED}=false,{Stage:60, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=true}=false,{Stage:61, State:power_on~instrument13=false}=true",
-                        "{Index:60, Agent:satellite1,Action:switch_off~instrument13~satellite1=FAILED}=false,{Stage:60, State:power_avail~satellite1=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=LOCKED_FOR_UPDATE}=true,{Stage:60, State:power_on~instrument13=true}=false,{Stage:61, State:power_on~instrument13=true}=true",
 
                 ],
 

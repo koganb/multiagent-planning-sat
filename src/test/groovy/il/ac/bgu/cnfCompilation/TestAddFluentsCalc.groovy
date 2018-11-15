@@ -85,39 +85,24 @@ class TestAddFluentsCalc extends Specification {
                         "{Stage:00, State:power_on~instrument11=true}=false",
                 ],
                 [
-                        "{Stage:10, State:calibrated~instrument21=true}=false",
                         "{Stage:10, State:have_image~planet15~image3=true}=false",
-                        "{Stage:10, State:pointing~satellite1=phenomenon12}=false",
                         "{Stage:10, State:pointing~satellite1=phenomenon14}=false",
-                        "{Stage:10, State:pointing~satellite3=planet15}=false",
-                        "{Stage:10, State:power_on~instrument21=true}=false",
                 ],
                 [
-                        "{Stage:20, State:calibrated~instrument11=true}=false",
                         "{Stage:20, State:have_image~star16~image4=true}=false",
-                        "{Stage:20, State:pointing~satellite1=star16}=false",
-                        "{Stage:20, State:power_on~instrument11=true}=false",
 
                 ],
                 [
-                        "{Stage:30, State:calibrated~instrument10=true}=false",
                         "{Stage:30, State:have_image~star6~spectrograph6=true}=false",
-                        "{Stage:30, State:pointing~satellite1=star6}=false",
-                        "{Stage:30, State:power_on~instrument10=true}=false",
                 ],
                 [
-                        "{Stage:40, State:calibrated~instrument10=true}=false",
                         "{Stage:40, State:have_image~planet22~spectrograph6=true}=false",
-                        "{Stage:40, State:pointing~satellite1=planet22}=false",
-                        "{Stage:40, State:power_on~instrument10=true}=false",
 
                 ],
                 [
-                        "{Stage:50, State:pointing~satellite1=phenomenon21}=false",
                         "{Stage:50, State:pointing~satellite1=planet22}=false",
                 ],
                 [
-                        "{Stage:60, State:power_on~instrument13=true}=false",
                 ],
 
 
