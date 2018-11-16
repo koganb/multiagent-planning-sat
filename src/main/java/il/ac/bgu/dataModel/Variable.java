@@ -18,6 +18,7 @@ import static java.lang.String.format;
 public class Variable implements Formattable {
 
     public static final String LOCKED_FOR_UPDATE = "LOCKED_FOR_UPDATE";
+    public static final String FREEZED = "FREEZED";
 
     @Nullable
     private Integer stage;
