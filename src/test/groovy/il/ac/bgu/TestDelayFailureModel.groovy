@@ -14,7 +14,7 @@ class TestDelayFailureModel extends Specification {
 
     @Shared
     def problemArr = [
-            new Problem("deports0.problem"),
+            //new Problem("deports0.problem"),
             new Problem("deports1.problem", [
                     Action.of("LiftP hoist1 crate0 pallet1 distributor0", "distributor0", 0, FAILED),
                     Action.of("DropP hoist1 crate1 pallet1 distributor0", "distributor0", 6, FAILED),

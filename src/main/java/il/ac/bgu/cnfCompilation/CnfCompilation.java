@@ -159,8 +159,7 @@ public class CnfCompilation {
                             action.getPopEffs().stream().
                                     flatMap(actionEff ->
                                             Stream.of(
-                                                    //TODO
-                                                    //FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED, stage), true),
+                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED, stage), true),
                                                     FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true)
                                             )
                                     )

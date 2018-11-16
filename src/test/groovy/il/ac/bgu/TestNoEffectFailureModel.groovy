@@ -14,7 +14,7 @@ class TestNoEffectFailureModel extends Specification {
 
     @Shared
     def problemArr = [
-            new Problem("elevator30.problem"),
+            new Problem("elevator29.problem"),
             new Problem("satellite20.problem"),
             new Problem("deports19.problem", [
                     Action.of("Unload hoist0 crate5 truck0 depot0", "truck0", 19, FAILED),
