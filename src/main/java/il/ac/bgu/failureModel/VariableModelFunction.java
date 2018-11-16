@@ -8,10 +8,12 @@ import java.util.stream.Stream;
 
 @FunctionalInterface
 public interface VariableModelFunction {
+    Stream<FormattableValue<Variable>> apply(
+            Variable variable, Integer currentStage, Collection<FormattableValue<Variable>> currentVariableSet, VARIABLE_TYPE variableType);
+
     Integer NEXT_STEP_ADDITION = 1;
 
-    Stream<FormattableValue<Variable>> apply(
-            Variable variable, Integer currentStage, Collection<FormattableValue<Variable>> currentVariableSet);
+    enum VARIABLE_TYPE {PRECONDITION, EFFECT}
 
     default Integer affectedStepsNumber() {
         return NEXT_STEP_ADDITION;

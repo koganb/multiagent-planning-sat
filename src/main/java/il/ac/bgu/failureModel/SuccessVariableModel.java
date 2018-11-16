@@ -13,7 +13,7 @@ import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
 public class SuccessVariableModel implements VariableModelFunction {
     @Override
     public Stream<FormattableValue<Variable>> apply(
-            Variable variable, Integer stage, Collection<FormattableValue<Variable>> currentVariableSet) {
+            Variable variable, Integer stage, Collection<FormattableValue<Variable>> currentVariableSet, VARIABLE_TYPE variableType) {
 
         Variable lockedVariable = variable.toBuilder().functionValue(LOCKED_FOR_UPDATE).build();
         currentVariableSet = CnfCompilationUtils.updateVariables(currentVariableSet, lockedVariable, stage)

@@ -15,7 +15,7 @@ public class NoEffectFailureModel implements VariableModelFunction {
 
     @Override
     public Stream<FormattableValue<Variable>> apply(
-            Variable variable, Integer currentStage, Collection<FormattableValue<Variable>> currentVariableSet) {
+            Variable variable, Integer currentStage, Collection<FormattableValue<Variable>> currentVariableSet, VARIABLE_TYPE variableType) {
 
         Predicate<FormattableValue<Variable>> variablePredicate = variableFilter.apply(variable);
 

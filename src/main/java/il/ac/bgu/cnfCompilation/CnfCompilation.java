@@ -14,6 +14,7 @@ import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -27,6 +28,8 @@ import static il.ac.bgu.dataModel.Action.State.*;
 import static il.ac.bgu.dataModel.Variable.FREEZED;
 import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.failureModel.VariableModelFunction.NEXT_STEP_ADDITION;
+import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
+import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
@@ -150,14 +153,18 @@ public class CnfCompilation {
         Collection<ImmutableList<FormattableValue<Formattable>>> resultClauses = actions.stream().flatMap(action -> {
 
             ImmutableList<FormattableValue<Formattable>> preconditionList =
-                    StreamEx.<FormattableValue<Formattable>>of().
-                            append(action.getPopPrecs().stream().
-                                    map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, stage), false))).
-                            append(action.getPopPrecs().stream().
-                                    map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, FREEZED, stage), true))).
-                            append(action.getPopEffs().stream().
-                                    map(actionEff -> FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true))
-                            ).collect(ImmutableList.toImmutableList());
+                    Stream.concat(
+                            action.getPopPrecs().stream().
+                                    map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, stage), false)),
+                            action.getPopEffs().stream().
+                                    flatMap(actionEff ->
+                                            Stream.of(
+                                                    //TODO
+                                                    //FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED, stage), true),
+                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true)
+                                            )
+                                    )
+                    ).collect(ImmutableList.toImmutableList());
 
 
             //healthy function
@@ -204,21 +211,26 @@ public class CnfCompilation {
                                             Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true))
                     ).collect(ImmutableList.toImmutableList());
 
-            Stream<FormattableValue<Formattable>> effectStream = action.getPopEffs().stream().flatMap(actionEff -> {
-                Variable variable = Variable.of(actionEff);
-                Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(variable);
+            Stream<FormattableValue<Formattable>> effectStream =
+                    Stream.concat(
+                            action.getPopPrecs().stream().map(prec -> ImmutablePair.of(prec, PRECONDITION)),
+                            action.getPopEffs().stream().map(eff -> ImmutablePair.of(eff, EFFECT))
+                    ).
+                            flatMap(precEffPair -> {
+                                Variable variable = Variable.of(precEffPair.getLeft());
+                                Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(variable);
 
-                ImmutableList<FormattableValue<Variable>> failureModelVariables =
-                        failureModel.apply(variable, stage, variablesStateBeforeStepExec).
-                                collect(ImmutableList.toImmutableList());
-                return IntStream.rangeClosed(stage + NEXT_STEP_ADDITION, stage + failureModel.affectedStepsNumber())
-                        .boxed()
-                        .flatMap(stepAddition ->
-                                calcVariableState(failureModelVariables.stream(), stepAddition)
-                                        .filter(variableKeyPredicate)
-                                        .map(var -> FormattableValue.of(var.getFormattable().toBuilder().stage(stepAddition).build(),
-                                                var.getValue())));
-            });
+                                ImmutableList<FormattableValue<Variable>> failureModelVariables =
+                                        failureModel.apply(variable, stage, variablesStateBeforeStepExec, precEffPair.getRight()).
+                                                collect(ImmutableList.toImmutableList());
+                                return IntStream.rangeClosed(stage + NEXT_STEP_ADDITION, stage + failureModel.affectedStepsNumber())
+                                        .boxed()
+                                        .flatMap(stepAddition ->
+                                                calcVariableState(failureModelVariables.stream(), stepAddition)
+                                                        .filter(variableKeyPredicate)
+                                                        .map(var -> FormattableValue.of(var.getFormattable().toBuilder().stage(stepAddition).build(),
+                                                                var.getValue())));
+                            });
 
             List<FormattableValue<Formattable>> effects = effectStream.collect(toList());
 
@@ -423,7 +435,7 @@ public class CnfCompilation {
         for (Step action : actions) {
             for (POPPrecEff eff : action.getPopEffs()) {
                 variablesStateAfterStepExec = this.successModel.apply(
-                        Variable.of(eff), stage, variablesStateAfterStepExec)
+                        Variable.of(eff), stage, variablesStateAfterStepExec, EFFECT)
                         .collect(toList());
 
             }

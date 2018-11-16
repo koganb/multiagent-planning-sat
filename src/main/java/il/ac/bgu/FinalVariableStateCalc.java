@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 
 
 public class FinalVariableStateCalc {
@@ -56,7 +57,7 @@ public class FinalVariableStateCalc {
                     failedActionsKeys.remove(actionKey);
 
                     for (POPPrecEff eff : step.getPopEffs()) {
-                        currentVars = this.failureModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars)
+                        currentVars = this.failureModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars, EFFECT)
                                 .collect(ImmutableList.toImmutableList());
                     }
                 }
@@ -65,13 +66,13 @@ public class FinalVariableStateCalc {
                 else if (checkPreconditionsValidity(step.getPopPrecs(), prevStageVars) &&
                         checkEffectsValidity(step.getPopEffs(), prevStageVars)) {
                     for (POPPrecEff eff : step.getPopEffs()) {
-                        currentVars = successModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars)
+                        currentVars = successModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars, EFFECT)
                                 .collect(ImmutableList.toImmutableList());
                     }
                 } else {
                     //preconditions are not valid or effects are locked
                     for (POPPrecEff eff : step.getPopEffs()) {
-                        currentVars = this.preconditionsNotValidModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars)
+                        currentVars = this.preconditionsNotValidModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars, EFFECT)
                                 .collect(ImmutableList.toImmutableList());
                     }
                 }

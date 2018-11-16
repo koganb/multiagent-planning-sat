@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.VariableFunctions.*;
+import static il.ac.bgu.dataModel.Variable.FREEZED;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 
@@ -49,6 +51,7 @@ public class CnfCompilationUtils {
         Collection<FormattableValue<Variable>> values = variables
                 .filter(v -> v.getFormattable().getStage().isPresent())
                 .filter(v -> v.getFormattable().getStage().get() <= currentStage)
+                .filter(v -> !Objects.equals(v.getFormattable().getValue(), FREEZED) || v.getFormattable().getStage().get().equals(currentStage))
                 .collect(Collectors.toMap(
                         v -> v.getFormattable().formatFunctionKeyWithValue(),
                         Function.identity(),
