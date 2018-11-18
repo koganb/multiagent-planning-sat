@@ -1,6 +1,7 @@
 package il.ac.bgu.failureModel;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
 import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
@@ -22,13 +23,8 @@ public class DelayStageFailureModel implements VariableModelFunction {
 
     @Override
     public Stream<FormattableValue<Variable>> apply(Variable variable, Integer currentStage,
-                                                    Collection<FormattableValue<Variable>> variableSet, VARIABLE_TYPE variableType) {
+                                                    Collection<FormattableValue<Variable>> currentVars, VARIABLE_TYPE variableType) {
 
-        ImmutableList<FormattableValue<Variable>> currentVars =
-                ImmutableList.<FormattableValue<Variable>>builder()
-                        .addAll(variableSet)
-                        .add(FormattableValue.of(variable, false)) //add variable to the state in case it doesn't exist
-                        .build();
         int targetStage = currentStage + numberOfStagesToDelay + NEXT_STEP_ADDITION;
 
         if (variableType == EFFECT) {
@@ -44,12 +40,18 @@ public class DelayStageFailureModel implements VariableModelFunction {
                     .collect(ImmutableList.toImmutableList());
 
         } else if (variableType == PRECONDITION) {
+            Builder<FormattableValue<Variable>> currentStateBuilder =
+                    ImmutableList.<FormattableValue<Variable>>builder().addAll(currentVars);
             for (int stage = currentStage + NEXT_STEP_ADDITION; stage < targetStage; stage++) {
 
                 //add freeze variable to the next stage
-                currentVars = ImmutableList.<FormattableValue<Variable>>builder().add(FormattableValue.of(
-                        variable.toBuilder().functionValue(FREEZED).stage(stage).build(), true)).build();
+                currentStateBuilder.add(FormattableValue.of(
+                        variable.toBuilder().functionValue(FREEZED).stage(stage).build(), true));
             }
+            currentStateBuilder.add(FormattableValue.of(
+                    variable.toBuilder().functionValue(FREEZED).stage(targetStage).build(), false));
+
+            currentVars = currentStateBuilder.build();
         } else {
             throw new RuntimeException("Unsupported variableType " + variableType);
         }

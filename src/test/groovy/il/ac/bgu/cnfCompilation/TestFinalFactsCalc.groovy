@@ -15,10 +15,10 @@ import java.util.stream.Collectors
 @Unroll
 class TestFinalFactsCalc extends Specification {
 
-    def "test initial facts calculation #failedAction #serializedPlanFilename"(String serializedPlanFilename,
-                                                                               VariableModelFunction failureModel,
-                                                                               Action failedAction,
-                                                                               expectedClauses) {
+    def "test final facts calculation #failedAction #serializedPlanFilename"(String serializedPlanFilename,
+                                                                             VariableModelFunction failureModel,
+                                                                             Action failedAction,
+                                                                             expectedClauses) {
         setup:
         TreeMap<Integer, Set<Step>> plan = SerializationUtils.deserialize(new FileInputStream(
                 serializedPlanFilename))
@@ -52,7 +52,7 @@ class TestFinalFactsCalc extends Specification {
                 new DelayStageFailureModel(1),
                 new NoEffectFailureModel(),
                 new DelayStageFailureModel(1),
-                new NoEffectFailureModel(),
+                new NoEffectFailureModel(),  //check
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),
                 new NoEffectFailureModel(),

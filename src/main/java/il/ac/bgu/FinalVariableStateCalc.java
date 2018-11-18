@@ -14,10 +14,11 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import static il.ac.bgu.dataModel.Variable.FREEZED;
 import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
+import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
 
 public class FinalVariableStateCalc {
@@ -49,12 +50,35 @@ public class FinalVariableStateCalc {
 
             for (Step step : stepEntry.getValue()) {
 
+                if (stepEntry.getKey() != -1) {
+
+                    //TODO think about variable is from new Group???
+                    ImmutableList<FormattableValue<Variable>> finalCurrentVars = currentVars;
+                    ImmutableList<FormattableValue<Variable>> addedVariables = step.getPopEffs().stream()
+                            .map(eff -> Variable.of(eff, stepEntry.getKey()))
+                            .filter(var -> finalCurrentVars.stream()
+                                    .noneMatch(v -> v.getFormattable().formatFunctionKeyWithValue().equals(
+                                            var.formatFunctionKeyWithValue())))
+                            .map(var -> FormattableValue.of(var, false))
+                            .collect(ImmutableList.toImmutableList());
+
+                    currentVars = ImmutableList.<FormattableValue<Variable>>builder()
+                            .addAll(currentVars)
+                            .addAll(addedVariables)
+                            .build();
+                }
+
                 //step is failed and effects are not locked
                 String actionKey = Action.of(step, stepEntry.getKey()).formatFunctionKey();
                 if (failedActionsKeys.contains(actionKey) && checkEffectsValidity(step.getPopEffs(), prevStageVars)) {
 
                     //remove key from failedActionKeys
                     failedActionsKeys.remove(actionKey);
+
+                    for (POPPrecEff prec : step.getPopPrecs()) {
+                        currentVars = this.failureModelFunction.apply(Variable.of(prec), stepEntry.getKey(), currentVars, PRECONDITION)
+                                .collect(ImmutableList.toImmutableList());
+                    }
 
                     for (POPPrecEff eff : step.getPopEffs()) {
                         currentVars = this.failureModelFunction.apply(Variable.of(eff), stepEntry.getKey(), currentVars, EFFECT)
@@ -84,21 +108,6 @@ public class FinalVariableStateCalc {
         ImmutableList<FormattableValue<Variable>> finalVariableState = CnfCompilationUtils.calcVariableState(
                 currentVars.stream(), maxStep + 1).collect(ImmutableList.toImmutableList());
 
-        //add LOCKED_FOR_UPDATE variables to the final state
-        Set<String> variablesWithUndefinedValues = finalVariableState.stream()
-                .filter(v -> LOCKED_FOR_UPDATE.equals(v.getFormattable().getValue()))
-                .map(v -> v.getFormattable().formatFunctionKey())
-                .collect(Collectors.toSet());
-        finalVariableState = Stream.concat(
-                finalVariableState.stream(),
-                finalVariableState.stream()
-                        .collect(Collectors.groupingBy(t -> t.getFormattable().formatFunctionKey()))
-                        .entrySet().stream()
-                        .filter(entry -> !variablesWithUndefinedValues.contains(entry.getKey()))
-                        .map(entry -> FormattableValue.of(
-                                entry.getValue().get(0).getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).build(), false)))
-                .collect(ImmutableList.toImmutableList());
-
         if (CollectionUtils.isNotEmpty(failedActionsKeys)) {
             throw new RuntimeException("Failed actions not found: " + failedActionsKeys);
         }
@@ -115,13 +124,18 @@ public class FinalVariableStateCalc {
                                                ImmutableList<FormattableValue<Variable>> stageVars) {
 
         //check preconditions are true
-        return preconditions.stream()
-                .allMatch(eff -> stageVars.stream()
-                        .filter(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
-                                Variable.of(eff).formatFunctionKeyWithValue()))
-                        .findFirst()
-                        .map(FormattableValue::getValue)
-                        .orElse(false));
+        return
+                preconditions.stream()
+                        .allMatch(prec -> stageVars.stream()
+                                .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+                                        Variable.of(prec).formatFunctionKeyWithValue()) && var.getValue()))
+                        &&
+                        preconditions.stream()
+                                .noneMatch(prec -> stageVars.stream()
+                                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+                                                Variable.of(prec).toBuilder().functionValue(FREEZED).build().formatFunctionKeyWithValue())
+                                                && var.getValue()));
+
     }
 
 
@@ -130,11 +144,10 @@ public class FinalVariableStateCalc {
         //check effects are not locked
         return effects.stream()
                 .noneMatch(eff -> stageVars.stream()
-                        .filter(var -> var.getFormattable().formatFunctionKey().equals(
-                                Variable.of(eff).formatFunctionKey()))
-                        .filter(var -> var.getFormattable().getValue().equals(LOCKED_FOR_UPDATE))
-                        .findFirst()
-                        .map(FormattableValue::getValue)
-                        .orElse(false));
+                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+                                Variable.of(eff).toBuilder()
+                                        .functionValue(LOCKED_FOR_UPDATE).build().formatFunctionKeyWithValue()) &&
+                                var.getValue()
+                        ));
     }
 }

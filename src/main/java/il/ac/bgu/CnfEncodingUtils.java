@@ -38,13 +38,13 @@ public class CnfEncodingUtils {
         return currentValue == encodeValue;
     }
 
-    public static String createEffKey(POPPrecEff precEff) {
+    public static String createPrecEffKey(POPPrecEff precEff) {
         return precEff.getFunction().toKey().replace(" ", "~");
     }
 
 
     public static String createEffId(POPPrecEff precEff, String value) {
-        String effKey = createEffKey(precEff);
+        String effKey = createPrecEffKey(precEff);
         return createEffId(effKey, value);
     }
 

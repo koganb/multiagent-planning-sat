@@ -9,6 +9,8 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.VariableFunctions.variableFilter;
+import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
+import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
 public class NoEffectFailureModel implements VariableModelFunction {
 
@@ -17,21 +19,27 @@ public class NoEffectFailureModel implements VariableModelFunction {
     public Stream<FormattableValue<Variable>> apply(
             Variable variable, Integer currentStage, Collection<FormattableValue<Variable>> currentVariableSet, VARIABLE_TYPE variableType) {
 
-        Predicate<FormattableValue<Variable>> variablePredicate = variableFilter.apply(variable);
+        if (variableType == EFFECT) {
 
-        FormattableValue<Variable> effectedVariable = currentVariableSet.stream()
-                .filter(variablePredicate)
-                .findFirst()
-                .orElse(FormattableValue.of(variable, false));
+            Predicate<FormattableValue<Variable>> variablePredicate = variableFilter.apply(variable);
 
-        FormattableValue<Variable> updatedVariable = FormattableValue.of(
-                effectedVariable.getFormattable().toBuilder().stage(currentStage + NEXT_STEP_ADDITION).build(),
-                effectedVariable.getValue());
+            FormattableValue<Variable> effectedVariable = currentVariableSet.stream()
+                    .filter(variablePredicate)
+                    .findFirst()
+                    .orElse(FormattableValue.of(variable, false));
 
-        return CnfCompilationUtils.calcVariableState(Stream.concat(
-                Stream.of(updatedVariable),
-                currentVariableSet.stream()), currentStage + NEXT_STEP_ADDITION);
+            FormattableValue<Variable> updatedVariable = FormattableValue.of(
+                    effectedVariable.getFormattable().toBuilder().stage(currentStage + NEXT_STEP_ADDITION).build(),
+                    effectedVariable.getValue());
 
+            return CnfCompilationUtils.calcVariableState(Stream.concat(
+                    Stream.of(updatedVariable),
+                    currentVariableSet.stream()), currentStage + NEXT_STEP_ADDITION);
+        } else if (variableType == PRECONDITION) {
+            return currentVariableSet.stream();
+        } else {
+            throw new RuntimeException("No such variableType: " + variableType);
+        }
 
     }
 }

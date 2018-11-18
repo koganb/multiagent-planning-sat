@@ -1,7 +1,6 @@
 package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
-import il.ac.bgu.CnfEncodingUtils;
 import il.ac.bgu.FinalVariableStateCalc;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
@@ -105,16 +104,17 @@ public class CnfCompilation {
     Stream<ImmutableList<FormattableValue<Formattable>>> calculatePassThroughClauses(Integer stage, Set<Step> actions) {
         //calculate "pass through" variables
 
-        //get effects keys for stage actions
-        Set<String> effectKeys = actions.stream().flatMap(k ->
-                k.getPopEffs().stream()).map(CnfEncodingUtils::createEffKey).
-                collect(toSet());
+        //get prec & effects keys for stage actions
+        Set<String> precAndEffectKeys = actions.stream()
+                .flatMap(k -> Stream.concat(k.getPopPrecs().stream(), k.getPopEffs().stream()))
+                .map(precEff -> Variable.of(precEff).formatFunctionKey())
+                .collect(toSet());
 
         log.debug("Start pass through...");
 
         Stream<ImmutableList<FormattableValue<Formattable>>> passThroughValuesStream =
                 calcVariableState(variablesStateBeforeStepExec.stream(), stage).
-                        filter(value -> !effectKeys.contains(value.getFormattable().formatFunctionKey())).
+                        filter(value -> !precAndEffectKeys.contains(value.getFormattable().formatFunctionKey())).
                         flatMap(g -> {
                             if (g.getFormattable().getValue().equals(LOCKED_FOR_UPDATE) ||
                                     g.getFormattable().getValue().equals(FREEZED)) {
@@ -166,18 +166,28 @@ public class CnfCompilation {
                     ).collect(ImmutableList.toImmutableList());
 
 
-            //healthy function
-            Stream<FormattableValue<Formattable>> effectStream = action.getPopEffs().stream().flatMap(actionEff -> {
-                Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(Variable.of(actionEff));
+            Set<String> actionEffKeys = action.getPopEffs().stream()
+                    .map(eff -> Variable.of(eff).formatFunctionKey())
+                    .collect(Collectors.toSet());
 
-                //effect variable
-                return calcVariableState(variablesStateAfterStepExec.stream(), stage + 1)
-                        .filter(variableKeyPredicate)
-                        .map(formattableValue ->
-                                FormattableValue.of(
-                                        formattableValue.getFormattable().toBuilder().stage(stage + 1).build(),
-                                        formattableValue.getValue()));
-            });
+            //healthy function
+            Stream<FormattableValue<Formattable>> effectStream =
+                    Stream.concat(
+                            action.getPopPrecs().stream()
+                                    .filter(prec ->
+                                            !actionEffKeys.contains(Variable.of(prec).formatFunctionKey())),
+                            action.getPopEffs().stream()
+                    ).flatMap(actionEff -> {
+                        Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(Variable.of(actionEff));
+
+                        //prec or effect variable
+                        return calcVariableState(variablesStateAfterStepExec.stream(), stage + 1)
+                                .filter(variableKeyPredicate)
+                                .map(formattableValue ->
+                                        FormattableValue.of(
+                                                formattableValue.getFormattable().toBuilder().stage(stage + 1).build(),
+                                                formattableValue.getValue()));
+                    });
 
 
             return effectStream.map(u ->
@@ -206,17 +216,32 @@ public class CnfCompilation {
                                     .map(actionPrec -> FormattableValue.<Formattable>of(
                                             Variable.of(actionPrec, stage), false)),
                             action.getPopEffs().stream()
-                                    .map(actionEff -> FormattableValue.<Formattable>of(
-                                            Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true))
+                                    .flatMap(actionEff ->
+                                            Stream.of(
+                                                    FormattableValue.<Formattable>of(
+                                                            Variable.of(actionEff, LOCKED_FOR_UPDATE, stage), true),
+                                                    FormattableValue.<Formattable>of(
+                                                            Variable.of(actionEff, FREEZED, stage), true)
+                                            ))
                     ).collect(ImmutableList.toImmutableList());
+
+
+            Set<String> actionEffKeys = action.getPopEffs().stream()
+                    .map(eff -> Variable.of(eff).formatFunctionKey())
+                    .collect(Collectors.toSet());
+
 
             Stream<FormattableValue<Formattable>> effectStream =
                     Stream.concat(
-                            action.getPopPrecs().stream().map(prec -> ImmutablePair.of(prec, PRECONDITION)),
-                            action.getPopEffs().stream().map(eff -> ImmutablePair.of(eff, EFFECT))
+                            action.getPopPrecs().stream()
+                                    .map(prec -> ImmutablePair.of(Variable.of(prec), PRECONDITION))
+                                    .filter(pair -> !actionEffKeys.contains(pair.getLeft().formatFunctionKey()))
+                            ,
+                            action.getPopEffs().stream()
+                                    .map(eff -> ImmutablePair.of(Variable.of(eff), EFFECT))
                     ).
                             flatMap(precEffPair -> {
-                                Variable variable = Variable.of(precEffPair.getLeft());
+                                Variable variable = precEffPair.getLeft();
                                 Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(variable);
 
                                 ImmutableList<FormattableValue<Variable>> failureModelVariables =
@@ -293,49 +318,60 @@ public class CnfCompilation {
 
                             ));
 
-            Stream<ImmutableList<FormattableValue<Formattable>>> effectClauses = action.getPopEffs().stream().
-                    flatMap(actionEff ->
-                            calcVariableState(variablesStateAfterStepExec.stream(), stage + 1)
-                                    .filter(var -> var.getFormattable().formatFunctionKey().equals(
-                                            Variable.of(actionEff).formatFunctionKey()))
-                                    .flatMap(stateVar -> {
-                                        if (stateVar.getFormattable().getValue().equals(LOCKED_FOR_UPDATE)) {
-                                            return Stream.of(
-                                                    ImmutableList.of(
-                                                            FormattableValue.of(
-                                                                    Action.of(action, stage, CONDITIONS_NOT_MET), false),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)));
-                                        } else if (stateVar.getFormattable().getValue().equals(FREEZED)) {
-                                            return Stream.of(
-                                                    ImmutableList.of(
-                                                            FormattableValue.of(
-                                                                    Action.of(action, stage, CONDITIONS_NOT_MET), false),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)));
-                                        } else {
-                                            return Stream.of(
-                                                    ImmutableList.of(
-                                                            FormattableValue.of(
-                                                                    Action.of(action, stage, CONDITIONS_NOT_MET), false),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage).build(), true),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().stage(stage).build(), true),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)),
-                                                    ImmutableList.of(
-                                                            FormattableValue.of(
-                                                                    Action.of(action, stage, CONDITIONS_NOT_MET), false),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage).build(), true),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().stage(stage).build(), false),
-                                                            FormattableValue.of(
-                                                                    stateVar.getFormattable().toBuilder().stage(stage + 1).build(), true))
-                                            );
-                                        }
-                                    }));
+
+            Set<String> actionEffKeys = action.getPopEffs().stream()
+                    .map(eff -> Variable.of(eff).formatFunctionKey())
+                    .collect(Collectors.toSet());
+
+
+            Stream<ImmutableList<FormattableValue<Formattable>>> effectClauses =
+                    Stream.concat(
+                            action.getPopPrecs().stream()
+                                    .map(Variable::of)
+                                    .filter(v -> !actionEffKeys.contains(v.formatFunctionKey())),
+                            action.getPopEffs().stream().map(Variable::of)).
+                            flatMap(v ->
+                                    calcVariableState(variablesStateAfterStepExec.stream(), stage + 1)
+                                            .filter(var -> var.getFormattable().formatFunctionKey().equals(
+                                                    v.formatFunctionKey()))
+                                            .flatMap(stateVar -> {
+                                                if (stateVar.getFormattable().getValue().equals(LOCKED_FOR_UPDATE)) {
+                                                    return Stream.of(
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, stage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)));
+                                                } else if (stateVar.getFormattable().getValue().equals(FREEZED)) {
+                                                    return Stream.of(
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, stage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)));
+                                                } else {
+                                                    return Stream.of(
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, stage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage).build(), true),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(stage).build(), true),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(stage + 1).build(), false)),
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, stage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage).build(), true),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(stage).build(), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(stage + 1).build(), true))
+                                                    );
+                                                }
+                                            }));
 
             List<ImmutableList<FormattableValue<Formattable>>> result = Stream.concat(
                     StreamEx.of(precClauses1).append(precClauses2).append(precClauses3), effectClauses).collect(Collectors.toList());
