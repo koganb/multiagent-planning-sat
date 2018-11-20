@@ -5,9 +5,9 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.failureModel.NoEffectFailureModel;
-import il.ac.bgu.failureModel.SuccessVariableModel;
-import il.ac.bgu.failureModel.VariableModelFunction;
+import il.ac.bgu.variableModel.NoEffectVariableFailureModel;
+import il.ac.bgu.variableModel.SuccessVariableModel;
+import il.ac.bgu.variableModel.VariableModelFunction;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.collections4.CollectionUtils;
@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 
 import static il.ac.bgu.dataModel.Variable.FREEZED;
 import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
-import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
-import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
+import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
+import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
 
 public class FinalVariableStateCalc {
     private TreeMap<Integer, Set<Step>> plan;
     private VariableModelFunction failureModelFunction;
-    private VariableModelFunction preconditionsNotValidModelFunction = new NoEffectFailureModel();
+    private VariableModelFunction preconditionsNotValidModelFunction = new NoEffectVariableFailureModel();
     private VariableModelFunction successModelFunction = new SuccessVariableModel();
 
     public FinalVariableStateCalc(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {

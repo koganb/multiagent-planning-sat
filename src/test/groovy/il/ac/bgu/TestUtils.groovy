@@ -2,11 +2,11 @@ package il.ac.bgu
 
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Streams
+import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfCompilation.CnfCompilation
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
-import il.ac.bgu.failureModel.VariableModelFunction
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
 import org.agreement_technologies.common.map_planner.Step
@@ -44,10 +44,13 @@ class TestUtils {
 
     }
 
-    static Boolean checkSolution(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModel, Collection<Action> failedActions) {
-        CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
-        def finalFactsWithFailedActions = new FinalVariableStateCalc(plan, failureModel).getFinalVariableState(failedActions)
-
+    static Boolean checkSolution(TreeMap<Integer, Set<Step>> plan, CnfClausesFunction healthyCnfClausesCreator,
+                                 CnfClausesFunction conflictCnfClausesCreator, CnfClausesFunction failedCnfClausesCreator,
+                                 Collection<Action> failedActions) {
+        CnfCompilation cnfCompilation = new CnfCompilation(plan, healthyCnfClausesCreator,
+                conflictCnfClausesCreator, failedCnfClausesCreator)
+        def finalFactsWithFailedActions = new FinalVariableStateCalc(plan, failedCnfClausesCreator.getVariableModel()).
+                getFinalVariableState(failedActions)
 
         Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
                 ImmutableList<FormattableValue<Formattable>>> compilePlanToCnf =

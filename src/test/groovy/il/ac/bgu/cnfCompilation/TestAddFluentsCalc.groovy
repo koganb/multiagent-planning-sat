@@ -1,8 +1,8 @@
 package il.ac.bgu.cnfCompilation
 
-import il.ac.bgu.failureModel.DelayStageFailureModel
-import il.ac.bgu.failureModel.NoEffectFailureModel
-import il.ac.bgu.failureModel.VariableModelFunction
+import il.ac.bgu.variableModel.DelayStageVariableFailureModel
+import il.ac.bgu.variableModel.NoEffectVariableFailureModel
+import il.ac.bgu.variableModel.VariableModelFunction
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
 import spock.lang.Specification
@@ -43,17 +43,17 @@ class TestAddFluentsCalc extends Specification {
                 'satellite20.problem.ser',
         ]
         failureModel << [
-                new DelayStageFailureModel(1),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
-                new NoEffectFailureModel(),
+                new DelayStageVariableFailureModel(1),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
+                new NoEffectVariableFailureModel(),
         ]
         step << [0, 0, 0, 0, 0, 10, 20, 30, 40, 50, 60]
         expectedClauses << [

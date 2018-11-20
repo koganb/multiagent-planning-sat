@@ -1,4 +1,4 @@
-package il.ac.bgu.failureModel;
+package il.ac.bgu.variableModel;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
@@ -11,13 +11,13 @@ import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Variable.FREEZED;
 import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
-import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
-import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
+import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
+import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
-public class DelayStageFailureModel implements VariableModelFunction {
+public class DelayStageVariableFailureModel implements VariableModelFunction {
     private Integer numberOfStagesToDelay;
 
-    public DelayStageFailureModel(Integer numberOfStagesToDelay) {
+    public DelayStageVariableFailureModel(Integer numberOfStagesToDelay) {
         this.numberOfStagesToDelay = numberOfStagesToDelay;
     }
 

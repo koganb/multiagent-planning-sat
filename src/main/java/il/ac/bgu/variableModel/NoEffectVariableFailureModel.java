@@ -1,4 +1,4 @@
-package il.ac.bgu.failureModel;
+package il.ac.bgu.variableModel;
 
 import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -9,10 +9,10 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.VariableFunctions.variableFilter;
-import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
-import static il.ac.bgu.failureModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
+import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
+import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
-public class NoEffectFailureModel implements VariableModelFunction {
+public class NoEffectVariableFailureModel implements VariableModelFunction {
 
 
     @Override

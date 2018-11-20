@@ -6,9 +6,9 @@ import il.ac.bgu.cnfCompilation.CnfCompilation
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
-import il.ac.bgu.failureModel.DelayStageFailureModel
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
+import il.ac.bgu.variableModel.DelayStageVariableFailureModel
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
 import org.apache.commons.lang3.tuple.Pair
@@ -74,8 +74,8 @@ class TestSatSolver extends Specification {
 
 
         println "Failed actions:" + failedActions
-        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new DelayStageFailureModel(1))
-        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new DelayStageFailureModel(1)).getFinalVariableState(failedActions)
+        CnfCompilation cnfCompilation = new CnfCompilation(sortedPlan, new DelayStageVariableFailureModel(1))
+        def finalFactsWithFailedActions = new FinalVariableStateCalc(sortedPlan, new DelayStageVariableFailureModel(1)).getFinalVariableState(failedActions)
 
 
         Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,

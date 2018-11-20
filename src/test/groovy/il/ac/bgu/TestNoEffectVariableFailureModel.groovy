@@ -1,7 +1,7 @@
 package il.ac.bgu
 
 import il.ac.bgu.dataModel.Action
-import il.ac.bgu.failureModel.NoEffectFailureModel
+import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -10,7 +10,7 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestNoEffectFailureModel extends Specification {
+class TestNoEffectVariableFailureModel extends Specification {
 
     @Shared
     def problemArr = [
@@ -27,7 +27,7 @@ class TestNoEffectFailureModel extends Specification {
     def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
 
     @Shared
-    def failedModelArr = (0..problemArr.size()).collect { new NoEffectFailureModel() }
+    def failedModelArr = (0..problemArr.size()).collect { new NoEffectVariableFailureModel() }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(problemName, plan, failureModel, failedActions) {

@@ -1,7 +1,9 @@
 package il.ac.bgu
 
+import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
+import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
+import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.dataModel.Action
-import il.ac.bgu.failureModel.NoEffectFailureModel
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -10,7 +12,7 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestFullRegressionNoEffectFailureModel extends Specification {
+class TestFullRegressionNoEffectVariableFailureModel extends Specification {
 
     @Shared
     def problemArr = [
@@ -61,20 +63,32 @@ class TestFullRegressionNoEffectFailureModel extends Specification {
     def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
 
     @Shared
-    def failedModelArr = (0..problemArr.size()).collect { new NoEffectFailureModel() }
+    def healthyCnfClausesArr = (0..problemArr.size()).collect { new HealthyCnfClauses() }
+
+    @Shared
+    def conflictCnfClausesArr = (0..problemArr.size()).collect { new ConflictNoEffectsCnfClauses() }
+
+    @Shared
+    def failedCnfClausesArr = (0..problemArr.size()).collect { new FailedNoEffectsCnfClauses() }
 
 
-    def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(problemName, plan, failureModel, failedActions) {
-        expect:
+    def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
+            problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions) {
+        setup:
         println "Failed actions:" + failedActions
+        TestUtils.printPlan(plan)
 
-        assert TestUtils.checkSolution(plan, failureModel, failedActions)
+        expect:
+        assert TestUtils.checkSolution(plan, healthyCnfClausesCreator, conflictCnfClausesCreator,
+                failedCnfClausesCreator, failedActions)
 
         where:
-        [problemName, plan, failureModel, failedActions] << [
+        [problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions] << [
                 problemArr,
                 planArr,
-                failedModelArr,
+                healthyCnfClausesArr,
+                conflictCnfClausesArr,
+                failedCnfClausesArr,
                 planArr.collect { p ->
                     new ActionDependencyCalculation(p).getIndependentActionsList(1).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
@@ -88,13 +102,13 @@ class TestFullRegressionNoEffectFailureModel extends Specification {
         .collect { it.combinations() }
                 .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2], res[3][0]]
+            res -> [res[0], res[1], res[2], res[3], res[4], res[5][0]]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions) == []
+            res -> res[5].intersect(res[0].ignoreFailedActions) == []
         }
         .collect {
-            res -> [res[0].problemName, res[1], res[2], res[3]]
+            res -> [res[0].problemName, res[1], res[2], res[3], res[4], res[5]]
         }
     }
 

@@ -1,4 +1,4 @@
-package il.ac.bgu.failureModel;
+package il.ac.bgu.variableModel;
 
 import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.dataModel.FormattableValue;
