@@ -15,8 +15,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static il.ac.bgu.dataModel.Variable.FREEZED;
-import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
@@ -133,7 +133,7 @@ public class FinalVariableStateCalc {
                         preconditions.stream()
                                 .noneMatch(prec -> stageVars.stream()
                                         .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
-                                                Variable.of(prec).toBuilder().functionValue(FREEZED).build().formatFunctionKeyWithValue())
+                                                Variable.of(prec).toBuilder().functionValue(FREEZED.name()).build().formatFunctionKeyWithValue())
                                                 && var.getValue()));
 
     }
@@ -146,7 +146,7 @@ public class FinalVariableStateCalc {
                 .noneMatch(eff -> stageVars.stream()
                         .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
                                 Variable.of(eff).toBuilder()
-                                        .functionValue(LOCKED_FOR_UPDATE).build().formatFunctionKeyWithValue()) &&
+                                        .functionValue(LOCKED_FOR_UPDATE.name()).build().formatFunctionKeyWithValue()) &&
                                 var.getValue()
                         ));
     }

@@ -9,8 +9,8 @@ import il.ac.bgu.dataModel.Variable;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.dataModel.Variable.FREEZED;
-import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
@@ -32,7 +32,7 @@ public class DelayStageVariableFailureModel implements VariableModelFunction {
             for (int stage = currentStage + NEXT_STEP_ADDITION; stage < targetStage; stage++) {
                 currentVars = CnfCompilationUtils.updateVariables(currentVars,
                         variable.toBuilder()
-                                .functionValue(LOCKED_FOR_UPDATE)
+                                .functionValue(LOCKED_FOR_UPDATE.name())
                                 .build(), stage)
                         .collect(ImmutableList.toImmutableList());
             }
@@ -46,10 +46,10 @@ public class DelayStageVariableFailureModel implements VariableModelFunction {
 
                 //add freeze variable to the next stage
                 currentStateBuilder.add(FormattableValue.of(
-                        variable.toBuilder().functionValue(FREEZED).stage(stage).build(), true));
+                        variable.toBuilder().functionValue(FREEZED.name()).stage(stage).build(), true));
             }
             currentStateBuilder.add(FormattableValue.of(
-                    variable.toBuilder().functionValue(FREEZED).stage(targetStage).build(), false));
+                    variable.toBuilder().functionValue(FREEZED.name()).stage(targetStage).build(), false));
 
             currentVars = currentStateBuilder.build();
         } else {

@@ -18,8 +18,8 @@ import java.util.stream.Stream;
 
 import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.dataModel.Action.State.*;
-import static il.ac.bgu.dataModel.Variable.FREEZED;
-import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -64,8 +64,8 @@ public class CnfCompilation {
                 flatMap(t -> t.getPopEffs().stream()).
                 flatMap(eff -> Stream.of(
                         FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true),
-                        FormattableValue.of(Variable.of(eff, LOCKED_FOR_UPDATE, INITIAL_STAGE), false),
-                        FormattableValue.of(Variable.of(eff, FREEZED, INITIAL_STAGE), false)
+                        FormattableValue.of(Variable.of(eff, LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
+                        FormattableValue.of(Variable.of(eff, FREEZED.name(), INITIAL_STAGE), false)
                 )).
                 collect(Collectors.toList());
     }
@@ -116,8 +116,8 @@ public class CnfCompilation {
                 calcVariableState(variablesStateBeforeStepExec.stream(), stage).
                         filter(value -> !precAndEffectKeys.contains(value.getFormattable().formatFunctionKey())).
                         flatMap(g -> {
-                            if (g.getFormattable().getValue().equals(LOCKED_FOR_UPDATE) ||
-                                    g.getFormattable().getValue().equals(FREEZED)) {
+                            if (g.getFormattable().getValue().equals(LOCKED_FOR_UPDATE.name()) ||
+                                    g.getFormattable().getValue().equals(FREEZED.name())) {
                                 return Stream.of(
                                         //locked_for_update is set to false on next stage
                                         ImmutableList.of(
@@ -126,11 +126,11 @@ public class CnfCompilation {
                             } else {
                                 return Stream.of(
                                         ImmutableList.of(
-                                                FormattableValue.of((g.getFormattable()).toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage).build(), true),
+                                                FormattableValue.of((g.getFormattable()).toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage).build(), true),
                                                 FormattableValue.of((g.getFormattable()).toBuilder().stage(stage).build(), false),
                                                 FormattableValue.of((g.getFormattable()).toBuilder().stage(stage + 1).build(), true)),
                                         ImmutableList.of(
-                                                FormattableValue.of((g.getFormattable()).toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage).build(), true),
+                                                FormattableValue.of((g.getFormattable()).toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage).build(), true),
                                                 FormattableValue.of((g.getFormattable()).toBuilder().stage(stage).build(), true),
                                                 FormattableValue.of((g.getFormattable()).toBuilder().stage(stage + 1).build(), false)
 
@@ -255,7 +255,7 @@ public class CnfCompilation {
                     Variable variable = var.getFormattable().toBuilder().stage(stage).build();
                     newFluents.add(FormattableValue.of(variable, false));
 
-                    Variable lockedVariable = variable.toBuilder().functionValue(LOCKED_FOR_UPDATE).build();
+                    Variable lockedVariable = variable.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).build();
                     //this is new variable key
                     if (!beforeKeyWithValue.contains(lockedVariable.formatFunctionKeyWithValue())) {
                         newFluents.add(FormattableValue.of(lockedVariable, false));

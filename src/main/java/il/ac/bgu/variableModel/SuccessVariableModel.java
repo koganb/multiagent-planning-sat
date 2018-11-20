@@ -10,8 +10,8 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.VariableFunctions.variableFilter;
-import static il.ac.bgu.dataModel.Variable.FREEZED;
-import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 public class SuccessVariableModel implements VariableModelFunction {
     @Override
@@ -19,9 +19,9 @@ public class SuccessVariableModel implements VariableModelFunction {
             Variable variable, Integer stage, Collection<FormattableValue<Variable>> currentVariableSet, VARIABLE_TYPE variableType) {
 
         FormattableValue<Variable> lockedVariable = FormattableValue.of(
-                variable.toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(stage + 1).build(), false);
+                variable.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage + 1).build(), false);
         FormattableValue<Variable> freezedVariable = FormattableValue.of(
-                variable.toBuilder().functionValue(FREEZED).stage(stage + 1).build(), false);
+                variable.toBuilder().functionValue(FREEZED.name()).stage(stage + 1).build(), false);
 
         Predicate<FormattableValue<Variable>> lockedVariablePredicate =
                 variableFilter.apply(lockedVariable.getFormattable());

@@ -16,14 +16,15 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.dataModel.Action.State.CONDITIONS_NOT_MET;
-import static il.ac.bgu.dataModel.Variable.FREEZED;
-import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @Slf4j
 public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
@@ -47,9 +48,9 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                             .append(action.getPopPrecs().stream().map(actionPrec ->
                                     FormattableValue.of(Variable.of(actionPrec, currentStage), false)))
                             .append(action.getPopEffs().stream().map(actionEff ->
-                                    FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE, currentStage), true)))
+                                    FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)))
                             .append(action.getPopEffs().stream().map(actionEff ->
-                                    FormattableValue.of(Variable.of(actionEff, FREEZED, currentStage), true)))
+                                    FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true)))
                             .collect(ImmutableList.toImmutableList()));
 
 
@@ -66,11 +67,11 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                             Stream.of(
                                     ImmutableList.of(
                                             FormattableValue.of(Action.of(action, currentStage, CONDITIONS_NOT_MET), true),
-                                            FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE, currentStage), false)
+                                            FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE.name(), currentStage), false)
                                     ),
                                     ImmutableList.of(
                                             FormattableValue.of(Action.of(action, currentStage, CONDITIONS_NOT_MET), true),
-                                            FormattableValue.of(Variable.of(actionPrec, FREEZED, currentStage), false)
+                                            FormattableValue.of(Variable.of(actionPrec, FREEZED.name(), currentStage), false)
                                     )
 
                             ));
@@ -92,42 +93,41 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                             .filter(var -> var.getFormattable().formatFunctionKey().equals(
                                                     v.formatFunctionKey()))
                                             .flatMap(stateVar -> {
-                                                switch (stateVar.getFormattable().getValue()) {
-                                                    case LOCKED_FOR_UPDATE:
-                                                        return Stream.of(
-                                                                ImmutableList.of(
-                                                                        FormattableValue.of(
-                                                                                Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false)));
-                                                    case FREEZED:
-                                                        return Stream.of(
-                                                                ImmutableList.of(
-                                                                        FormattableValue.of(
-                                                                                Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false)));
-                                                    default:
-                                                        return Stream.of(
-                                                                ImmutableList.of(
-                                                                        FormattableValue.of(
-                                                                                Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(currentStage).build(), true),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().stage(currentStage).build(), true),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false)),
-                                                                ImmutableList.of(
-                                                                        FormattableValue.of(
-                                                                                Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE).stage(currentStage).build(), true),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().stage(currentStage).build(), false),
-                                                                        FormattableValue.of(
-                                                                                stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), true))
-                                                        );
+                                                if (Objects.equals(stateVar.getFormattable().getValue(), LOCKED_FOR_UPDATE.name())) {
+                                                    return Stream.of(
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false)));
+                                                } else if (Objects.equals(stateVar.getFormattable().getValue(), FREEZED.name())) {
+                                                    return Stream.of(
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false)));
+                                                } else {
+                                                    return Stream.of(
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(currentStage).build(), true),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(currentStage).build(), true),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false)),
+                                                            ImmutableList.of(
+                                                                    FormattableValue.of(
+                                                                            Action.of(action, currentStage, CONDITIONS_NOT_MET), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(currentStage).build(), true),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(currentStage).build(), false),
+                                                                    FormattableValue.of(
+                                                                            stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), true))
+                                                    );
                                                 }
                                             }));
 

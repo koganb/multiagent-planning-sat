@@ -23,8 +23,8 @@ import java.util.stream.Stream;
 import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.VariableFunctions.variableKeyFilter;
 import static il.ac.bgu.dataModel.Action.State.HEALTHY;
-import static il.ac.bgu.dataModel.Variable.FREEZED;
-import static il.ac.bgu.dataModel.Variable.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @Slf4j
 public class HealthyCnfClauses implements CnfClausesFunction {
@@ -47,8 +47,8 @@ public class HealthyCnfClauses implements CnfClausesFunction {
                             action.getPopEffs().stream().
                                     flatMap(actionEff ->
                                             Stream.of(
-                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED, currentStage), true),
-                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE, currentStage), true)
+                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED.name(), currentStage), true),
+                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)
                                             )
                                     )
                     ).collect(ImmutableList.toImmutableList());

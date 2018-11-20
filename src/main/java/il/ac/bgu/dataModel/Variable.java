@@ -17,8 +17,23 @@ import static java.lang.String.format;
 @EqualsAndHashCode
 public class Variable implements Formattable {
 
-    public static final String LOCKED_FOR_UPDATE = "LOCKED_FOR_UPDATE";
-    public static final String FREEZED = "FREEZED";
+    public enum SpecialState {
+        LOCKED_FOR_UPDATE,  // used in delay failure model to lock action effects
+        // variable in this state cannot be neither in preconditions nor in effects of other actions
+        // (not conditioned on and not updated)
+
+        FREEZED,            // used in delay failure model to freeze action preconditions
+        // variable in this state cannot be in effects of other actions
+        // (can be conditioned but not updated)
+
+        IN_CONFLICT_RETRY   // used in retry conflict model to signal that variable will be updated in next stages by retry
+        // the variable in this state cannot be in effects of other actions
+
+    }
+
+    //public static final String LOCKED_FOR_UPDATE = "LOCKED_FOR_UPDATE";
+    //public static final String FREEZED = "FREEZED";
+
 
     @Nullable
     private Integer stage;
