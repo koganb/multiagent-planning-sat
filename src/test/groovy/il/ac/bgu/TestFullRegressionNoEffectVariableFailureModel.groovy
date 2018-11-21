@@ -4,6 +4,8 @@ import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.dataModel.Action
+import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -78,9 +80,13 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
         println "Failed actions:" + failedActions
         TestUtils.printPlan(plan)
 
+        FinalVariableStateCalc finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+                plan, failedCnfClausesCreator.getVariableModel())
+
+
         expect:
         assert TestUtils.checkSolution(plan, healthyCnfClausesCreator, conflictCnfClausesCreator,
-                failedCnfClausesCreator, failedActions)
+                failedCnfClausesCreator, finalVariableStateCalc, failedActions)
 
         where:
         [problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions] << [

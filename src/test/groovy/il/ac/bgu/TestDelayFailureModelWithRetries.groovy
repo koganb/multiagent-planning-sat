@@ -1,9 +1,10 @@
 package il.ac.bgu
 
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
-import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
+import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.dataModel.Action
+import il.ac.bgu.variablesCalculation.FinalOneRetryVariableStateCalc
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import spock.lang.Shared
 import spock.lang.Specification
@@ -13,17 +14,16 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestNoEffectVariableFailureModel extends Specification {
+class TestDelayFailureModelWithRetries extends Specification {
 
     @Shared
     def problemArr = [
-            new Problem("elevator23.problem"),
-//            new Problem("elevator29.problem"),
-//            new Problem("satellite20.problem"),
-//            new Problem("deports19.problem", [
-//                    Action.of("Unload hoist0 crate5 truck0 depot0", "truck0", 19, FAILED),
-//                    Action.of("Unload hoist1 crate3 truck0 depot1", "truck0", 13, FAILED),
-//            ]),
+            new Problem("satellite8.problem", [
+                    Action.of("turn_to satellite1 star0 star4", "satellite1", 0, FAILED),
+                    Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED),
+                    Action.of("take_image satellite1 phenomenon14 instrument5 thermograph2", "satellite1", 10, FAILED)
+
+            ]),
     ]
 
 
@@ -37,7 +37,7 @@ class TestNoEffectVariableFailureModel extends Specification {
     def conflictCnfClausesArr = (0..problemArr.size()).collect { new ConflictNoEffectsCnfClauses() }
 
     @Shared
-    def failedCnfClausesArr = (0..problemArr.size()).collect { new FailedNoEffectsCnfClauses() }
+    def failedCnfClausesArr = (0..problemArr.size()).collect { new FailedDelayOneStepCnfClauses() }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -46,8 +46,9 @@ class TestNoEffectVariableFailureModel extends Specification {
         println "Failed actions:" + failedActions
         TestUtils.printPlan(plan)
 
-        FinalVariableStateCalc finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+        FinalVariableStateCalc finalVariableStateCalc = new FinalOneRetryVariableStateCalc(
                 plan, failedCnfClausesCreator.getVariableModel())
+
 
 
         expect:

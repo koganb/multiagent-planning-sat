@@ -9,6 +9,9 @@ import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
+import il.ac.bgu.variablesCalculation.ActionUtils
+import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
 import org.apache.commons.lang3.tuple.Pair
@@ -46,10 +49,13 @@ class TestUtils {
 
     static Boolean checkSolution(TreeMap<Integer, Set<Step>> plan, CnfClausesFunction healthyCnfClausesCreator,
                                  CnfClausesFunction conflictCnfClausesCreator, CnfClausesFunction failedCnfClausesCreator,
-                                 Collection<Action> failedActions) {
+                                 FinalVariableStateCalc finalVariableStateCalc, Collection<Action> failedActions) {
+
+        assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
+
         CnfCompilation cnfCompilation = new CnfCompilation(plan, healthyCnfClausesCreator,
-                conflictCnfClausesCreator, failedCnfClausesCreator)
-        def finalFactsWithFailedActions = new FinalVariableStateCalc(plan, failedCnfClausesCreator.getVariableModel()).
+                conflictCnfClausesCreator, failedCnfClausesCreator, finalVariableStateCalc)
+        def finalFactsWithFailedActions = new FinalNoRetriesVariableStateCalc(plan, failedCnfClausesCreator.getVariableModel()).
                 getFinalVariableState(failedActions)
 
         Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,

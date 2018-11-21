@@ -1,12 +1,12 @@
 package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
-import il.ac.bgu.FinalVariableStateCalc;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
@@ -18,8 +18,7 @@ import java.util.stream.Stream;
 
 import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.dataModel.Action.State.*;
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
-import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.dataModel.Variable.SpecialState.*;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -43,15 +42,19 @@ public class CnfCompilation {
     private CnfClausesFunction failedCnfClausesCreator;
     private CnfClausesFunction conflictCnfClausesCreator;
 
+    private FinalVariableStateCalc finalVariableStateCalc;
+
 
     public CnfCompilation(TreeMap<Integer, Set<Step>> plan,
                           CnfClausesFunction healthyCnfClausesCreator,
                           CnfClausesFunction conflictCnfClausesCreator,
-                          CnfClausesFunction failedCnfClausesCreator) {
+                          CnfClausesFunction failedCnfClausesCreator,
+                          FinalVariableStateCalc finalVariableStateCalc) {
         this.plan = plan;
         this.healthyCnfClausesCreator = healthyCnfClausesCreator;
         this.failedCnfClausesCreator = failedCnfClausesCreator;
         this.conflictCnfClausesCreator = conflictCnfClausesCreator;
+        this.finalVariableStateCalc = finalVariableStateCalc;
 
         this.variablesStateBeforeStepExec = calcInitFacts();
         log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
@@ -65,7 +68,8 @@ public class CnfCompilation {
                 flatMap(eff -> Stream.of(
                         FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true),
                         FormattableValue.of(Variable.of(eff, LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
-                        FormattableValue.of(Variable.of(eff, FREEZED.name(), INITIAL_STAGE), false)
+                        FormattableValue.of(Variable.of(eff, FREEZED.name(), INITIAL_STAGE), false),
+                        FormattableValue.of(Variable.of(eff, IN_CONFLICT_RETRY.name(), INITIAL_STAGE), false)
                 )).
                 collect(Collectors.toList());
     }
@@ -93,7 +97,7 @@ public class CnfCompilation {
         log.debug("Start final values calculation");
 
         ImmutableList<FormattableValue<Formattable>> finalValues =
-                new FinalVariableStateCalc(plan, failedCnfClausesCreator.getVariableModel()).getFinalVariableState(failedActions);
+                finalVariableStateCalc.getFinalVariableState(failedActions);
         log.debug("Final Values: \n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End final values calculation");
 
@@ -117,7 +121,8 @@ public class CnfCompilation {
                         filter(value -> !precAndEffectKeys.contains(value.getFormattable().formatFunctionKey())).
                         flatMap(g -> {
                             if (g.getFormattable().getValue().equals(LOCKED_FOR_UPDATE.name()) ||
-                                    g.getFormattable().getValue().equals(FREEZED.name())) {
+                                    g.getFormattable().getValue().equals(FREEZED.name()) ||
+                                    g.getFormattable().getValue().equals(IN_CONFLICT_RETRY.name())) {
                                 return Stream.of(
                                         //locked_for_update is set to false on next stage
                                         ImmutableList.of(
