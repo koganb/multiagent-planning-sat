@@ -1,5 +1,6 @@
 package il.ac.bgu.dataModel;
 
+import com.google.errorprone.annotations.Immutable;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import org.agreement_technologies.common.map_planner.Step;
@@ -11,24 +12,23 @@ import static java.lang.String.format;
 
 @Builder(toBuilder = true)
 @EqualsAndHashCode
+@Immutable
 public class Action implements Formattable {
 
     private final String actionName;
     private final String agentName;
     private final Integer stage;
-    private State state;
+    private final State state;
 
     private Action(Step step, Integer stage, State state) {
-        this(step, stage);
-        this.state = state;
+        this(step.getActionName(), step.getAgent(), stage, state);
     }
-
 
     private Action(Step step, Integer stage) {
-        this(step.getActionName(), step.getAgent(), stage);
+        this(step.getActionName(), step.getAgent(), stage, null);
     }
 
-    private Action(String actionName, String agentName, Integer stage) {
+    private Action(String actionName, String agentName, Integer stage, State state) {
         assert StringUtils.isNotEmpty(actionName) &&
                 stage != null && stage >= -1 &&
                 (stage == -1 || StringUtils.isNotEmpty(agentName)) //no agent name for initial state
@@ -37,12 +37,9 @@ public class Action implements Formattable {
         this.actionName = actionName;
         this.agentName = agentName;
         this.stage = stage;
-    }
-
-    private Action(String actionName, String agentName, Integer stage, State state) {
-        this(actionName, agentName, stage);
         this.state = state;
     }
+
 
 
     public static Action of(Step step, Integer stage) {
@@ -54,14 +51,14 @@ public class Action implements Formattable {
     }
 
     public static Action of(String actionName, String agentName, Integer stage) {
-        return new Action(actionName, agentName, stage);
+        return new Action(actionName, agentName, stage, null);
     }
 
     public static Action of(String actionName, String agentName, Integer stage, State state) {
         return new Action(actionName, agentName, stage, state);
     }
 
-    public String formatActionName() {
+    private String formatActionName() {
         return actionName.replace(" ", "~");
     }
 
