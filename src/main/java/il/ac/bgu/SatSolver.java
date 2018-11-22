@@ -1,6 +1,5 @@
 package il.ac.bgu;
 
-import com.google.common.base.CharMatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import il.ac.bgu.cnfCompilation.CnfCompilation;
@@ -13,15 +12,11 @@ import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPAction;
 import org.agreement_technologies.service.map_planner.POPStep;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 import org.sat4j.maxsat.SolverFactory;
 import org.sat4j.maxsat.WeightedMaxSatDecorator;
 import org.sat4j.maxsat.reader.WDimacsReader;
@@ -31,8 +26,6 @@ import org.sat4j.specs.IProblem;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.*;
-import java.util.function.Function;
-import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,10 +39,10 @@ import static java.lang.String.format;
 @Slf4j
 public class SatSolver {
 
-    static private Map<String, String> problemNames = new Reflections("problems", new ResourcesScanner())
-            .getResources(Pattern.compile(".*\\.problem")).
-                    stream().
-                    collect(Collectors.toMap(c -> CharMatcher.invisible().removeFrom(c.replace("problems/", "")), Function.identity()));
+//    static private Map<String, String> problemNames = new Reflections("problems", new ResourcesScanner())
+//            .getResources(Pattern.compile(".*\\.problem")).
+//                    stream().
+//                    collect(Collectors.toMap(c -> CharMatcher.invisible().removeFrom(c.replace("problems/", "")), Function.identity()));
 
 //    public static void main(String[] args) throws IOException, URISyntaxException, ParseException {
 //        Options options = new Options();
@@ -113,10 +106,6 @@ public class SatSolver {
 //    }
 
 
-    private static void help(Options options) {
-        HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("Main", options);
-    }
 
 
     public static Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,

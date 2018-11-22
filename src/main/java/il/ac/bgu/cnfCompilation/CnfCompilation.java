@@ -2,6 +2,7 @@ package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
+import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -35,7 +36,8 @@ public class CnfCompilation {
     private List<FormattableValue<Variable>> variablesStateAfterStepExec;
 
 
-    private TreeMap<Integer, Set<Step>> plan;
+    private Map<Integer, Set<Step>> plan;
+    private Map<Action, Action> actionDependencyMap;
 
 
     private CnfClausesFunction healthyCnfClausesCreator;
@@ -46,15 +48,23 @@ public class CnfCompilation {
 
 
     public CnfCompilation(TreeMap<Integer, Set<Step>> plan,
+                          RetryPlanUpdater retryPlanUpdater,
                           CnfClausesFunction healthyCnfClausesCreator,
                           CnfClausesFunction conflictCnfClausesCreator,
                           CnfClausesFunction failedCnfClausesCreator,
                           FinalVariableStateCalc finalVariableStateCalc) {
-        this.plan = plan;
+
         this.healthyCnfClausesCreator = healthyCnfClausesCreator;
         this.failedCnfClausesCreator = failedCnfClausesCreator;
         this.conflictCnfClausesCreator = conflictCnfClausesCreator;
         this.finalVariableStateCalc = finalVariableStateCalc;
+
+
+        //update plans with retries - if configured
+        RetryPlanUpdater.RetriesPlanCreatorResult retriesPlanCreatorResult = retryPlanUpdater.updatePlan(plan);
+        this.plan = retriesPlanCreatorResult.updatedPlan;
+        actionDependencyMap = retriesPlanCreatorResult.actionDependencyMap;
+
 
         this.variablesStateBeforeStepExec = calcInitFacts();
         log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
@@ -151,22 +161,20 @@ public class CnfCompilation {
         return passThroughValues.stream();
     }
 
-
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateHealthyClauses(Integer stage) {
-        return this.healthyCnfClausesCreator.apply(stage, plan, ImmutableList.copyOf(variablesStateAfterStepExec));
+        return plan.get(stage).stream().flatMap(step ->
+                this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateActionFailedClauses(Integer stage) {
-
-        return failedCnfClausesCreator.apply(stage, plan, ImmutableList.copyOf(variablesStateBeforeStepExec));
+        return plan.get(stage).stream().flatMap(step ->
+                this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec)));
     }
-
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
-
-        return conflictCnfClausesCreator.apply(stage, plan, ImmutableList.copyOf(variablesStateAfterStepExec));
+        return plan.get(stage).stream().flatMap(step ->
+                this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
     }
-
 
     Stream<ImmutableList<FormattableValue<Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> actions) {
         Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = actions.stream().flatMap(action ->

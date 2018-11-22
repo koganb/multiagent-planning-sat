@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -38,75 +37,68 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
 
     @Override
     public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
-                                                                      Map<Integer, Set<Step>> plan,
+                                                                      Step step,
                                                                       ImmutableCollection<FormattableValue<Variable>> variablesState) {
 
 
         log.debug("Start failed clause");
 
-        Set<Step> actions = plan.get(currentStage);
-
-        Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = actions.stream().flatMap(action -> {
-
-            ImmutableList<FormattableValue<Formattable>> preconditionList =
-                    Stream.concat(
-                            action.getPopPrecs().stream()
-                                    .map(actionPrec -> FormattableValue.<Formattable>of(
-                                            Variable.of(actionPrec, currentStage), false)),
-                            action.getPopEffs().stream()
-                                    .flatMap(actionEff ->
-                                            Stream.of(
-                                                    FormattableValue.<Formattable>of(
-                                                            Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true),
-                                                    FormattableValue.<Formattable>of(
-                                                            Variable.of(actionEff, FREEZED.name(), currentStage), true)
-                                            ))
-                    ).collect(ImmutableList.toImmutableList());
+        ImmutableList<FormattableValue<Formattable>> preconditionList =
+                Stream.concat(
+                        step.getPopPrecs().stream()
+                                .map(actionPrec -> FormattableValue.<Formattable>of(
+                                        Variable.of(actionPrec, currentStage), false)),
+                        step.getPopEffs().stream()
+                                .flatMap(actionEff ->
+                                        Stream.of(
+                                                FormattableValue.<Formattable>of(
+                                                        Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true),
+                                                FormattableValue.<Formattable>of(
+                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true)
+                                        ))
+                ).collect(ImmutableList.toImmutableList());
 
 
-            Set<String> actionEffKeys = action.getPopEffs().stream()
-                    .map(eff -> Variable.of(eff).formatFunctionKey())
-                    .collect(Collectors.toSet());
+        Set<String> actionEffKeys = step.getPopEffs().stream()
+                .map(eff -> Variable.of(eff).formatFunctionKey())
+                .collect(Collectors.toSet());
 
 
-            Stream<FormattableValue<Formattable>> effectStream =
-                    Stream.concat(
-                            action.getPopPrecs().stream()
-                                    .map(prec -> ImmutablePair.of(Variable.of(prec), PRECONDITION))
-                                    .filter(pair -> !actionEffKeys.contains(pair.getLeft().formatFunctionKey()))
-                            ,
-                            action.getPopEffs().stream()
-                                    .map(eff -> ImmutablePair.of(Variable.of(eff), EFFECT))
-                    ).
-                            flatMap(precEffPair -> {
-                                Variable variable = precEffPair.getLeft();
-                                Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(variable);
+        Stream<FormattableValue<Formattable>> effectStream =
+                Stream.concat(
+                        step.getPopPrecs().stream()
+                                .map(prec -> ImmutablePair.of(Variable.of(prec), PRECONDITION))
+                                .filter(pair -> !actionEffKeys.contains(pair.getLeft().formatFunctionKey()))
+                        ,
+                        step.getPopEffs().stream()
+                                .map(eff -> ImmutablePair.of(Variable.of(eff), EFFECT))
+                ).
+                        flatMap(precEffPair -> {
+                            Variable variable = precEffPair.getLeft();
+                            Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(variable);
 
-                                ImmutableList<FormattableValue<Variable>> failureModelVariables =
-                                        failureModel.apply(variable, currentStage, variablesState, precEffPair.getRight()).
-                                                collect(ImmutableList.toImmutableList());
-                                return IntStream.rangeClosed(currentStage + NEXT_STEP_ADDITION, currentStage + failureModel.affectedStepsNumber())
-                                        .boxed()
-                                        .flatMap(stepAddition ->
-                                                calcVariableState(failureModelVariables.stream(), stepAddition)
-                                                        .filter(variableKeyPredicate)
-                                                        .map(var -> FormattableValue.of(var.getFormattable().toBuilder().stage(stepAddition).build(),
-                                                                var.getValue())));
-                            });
+                            ImmutableList<FormattableValue<Variable>> failureModelVariables =
+                                    failureModel.apply(variable, currentStage, variablesState, precEffPair.getRight()).
+                                            collect(ImmutableList.toImmutableList());
+                            return IntStream.rangeClosed(currentStage + NEXT_STEP_ADDITION, currentStage + failureModel.affectedStepsNumber())
+                                    .boxed()
+                                    .flatMap(stepAddition ->
+                                            calcVariableState(failureModelVariables.stream(), stepAddition)
+                                                    .filter(variableKeyPredicate)
+                                                    .map(var -> FormattableValue.of(var.getFormattable().toBuilder().stage(stepAddition).build(),
+                                                            var.getValue())));
+                        });
 
-            List<FormattableValue<Formattable>> effects = effectStream.collect(toList());
+        List<FormattableValue<Formattable>> effects = effectStream.collect(toList());
 
 
-            return effects.stream().map(u ->
-                    Stream.concat(
-                            preconditionList.stream(),
-                            Stream.of(FormattableValue.<Formattable>of(Action.of(action, currentStage, FAILED), false), u)).
-                            collect(ImmutableList.toImmutableList())
-            );
-        });
+        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses = effects.stream().map(u ->
+                Stream.concat(
+                        preconditionList.stream(),
+                        Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, FAILED), false), u)).
+                        collect(ImmutableList.toImmutableList())
+        ).collect(ImmutableList.toImmutableList());
 
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses =
-                resultClausesStream.collect(ImmutableList.toImmutableList());
 
         log.debug("failed clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End failed clause");

@@ -8,13 +8,11 @@ import il.ac.bgu.dataModel.Variable;
 import il.ac.bgu.variableModel.VariableModelFunction;
 import org.agreement_technologies.common.map_planner.Step;
 
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public interface CnfClausesFunction {
     Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
-                                                               Map<Integer, Set<Step>> plan,
+                                                               Step step,
                                                                ImmutableCollection<FormattableValue<Variable>> variablesState);
 
 

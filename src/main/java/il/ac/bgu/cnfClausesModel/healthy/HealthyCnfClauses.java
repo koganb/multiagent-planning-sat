@@ -13,8 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -26,65 +24,60 @@ import static il.ac.bgu.dataModel.Action.State.HEALTHY;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
+@SuppressWarnings("UnstableApiUsage")
 @Slf4j
 public class HealthyCnfClauses implements CnfClausesFunction {
 
     private SuccessVariableModel successVariableModel = new SuccessVariableModel();
 
     @Override
-    public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage, Map<Integer, Set<Step>> plan,
+    public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage, Step step,
                                                                       ImmutableCollection<FormattableValue<Variable>> variablesState) {
         log.debug("Start add healthy clause");
-
-        Set<Step> actions = plan.get(currentStage);
-
-        Collection<ImmutableList<FormattableValue<Formattable>>> resultClauses = actions.stream().flatMap(action -> {
-
-            ImmutableList<FormattableValue<Formattable>> preconditionList =
-                    Stream.concat(
-                            action.getPopPrecs().stream().
-                                    map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, currentStage), false)),
-                            action.getPopEffs().stream().
-                                    flatMap(actionEff ->
-                                            Stream.of(
-                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED.name(), currentStage), true),
-                                                    FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)
-                                            )
-                                    )
-                    ).collect(ImmutableList.toImmutableList());
+        ImmutableList<FormattableValue<Formattable>> preconditionList =
+                Stream.concat(
+                        step.getPopPrecs().stream().
+                                map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, currentStage), false)),
+                        step.getPopEffs().stream().
+                                flatMap(actionEff ->
+                                        Stream.of(
+                                                FormattableValue.<Formattable>of(Variable.of(actionEff, FREEZED.name(), currentStage), true),
+                                                FormattableValue.<Formattable>of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)
+                                        )
+                                )
+                ).collect(ImmutableList.toImmutableList());
 
 
-            Set<String> actionEffKeys = action.getPopEffs().stream()
-                    .map(eff -> Variable.of(eff).formatFunctionKey())
-                    .collect(Collectors.toSet());
+        Set<String> actionEffKeys = step.getPopEffs().stream()
+                .map(eff -> Variable.of(eff).formatFunctionKey())
+                .collect(Collectors.toSet());
 
-            //healthy function
-            Stream<FormattableValue<Formattable>> effectStream =
-                    Stream.concat(
-                            action.getPopPrecs().stream()
-                                    .filter(prec ->
-                                            !actionEffKeys.contains(Variable.of(prec).formatFunctionKey())),
-                            action.getPopEffs().stream()
-                    ).flatMap(actionEff -> {
-                        Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(Variable.of(actionEff));
+        //healthy function
+        Stream<FormattableValue<Formattable>> effectStream =
+                Stream.concat(
+                        step.getPopPrecs().stream()
+                                .filter(prec ->
+                                        !actionEffKeys.contains(Variable.of(prec).formatFunctionKey())),
+                        step.getPopEffs().stream()
+                ).flatMap(actionEff -> {
+                    Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(Variable.of(actionEff));
 
-                        //prec or effect variable
-                        return calcVariableState(variablesState.stream(), currentStage + 1)
-                                .filter(variableKeyPredicate)
-                                .map(formattableValue ->
-                                        FormattableValue.of(
-                                                formattableValue.getFormattable().toBuilder().stage(currentStage + 1).build(),
-                                                formattableValue.getValue()));
-                    });
+                    //prec or effect variable
+                    return calcVariableState(variablesState.stream(), currentStage + 1)
+                            .filter(variableKeyPredicate)
+                            .map(formattableValue ->
+                                    FormattableValue.of(
+                                            formattableValue.getFormattable().toBuilder().stage(currentStage + 1).build(),
+                                            formattableValue.getValue()));
+                });
 
 
-            return effectStream.map(u ->
-                    Stream.concat(
-                            preconditionList.stream(),
-                            Stream.of(FormattableValue.<Formattable>of(Action.of(action, currentStage, HEALTHY), false), u)).
-                            collect(ImmutableList.toImmutableList())
-            );
-        }).collect(ImmutableList.toImmutableList());
+        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses = effectStream.map(u ->
+                Stream.concat(
+                        preconditionList.stream(),
+                        Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false), u)).
+                        collect(ImmutableList.toImmutableList())
+        ).collect(ImmutableList.toImmutableList());
 
         log.debug("healthy clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End add healthy clause");

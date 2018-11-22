@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.Streams
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfCompilation.CnfCompilation
+import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
@@ -47,13 +48,17 @@ class TestUtils {
 
     }
 
-    static Boolean checkSolution(TreeMap<Integer, Set<Step>> plan, CnfClausesFunction healthyCnfClausesCreator,
-                                 CnfClausesFunction conflictCnfClausesCreator, CnfClausesFunction failedCnfClausesCreator,
-                                 FinalVariableStateCalc finalVariableStateCalc, Collection<Action> failedActions) {
+    static Boolean checkSolution(TreeMap<Integer, Set<Step>> plan,
+                                 RetryPlanUpdater retryPlanUpdater,
+                                 CnfClausesFunction healthyCnfClausesCreator,
+                                 CnfClausesFunction conflictCnfClausesCreator,
+                                 CnfClausesFunction failedCnfClausesCreator,
+                                 FinalVariableStateCalc finalVariableStateCalc,
+                                 Collection<Action> failedActions) {
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
-        CnfCompilation cnfCompilation = new CnfCompilation(plan, healthyCnfClausesCreator,
+        CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
                 conflictCnfClausesCreator, failedCnfClausesCreator, finalVariableStateCalc)
         def finalFactsWithFailedActions = new FinalNoRetriesVariableStateCalc(plan, failedCnfClausesCreator.getVariableModel()).
                 getFinalVariableState(failedActions)
