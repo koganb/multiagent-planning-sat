@@ -9,11 +9,14 @@ import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
 import il.ac.bgu.variableModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -38,7 +41,8 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
     @Override
     public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
                                                                       Step step,
-                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState) {
+                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState,
+                                                                      @Nullable Action dependencyAction) {
 
 
         log.debug("Start failed clause");
@@ -50,12 +54,15 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
                                         Variable.of(actionPrec, currentStage), false)),
                         step.getPopEffs().stream()
                                 .flatMap(actionEff ->
-                                        Stream.of(
-                                                FormattableValue.<Formattable>of(
-                                                        Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true),
-                                                FormattableValue.<Formattable>of(
-                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true)
-                                        ))
+                                        StreamEx.<FormattableValue<Formattable>>of()
+                                                .append(FormattableValue.of(
+                                                        Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true))
+                                                .append(FormattableValue.of(
+                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true))
+                                                .append(Optional.ofNullable(dependencyAction).map(a ->
+                                                        Stream.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).orElse(Stream.of()))
+
+                                )
                 ).collect(ImmutableList.toImmutableList());
 
 

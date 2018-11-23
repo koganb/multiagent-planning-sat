@@ -163,17 +163,20 @@ public class CnfCompilation {
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateHealthyClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
+                this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec),
+                        actionDependencyMap.get(Action.of(step, stage))));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateActionFailedClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec)));
+                this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec),
+                        actionDependencyMap.get(Action.of(step, stage))));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
+                this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec),
+                        actionDependencyMap.get(Action.of(step, stage))));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> actions) {
