@@ -25,10 +25,6 @@ public class Variable implements Formattable {
         FREEZED,            // used in delay failure model to freeze action preconditions
         // variable in this state cannot be in effects of other actions
         // (can be conditioned but not updated)
-
-        IN_CONFLICT_RETRY   // used in retry conflict model to signal that variable will be updated in next stages by retry
-        // the variable in this state cannot be in effects of other actions
-
     }
 
     //public static final String LOCKED_FOR_UPDATE = "LOCKED_FOR_UPDATE";

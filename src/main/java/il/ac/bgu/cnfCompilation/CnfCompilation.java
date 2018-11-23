@@ -19,7 +19,8 @@ import java.util.stream.Stream;
 
 import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.dataModel.Action.State.*;
-import static il.ac.bgu.dataModel.Variable.SpecialState.*;
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -78,8 +79,7 @@ public class CnfCompilation {
                 flatMap(eff -> Stream.of(
                         FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true),
                         FormattableValue.of(Variable.of(eff, LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
-                        FormattableValue.of(Variable.of(eff, FREEZED.name(), INITIAL_STAGE), false),
-                        FormattableValue.of(Variable.of(eff, IN_CONFLICT_RETRY.name(), INITIAL_STAGE), false)
+                        FormattableValue.of(Variable.of(eff, FREEZED.name(), INITIAL_STAGE), false)
                 )).
                 collect(Collectors.toList());
     }
@@ -131,8 +131,7 @@ public class CnfCompilation {
                         filter(value -> !precAndEffectKeys.contains(value.getFormattable().formatFunctionKey())).
                         flatMap(g -> {
                             if (g.getFormattable().getValue().equals(LOCKED_FOR_UPDATE.name()) ||
-                                    g.getFormattable().getValue().equals(FREEZED.name()) ||
-                                    g.getFormattable().getValue().equals(IN_CONFLICT_RETRY.name())) {
+                                    g.getFormattable().getValue().equals(FREEZED.name())) {
                                 return Stream.of(
                                         //locked_for_update is set to false on next stage
                                         ImmutableList.of(

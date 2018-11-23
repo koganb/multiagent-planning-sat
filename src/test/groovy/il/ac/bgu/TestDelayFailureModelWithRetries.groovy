@@ -3,6 +3,7 @@ package il.ac.bgu
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
+import il.ac.bgu.cnfCompilation.retries.OneRetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.variablesCalculation.FinalOneRetryVariableStateCalc
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
@@ -52,7 +53,7 @@ class TestDelayFailureModelWithRetries extends Specification {
 
 
         expect:
-        assert TestUtils.checkSolution(plan, healthyCnfClausesCreator, conflictCnfClausesCreator,
+        assert TestUtils.checkSolution(plan, new OneRetryPlanUpdater(), healthyCnfClausesCreator, conflictCnfClausesCreator,
                 failedCnfClausesCreator, finalVariableStateCalc, failedActions)
 
         where:
