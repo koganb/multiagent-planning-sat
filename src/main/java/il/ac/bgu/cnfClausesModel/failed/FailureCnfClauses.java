@@ -98,14 +98,22 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
 
         List<FormattableValue<Formattable>> effects = effectStream.collect(toList());
 
-
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses = effects.stream().map(u ->
-                Stream.concat(
-                        preconditionList.stream(),
-                        Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, FAILED), false), u)).
-                        collect(ImmutableList.toImmutableList())
-        ).collect(ImmutableList.toImmutableList());
-
+        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses =
+                StreamEx.<ImmutableList<FormattableValue<Formattable>>>of()
+                        .append(
+                                effects.stream().map(u ->
+                                        Stream.concat(
+                                                preconditionList.stream(),
+                                                Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, FAILED), false), u)).
+                                                collect(ImmutableList.toImmutableList())
+                                ))
+                        //retry_action=failed -> original_action=condition_not_met
+                        .append(Optional.ofNullable(dependencyAction).
+                                map(a -> Stream.of(ImmutableList.of(
+                                        FormattableValue.<Formattable>of(Action.of(step, currentStage, FAILED), false),
+                                        FormattableValue.<Formattable>of(dependencyAction, true)
+                                ))).orElse(Stream.of()))
+                        .collect(ImmutableList.toImmutableList());
 
         log.debug("failed clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End failed clause");

@@ -77,12 +77,21 @@ public class HealthyCnfClauses implements CnfClausesFunction {
                 });
 
 
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses = effectStream.map(u ->
-                Stream.concat(
-                        preconditionList.stream(),
-                        Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false), u)).
-                        collect(ImmutableList.toImmutableList())
-        ).collect(ImmutableList.toImmutableList());
+        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses =
+                StreamEx.<ImmutableList<FormattableValue<Formattable>>>of()
+                        .append(effectStream.map(u ->
+                                Stream.concat(
+                                        preconditionList.stream(),
+                                        Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false), u)).
+                                        collect(ImmutableList.toImmutableList())
+                        ))
+                        //retry_action=healthy -> original_action=condition_not_met
+                        .append(Optional.ofNullable(dependencyAction).
+                                map(a -> Stream.of(ImmutableList.of(
+                                        FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false),
+                                        FormattableValue.<Formattable>of(dependencyAction, true)
+                                ))).orElse(Stream.of()))
+                        .collect(ImmutableList.toImmutableList());
 
         log.debug("healthy clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
         log.debug("End add healthy clause");

@@ -22,7 +22,8 @@ class TestDelayFailureModelWithRetries extends Specification {
             new Problem("satellite8.problem", [
                     Action.of("turn_to satellite1 star0 star4", "satellite1", 0, FAILED),
                     Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED),
-                    Action.of("take_image satellite1 phenomenon14 instrument5 thermograph2", "satellite1", 10, FAILED)
+                    Action.of("take_image satellite1 phenomenon14 instrument5 thermograph2", "satellite1", 10, FAILED),
+                    Action.of("turn_to satellite1 phenomenon14 phenomenon13", "satellite1", 9, FAILED),
 
             ]),
     ]

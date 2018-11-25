@@ -80,6 +80,12 @@ public class OneRetryPlanUpdater implements RetryPlanUpdater {
         }
 
 
+        originalPlan.entrySet().stream()
+                .filter(entry -> entry.getKey() == -1)
+                .flatMap(entry -> entry.getValue().stream()
+                        .map(step -> ImmutablePair.of(entry.getKey(), step)))
+                .forEach(actionList::add);
+
         @SuppressWarnings("UnstableApiUsage")
         Map<Integer, ImmutableSet<Step>> updatedPlan = actionList.stream().collect(Collectors.groupingBy(
                 Pair::getKey,
@@ -108,6 +114,4 @@ public class OneRetryPlanUpdater implements RetryPlanUpdater {
                         Pair::getKey,
                         Collectors.mapping(Pair::getValue, Collectors.toSet())));
     }
-
-
 }
