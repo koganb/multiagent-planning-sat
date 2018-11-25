@@ -17,7 +17,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,8 +51,6 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                 FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)))
                         .append(step.getPopEffs().stream().map(actionEff ->
                                 FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true)))
-                        .append(Optional.ofNullable(dependencyAction).map(a ->
-                                Stream.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).orElse(Stream.of()))
                         .collect(ImmutableList.toImmutableList()));
 
 
@@ -63,9 +60,6 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                         ImmutableList.<FormattableValue<Formattable>>builder()
                                 .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                 .add(FormattableValue.of(Variable.of(actionPrec, currentStage), true))
-                                .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                        ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                        orElse(ImmutableList.of()))
                                 .build());
         // (eff1=LOCKED_FOR_UPDATE) v (eff2=LOCKED_FOR_UPDATE) -> CONDITIONS_NOT_MET => (not eff1=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET) ^  (not eff2=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET)
         Stream<ImmutableList<FormattableValue<Formattable>>> precClauses3 = step.getPopEffs().stream()
@@ -74,17 +68,11 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                 ImmutableList.<FormattableValue<Formattable>>builder()
                                         .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                         .add(FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE.name(), currentStage), false))
-                                        .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                                ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                                orElse(ImmutableList.of()))
                                         .build()
                                 ,
                                 ImmutableList.<FormattableValue<Formattable>>builder()
                                         .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                         .add(FormattableValue.of(Variable.of(actionPrec, FREEZED.name(), currentStage), false))
-                                        .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                                ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                                orElse(ImmutableList.of()))
                                         .build()
                         ));
 
@@ -112,9 +100,6 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
-                                                                .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                                                        ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                                                        orElse(ImmutableList.of()))
                                                                 .build()
 
                                                 );
@@ -125,9 +110,6 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
-                                                                .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                                                        ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                                                        orElse(ImmutableList.of()))
                                                                 .build());
                                             } else {
                                                 return Stream.of(
@@ -140,9 +122,6 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage).build(), true))
                                                                 .add(FormattableValue.of(
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
-                                                                .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                                                        ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                                                        orElse(ImmutableList.of()))
                                                                 .build()
                                                         ,
                                                         ImmutableList.<FormattableValue<Formattable>>builder()
@@ -154,17 +133,19 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage).build(), false))
                                                                 .add(FormattableValue.of(
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), true))
-                                                                .addAll(Optional.ofNullable(dependencyAction).map(a ->
-                                                                        ImmutableList.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).
-                                                                        orElse(ImmutableList.of()))
                                                                 .build()
 
                                                 );
                                             }
                                         }));
 
-        List<ImmutableList<FormattableValue<Formattable>>> resultClauses = Stream.concat(
-                StreamEx.of(precClauses1).append(precClauses2).append(precClauses3), effectClauses).collect(Collectors.toList());
+        List<ImmutableList<FormattableValue<Formattable>>> resultClauses =
+                StreamEx.<ImmutableList<FormattableValue<Formattable>>>of()
+                        .append(precClauses1)
+                        .append(precClauses2)
+                        .append(precClauses3)
+                        .append(effectClauses)
+                        .collect(ImmutableList.toImmutableList());
 
 
         log.debug("\n{}", resultClauses.stream().

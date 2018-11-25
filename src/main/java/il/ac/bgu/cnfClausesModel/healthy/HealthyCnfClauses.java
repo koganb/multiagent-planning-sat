@@ -15,7 +15,6 @@ import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -47,8 +46,6 @@ public class HealthyCnfClauses implements CnfClausesFunction {
                                         StreamEx.<FormattableValue<Formattable>>of()
                                                 .append(FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true))
                                                 .append(FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true))
-                                                .append(Optional.ofNullable(dependencyAction).map(a ->
-                                                        Stream.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).orElse(Stream.of()))
                                 )
                 ).collect(ImmutableList.toImmutableList());
 
@@ -85,12 +82,6 @@ public class HealthyCnfClauses implements CnfClausesFunction {
                                         Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false), u)).
                                         collect(ImmutableList.toImmutableList())
                         ))
-                        //retry_action=healthy -> original_action=condition_not_met
-                        .append(Optional.ofNullable(dependencyAction).
-                                map(a -> Stream.of(ImmutableList.of(
-                                        FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false),
-                                        FormattableValue.<Formattable>of(dependencyAction, true)
-                                ))).orElse(Stream.of()))
                         .collect(ImmutableList.toImmutableList());
 
         log.debug("healthy clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));

@@ -78,6 +78,11 @@ class TestUtils {
                 filter { solution ->
 
                     def solutionFinalState = cnfCompilation.calcFinalFacts(failedActions)
+                    def solutionFinalStateChecking = cnfCompilation.calcFinalFacts(solution)
+
+                    if (solutionFinalState != solutionFinalStateChecking) {
+                        return false
+                    }
 
                     println("Solution candidate: " + solution)
 

@@ -16,7 +16,6 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -59,8 +58,6 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
                                                         Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true))
                                                 .append(FormattableValue.of(
                                                         Variable.of(actionEff, FREEZED.name(), currentStage), true))
-                                                .append(Optional.ofNullable(dependencyAction).map(a ->
-                                                        Stream.<FormattableValue<Formattable>>of(FormattableValue.of(a, false))).orElse(Stream.of()))
 
                                 )
                 ).collect(ImmutableList.toImmutableList());
@@ -107,12 +104,6 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
                                                 Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, FAILED), false), u)).
                                                 collect(ImmutableList.toImmutableList())
                                 ))
-                        //retry_action=failed -> original_action=condition_not_met
-                        .append(Optional.ofNullable(dependencyAction).
-                                map(a -> Stream.of(ImmutableList.of(
-                                        FormattableValue.<Formattable>of(Action.of(step, currentStage, FAILED), false),
-                                        FormattableValue.<Formattable>of(dependencyAction, true)
-                                ))).orElse(Stream.of()))
                         .collect(ImmutableList.toImmutableList());
 
         log.debug("failed clauses\n{}", resultClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));

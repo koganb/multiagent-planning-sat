@@ -163,51 +163,56 @@ public class CnfCompilation {
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateHealthyClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
                 this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec),
-                        actionDependencyMap.get(Action.of(step, stage))));
+                        actionDependencyMap.get(Action.of(step, stage))
+                ));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateActionFailedClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
                 this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec),
-                        actionDependencyMap.get(Action.of(step, stage))));
+                        actionDependencyMap.get(Action.of(step, stage))
+                ));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
                 this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec),
-                        actionDependencyMap.get(Action.of(step, stage))));
+                        actionDependencyMap.get(Action.of(step, stage))
+                ));
     }
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> actions) {
-        Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = actions.stream().flatMap(action ->
-                Stream.of(
-                        ImmutableList.of(
-                                FormattableValue.of(Action.of(action, stage, HEALTHY), true),
-                                FormattableValue.of(Action.of(action, stage, FAILED), true),
-                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), true)
-                        ),
-                        ImmutableList.of(
-                                FormattableValue.of(Action.of(action, stage, HEALTHY), true),
-                                FormattableValue.of(Action.of(action, stage, FAILED), false),
-                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)
-                        ),
-                        ImmutableList.of(
-                                FormattableValue.of(Action.of(action, stage, HEALTHY), false),
-                                FormattableValue.of(Action.of(action, stage, FAILED), true),
-                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)
-                        ),
-                        ImmutableList.of(
-                                FormattableValue.of(Action.of(action, stage, HEALTHY), false),
-                                FormattableValue.of(Action.of(action, stage, FAILED), false),
-                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), true)
-                        ),
-                        ImmutableList.of(
-                                FormattableValue.of(Action.of(action, stage, HEALTHY), false),
-                                FormattableValue.of(Action.of(action, stage, FAILED), false),
-                                FormattableValue.of(Action.of(action, stage, CONDITIONS_NOT_MET), false)
-                        )
+    Stream<ImmutableList<FormattableValue<Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
 
-                ));
+        Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = steps.stream()
+                .flatMap(step ->
+                        Stream.of(
+                                ImmutableList.of(
+                                        FormattableValue.of(Action.of(step, stage, HEALTHY), true),
+                                        FormattableValue.of(Action.of(step, stage, FAILED), true),
+                                        FormattableValue.of(Action.of(step, stage, CONDITIONS_NOT_MET), true)
+                                ),
+                                ImmutableList.of(
+                                        FormattableValue.of(Action.of(step, stage, HEALTHY), true),
+                                        FormattableValue.of(Action.of(step, stage, FAILED), false),
+                                        FormattableValue.of(Action.of(step, stage, CONDITIONS_NOT_MET), false)
+                                ),
+                                ImmutableList.of(
+                                        FormattableValue.of(Action.of(step, stage, HEALTHY), false),
+                                        FormattableValue.of(Action.of(step, stage, FAILED), true),
+                                        FormattableValue.of(Action.of(step, stage, CONDITIONS_NOT_MET), false)
+                                ),
+                                ImmutableList.of(
+                                        FormattableValue.of(Action.of(step, stage, HEALTHY), false),
+                                        FormattableValue.of(Action.of(step, stage, FAILED), false),
+                                        FormattableValue.of(Action.of(step, stage, CONDITIONS_NOT_MET), true)
+                                ),
+                                ImmutableList.of(
+                                        FormattableValue.of(Action.of(step, stage, HEALTHY), false),
+                                        FormattableValue.of(Action.of(step, stage, FAILED), false),
+                                        FormattableValue.of(Action.of(step, stage, CONDITIONS_NOT_MET), false)
+                                )
+
+                        ));
 
         ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses = resultClausesStream.collect(ImmutableList.toImmutableList());
 
