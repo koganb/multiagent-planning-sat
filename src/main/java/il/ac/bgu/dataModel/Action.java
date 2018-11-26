@@ -84,5 +84,5 @@ public class Action implements Formattable {
         return format("Index:%02d, Agent:%s,Action:%s", stage, agentName, formatActionName());
     }
 
-    public enum State {HEALTHY, FAILED, CONDITIONS_NOT_MET, CONDITIONS_NOT_MET_RETRY1}
+    public enum State {HEALTHY, FAILED, CONDITIONS_NOT_MET}
 }

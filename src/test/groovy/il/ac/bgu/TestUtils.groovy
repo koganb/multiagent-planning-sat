@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.Streams
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfCompilation.CnfCompilation
+import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
@@ -57,6 +58,10 @@ class TestUtils {
                                  Collection<Action> failedActions) {
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
+
+        //add agent dependencies to the plan
+        PlanUtils.updatePlanWithAgentDependencies(plan)
+
 
         CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
                 conflictCnfClausesCreator, failedCnfClausesCreator, finalVariableStateCalc)
@@ -112,6 +117,7 @@ class TestUtils {
         } else {
             plan = SerializationUtils.deserialize(new FileInputStream(serPlanFileName))
         }
+
         return plan
     }
 

@@ -47,12 +47,9 @@ class TestDelayFailureModel extends Specification {
 
             ]),
             new Problem("satellite9.problem", [
-                    Action.of("turn_to satellite1 star3 planet11", "satellite1", 0, FAILED),
+                    Action.of("turn_to satellite0 phenomenon7 star0", "satellite0", 0, FAILED),
                     Action.of("turn_to satellite4 planet5 star9", "satellite4", 0, FAILED),
                     Action.of("turn_to satellite3 star9 planet10", "satellite3", 0, FAILED),
-                    Action.of("turn_to satellite0 phenomenon7 star0", "satellite0", 0, FAILED),
-                    Action.of("turn_to satellite1 star3 phenomenon12", "satellite1", 14, FAILED),
-                    Action.of("switch_off instrument4 satellite1", "satellite1", 13, FAILED),
             ]),
     ]
 

@@ -63,7 +63,10 @@ public class CnfCompilation {
 
         //update plans with retries - if configured
         RetryPlanUpdater.RetriesPlanCreatorResult retriesPlanCreatorResult = retryPlanUpdater.updatePlan(plan);
+
+
         this.plan = retriesPlanCreatorResult.updatedPlan;
+
         actionDependencyMap = retriesPlanCreatorResult.actionDependencyMap;
 
 
