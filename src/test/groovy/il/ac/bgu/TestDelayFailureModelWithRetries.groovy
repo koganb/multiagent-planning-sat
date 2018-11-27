@@ -41,6 +41,10 @@ class TestDelayFailureModelWithRetries extends Specification {
     @Shared
     def failedCnfClausesArr = (0..problemArr.size()).collect { new FailedDelayOneStepCnfClauses() }
 
+    //compile plan
+    @Shared
+    def cnfPlanClausesArr = (0..problemArr.size())
+
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
             problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions) {
