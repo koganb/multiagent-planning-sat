@@ -2,7 +2,6 @@ package il.ac.bgu.cnfClausesModel;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
-import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
@@ -14,8 +13,7 @@ import java.util.stream.Stream;
 public interface CnfClausesFunction {
     Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
                                                                Step step,
-                                                               ImmutableCollection<FormattableValue<Variable>> variablesState,
-                                                               Action dependencyAction);
+                                                               ImmutableCollection<FormattableValue<Variable>> variablesState);
 
     VariableModelFunction getVariableModel();
 }

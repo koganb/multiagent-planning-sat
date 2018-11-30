@@ -19,6 +19,8 @@ import static il.ac.bgu.dataModel.Action.State.FAILED
 @Unroll
 class TestDelayFailureModel extends Specification {
 
+    public static final int FAILED_STEPS_NUM = 1
+    public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
             new Problem("deports0.problem"),
@@ -63,7 +65,7 @@ class TestDelayFailureModel extends Specification {
     @Shared
     def cnfPlanClausesArr = planArr.collect { plan ->
         TestUtils.createPlanHardConstraints(plan, new NoRetriesPlanUpdater(), new HealthyCnfClauses(),
-                new ConflictNoEffectsCnfClauses(), new FailedDelayOneStepCnfClauses())
+                new ConflictNoEffectsCnfClauses(), new FailedDelayOneStepCnfClauses(), FAILED_STEPS_NUM)
     }
 
 
@@ -77,7 +79,7 @@ class TestDelayFailureModel extends Specification {
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(1))
+        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
 
         expect:
         assert TestUtils.checkSolution(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
@@ -89,7 +91,7 @@ class TestDelayFailureModel extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 planArr.collect { p ->
-                    new ActionDependencyCalculation(p).getIndependentActionsList(1).collectNested {
+                    new ActionDependencyCalculation(p).getIndependentActionsList(FAILED_STEPS_NUM).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
                     }
                 }

@@ -2,6 +2,7 @@ package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
+import il.ac.bgu.cnfCompilation.failureContraints.MaxFailureConstraintsCreator;
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
@@ -41,7 +42,6 @@ public class CnfCompilation {
 
 
     private Map<Integer, Set<Step>> plan;
-    private Map<Action, Action> actionDependencyMap;
 
 
     private CnfClausesFunction healthyCnfClausesCreator;
@@ -49,11 +49,15 @@ public class CnfCompilation {
     private CnfClausesFunction conflictCnfClausesCreator;
 
 
+    private MaxFailureConstraintsCreator maxFailureConstraintsCreator;
+
+
     public CnfCompilation(Map<Integer, Set<Step>> plan,
                           RetryPlanUpdater retryPlanUpdater,
                           CnfClausesFunction healthyCnfClausesCreator,
                           CnfClausesFunction conflictCnfClausesCreator,
-                          CnfClausesFunction failedCnfClausesCreator) {
+                          CnfClausesFunction failedCnfClausesCreator,
+                          int maxFailures) {
 
         this.healthyCnfClausesCreator = healthyCnfClausesCreator;
         this.failedCnfClausesCreator = failedCnfClausesCreator;
@@ -63,11 +67,9 @@ public class CnfCompilation {
         //update plans with retries - if configured
         RetryPlanUpdater.RetriesPlanCreatorResult retriesPlanCreatorResult = retryPlanUpdater.updatePlan(plan);
 
-
         this.plan = retriesPlanCreatorResult.updatedPlan;
 
-        actionDependencyMap = retriesPlanCreatorResult.actionDependencyMap;
-
+        this.maxFailureConstraintsCreator = new MaxFailureConstraintsCreator(maxFailures, this.plan);
 
         this.variablesStateBeforeStepExec = calcInitFacts();
         log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
@@ -168,23 +170,18 @@ public class CnfCompilation {
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateHealthyClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec),
-                        actionDependencyMap.get(Action.of(step, stage))
-                ));
+                this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
+
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateActionFailedClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec),
-                        actionDependencyMap.get(Action.of(step, stage))
-                ));
+                this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec)));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec),
-                        actionDependencyMap.get(Action.of(step, stage))
-                ));
+                this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
     }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
@@ -241,7 +238,12 @@ public class CnfCompilation {
 
                         });
 
-        return cnfClauses.collect(ImmutableList.toImmutableList());
+        List<List<FormattableValue<Formattable>>> maxFailuresConstraints = maxFailureConstraintsCreator.createMaxFailuresClauses();
+
+        return StreamEx.<List<FormattableValue<Formattable>>>of()
+                .append(cnfClauses)
+                .append(maxFailuresConstraints)
+                .collect(ImmutableList.toImmutableList());
     }
 
 

@@ -13,7 +13,6 @@ import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Set;
@@ -40,8 +39,7 @@ public abstract class FailureCnfClauses implements CnfClausesFunction {
     @Override
     public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
                                                                       Step step,
-                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState,
-                                                                      @Nullable Action dependencyAction) {
+                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState) {
 
 
         log.debug("Start failed clause");

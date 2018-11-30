@@ -1,6 +1,6 @@
 package il.ac.bgu
 
-import com.google.common.collect.ImmutableList
+
 import com.google.common.collect.Streams
 import il.ac.bgu.cnfCompilation.CnfCompilation
 import il.ac.bgu.dataModel.Action
@@ -79,8 +79,8 @@ class TestSatSolver extends Specification {
         def finalFactsWithFailedActions = new FinalNoRetriesVariableStateCalc(sortedPlan, new DelayStageVariableFailureModel(1)).getFinalVariableState(failedActions)
 
 
-        Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
-                ImmutableList<FormattableValue<Formattable>>> compilePlanToCnf =
+        Pair<List<List<FormattableValue<Formattable>>>,
+                List<FormattableValue<Formattable>>> compilePlanToCnf =
                 SatSolver.compilePlanToCnf(cnfCompilation, failedActions)
 
 

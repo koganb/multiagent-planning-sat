@@ -25,8 +25,9 @@ public class ActionDependencyCalculation {
         Map<VariableKey, Action> preconditionsToAction = new HashMap<>();
         Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
 
-        plan.entrySet().stream().filter(i -> i.getKey() != -1).
-                flatMap(entry -> entry.getValue().stream().map(step ->
+        plan.entrySet().stream()
+                .filter(i -> i.getKey() != -1)
+                .flatMap(entry -> entry.getValue().stream().map(step ->
                         ImmutablePair.of(entry.getKey(), step))).
                 forEach(pair -> {
                     Action action = Action.of(pair.right, pair.left);
@@ -55,9 +56,9 @@ public class ActionDependencyCalculation {
                                               ActionKey actionKey, ActionKey currAction) {
 
         Set<Action> dependencies = actionDependencies.get(currAction);
+        Set<Action> currentDependentActions = actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>());
         if (CollectionUtils.isNotEmpty(dependencies)) {
-            actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>()).
-                    addAll(dependencies);
+            currentDependentActions.addAll(dependencies);
             dependencies.forEach(dependency ->
                     createActionDependenciesFull(actionDependencies, actionKey, new ActionKey(dependency)));
         }

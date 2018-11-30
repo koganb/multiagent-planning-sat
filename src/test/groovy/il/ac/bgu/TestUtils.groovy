@@ -84,6 +84,7 @@ class TestUtils {
                 filter { solution -> solution.isPresent() }.
                 map { solution -> solution.get() }.
                 filter { solution ->
+                    log.info 'Solution candidate: {}', solution
 
                     def solutionFinalVariablesState = finalVariableStateCalc.getFinalVariableState(solution)
 
@@ -161,11 +162,12 @@ class TestUtils {
                                          RetryPlanUpdater retryPlanUpdater,
                                          CnfClausesFunction healthyCnfClausesCreator,
                                          CnfClausesFunction conflictCnfClausesCreator,
-                                         CnfClausesFunction failedCnfClausesCreator) {
+                                         CnfClausesFunction failedCnfClausesCreator,
+                                         int maxFailures) {
 
 
         CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
-                conflictCnfClausesCreator, failedCnfClausesCreator);
+                conflictCnfClausesCreator, failedCnfClausesCreator, maxFailures);
 
         final def hardContraints = Tuple1.of(StreamEx.<List<FormattableValue<Formattable>>> of()
                 .append(cnfCompilation.compileToCnf())

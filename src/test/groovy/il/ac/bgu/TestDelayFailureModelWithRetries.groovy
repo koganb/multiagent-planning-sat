@@ -21,6 +21,8 @@ import static il.ac.bgu.dataModel.Action.State.FAILED
 class TestDelayFailureModelWithRetries extends Specification {
 
 
+    public static final int FAILED_STEPS_NUM = 1
+    public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
             new Problem("satellite8.problem", [
@@ -39,7 +41,7 @@ class TestDelayFailureModelWithRetries extends Specification {
     @Shared
     def cnfPlanClausesArr = planArr.collect { plan ->
         TestUtils.createPlanHardConstraints(plan, new OneRetryPlanUpdater(), new HealthyCnfClauses(),
-                new ConflictNoEffectsCnfClauses(), new FailedDelayOneStepCnfClauses())
+                new ConflictNoEffectsCnfClauses(), new FailedDelayOneStepCnfClauses(), FAILED_STEPS_NUM)
     }
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -52,7 +54,7 @@ class TestDelayFailureModelWithRetries extends Specification {
 
 
         FinalVariableStateCalc finalVariableStateCalc = new FinalOneRetryVariableStateCalc(
-                plan, new DelayStageVariableFailureModel(1))
+                plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
 
 
         expect:
@@ -64,7 +66,7 @@ class TestDelayFailureModelWithRetries extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 planArr.collect { p ->
-                    new ActionDependencyCalculation(p).getIndependentActionsList(1).collectNested {
+                    new ActionDependencyCalculation(p).getIndependentActionsList(FAILED_STEPS_NUM).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
                     }
                 }

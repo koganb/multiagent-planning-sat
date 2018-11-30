@@ -21,6 +21,7 @@ import static il.ac.bgu.dataModel.Action.State.FAILED
 @Slf4j
 class TestFullRegressionNoEffectVariableFailureModel extends Specification {
 
+    public static final int FAILED_STEPS_NUM = 1
     @Shared
     def problemArr = [
             new Problem("elevator2.problem"),
@@ -74,7 +75,7 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
         log.info("Start hard constarints compilation for plan {}", touple[0].problemName)
 
         def hardConstraints = TestUtils.createPlanHardConstraints(touple[1], new NoRetriesPlanUpdater(), new HealthyCnfClauses(),
-                new ConflictNoEffectsCnfClauses(), new FailedNoEffectsCnfClauses())
+                new ConflictNoEffectsCnfClauses(), new FailedNoEffectsCnfClauses(), FAILED_STEPS_NUM)
 
         log.info("End hard constarints compilation for plan {}", touple[0].problemName)
 
@@ -104,7 +105,7 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 planArr.collect { p ->
-                    new ActionDependencyCalculation(p).getIndependentActionsList(1).collectNested {
+                    new ActionDependencyCalculation(p).getIndependentActionsList(FAILED_STEPS_NUM).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
                     }
                 }

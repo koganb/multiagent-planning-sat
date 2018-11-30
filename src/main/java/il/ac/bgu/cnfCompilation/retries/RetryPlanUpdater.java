@@ -17,6 +17,7 @@ public interface RetryPlanUpdater {
     @AllArgsConstructor
     class RetriesPlanCreatorResult {
         public final Map<Integer, Set<Step>> updatedPlan;
-        public final Map<Action, Action> actionDependencyMap;
+
+        public final Map<Action, Action> actionDependencyMap; //unused
     }
 }

@@ -13,7 +13,6 @@ import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,8 +33,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
     @Override
     public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
                                                                       Step step,
-                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState,
-                                                                      @Nullable Action dependencyAction) {
+                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState) {
 
         log.debug("Start conditions not met clause");
 
