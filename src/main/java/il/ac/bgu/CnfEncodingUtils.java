@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -83,8 +84,8 @@ public class CnfEncodingUtils {
 
 
     public static Pair<Map<Formattable, Integer>, String> encode(
-            ImmutableList<ImmutableList<FormattableValue<Formattable>>> hardConstraints,
-            ImmutableList<FormattableValue<Formattable>> softConstraints) {
+            List<List<FormattableValue<Formattable>>> hardConstraints,
+            List<FormattableValue<Formattable>> softConstraints) {
         Map<Formattable, Integer> planCodes = new HashMap<>();
         MutableInt currentCode = new MutableInt(0);
 

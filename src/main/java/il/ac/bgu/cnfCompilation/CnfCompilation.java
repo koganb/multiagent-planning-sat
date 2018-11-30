@@ -7,13 +7,16 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,20 +48,16 @@ public class CnfCompilation {
     private CnfClausesFunction failedCnfClausesCreator;
     private CnfClausesFunction conflictCnfClausesCreator;
 
-    private FinalVariableStateCalc finalVariableStateCalc;
 
-
-    public CnfCompilation(TreeMap<Integer, Set<Step>> plan,
+    public CnfCompilation(Map<Integer, Set<Step>> plan,
                           RetryPlanUpdater retryPlanUpdater,
                           CnfClausesFunction healthyCnfClausesCreator,
                           CnfClausesFunction conflictCnfClausesCreator,
-                          CnfClausesFunction failedCnfClausesCreator,
-                          FinalVariableStateCalc finalVariableStateCalc) {
+                          CnfClausesFunction failedCnfClausesCreator) {
 
         this.healthyCnfClausesCreator = healthyCnfClausesCreator;
         this.failedCnfClausesCreator = failedCnfClausesCreator;
         this.conflictCnfClausesCreator = conflictCnfClausesCreator;
-        this.finalVariableStateCalc = finalVariableStateCalc;
 
 
         //update plans with retries - if configured
@@ -76,47 +75,51 @@ public class CnfCompilation {
 
 
     public List<FormattableValue<Variable>> calcInitFacts() {
-        return plan.entrySet().stream().filter(i -> i.getKey() == -1).
-                flatMap(t -> t.getValue().stream()).
-                flatMap(t -> t.getPopEffs().stream()).
-                flatMap(eff -> Stream.of(
-                        FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true),
-                        FormattableValue.of(Variable.of(eff, LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
-                        FormattableValue.of(Variable.of(eff, FREEZED.name(), INITIAL_STAGE), false)
-                )).
-                collect(Collectors.toList());
+
+        //true facts added at initial stage
+        Map<String, FormattableValue<Variable>> initStageVars = plan.entrySet().stream()
+                .filter(i -> i.getKey() == -1)
+                .flatMap(t -> t.getValue().stream())
+                .flatMap(t -> t.getPopEffs().stream())
+                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true))
+                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity()));
+
+        //action effects that are not true at initial stage
+        Map<String, FormattableValue<Variable>> allStageVars = plan.entrySet().stream()
+                .filter(i -> i.getKey() != -1)
+                .flatMap(t -> t.getValue().stream())
+                .flatMap(t -> t.getPopEffs().stream())
+                .filter(eff -> !initStageVars.keySet().contains(Variable.of(eff).formatFunctionKeyWithValue()))
+                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), false))
+                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity(), (a, b) -> a));
+
+        //locked and freezed vars for every variable key
+        List<FormattableValue<Variable>> lockedAndFreezedVars = StreamEx.<FormattableValue<Variable>>of()
+                .append(initStageVars.values())
+                .append(allStageVars.values())
+                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKey(), Function.identity(), (a, b) -> a))
+                .values().stream()
+                .flatMap(v ->
+                        Stream.of(
+                                FormattableValue.of(Variable.of(v.getFormattable(), LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
+                                FormattableValue.of(Variable.of(v.getFormattable(), FREEZED.name(), INITIAL_STAGE), false)
+
+                        ))
+                .collect(toList());
+
+        List<FormattableValue<Variable>> initVars = StreamEx.<FormattableValue<Variable>>of()
+                .append(initStageVars.values())
+                .append(allStageVars.values())
+                .append(lockedAndFreezedVars)
+                .collect(Collectors.toList());
+
+        log.debug("Init vars: {} ", initVars);
+
+        return initVars;
+
+
     }
 
-
-    public ImmutableList<FormattableValue<Formattable>> encodeHealthyClauses() {
-
-        ImmutableList<FormattableValue<Formattable>> healthyClauses =
-
-                plan.entrySet().stream().
-                        filter(i -> i.getKey() != -1).
-                        flatMap(entry -> entry.getValue().stream().flatMap(
-                                step -> Stream.of(
-                                        FormattableValue.<Formattable>of(Action.of(step, entry.getKey(), HEALTHY), true)
-                                ))).
-                        collect(ImmutableList.toImmutableList());
-
-        log.trace("healthy clauses {}", healthyClauses);
-        return healthyClauses;
-    }
-
-
-    public ImmutableList<FormattableValue<Formattable>> calcFinalFacts(Collection<Action> failedActions) {
-
-        log.debug("Start final values calculation");
-
-        ImmutableList<FormattableValue<Formattable>> finalValues =
-                finalVariableStateCalc.getFinalVariableState(failedActions);
-        log.debug("Final Values: \n{}", finalValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        log.debug("End final values calculation");
-
-
-        return finalValues;
-    }
 
     Stream<ImmutableList<FormattableValue<Formattable>>> calculatePassThroughClauses(Integer stage, Set<Step> actions) {
         //calculate "pass through" variables
@@ -223,33 +226,27 @@ public class CnfCompilation {
     }
 
 
-    public ImmutableList<ImmutableList<FormattableValue<Formattable>>> compileToCnf() {
-        Stream<ImmutableList<FormattableValue<Formattable>>> cnfClauses =
+    public List<List<FormattableValue<Formattable>>> compileToCnf() {
+        Stream<List<FormattableValue<Formattable>>> cnfClauses =
                 plan.entrySet().stream().
                         filter(i -> i.getKey() != -1).
                         flatMap(entry -> {
-                            return Stream.concat(
-                                    Stream.concat(
-                                            Stream.concat(
-                                                    Stream.concat(
-                                                            Stream.concat(
-                                                                    addActionStatusConstraints(entry.getKey(), entry.getValue()),
-                                                                    executeStageAndAddFluents(entry.getKey(), entry.getValue())),
-                                                            calculatePassThroughClauses(entry.getKey(), entry.getValue())),
-                                                    calculateHealthyClauses(entry.getKey())),
-                                            calculateActionFailedClauses(entry.getKey())),
-                                    calculateConditionsNotMetClauses(entry.getKey())
-                            );
+                            executeStage(entry.getKey(), entry.getValue());
+                            return StreamEx.<List<FormattableValue<Formattable>>>of()
+                                    .append(addActionStatusConstraints(entry.getKey(), entry.getValue()))
+                                    .append(calculatePassThroughClauses(entry.getKey(), entry.getValue()))
+                                    .append(calculateHealthyClauses(entry.getKey()))
+                                    .append(calculateActionFailedClauses(entry.getKey()))
+                                    .append(calculateConditionsNotMetClauses(entry.getKey()));
+
                         });
 
         return cnfClauses.collect(ImmutableList.toImmutableList());
     }
 
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> executeStageAndAddFluents(Integer stage, Set<Step> actions) {
-        log.debug("Add new fluents to the variable state");
-
-        Set<FormattableValue<Formattable>> newFluents = new HashSet<>();
+    void executeStage(Integer stage, Set<Step> actions) {
+        log.debug("Execute stage {} steps {}", stage, actions);
 
         //copy after variables from the previous stage if exist
         if (variablesStateAfterStepExec != null) {
@@ -266,29 +263,6 @@ public class CnfCompilation {
 
             }
         }
-
-        //find the difference between before and after
-        Set<String> beforeKeyWithValue = calcVariableState(variablesStateBeforeStepExec.stream(), stage)
-                .map(var -> var.getFormattable().formatFunctionKeyWithValue())
-                .collect(toSet());
-        calcVariableState(variablesStateAfterStepExec.stream(), stage + 1)
-                .filter(var -> !beforeKeyWithValue.contains(
-                        var.getFormattable().formatFunctionKeyWithValue()))
-                .forEach(var -> {
-                    Variable variable = var.getFormattable().toBuilder().stage(stage).build();
-                    newFluents.add(FormattableValue.of(variable, false));
-
-                    Variable lockedVariable = variable.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).build();
-                    //this is new variable key
-                    if (!beforeKeyWithValue.contains(lockedVariable.formatFunctionKeyWithValue())) {
-                        newFluents.add(FormattableValue.of(lockedVariable, false));
-                    }
-                });
-
-
-        log.debug("Adding effect to the var state {}\n", newFluents.stream().map(Objects::toString).collect(Collectors.joining("\n")));
-
-        return newFluents.stream().map(ImmutableList::of);
     }
 
 

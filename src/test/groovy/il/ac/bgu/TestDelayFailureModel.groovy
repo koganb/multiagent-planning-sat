@@ -3,8 +3,11 @@ package il.ac.bgu
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
+import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.dataModel.Action
+import il.ac.bgu.variableModel.DelayStageVariableFailureModel
+import il.ac.bgu.variablesCalculation.ActionUtils
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
 import spock.lang.Shared
 import spock.lang.Specification
@@ -58,34 +61,33 @@ class TestDelayFailureModel extends Specification {
     def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
 
     @Shared
-    def healthyCnfClausesArr = (0..problemArr.size()).collect { new HealthyCnfClauses() }
+    def cnfPlanClausesArr = planArr.collect { plan ->
+        TestUtils.createPlanHardConstraints(plan, new NoRetriesPlanUpdater(), new HealthyCnfClauses(),
+                new ConflictNoEffectsCnfClauses(), new FailedDelayOneStepCnfClauses())
+    }
 
-    @Shared
-    def conflictCnfClausesArr = (0..problemArr.size()).collect { new ConflictNoEffectsCnfClauses() }
-
-    @Shared
-    def failedCnfClausesArr = (0..problemArr.size()).collect { new FailedDelayOneStepCnfClauses() }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
-            problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions) {
+            problemName, plan, cnfPlanClauses, failedActions) {
         setup:
         println "Failed actions:" + failedActions
         TestUtils.printPlan(plan)
 
+        assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
+
+
+        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(1))
+
         expect:
-        assert TestUtils.checkSolution(plan, new NoRetriesPlanUpdater(),
-                healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator,
-                new FinalNoRetriesVariableStateCalc(plan, failedCnfClausesCreator.variableModel),
-                failedActions)
+        assert TestUtils.checkSolution(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+
 
         where:
-        [problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions] << [
+        [problemName, plan, cnfPlanClauses, failedActions] << [
                 problemArr,
                 planArr,
-                healthyCnfClausesArr,
-                conflictCnfClausesArr,
-                failedCnfClausesArr,
+                cnfPlanClausesArr,
                 planArr.collect { p ->
                     new ActionDependencyCalculation(p).getIndependentActionsList(1).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
@@ -99,13 +101,13 @@ class TestDelayFailureModel extends Specification {
         .collect { it.combinations() }
                 .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2], res[3], res[4], res[5][0]]
+            res -> [res[0], res[1], res[2], res[3][0]]
         }
         .findAll {
-            res -> res[5].intersect(res[0].ignoreFailedActions) == []
+            res -> res[3].intersect(res[0].ignoreFailedActions) == []
         }
         .collect {
-            res -> [res[0].problemName, res[1], res[2], res[3], res[4], res[5]]
+            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
         }
     }
 

@@ -1,9 +1,12 @@
 package il.ac.bgu;
 
 import com.google.common.collect.Streams;
+import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Variable;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -13,6 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 public class ActionDependencyCalculation {
 
     private Map<ActionKey, Set<Action>> actionDependenciesFull = new HashMap<>();
@@ -29,16 +33,19 @@ public class ActionDependencyCalculation {
                     ActionKey actionKey = new ActionKey(action);
                     actionDependencies.computeIfAbsent(actionKey, k -> new HashSet<>());
 
-                    pair.getRight().getPopPrecs().forEach(prec -> {
-                        VariableKey preconditionKey = new VariableKey(Variable.of(prec));
-                        Action dependentAction = preconditionsToAction.get(preconditionKey);
-                        if (dependentAction != null) {
-                                    //add dependent steps
-                            actionDependencies.get(actionKey).add(dependentAction);
-                                }
-                        preconditionsToAction.put(preconditionKey, action);
-                            }
-                    );
+                    pair.getRight().getPopPrecs().stream()
+                            //remove action dependency (that we added) from action dependency calculation
+                            .filter(prec -> !prec.getFunction().getName().equals(AgentPOPPrecEffFactory.ACTION_NAME))
+                            .forEach(prec -> {
+                                        VariableKey preconditionKey = new VariableKey(Variable.of(prec));
+                                        Action dependentAction = preconditionsToAction.get(preconditionKey);
+                                        if (dependentAction != null && !new ActionKey(dependentAction).equals(actionKey)) {
+                                            //add dependent steps
+                                            actionDependencies.get(actionKey).add(dependentAction);
+                                        }
+                                        preconditionsToAction.put(preconditionKey, action);
+                                    }
+                            );
                 });
         actionDependencies.keySet().forEach(dependency ->
                 createActionDependenciesFull(actionDependencies, dependency, dependency));
@@ -46,8 +53,9 @@ public class ActionDependencyCalculation {
 
     private void createActionDependenciesFull(Map<ActionKey, Set<Action>> actionDependencies,
                                               ActionKey actionKey, ActionKey currAction) {
+
         Set<Action> dependencies = actionDependencies.get(currAction);
-        if (dependencies != null) {
+        if (CollectionUtils.isNotEmpty(dependencies)) {
             actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>()).
                     addAll(dependencies);
             dependencies.forEach(dependency ->
@@ -75,10 +83,13 @@ public class ActionDependencyCalculation {
                 })
 
                 .collect(Collectors.toList());
+
+
         return independentActions;
     }
 
     @EqualsAndHashCode(of = "variableKey")
+    @ToString
     private static class VariableKey {
         private String variableKey;
 
@@ -88,6 +99,7 @@ public class ActionDependencyCalculation {
     }
 
     @EqualsAndHashCode(of = "actionKey")
+    @ToString
     private static class ActionKey {
         private String actionKey;
         private Action action;

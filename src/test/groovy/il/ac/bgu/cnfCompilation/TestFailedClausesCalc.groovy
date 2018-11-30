@@ -22,7 +22,7 @@ class TestFailedClausesCalc extends Specification {
         CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
 
         when:
-        cnfCompilation.executeStageAndAddFluents(step, plan.get(step))
+        cnfCompilation.executeStage(step, plan.get(step))
 
         then:
         cnfCompilation.calculateActionFailedClauses(step, plan.get(step))

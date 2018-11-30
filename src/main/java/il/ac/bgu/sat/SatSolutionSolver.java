@@ -15,6 +15,7 @@ import org.sat4j.specs.IProblem;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public class SatSolutionSolver implements SatSolutionSolverInter {
 
     @Override
-    public Optional<ImmutableList<Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap) {
+    public Optional<List<Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap) {
         WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
         //solver.setVerbose(true);
         Reader reader = new WDimacsReader(solver);

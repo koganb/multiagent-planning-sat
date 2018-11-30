@@ -3,6 +3,7 @@ package il.ac.bgu
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
+import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import spock.lang.Shared
@@ -51,7 +52,7 @@ class TestNoEffectVariableFailureModel extends Specification {
 
 
         expect:
-        assert TestUtils.checkSolution(plan, healthyCnfClausesCreator, conflictCnfClausesCreator,
+        assert TestUtils.checkSolution(plan, new NoRetriesPlanUpdater(), healthyCnfClausesCreator, conflictCnfClausesCreator,
                 failedCnfClausesCreator, finalVariableStateCalc, failedActions)
 
         where:

@@ -1,12 +1,15 @@
 package il.ac.bgu
 
+import groovy.util.logging.Slf4j
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
+import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.dataModel.Action
+import il.ac.bgu.variableModel.NoEffectVariableFailureModel
+import il.ac.bgu.variablesCalculation.ActionUtils
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
-import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -15,6 +18,7 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
+@Slf4j
 class TestFullRegressionNoEffectVariableFailureModel extends Specification {
 
     @Shared
@@ -66,36 +70,39 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
     def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
 
     @Shared
-    def healthyCnfClausesArr = (0..problemArr.size()).collect { new HealthyCnfClauses() }
+    def cnfPlanClausesArr = [problemArr, planArr].transpose().collect { touple ->
+        log.info("Start hard constarints compilation for plan {}", touple[0].problemName)
 
-    @Shared
-    def conflictCnfClausesArr = (0..problemArr.size()).collect { new ConflictNoEffectsCnfClauses() }
+        def hardConstraints = TestUtils.createPlanHardConstraints(touple[1], new NoRetriesPlanUpdater(), new HealthyCnfClauses(),
+                new ConflictNoEffectsCnfClauses(), new FailedNoEffectsCnfClauses())
 
-    @Shared
-    def failedCnfClausesArr = (0..problemArr.size()).collect { new FailedNoEffectsCnfClauses() }
+        log.info("End hard constarints compilation for plan {}", touple[0].problemName)
+
+        return hardConstraints
+
+
+    }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
-            problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions) {
+            problemName, plan, cnfPlanClauses, failedActions) {
         setup:
         println "Failed actions:" + failedActions
         TestUtils.printPlan(plan)
 
-        FinalVariableStateCalc finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
-                plan, failedCnfClausesCreator.getVariableModel())
+        assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
+        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
 
         expect:
-        assert TestUtils.checkSolution(plan, new NoRetriesPlanUpdater(), healthyCnfClausesCreator, conflictCnfClausesCreator,
-                failedCnfClausesCreator, finalVariableStateCalc, failedActions)
+        assert TestUtils.checkSolution(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+
 
         where:
-        [problemName, plan, healthyCnfClausesCreator, conflictCnfClausesCreator, failedCnfClausesCreator, failedActions] << [
+        [problemName, plan, cnfPlanClauses, failedActions] << [
                 problemArr,
                 planArr,
-                healthyCnfClausesArr,
-                conflictCnfClausesArr,
-                failedCnfClausesArr,
+                cnfPlanClausesArr,
                 planArr.collect { p ->
                     new ActionDependencyCalculation(p).getIndependentActionsList(1).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
@@ -109,13 +116,13 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
         .collect { it.combinations() }
                 .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2], res[3], res[4], res[5][0]]
+            res -> [res[0], res[1], res[2], res[3][0]]
         }
         .findAll {
-            res -> res[5].intersect(res[0].ignoreFailedActions) == []
+            res -> res[3].intersect(res[0].ignoreFailedActions) == []
         }
         .collect {
-            res -> [res[0].problemName, res[1], res[2], res[3], res[4], res[5]]
+            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
         }
     }
 

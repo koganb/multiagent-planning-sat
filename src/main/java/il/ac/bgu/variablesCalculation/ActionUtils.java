@@ -13,8 +13,8 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import static il.ac.bgu.dataModel.Action.State.CONDITIONS_NOT_MET;
@@ -133,7 +133,7 @@ public class ActionUtils {
     }
 
 
-    static public boolean checkPlanContainsFailedActions(TreeMap<Integer, Set<Step>> plan, Collection<Action> failedActions) {
+    static public boolean checkPlanContainsFailedActions(Map<Integer, Set<Step>> plan, Collection<Action> failedActions) {
 
         Collection<Action> allPlanActions = plan.entrySet().stream()
                 .flatMap(entry -> entry.getValue().stream()

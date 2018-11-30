@@ -1,12 +1,8 @@
 package il.ac.bgu;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
-import il.ac.bgu.cnfCompilation.CnfCompilation;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
-import il.ac.bgu.dataModel.FormattableValue;
-import il.ac.bgu.dataModel.Variable;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.agents.MAPboot;
 import org.agreement_technologies.common.map_planner.Step;
@@ -14,7 +10,6 @@ import org.agreement_technologies.service.map_planner.POPAction;
 import org.agreement_technologies.service.map_planner.POPStep;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.sat4j.maxsat.SolverFactory;
@@ -106,35 +101,29 @@ public class SatSolver {
 //    }
 
 
-
-
-    public static Pair<ImmutableList<ImmutableList<FormattableValue<Formattable>>>,
-            ImmutableList<FormattableValue<Formattable>>> compilePlanToCnf(CnfCompilation cnfCompilation, Collection<Action> failedActions) {
-
-
-        Collection<FormattableValue<Variable>> initFacts = cnfCompilation.calcInitFacts();
-        Collection<FormattableValue<Formattable>> finalFacts = cnfCompilation.calcFinalFacts(failedActions);
-
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> planCnfCompilation = cnfCompilation.compileToCnf();
-
-        Stream<ImmutableList<FormattableValue<Formattable>>> fullPlanCnfCompilationStream =
-                Stream.concat(
-                        Stream.concat(
-                                initFacts.stream().map(t ->
-                                        ImmutableList.of(FormattableValue.of(t.getFormattable(), t.getValue()))),
-                                planCnfCompilation.stream()
-                        ),
-                        finalFacts.stream().map(ImmutableList::of)
-                );
-
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> fullPlanCnfCompilation =
-                fullPlanCnfCompilationStream.collect(ImmutableList.toImmutableList());
-
-        log.debug("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-        ImmutableList<FormattableValue<Formattable>> healthClauses = cnfCompilation.encodeHealthyClauses();
-        log.debug("healthy clauses:\n{}", healthClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
-
-        return ImmutablePair.of(fullPlanCnfCompilation, healthClauses);
+//    public static Pair<List<List<FormattableValue<Formattable>>>,
+//            List<FormattableValue<Formattable>>> compilePlanToCnf(CnfCompilation cnfCompilation, Collection<Action> failedActions) {
+//
+//
+//        Collection<FormattableValue<Variable>> initFacts = cnfCompilation.calcInitFacts();
+//
+//        List<List<FormattableValue<Formattable>>> planCnfCompilation = cnfCompilation.compileToCnf();
+//
+//        Stream<List<FormattableValue<Formattable>>> fullPlanCnfCompilationStream =
+//                StreamEx.<List<FormattableValue<Formattable>>>of()
+//                        .append(initFacts.stream().map(t ->
+//                                        ImmutableList.of(FormattableValue.of(t.getFormattable(), t.getValue()))))
+//                        .append(planCnfCompilation.stream());
+//
+//
+//        List<List<FormattableValue<Formattable>>> fullPlanCnfCompilation =
+//                fullPlanCnfCompilationStream.collect(ImmutableList.toImmutableList());
+//
+//        log.debug("cnf clauses:\n{}", fullPlanCnfCompilation.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+//        ImmutableList<FormattableValue<Formattable>> healthClauses = cnfCompilation.encodeHealthyClauses();
+//        log.debug("healthy clauses:\n{}", healthClauses.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
+//
+//        return ImmutablePair.of(fullPlanCnfCompilation, healthClauses);
 
 
         /*
@@ -170,7 +159,7 @@ public class SatSolver {
         */
         //return cnfEncoding;
 
-    }
+    //}
 
 
     public static Set<Formattable> runSatSolver(String cnfPlan, Map<Formattable, Integer> codeMap) {

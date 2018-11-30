@@ -21,7 +21,7 @@ class TestPassThroughClausesCalc extends Specification {
         CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
 
         when:
-        cnfCompilation.executeStageAndAddFluents(step, plan.get(step))
+        cnfCompilation.executeStage(step, plan.get(step))
 
         then:
         cnfCompilation.calculatePassThroughClauses(step, plan.get(step))

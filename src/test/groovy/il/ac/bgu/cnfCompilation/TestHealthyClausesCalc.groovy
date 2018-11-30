@@ -21,7 +21,7 @@ class TestHealthyClausesCalc extends Specification {
         CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
 
         when:
-        cnfCompilation.executeStageAndAddFluents(step, plan.get(step))
+        cnfCompilation.executeStage(step, plan.get(step))
 
         then:
         cnfCompilation.calculateHealthyClauses(step, plan.get(step))

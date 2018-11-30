@@ -10,25 +10,22 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 
 @Slf4j
-public class SolutionIterator implements Iterator<Optional<ImmutableList<Formattable>>> {
+public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
 
     //immutable
-    private final ImmutableList<ImmutableList<FormattableValue<Formattable>>> hardConstraints;
-    private final ImmutableList<FormattableValue<Formattable>> softConstraints;
+    private final List<List<FormattableValue<Formattable>>> hardConstraints;
+    private final List<FormattableValue<Formattable>> softConstraints;
     private final SatSolutionSolverInter satSolutionSolver;
 
     //mutable
     LinkedHashSet<NodeData> constraintsQueue = new LinkedHashSet<>();
 
-    public SolutionIterator(ImmutableList<ImmutableList<FormattableValue<Formattable>>> hardConstraints,
-                            ImmutableList<FormattableValue<Formattable>> softConstraints,
+    public SolutionIterator(List<List<FormattableValue<Formattable>>> hardConstraints,
+                            List<FormattableValue<Formattable>> softConstraints,
                             SatSolutionSolverInter satSolutionSolver) {
         this.hardConstraints = hardConstraints;
         this.softConstraints = softConstraints;
@@ -40,7 +37,7 @@ public class SolutionIterator implements Iterator<Optional<ImmutableList<Formatt
 
 
     @Override
-    public Optional<ImmutableList<Formattable>> next() {
+    public Optional<List<Formattable>> next() {
 
         assert constraintsQueue.size() > 0;   //guarded by hasNext
 
@@ -50,7 +47,7 @@ public class SolutionIterator implements Iterator<Optional<ImmutableList<Formatt
 
         Pair<Map<Formattable, Integer>, String> cnfEncoding =
                 CnfEncodingUtils.encode(
-                        ImmutableList.<ImmutableList<FormattableValue<Formattable>>>builder().
+                        ImmutableList.<List<FormattableValue<Formattable>>>builder().
                                 addAll(hardConstraints).
                                 addAll(headNode.getAdditionalConstraints()).
                                 build(),
@@ -60,14 +57,16 @@ public class SolutionIterator implements Iterator<Optional<ImmutableList<Formatt
         log.debug("Code Map:\n{}\n", cnfEncoding.getLeft());
 
         //get new solution
-        Optional<ImmutableList<Formattable>> diagnosisCandidates = satSolutionSolver.solveCnf(
+        Optional<List<Formattable>> diagnosisCandidates = satSolutionSolver.solveCnf(
                 cnfEncoding.getRight(),
                 cnfEncoding.getLeft());
+
+        log.info("Solution candidate found: {}", diagnosisCandidates.isPresent());
 
         //add new contraints to the queue
         diagnosisCandidates.ifPresent(candidatesSet ->
                 candidatesSet.forEach(constraint -> constraintsQueue.add(
-                        new NodeData(ImmutableList.<ImmutableList<FormattableValue<Formattable>>>builder().
+                        new NodeData(ImmutableList.<List<FormattableValue<Formattable>>>builder().
                                 addAll(headNode.getAdditionalConstraints().iterator()).
                                 add(ImmutableList.of(FormattableValue.of(constraint, false))).
                                 build()
@@ -92,7 +91,7 @@ public class SolutionIterator implements Iterator<Optional<ImmutableList<Formatt
     @AllArgsConstructor
     @EqualsAndHashCode
     static class NodeData {
-        private ImmutableList<ImmutableList<FormattableValue<Formattable>>> additionalConstraints;
+        private List<List<FormattableValue<Formattable>>> additionalConstraints;
 
     }
 }

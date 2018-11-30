@@ -13,17 +13,20 @@ import il.ac.bgu.variableModel.VariableModelFunction;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
 public class FinalOneRetryVariableStateCalc implements FinalVariableStateCalc {
-    private TreeMap<Integer, Set<Step>> plan;
+    private Map<Integer, Set<Step>> plan;
     private VariableModelFunction failureModelFunction;
     private VariableModelFunction conflictModelFunction = new NoEffectVariableFailureModel();
     private VariableModelFunction successModelFunction = new SuccessVariableModel();
 
-    public FinalOneRetryVariableStateCalc(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
+    public FinalOneRetryVariableStateCalc(Map<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
         this.plan = plan;
         this.failureModelFunction = failureModelFunction;
     }

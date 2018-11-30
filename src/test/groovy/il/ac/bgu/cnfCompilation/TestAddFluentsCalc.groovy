@@ -22,7 +22,7 @@ class TestAddFluentsCalc extends Specification {
         CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
 
         expect:
-        cnfCompilation.executeStageAndAddFluents(step, plan.get(step))
+        cnfCompilation.executeStage(step, plan.get(step))
                 .map({ l -> l.stream().map({ v -> v.toString() }).sorted().collect(Collectors.joining(",")) })
                 .sorted()
                 .collect(Collectors.toList()) == expectedClauses

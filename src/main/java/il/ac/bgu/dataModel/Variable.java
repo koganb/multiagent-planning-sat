@@ -27,8 +27,6 @@ public class Variable implements Formattable {
         // (can be conditioned but not updated)
     }
 
-    //public static final String LOCKED_FOR_UPDATE = "LOCKED_FOR_UPDATE";
-    //public static final String FREEZED = "FREEZED";
 
 
     @Nullable
@@ -49,6 +47,10 @@ public class Variable implements Formattable {
     private Variable(POPPrecEff eff) {
         this.functionKey = eff.getFunction().toKey();
         this.functionValue = eff.getValue();
+    }
+
+    public static Variable of(Variable variable, String functionValue, Integer stage) {
+        return new Variable(stage, variable.functionKey, functionValue);
     }
 
     public static Variable of(POPPrecEff eff) {

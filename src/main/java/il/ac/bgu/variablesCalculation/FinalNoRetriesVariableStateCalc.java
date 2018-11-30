@@ -15,17 +15,16 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 
 public class FinalNoRetriesVariableStateCalc implements FinalVariableStateCalc {
-    private TreeMap<Integer, Set<Step>> plan;
+    private Map<Integer, Set<Step>> plan;
     private VariableModelFunction failureModelFunction;
     private VariableModelFunction conflictModelFunction = new NoEffectVariableFailureModel();
     private VariableModelFunction successModelFunction = new SuccessVariableModel();
 
-    public FinalNoRetriesVariableStateCalc(TreeMap<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
+    public FinalNoRetriesVariableStateCalc(Map<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
         this.plan = plan;
         this.failureModelFunction = failureModelFunction;
     }
