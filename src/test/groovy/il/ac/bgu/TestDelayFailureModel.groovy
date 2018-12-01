@@ -108,7 +108,7 @@ class TestDelayFailureModel extends Specification {
             problemName, plan, cnfPlanClauses, failedActions) {
         setup:
 
-        TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions,
+        TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
                 conflictRetriesModel, conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
         TestUtils.printPlan(plan)
 
@@ -123,7 +123,8 @@ class TestDelayFailureModel extends Specification {
                 .collect(Collectors.toList())
 
 
-        log.info(MarkerFactory.getMarker("STATS"), "  number_of_solutions: {}", solutions.size())
+        log.info(MarkerFactory.getMarker("STATS"), "  solution: ")
+        log.info(MarkerFactory.getMarker("STATS"), "    number_of_solutions: {}", solutions.size())
 
         def foundSolution = solutions.stream().filter { solution ->
             failedActions.stream()
@@ -133,7 +134,7 @@ class TestDelayFailureModel extends Specification {
         .findFirst()
         assert foundSolution.isPresent()
 
-        log.info(MarkerFactory.getMarker("STATS"), "  solution_index: {}", solutions.indexOf(foundSolution.get()))
+        log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
 
 
         where:

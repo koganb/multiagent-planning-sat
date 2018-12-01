@@ -84,11 +84,10 @@ class TestUtils {
             }.collect(Collectors.joining("\n")))
         }
 
-
         def solutionIterator = new SolutionIterator(hardConstraintsWithFinal, softConstraints, new SatSolutionSolver())
 
 
-        log.info(getMarker("STATS"), "    sat_solving_mils:");
+        log.info(getMarker("STATS"), "    sat_solving_mils:")
         return Streams.stream(solutionIterator).
                 filter { solution -> solution.isPresent() }.
                 map { solution -> solution.get() }.
@@ -180,29 +179,42 @@ class TestUtils {
     }
 
 
-    def static createStatsLogging(problemName, plan, planClausesCreationTime, failedActions,
+    def static createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
                                   conflictRetriesModel, conflictClausesCreator, failedClausesCreator, maxFailedActionNumber) {
-        log.info(getMarker("STATS"), "- problem: {}", problemName)
-        log.info(getMarker("STATS"), "  plan_properties:")
-        log.info(getMarker("STATS"), "    failed_actions: \"{}\"", failedActions)
-        log.info(getMarker("STATS"), "    number_of_steps: {}", plan.size() - 1) //-1 for initial action
-        log.info(getMarker("STATS"), "    number_of_actions: {}",
-                plan.values().stream().flatMap { v -> v.stream() }.count() - 1)
-        log.info(getMarker("STATS"), "    number_of_agents: {}",
-                plan.values().stream()
-                        .flatMap { v -> v.stream() }
-                        .map { v -> v.getAgent() }
-                        .filter { v -> v != null }
-                        .distinct()
-                        .count())
-        log.info(getMarker("STATS"), "  cnf_model_details: ")
-        log.info(getMarker("STATS"), "    failure_model: {}", failedClausesCreator.getName())
-        log.info(getMarker("STATS"), "    conflict_model: {}", conflictClausesCreator.getName())
-        log.info(getMarker("STATS"), "    conflict_retries_model: {}", conflictRetriesModel.getName())
-        log.info(getMarker("STATS"), "    max_failures_restriction: {}", maxFailedActionNumber)
-        log.info(getMarker("STATS"), "  execution_time:")
-        log.info(getMarker("STATS"), "    cnf_compilation_mils: {}", planClausesCreationTime[problemName])
+        if (log.infoEnabled) {
 
+            log.info(getMarker("STATS"), "- problem: {}", problemName)
+            log.info(getMarker("STATS"), "  plan_properties:")
+            log.info(getMarker("STATS"), "    failed_actions: \"{}\"", failedActions)
+            log.info(getMarker("STATS"), "    number_of_steps: {}", plan.size() - 1) //-1 for initial action
+            log.info(getMarker("STATS"), "    number_of_actions: {}",
+                    plan.values().stream().flatMap { v -> v.stream() }.count() - 1)
+            log.info(getMarker("STATS"), "    number_of_agents: {}",
+                    plan.values().stream()
+                            .flatMap { v -> v.stream() }
+                            .map { v -> v.getAgent() }
+                            .filter { v -> v != null }
+                            .distinct()
+                            .count())
+            log.info(getMarker("STATS"), "  cnf_model_details: ")
+            log.info(getMarker("STATS"), "    failure_model: {}", failedClausesCreator.getName())
+            log.info(getMarker("STATS"), "    conflict_model: {}", conflictClausesCreator.getName())
+            log.info(getMarker("STATS"), "    conflict_retries_model: {}", conflictRetriesModel.getName())
+            log.info(getMarker("STATS"), "    max_failures_restriction: {}", maxFailedActionNumber)
+
+            log.info(getMarker("STATS"), "  cnf:")
+            log.info(getMarker("STATS"), "    clauses_num: {}", cnfPlanClauses.size())
+            log.info(getMarker("STATS"), "    variables_num: {}", cnfPlanClauses.stream()
+                    .flatMap { l -> l.stream() }
+                    .map { v -> v.getFormattable().formatData() }
+                    .distinct()
+                    .count())
+
+
+            log.info(getMarker("STATS"), "  execution_time:")
+            log.info(getMarker("STATS"), "    cnf_compilation_mils: {}", planClausesCreationTime[problemName])
+
+        }
     }
 }
 
