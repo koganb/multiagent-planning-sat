@@ -3,6 +3,7 @@ package il.ac.bgu.cnfClausesModel.conflict;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
+import il.ac.bgu.cnfClausesModel.NamedModel;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -27,7 +28,7 @@ import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @SuppressWarnings("UnstableApiUsage")
 @Slf4j
-public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
+public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedModel {
 
 
     @Override
@@ -159,5 +160,10 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction {
     @Override
     public VariableModelFunction getVariableModel() {
         throw new NotImplementedException("TBD");
+    }
+
+    @Override
+    public String getName() {
+        return "no effects model";
     }
 }

@@ -12,4 +12,9 @@ public class FailedDelayOneStepCnfClauses extends FailureCnfClauses {
     public VariableModelFunction getVariableModel() {
         return failureModel;
     }
+
+    @Override
+    public String getName() {
+        return "delay one step";
+    }
 }

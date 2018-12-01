@@ -3,6 +3,7 @@ package il.ac.bgu.cnfClausesModel.healthy;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
+import il.ac.bgu.cnfClausesModel.NamedModel;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -12,6 +13,7 @@ import il.ac.bgu.variableModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Set;
@@ -27,7 +29,7 @@ import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @SuppressWarnings("UnstableApiUsage")
 @Slf4j
-public class HealthyCnfClauses implements CnfClausesFunction {
+public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
 
     private SuccessVariableModel successVariableModel = new SuccessVariableModel();
 
@@ -91,5 +93,10 @@ public class HealthyCnfClauses implements CnfClausesFunction {
     @Override
     public VariableModelFunction getVariableModel() {
         return successVariableModel;
+    }
+
+    @Override
+    public String getName() {
+        throw new NotImplementedException("");
     }
 }

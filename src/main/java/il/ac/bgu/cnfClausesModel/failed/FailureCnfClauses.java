@@ -3,6 +3,7 @@ package il.ac.bgu.cnfClausesModel.failed;
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
+import il.ac.bgu.cnfClausesModel.NamedModel;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -32,7 +33,7 @@ import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECON
 import static java.util.stream.Collectors.toList;
 
 @Slf4j
-public abstract class FailureCnfClauses implements CnfClausesFunction {
+public abstract class FailureCnfClauses implements CnfClausesFunction, NamedModel {
 
     protected VariableModelFunction failureModel;
 

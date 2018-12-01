@@ -2,7 +2,6 @@ package il.ac.bgu
 
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Streams
-import groovy.util.logging.Slf4j
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfCompilation.CnfCompilation
 import il.ac.bgu.cnfCompilation.PlanUtils
@@ -16,15 +15,21 @@ import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import one.util.streamex.StreamEx
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.time.Duration
+import java.time.Instant
 import java.util.stream.Collectors
+import java.util.stream.Stream
 
-import static il.ac.bgu.dataModel.Action.State.FAILED
+import static org.slf4j.MarkerFactory.getMarker
 
-@Slf4j
 class TestUtils {
+    private static final Logger log = LoggerFactory.getLogger(TestUtils.class);
+
 
     static class Problem {
         String problemName
@@ -49,15 +54,19 @@ class TestUtils {
 
     }
 
-    static Boolean checkSolution(List<List<FormattableValue<Formattable>>> hardConstraints,
-                                 List<FormattableValue<Formattable>> softConstraints,
-                                 FinalVariableStateCalc finalVariableStateCalc,
-                                 Collection<Action> failedActions) {
+    static Stream<List<Formattable>> calculateSolutions(List<List<FormattableValue<Formattable>>> hardConstraints,
+                                                        List<FormattableValue<Formattable>> softConstraints,
+                                                        FinalVariableStateCalc finalVariableStateCalc,
+                                                        Collection<Action> failedActions) {
 
 
         log.info 'final facts calculation'
+
+
+        Instant start = Instant.now()
         ImmutableList<FormattableValue<Formattable>> finalFacts =
                 finalVariableStateCalc.getFinalVariableState(failedActions);
+        log.info(getMarker("STATS"), "    final_var_state_calc_mils: {}", Duration.between(start, Instant.now()).toMillis());
 
         //noinspection GroovyAssignabilityCheck
         List<List<FormattableValue<Formattable>>> hardConstraintsWithFinal =
@@ -79,11 +88,11 @@ class TestUtils {
         def solutionIterator = new SolutionIterator(hardConstraintsWithFinal, softConstraints, new SatSolutionSolver())
 
 
-        log.info 'start SAT solving'
+        log.info(getMarker("STATS"), "    sat_solving_mils:");
         return Streams.stream(solutionIterator).
                 filter { solution -> solution.isPresent() }.
                 map { solution -> solution.get() }.
-                filter { solution ->
+                peek { solution ->
                     log.info 'Solution candidate: {}', solution
 
                     def solutionFinalVariablesState = finalVariableStateCalc.getFinalVariableState(solution)
@@ -94,34 +103,26 @@ class TestUtils {
                                 finalFacts - solutionFinalVariablesState)
 
                     }
-
-                    log.info("Solution candidate: {}", solution)
-
-                    return (!solution.isEmpty() &&
-                            failedActions.stream()
-                                    .map({ t -> t.toBuilder().state(FAILED).build() })
-                                    .collect(Collectors.toSet()).containsAll(solution))
                 }
-        .findFirst()
-                .isPresent()
+
 
     }
 
     static Map<Integer, Set<Step>> loadPlan(planName) {
         log.info("Start loading plan {}", planName)
 
-        def serPlanFileName = planName + ".ser"
+        def serPlanFileName = String.format("plans/%s.ser", planName)
         TreeMap<Integer, Set<Step>> plan
-        if (!new File(serPlanFileName).exists()) {
+        if (TestUtils.class.getClassLoader().getResource(serPlanFileName) == null) {
             String[] agentDefs = Files.readAllLines(
-                    Paths.get(this.getClass().getClassLoader().getResource("problems/" + planName).toURI())).stream().
+                    Paths.get(TestUtils.class.getClassLoader().getResource("problems/" + planName).toURI())).stream().
                     flatMap({ t -> Arrays.stream(t.split("\t")) }).
                     collect(Collectors.toList()).toArray(new String[0])
 
             plan = SatSolver.calculateSolution(agentDefs)
             SerializationUtils.serialize(plan, new FileOutputStream(serPlanFileName))
         } else {
-            plan = SerializationUtils.deserialize(new FileInputStream(serPlanFileName))
+            plan = SerializationUtils.deserialize(TestUtils.class.getClassLoader().getResourceAsStream(serPlanFileName))
         }
 
         //add agent to preconditions and effects of every action to prevent action collisions in delay failure model
@@ -175,6 +176,32 @@ class TestUtils {
                 .collect(ImmutableList.toImmutableList()))
 
         return hardContraints
+
+    }
+
+
+    def static createStatsLogging(problemName, plan, planClausesCreationTime, failedActions,
+                                  conflictRetriesModel, conflictClausesCreator, failedClausesCreator, maxFailedActionNumber) {
+        log.info(getMarker("STATS"), "- problem: {}", problemName)
+        log.info(getMarker("STATS"), "  plan_properties:")
+        log.info(getMarker("STATS"), "    failed_actions: \"{}\"", failedActions)
+        log.info(getMarker("STATS"), "    number_of_steps: {}", plan.size() - 1) //-1 for initial action
+        log.info(getMarker("STATS"), "    number_of_actions: {}",
+                plan.values().stream().flatMap { v -> v.stream() }.count() - 1)
+        log.info(getMarker("STATS"), "    number_of_agents: {}",
+                plan.values().stream()
+                        .flatMap { v -> v.stream() }
+                        .map { v -> v.getAgent() }
+                        .filter { v -> v != null }
+                        .distinct()
+                        .count())
+        log.info(getMarker("STATS"), "  cnf_model_details: ")
+        log.info(getMarker("STATS"), "    failure_model: {}", failedClausesCreator.getName())
+        log.info(getMarker("STATS"), "    conflict_model: {}", conflictClausesCreator.getName())
+        log.info(getMarker("STATS"), "    conflict_retries_model: {}", conflictRetriesModel.getName())
+        log.info(getMarker("STATS"), "    max_failures_restriction: {}", maxFailedActionNumber)
+        log.info(getMarker("STATS"), "  execution_time:")
+        log.info(getMarker("STATS"), "    cnf_compilation_mils: {}", planClausesCreationTime[problemName])
 
     }
 }

@@ -114,4 +114,9 @@ public class OneRetryPlanUpdater implements RetryPlanUpdater {
                         Pair::getKey,
                         Collectors.mapping(Pair::getValue, Collectors.toSet())));
     }
+
+    @Override
+    public String getName() {
+        return "one retry";
+    }
 }

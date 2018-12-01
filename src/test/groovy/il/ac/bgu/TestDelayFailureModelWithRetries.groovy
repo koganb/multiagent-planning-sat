@@ -58,7 +58,7 @@ class TestDelayFailureModelWithRetries extends Specification {
 
 
         expect:
-        assert TestUtils.checkSolution(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+        assert TestUtils.calculateSolutions(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
 
         where:
         [problemName, plan, cnfPlanClauses, failedActions] << [

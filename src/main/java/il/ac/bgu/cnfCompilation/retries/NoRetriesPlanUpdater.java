@@ -15,4 +15,9 @@ public class NoRetriesPlanUpdater implements RetryPlanUpdater {
     public RetriesPlanCreatorResult updatePlan(Map<Integer, Set<Step>> originalPlan) {
         return new RetriesPlanCreatorResult(originalPlan, ImmutableMap.of());
     }
+
+    @Override
+    public String getName() {
+        return "no retries";
+    }
 }

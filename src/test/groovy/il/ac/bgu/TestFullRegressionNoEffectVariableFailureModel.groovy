@@ -96,7 +96,7 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
         def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
 
         expect:
-        assert TestUtils.checkSolution(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+        assert TestUtils.calculateSolutions(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
 
 
         where:

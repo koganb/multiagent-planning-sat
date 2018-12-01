@@ -7,14 +7,20 @@ import il.ac.bgu.dataModel.FormattableValue;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
+import static org.slf4j.MarkerFactory.getMarker;
 
-@Slf4j
+
 public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
+
+    private static final Logger log = LoggerFactory.getLogger(SolutionIterator.class);
 
     //immutable
     private final List<List<FormattableValue<Formattable>>> hardConstraints;
@@ -56,10 +62,11 @@ public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
         log.debug("Encoding:\n{}\n_____", cnfEncoding.getRight());
         log.debug("Code Map:\n{}\n", cnfEncoding.getLeft());
 
-        //get new solution
+        Instant satSoleverStartTime = Instant.now();
         Optional<List<Formattable>> diagnosisCandidates = satSolutionSolver.solveCnf(
                 cnfEncoding.getRight(),
                 cnfEncoding.getLeft());
+        log.info(getMarker("STATS"), "    - {}", Duration.between(satSoleverStartTime, Instant.now()).toMillis());
 
         log.info("Solution candidate found: {}", diagnosisCandidates.isPresent());
 

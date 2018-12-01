@@ -9,6 +9,11 @@ public class FailedNoEffectsCnfClauses extends FailureCnfClauses {
     }
 
     @Override
+    public String getName() {
+        return "no effects model";
+    }
+
+    @Override
     public VariableModelFunction getVariableModel() {
         return failureModel;
     }
