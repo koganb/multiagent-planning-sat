@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </Console>
-        <File name="Stats" fileName="stats/stats.${date:yyyy-MM-dd_hh-mm-ss}.yml" immediateFlush="false" append="false">
+        <File name="Stats" fileName="stats/stats.${sys:TEST_NAME}.yml" immediateFlush="false" append="false">
             <PatternLayout pattern="%msg%n"/>
             <MarkerFilter marker="STATS" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>

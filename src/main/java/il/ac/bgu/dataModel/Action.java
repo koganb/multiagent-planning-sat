@@ -10,8 +10,7 @@ import java.util.Optional;
 
 import static java.lang.String.format;
 
-@Builder(toBuilder = true)
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "actionDataFormatted")
 @Immutable
 public class Action implements Formattable {
 
@@ -19,6 +18,10 @@ public class Action implements Formattable {
     private final String agentName;
     private final Integer stage;
     private final State state;
+
+    private final String actionDataFormatted;
+    private final String actionKeyFormatted;
+    private final String actionNameFormatted;
 
     private Action(Step step, Integer stage, State state) {
         this(step.getActionName(), step.getAgent(), stage, state);
@@ -28,6 +31,7 @@ public class Action implements Formattable {
         this(step.getActionName(), step.getAgent(), stage, null);
     }
 
+    @Builder(toBuilder = true)
     private Action(String actionName, String agentName, Integer stage, State state) {
         assert StringUtils.isNotEmpty(actionName) &&
                 stage != null && stage >= -1 &&
@@ -38,6 +42,14 @@ public class Action implements Formattable {
         this.agentName = agentName;
         this.stage = stage;
         this.state = state;
+
+
+        this.actionNameFormatted = actionName.replace(" ", "~");
+        this.actionKeyFormatted = format("Index:%02d, Agent:%s,Action:%s", stage, agentName, formatActionName());
+        this.actionDataFormatted = Optional.ofNullable(state)
+                .map(st -> String.format("%s=%s", actionKeyFormatted, st))
+                .orElse(actionKeyFormatted);
+
     }
 
 
@@ -59,14 +71,13 @@ public class Action implements Formattable {
     }
 
     private String formatActionName() {
-        return actionName.replace(" ", "~");
+        return this.actionNameFormatted;
     }
 
 
     @Override
     public String formatData() {
-        String actionKey = formatFunctionKey();
-        return Optional.ofNullable(state).isPresent() ? actionKey + "=" + state.name() : actionKey;
+        return actionDataFormatted;
     }
 
     @Override
@@ -81,7 +92,7 @@ public class Action implements Formattable {
 
     @Override
     public String formatFunctionKey() {
-        return format("Index:%02d, Agent:%s,Action:%s", stage, agentName, formatActionName());
+        return actionKeyFormatted;
     }
 
     public enum State {HEALTHY, FAILED, CONDITIONS_NOT_MET}

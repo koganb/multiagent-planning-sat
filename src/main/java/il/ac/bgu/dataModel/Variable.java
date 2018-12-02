@@ -1,21 +1,20 @@
 package il.ac.bgu.dataModel;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.String.format;
 
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "functionDataFormatted")
 public class Variable implements Formattable {
+
 
     public enum SpecialState {
         LOCKED_FOR_UPDATE,  // used in delay failure model to lock action effects
@@ -34,23 +33,62 @@ public class Variable implements Formattable {
     private String functionKey;
     private String functionValue;
 
+
+    //cached formatted keys
+    private String functionKeyFormatted;
+    private String functionKeyWithValueFormatted;
+    private String functionDataFormatted;
+
+
     private Variable(POPPrecEff eff, @Nullable Integer stage) {
         this(eff);
         this.stage = stage;
+        postConstruct();
     }
 
-    private Variable(POPPrecEff eff, String functionValue, Integer stage) {
+    private Variable(POPPrecEff eff, String functionValue, @Nullable Integer stage) {
         this(eff, stage);
         this.functionValue = functionValue;
+        postConstruct();
+    }
+
+    @Builder(toBuilder = true)
+    private Variable(String functionKey, String functionValue, @Nullable Integer stage) {
+        this(functionKey, functionValue);
+        this.stage = stage;
+        postConstruct();
+    }
+
+    private Variable(String functionKey, String functionValue) {
+        this.functionKey = functionKey;
+        this.functionValue = functionValue;
+        postConstruct();
     }
 
     private Variable(POPPrecEff eff) {
-        this.functionKey = eff.getFunction().toKey();
+        this.functionKey = createFunctionKey(eff);
         this.functionValue = eff.getValue();
+        postConstruct();
     }
 
     public static Variable of(Variable variable, String functionValue, Integer stage) {
-        return new Variable(stage, variable.functionKey, functionValue);
+        return new Variable(variable.functionKey, functionValue, stage);
+    }
+
+    private String createFunctionKey(POPPrecEff eff) {
+        return Stream.concat(
+                Stream.of(eff.getFunction().getName()),
+                eff.getFunction().getParams().stream()
+        ).collect(Collectors.joining("~"));
+
+    }
+
+    private void postConstruct() {
+        this.functionKeyFormatted = StringUtils.replace(functionKey, " ", "~");
+        this.functionKeyWithValueFormatted = format("%s=%s", this.functionKeyFormatted, this.functionValue);
+        this.functionDataFormatted = format("Stage:%s, State:%s",
+                Optional.ofNullable(stage).map(Object::toString).orElse("<NONE>"),
+                formatFunctionKeyWithValue());
     }
 
     public static Variable of(POPPrecEff eff) {
@@ -65,17 +103,16 @@ public class Variable implements Formattable {
         return new Variable(eff, functionValue, stage);
     }
 
-
     public String formatFunctionKey() {
-        return functionKey.replace(" ", "~");
+        return functionKeyFormatted;
     }
 
     public String formatFunctionKeyWithValue() {
-        return format("%s=%s", formatFunctionKey(), functionValue);
+        return functionKeyWithValueFormatted;
     }
 
     public String formatData() {
-        return format("Stage:%02d, State:%s", stage, formatFunctionKeyWithValue());
+        return functionDataFormatted;
     }
 
     @Override

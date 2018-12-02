@@ -1,27 +1,44 @@
 package il.ac.bgu
 
-import groovy.util.logging.Slf4j
+
+import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
+import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
+import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.slf4j.MarkerFactory
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
+
+import java.time.Duration
+import java.time.Instant
+import java.util.stream.Collectors
 
 import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-@Slf4j
 class TestFullRegressionNoEffectVariableFailureModel extends Specification {
 
-    public static final int FAILED_STEPS_NUM = 1
+    private static final Logger log
+
+    static {
+        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_1_failure'
+        log = LoggerFactory.getLogger(TestDelayFailureModel.class)
+    }
+
+
+    public static final int MAX_FAILED_ACTIONS_NUM = 1
     @Shared
     def problemArr = [
             new Problem("elevator2.problem"),
@@ -71,32 +88,64 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
     def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
 
     @Shared
-    def cnfPlanClausesArr = [problemArr, planArr].transpose().collect { touple ->
-        log.info("Start hard constarints compilation for plan {}", touple[0].problemName)
+    def planClausesCreationTime = [:]
 
-        def hardConstraints = TestUtils.createPlanHardConstraints(touple[1], new NoRetriesPlanUpdater(), new HealthyCnfClauses(),
-                new ConflictNoEffectsCnfClauses(), new FailedNoEffectsCnfClauses(), FAILED_STEPS_NUM)
+    @Shared
+    private CnfClausesFunction failedClausesCreator = new FailedNoEffectsCnfClauses()
 
-        log.info("End hard constarints compilation for plan {}", touple[0].problemName)
+    @Shared
+    private CnfClausesFunction conflictClausesCreator = new ConflictNoEffectsCnfClauses()
 
-        return hardConstraints
+    @Shared
+    private RetryPlanUpdater conflictRetriesModel = new NoRetriesPlanUpdater()
+
+    @Shared
+    private CnfClausesFunction healthyCnfClausesCreator = new HealthyCnfClauses()
 
 
+    @Shared
+    def cnfPlanClausesArr = [problemArr, planArr].transpose().collect { tuple ->
+        Instant start = Instant.now()
+        def constraints = TestUtils.createPlanHardConstraints(tuple[1], conflictRetriesModel, healthyCnfClausesCreator,
+                conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
+
+        planClausesCreationTime[tuple[0].problemName] = Duration.between(start, Instant.now()).toMillis()
+
+        return constraints;
     }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
             problemName, plan, cnfPlanClauses, failedActions) {
         setup:
-        println "Failed actions:" + failedActions
+
+        TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
+                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
         TestUtils.printPlan(plan)
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
+
         def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
 
         expect:
-        assert TestUtils.calculateSolutions(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+        List<List<Formattable>> solutions = TestUtils.calculateSolutions(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+                .filter { solution -> !solution.isEmpty() }
+                .collect(Collectors.toList())
+
+
+        log.info(MarkerFactory.getMarker("STATS"), "  solution: ")
+        log.info(MarkerFactory.getMarker("STATS"), "    number_of_solutions: {}", solutions.size())
+
+        def foundSolution = solutions.stream().filter { solution ->
+            failedActions.stream()
+                    .map { t -> t.toBuilder().state(FAILED).build() }
+                    .collect(Collectors.toSet()).containsAll(solution)
+        }
+        .findFirst()
+        assert foundSolution.isPresent()
+
+        log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
 
 
         where:
@@ -105,7 +154,7 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 planArr.collect { p ->
-                    new ActionDependencyCalculation(p).getIndependentActionsList(FAILED_STEPS_NUM).collectNested {
+                    new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM).collectNested {
                         action -> action.toBuilder().state(FAILED).build()
                     }
                 }
