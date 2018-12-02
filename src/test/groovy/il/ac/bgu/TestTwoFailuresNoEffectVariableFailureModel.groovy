@@ -28,33 +28,23 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestFullRegressionNoEffectVariableFailureModel extends Specification {
+class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
 
     private static final Logger log
 
     static {
-        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_1_failure'
+        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_2_failures'
         log = LoggerFactory.getLogger(TestDelayFailureModel.class)
     }
 
 
-    public static final int MAX_FAILED_ACTIONS_NUM = 1
+    public static final int MAX_FAILED_ACTIONS_NUM = 2
     @Shared
     def problemArr = [
-            new Problem("elevator2.problem"),
-            new Problem("elevator23.problem"),
-            new Problem("elevator24.problem"),
-            new Problem("elevator25.problem"),
-            new Problem("elevator26.problem"),
             new Problem("elevator27.problem"),
             new Problem("elevator28.problem"),
             new Problem("elevator29.problem"),
             new Problem("elevator30.problem"),
-            new Problem("satellite8.problem"),
-            new Problem("satellite9.problem"),
-            new Problem("satellite10.problem"),
-            new Problem("satellite11.problem"),
-            new Problem("satellite12.problem"),
             new Problem("satellite13.problem"),
             new Problem("satellite14.problem"),
             new Problem("satellite15.problem"),
@@ -63,8 +53,6 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
                     Action.of("DropC hoist0 crate7 crate4 depot0", "depot0", 1, FAILED),
                     Action.of("LiftC hoist0 crate7 crate4 depot0", "depot0", 0, FAILED),
             ]),
-            new Problem("deports7.problem"),
-            new Problem("deports8.problem"),
             new Problem("deports10.problem"),
             new Problem("deports11.problem", [
                     Action.of("Unload hoist1 crate7 truck0 depot1", "truck0", 29, FAILED),
@@ -72,7 +60,6 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
                     Action.of("Unload hoist0 crate1 truck0 depot0", "truck0", 18, FAILED),
                     Action.of("Unload hoist3 crate6 truck0 distributor0", "truck0", 25, FAILED),
             ]),
-            new Problem("deports13.problem"),
             new Problem("deports16.problem"),
             new Problem("deports17.problem", [
                     Action.of("Load hoist0 crate3 truck0 depot0", "truck0", 10, FAILED),
@@ -153,11 +140,7 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p ->
-                    new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM).collectNested {
-                        action -> action.toBuilder().state(FAILED).build()
-                    }
-                }
+                planArr.collect { p -> new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
         ]
                 .transpose()
                 .collectNested {
@@ -166,13 +149,13 @@ class TestFullRegressionNoEffectVariableFailureModel extends Specification {
         .collect { it.combinations() }
                 .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2], res[3][0]]
+            res -> [res[0], res[1], res[2].get(), res[3][0].get()]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions) == []
+            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
         .collect {
-            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
+            res -> [res[0].problemName, res[1], res[2], res[3]]
         }
     }
 

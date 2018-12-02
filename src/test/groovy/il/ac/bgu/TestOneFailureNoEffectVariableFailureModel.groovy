@@ -1,15 +1,16 @@
 package il.ac.bgu
 
+
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
-import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
+import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
-import il.ac.bgu.variableModel.DelayStageVariableFailureModel
+import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
 import org.slf4j.Logger
@@ -27,64 +28,58 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestDelayFailureModel extends Specification {
+class TestOneFailureNoEffectVariableFailureModel extends Specification {
+
     private static final Logger log
 
     static {
-        System.properties.'TEST_NAME' = 'DelayFailureModel_1_failure'
+        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_1_failure'
         log = LoggerFactory.getLogger(TestDelayFailureModel.class)
     }
 
 
     public static final int MAX_FAILED_ACTIONS_NUM = 1
-    public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
-            new Problem("deports0.problem"),
-            new Problem("deports1.problem", [
-                    Action.of("LiftP hoist1 crate0 pallet1 distributor0", "distributor0", 0, FAILED),
-                    Action.of("DropP hoist1 crate1 pallet1 distributor0", "distributor0", 6, FAILED),
+            new Problem("elevator27.problem"),
+            new Problem("elevator28.problem"),
+            new Problem("elevator29.problem"),
+            new Problem("elevator30.problem"),
+            new Problem("satellite13.problem"),
+            new Problem("satellite14.problem"),
+            new Problem("satellite15.problem"),
+            new Problem("satellite20.problem"),
+            new Problem("deports4.problem", [
+                    Action.of("DropC hoist0 crate7 crate4 depot0", "depot0", 1, FAILED),
+                    Action.of("LiftC hoist0 crate7 crate4 depot0", "depot0", 0, FAILED),
             ]),
-            new Problem("deports2.problem", [
-                    Action.of("LiftC hoist2 crate2 crate1 distributor1", "distributor1", 0, FAILED),
-                    Action.of("DropP hoist2 crate0 pallet2 distributor1", "distributor1", 7, FAILED),
-                    Action.of("LiftC hoist2 crate2 crate1 distributor1", "distributor0", 7, FAILED),
-                    Action.of("DropC hoist1 crate1 crate3 distributor0", "distributor0", 9, FAILED),
-
+            new Problem("deports10.problem"),
+            new Problem("deports11.problem", [
+                    Action.of("Unload hoist1 crate7 truck0 depot1", "truck0", 29, FAILED),
+                    Action.of("Unload hoist0 crate2 truck0 depot0", "truck0", 20, FAILED),
+                    Action.of("Unload hoist0 crate1 truck0 depot0", "truck0", 18, FAILED),
+                    Action.of("Unload hoist3 crate6 truck0 distributor0", "truck0", 25, FAILED),
             ]),
-            new Problem("elevator1.problem", [
-                    Action.of("move-up-fast fast0 n0 n2", "fast0", 0, FAILED),
-                    Action.of("leave p0 slow1-0 n4 n1 n0", "slow1-0", 4, FAILED),
+            new Problem("deports16.problem"),
+            new Problem("deports17.problem", [
+                    Action.of("Load hoist0 crate3 truck0 depot0", "truck0", 10, FAILED),
             ]),
-            new Problem("elevator2.problem", [
-                    Action.of("leave p2 slow0-0 n1 n1 n0", "slow0-0", 2, FAILED)
-            ]),
-            new Problem("satellite1.problem", [
-                    Action.of("turn_to satellite0 groundstation2 phenomenon6", "satellite0", 0, FAILED)
-            ]),
-            new Problem("satellite8.problem", [
-                    Action.of("turn_to satellite1 star0 star4", "satellite1", 0, FAILED),
-                    Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED),
-                    Action.of("take_image satellite1 phenomenon14 instrument5 thermograph2", "satellite1", 10, FAILED)
-
-            ]),
-            new Problem("satellite9.problem", [
-                    Action.of("turn_to satellite0 phenomenon7 star0", "satellite0", 0, FAILED),
-                    Action.of("turn_to satellite4 planet5 star9", "satellite4", 0, FAILED),
-                    Action.of("turn_to satellite3 star9 planet10", "satellite3", 0, FAILED),
+            new Problem("deports19.problem", [
+                    Action.of("Unload hoist0 crate5 truck0 depot0", "truck0", 19, FAILED),
+                    Action.of("Unload hoist1 crate3 truck0 depot1", "truck0", 13, FAILED),
             ]),
     ]
+
 
 
     @Shared
     def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
 
-
     @Shared
     def planClausesCreationTime = [:]
 
     @Shared
-    private CnfClausesFunction failedClausesCreator = new FailedDelayOneStepCnfClauses()
+    private CnfClausesFunction failedClausesCreator = new FailedNoEffectsCnfClauses()
 
     @Shared
     private CnfClausesFunction conflictClausesCreator = new ConflictNoEffectsCnfClauses()
@@ -119,7 +114,7 @@ class TestDelayFailureModel extends Specification {
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
+        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
 
         expect:
         List<List<Formattable>> solutions = TestUtils.calculateSolutions(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
@@ -155,13 +150,13 @@ class TestDelayFailureModel extends Specification {
         .collect { it.combinations() }
                 .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2], res[3][0].get()]
+            res -> [res[0], res[1], res[2].get(), res[3][0].get()]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions) == []
+            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
         .collect {
-            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
+            res -> [res[0].problemName, res[1], res[2], res[3]]
         }
     }
 

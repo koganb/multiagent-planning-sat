@@ -127,11 +127,7 @@ class TestDelayFailureModelWithRetries extends Specification {
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p ->
-                    new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM).collectNested {
-                        action -> action.toBuilder().state(FAILED).build()
-                    }
-                }
+                planArr.collect { p -> new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
         ]
                 .transpose()
                 .collectNested {
@@ -140,13 +136,13 @@ class TestDelayFailureModelWithRetries extends Specification {
         .collect { it.combinations() }
                 .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2], res[3][0]]
+            res -> [res[0], res[1], res[2].get(), res[3][0].get()]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions) == []
+            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
         .collect {
-            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
+            res -> [res[0].problemName, res[1], res[2], res[3]]
         }
     }
 

@@ -1,0 +1,368 @@
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:03, Agent:satellite1,Action:turn_to~satellite1~star7~star0=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 250
+        sat_solving_mils:
+        - 109
+        - 1
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:03, Agent:satellite2,Action:turn_to~satellite2~phenomenon5~star0=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 129
+        sat_solving_mils:
+        - 15
+        - 15
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:08, Agent:satellite1,Action:take_image~satellite1~phenomenon13~instrument5~thermograph1=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 125
+        sat_solving_mils:
+        - 31
+        - 16
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:13, Agent:satellite2,Action:turn_to~satellite2~phenomenon12~planet11=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 78
+        sat_solving_mils:
+        - 16
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:06, Agent:satellite1,Action:take_image~satellite1~star10~instrument5~spectrograph3=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 79
+        sat_solving_mils:
+        - 15
+        - 16
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:04, Agent:satellite1,Action:take_image~satellite1~star7~instrument5~spectrograph3=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 109
+        sat_solving_mils:
+        - 15
+        - 15
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:02, Agent:satellite1,Action:calibrate~satellite1~instrument5~star0=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 62
+        sat_solving_mils:
+        - 16
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:06, Agent:satellite2,Action:take_image~satellite2~star6~instrument7~thermograph1=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 62
+        sat_solving_mils:
+        - 0
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:12, Agent:satellite2,Action:take_image~satellite2~planet11~instrument7~thermograph2=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 78
+        sat_solving_mils:
+        - 0
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:02, Agent:satellite2,Action:calibrate~satellite2~instrument7~star0=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 47
+        sat_solving_mils:
+        - 16
+        - 15
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:07, Agent:satellite1,Action:turn_to~satellite1~phenomenon13~star10=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 94
+        sat_solving_mils:
+        - 15
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:07, Agent:satellite2,Action:turn_to~satellite2~phenomenon8~star6=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 78
+        sat_solving_mils:
+        - 0
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:04, Agent:satellite2,Action:take_image~satellite2~phenomenon5~instrument7~thermograph1=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 46
+        sat_solving_mils:
+        - 16
+        - 16
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:01, Agent:satellite1,Action:switch_on~instrument5~satellite1=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 62
+        sat_solving_mils:
+        - 15
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:11, Agent:satellite2,Action:turn_to~satellite2~planet11~phenomenon9=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 125
+        sat_solving_mils:
+        - 0
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0
+-   problem: satellite8.problem
+    plan_properties:
+        failed_actions: "[Index:09, Agent:satellite2,Action:turn_to~satellite2~phenomenon9~phenomenon8=FAILED]"
+        number_of_steps: 15
+        number_of_actions: 26
+        number_of_agents: 2
+    cnf_model_details:
+        failure_model: delay one step
+        conflict_model: no effects model
+        conflict_retries_model: one retry
+        max_failures_restriction: 1
+    cnf:
+        clauses_num: 5465
+        variables_num: 2457
+    execution_time:
+        cnf_compilation_mils: 577
+        final_var_state_calc_mils: 78
+        sat_solving_mils:
+        - 15
+        - 0
+    solution:
+        number_of_solutions: 1
+        solution_index: 0

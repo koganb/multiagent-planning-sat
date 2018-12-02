@@ -13,8 +13,11 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.util.Combinations;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static il.ac.bgu.dataModel.Action.State.FAILED;
 
 @Slf4j
 public class ActionDependencyCalculation {
@@ -64,10 +67,12 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public List<Set<Action>> getIndependentActionsList(int listSize) {
+    public static final int MAX_SIZE = 20;  //no more than MAX_SIZE actions
+
+    public List<Supplier<Set<Action>>> getIndependentActionsList(int listSize) {
         List<ActionKey> keys = new ArrayList<>(actionDependenciesFull.keySet());
 
-        List<Set<Action>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), listSize).iterator()).flatMap(
+        List<Supplier<Set<Action>>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), listSize).iterator()).flatMap(
                 combination -> {
                     Set<ActionKey> actionKeys = Arrays.stream(combination).
                             mapToObj(keys::get).
@@ -80,9 +85,11 @@ public class ActionDependencyCalculation {
                     return CollectionUtils.intersection(actionKeys, dependentActions).isEmpty() ?
                             Stream.of(actionKeys.stream()
                                     .map(ActionKey::getAction)
+                                    .map(action -> action.toBuilder().state(FAILED).build())
                                     .collect(Collectors.toSet())) : Stream.empty();
                 })
-
+                .map(t -> (Supplier<Set<Action>>) () -> t)
+                .limit(MAX_SIZE)
                 .collect(Collectors.toList());
 
 
