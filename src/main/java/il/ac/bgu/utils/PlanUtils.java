@@ -1,7 +1,8 @@
-package il.ac.bgu.cnfCompilation;
+package il.ac.bgu.utils;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;

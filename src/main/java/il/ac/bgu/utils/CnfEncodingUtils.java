@@ -1,4 +1,4 @@
-package il.ac.bgu;
+package il.ac.bgu.utils;
 
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.dataModel.Formattable;

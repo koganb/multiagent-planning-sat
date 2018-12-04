@@ -2,9 +2,9 @@ package il.ac.bgu.variableModel;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
-import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.utils.CnfCompilationUtils;
 
 import java.util.Collection;
 import java.util.stream.Stream;

@@ -1,11 +1,11 @@
 package il.ac.bgu.variablesCalculation;
 
 import com.google.common.collect.ImmutableList;
-import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.utils.CnfCompilationUtils;
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel;
 import il.ac.bgu.variableModel.SuccessVariableModel;
 import il.ac.bgu.variableModel.VariableModelFunction;
@@ -29,10 +29,10 @@ public class FinalNoRetriesVariableStateCalc implements FinalVariableStateCalc {
         this.failureModelFunction = failureModelFunction;
     }
 
-    public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Collection<Action> failedActions) {
+    public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Collection<? extends Formattable> failedActions) {
 
         Set<String> failedActionsKeys = failedActions.stream()
-                .map(Action::formatFunctionKey)
+                .map(Formattable::formatFunctionKey)
                 .collect(Collectors.toSet());
 
         ImmutableList<FormattableValue<Variable>> currentVars = ImmutableList.of();

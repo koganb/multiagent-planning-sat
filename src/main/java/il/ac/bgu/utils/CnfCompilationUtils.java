@@ -1,4 +1,4 @@
-package il.ac.bgu;
+package il.ac.bgu.utils;
 
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;

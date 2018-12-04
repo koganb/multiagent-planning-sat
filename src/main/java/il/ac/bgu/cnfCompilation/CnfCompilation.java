@@ -2,7 +2,6 @@ package il.ac.bgu.cnfCompilation;
 
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
-import il.ac.bgu.cnfCompilation.failureContraints.MaxFailureConstraintsCreator;
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
@@ -21,10 +20,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.dataModel.Action.State.*;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.utils.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -49,15 +48,11 @@ public class CnfCompilation {
     private CnfClausesFunction conflictCnfClausesCreator;
 
 
-    private MaxFailureConstraintsCreator maxFailureConstraintsCreator;
-
-
     public CnfCompilation(Map<Integer, Set<Step>> plan,
                           RetryPlanUpdater retryPlanUpdater,
                           CnfClausesFunction healthyCnfClausesCreator,
                           CnfClausesFunction conflictCnfClausesCreator,
-                          CnfClausesFunction failedCnfClausesCreator,
-                          int maxFailures) {
+                          CnfClausesFunction failedCnfClausesCreator) {
 
         this.healthyCnfClausesCreator = healthyCnfClausesCreator;
         this.failedCnfClausesCreator = failedCnfClausesCreator;
@@ -68,8 +63,6 @@ public class CnfCompilation {
         RetryPlanUpdater.RetriesPlanCreatorResult retriesPlanCreatorResult = retryPlanUpdater.updatePlan(plan);
 
         this.plan = retriesPlanCreatorResult.updatedPlan;
-
-        this.maxFailureConstraintsCreator = new MaxFailureConstraintsCreator(maxFailures, this.plan);
 
         this.variablesStateBeforeStepExec = calcInitFacts();
         log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
@@ -224,8 +217,7 @@ public class CnfCompilation {
 
 
     public List<List<FormattableValue<Formattable>>> compileToCnf() {
-        Stream<List<FormattableValue<Formattable>>> cnfClauses =
-                plan.entrySet().stream().
+        return plan.entrySet().stream().
                         filter(i -> i.getKey() != -1).
                         flatMap(entry -> {
                             executeStage(entry.getKey(), entry.getValue());
@@ -236,13 +228,7 @@ public class CnfCompilation {
                                     .append(calculateActionFailedClauses(entry.getKey()))
                                     .append(calculateConditionsNotMetClauses(entry.getKey()));
 
-                        });
-
-        List<List<FormattableValue<Formattable>>> maxFailuresConstraints = maxFailureConstraintsCreator.createMaxFailuresClauses();
-
-        return StreamEx.<List<FormattableValue<Formattable>>>of()
-                .append(cnfClauses)
-                .append(maxFailuresConstraints)
+                        })
                 .collect(ImmutableList.toImmutableList());
     }
 

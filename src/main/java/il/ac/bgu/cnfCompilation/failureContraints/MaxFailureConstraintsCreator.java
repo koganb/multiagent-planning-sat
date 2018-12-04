@@ -19,16 +19,14 @@ import static il.ac.bgu.dataModel.Action.State.FAILED;
  */
 public class MaxFailureConstraintsCreator {
 
-    private int maxFailuresNumber;
-    private Map<Integer, Set<Step>> plan;
+    private final Map<Integer, Set<Step>> plan;
 
-    public MaxFailureConstraintsCreator(int maxFailuresNumber, Map<Integer, Set<Step>> plan) {
-        this.maxFailuresNumber = maxFailuresNumber;
+    public MaxFailureConstraintsCreator(Map<Integer, Set<Step>> plan) {
         this.plan = plan;
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    public List<List<FormattableValue<Formattable>>> createMaxFailuresClauses() {
+    public List<List<FormattableValue<Formattable>>> createMaxFailuresClauses(int maxFailuresNumber) {
 
         ImmutableList<FormattableValue<Formattable>> allPossibleFailedClauses = plan.entrySet().stream().
                 filter(i -> i.getKey() != -1).

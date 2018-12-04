@@ -21,11 +21,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.VariableFunctions.variableKeyFilter;
 import static il.ac.bgu.dataModel.Action.State.HEALTHY;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.utils.CnfCompilationUtils.calcVariableState;
 
 @SuppressWarnings("UnstableApiUsage")
 @Slf4j

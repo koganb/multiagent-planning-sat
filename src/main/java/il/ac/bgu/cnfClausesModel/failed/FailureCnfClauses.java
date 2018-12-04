@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.VariableFunctions.variableKeyFilter;
 import static il.ac.bgu.dataModel.Action.State.FAILED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.utils.CnfCompilationUtils.calcVariableState;
 import static il.ac.bgu.variableModel.VariableModelFunction.NEXT_STEP_ADDITION;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;

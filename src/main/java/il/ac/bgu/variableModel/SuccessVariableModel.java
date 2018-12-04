@@ -1,8 +1,8 @@
 package il.ac.bgu.variableModel;
 
-import il.ac.bgu.CnfCompilationUtils;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.utils.CnfCompilationUtils;
 import one.util.streamex.StreamEx;
 
 import java.util.Collection;

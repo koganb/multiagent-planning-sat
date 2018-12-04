@@ -4,13 +4,13 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.Streams
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfCompilation.CnfCompilation
-import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SolutionIterator
+import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import one.util.streamex.StreamEx
 import org.agreement_technologies.common.map_planner.Step
@@ -57,7 +57,7 @@ class TestUtils {
     static Stream<List<Formattable>> calculateSolutions(List<List<FormattableValue<Formattable>>> hardConstraints,
                                                         List<FormattableValue<Formattable>> softConstraints,
                                                         FinalVariableStateCalc finalVariableStateCalc,
-                                                        Collection<Action> failedActions) {
+                                                        Collection<Action> failedActions, int maxFailures) {
 
 
         log.info 'final facts calculation'
@@ -162,12 +162,11 @@ class TestUtils {
                                          RetryPlanUpdater retryPlanUpdater,
                                          CnfClausesFunction healthyCnfClausesCreator,
                                          CnfClausesFunction conflictCnfClausesCreator,
-                                         CnfClausesFunction failedCnfClausesCreator,
-                                         int maxFailures) {
+                                         CnfClausesFunction failedCnfClausesCreator) {
 
 
         CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
-                conflictCnfClausesCreator, failedCnfClausesCreator, maxFailures);
+                conflictCnfClausesCreator, failedCnfClausesCreator);
 
         final def hardContraints = Tuple1.of(StreamEx.<List<FormattableValue<Formattable>>> of()
                 .append(cnfCompilation.compileToCnf())

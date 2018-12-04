@@ -10,15 +10,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 132
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 167
         sat_solving_mils:
-        - 88
-        - 19
-        - 10
+        - 60
+        - 20
+        - 0
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -34,15 +34,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 96
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 102
         sat_solving_mils:
-        - 12
-        - 11
-        - 5
+        - 10
+        - 10
+        - 10
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -58,14 +58,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 66
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 70
         sat_solving_mils:
-        - 11
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -81,14 +81,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 77
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 84
         sat_solving_mils:
-        - 8
-        - 6
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -104,15 +104,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 73
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 60
         sat_solving_mils:
-        - 7
-        - 7
-        - 5
+        - 10
+        - 10
+        - 10
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -128,15 +128,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 71
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 60
         sat_solving_mils:
-        - 8
-        - 8
-        - 6
+        - 0
+        - 10
+        - 20
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -152,14 +152,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 59
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 50
         sat_solving_mils:
-        - 7
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -175,14 +175,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 55
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 60
         sat_solving_mils:
-        - 7
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -198,14 +198,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 83
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 71
         sat_solving_mils:
-        - 6
-        - 5
+        - 0
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -221,14 +221,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 106
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 82
         sat_solving_mils:
         - 8
-        - 5
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -244,14 +244,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 81
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 75
         sat_solving_mils:
+        - 7
         - 6
-        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -267,14 +267,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 73
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 99
         sat_solving_mils:
-        - 6
-        - 3
+        - 9
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -290,13 +290,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 83
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 87
         sat_solving_mils:
-        - 7
+        - 6
         - 4
     solution:
         number_of_solutions: 1
@@ -313,13 +313,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 81
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 93
         sat_solving_mils:
-        - 5
+        - 6
         - 6
         - 4
     solution:
@@ -337,13 +337,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 75
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 73
         sat_solving_mils:
-        - 6
+        - 5
         - 5
     solution:
         number_of_solutions: 1
@@ -360,13 +360,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 62
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 61
         sat_solving_mils:
-        - 7
+        - 6
         - 6
         - 4
     solution:
@@ -384,15 +384,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 69
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 75
         sat_solving_mils:
+        - 6
+        - 10
         - 5
-        - 7
-        - 3
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -408,14 +408,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 74
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 90
         sat_solving_mils:
-        - 7
-        - 4
+        - 5
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -431,14 +431,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 91
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 87
         sat_solving_mils:
-        - 7
-        - 5
+        - 6
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -454,15 +454,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3902
+        clauses_num: 3307
         variables_num: 1262
     execution_time:
-        cnf_compilation_mils: 329
-        final_var_state_calc_mils: 65
+        cnf_compilation_mils: 418
+        final_var_state_calc_mils: 67
         sat_solving_mils:
-        - 6
-        - 8
         - 5
+        - 5
+        - 4
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -478,14 +478,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 48
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 34
         sat_solving_mils:
-        - 7
-        - 4
+        - 6
+        - 3
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -501,14 +501,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 78
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 48
         sat_solving_mils:
         - 5
-        - 2
+        - 3
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -524,13 +524,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 41
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 45
         sat_solving_mils:
-        - 5
+        - 4
         - 3
     solution:
         number_of_solutions: 1
@@ -547,14 +547,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 37
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 42
         sat_solving_mils:
-        - 5
-        - 5
+        - 4
+        - 6
         - 3
     solution:
         number_of_solutions: 2
@@ -571,13 +571,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 42
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 45
         sat_solving_mils:
-        - 6
+        - 8
         - 4
     solution:
         number_of_solutions: 1
@@ -594,13 +594,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 51
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 64
         sat_solving_mils:
-        - 6
+        - 5
         - 5
         - 3
     solution:
@@ -618,13 +618,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 54
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 61
         sat_solving_mils:
-        - 5
+        - 6
         - 3
     solution:
         number_of_solutions: 1
@@ -641,14 +641,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
+        cnf_compilation_mils: 104
         final_var_state_calc_mils: 50
         sat_solving_mils:
-        - 7
-        - 3
+        - 4
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -664,11 +664,11 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 43
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 44
         sat_solving_mils:
         - 5
         - 3
@@ -687,14 +687,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 48
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 47
         sat_solving_mils:
-        - 5
-        - 5
+        - 4
+        - 6
         - 3
     solution:
         number_of_solutions: 2
@@ -711,15 +711,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 52
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 47
         sat_solving_mils:
+        - 5
+        - 7
         - 6
-        - 6
-        - 3
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -735,11 +735,11 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 53
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 58
         sat_solving_mils:
         - 6
         - 4
@@ -758,14 +758,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 31
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 36
         sat_solving_mils:
         - 5
-        - 5
+        - 7
         - 3
     solution:
         number_of_solutions: 2
@@ -782,13 +782,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 58
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 51
         sat_solving_mils:
-        - 5
+        - 6
         - 3
     solution:
         number_of_solutions: 1
@@ -805,14 +805,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 48
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 46
         sat_solving_mils:
-        - 5
         - 4
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -828,14 +828,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 53
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 58
         sat_solving_mils:
-        - 6
-        - 5
+        - 4
+        - 4
         - 3
     solution:
         number_of_solutions: 2
@@ -852,13 +852,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 63
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 55
         sat_solving_mils:
-        - 5
+        - 6
         - 3
     solution:
         number_of_solutions: 1
@@ -875,13 +875,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 54
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 55
         sat_solving_mils:
-        - 5
+        - 7
         - 4
     solution:
         number_of_solutions: 1
@@ -898,13 +898,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 55
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 60
         sat_solving_mils:
-        - 5
+        - 6
         - 3
     solution:
         number_of_solutions: 1
@@ -921,14 +921,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 3443
+        clauses_num: 3167
         variables_num: 1483
     execution_time:
-        cnf_compilation_mils: 105
-        final_var_state_calc_mils: 70
+        cnf_compilation_mils: 104
+        final_var_state_calc_mils: 55
         sat_solving_mils:
-        - 5
-        - 4
+        - 8
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -944,14 +944,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 82
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 53
         sat_solving_mils:
+        - 6
         - 9
-        - 10
         - 4
     solution:
         number_of_solutions: 2
@@ -968,14 +968,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
+        cnf_compilation_mils: 145
         final_var_state_calc_mils: 27
         sat_solving_mils:
         - 6
-        - 5
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -991,14 +991,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
+        cnf_compilation_mils: 145
         final_var_state_calc_mils: 58
         sat_solving_mils:
-        - 7
-        - 6
+        - 5
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1014,13 +1014,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 72
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 77
         sat_solving_mils:
-        - 7
+        - 8
         - 4
     solution:
         number_of_solutions: 1
@@ -1037,14 +1037,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 63
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 74
         sat_solving_mils:
-        - 6
-        - 3
+        - 5
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1060,11 +1060,11 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 46
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 47
         sat_solving_mils:
         - 6
         - 5
@@ -1083,14 +1083,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 55
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 58
         sat_solving_mils:
         - 6
-        - 5
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1106,13 +1106,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 49
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 65
         sat_solving_mils:
-        - 5
+        - 6
         - 4
     solution:
         number_of_solutions: 1
@@ -1129,15 +1129,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 47
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 44
         sat_solving_mils:
         - 6
-        - 5
-        - 5
+        - 6
+        - 4
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -1153,14 +1153,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 67
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 72
         sat_solving_mils:
-        - 5
-        - 3
+        - 9
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1176,13 +1176,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 59
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 61
         sat_solving_mils:
-        - 8
+        - 6
         - 5
     solution:
         number_of_solutions: 1
@@ -1199,14 +1199,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 43
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 45
         sat_solving_mils:
-        - 6
-        - 4
+        - 5
+        - 3
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1222,14 +1222,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 59
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 62
         sat_solving_mils:
-        - 7
-        - 3
+        - 5
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1245,14 +1245,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 55
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 57
         sat_solving_mils:
-        - 7
-        - 4
+        - 6
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1268,14 +1268,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
+        cnf_compilation_mils: 145
         final_var_state_calc_mils: 64
         sat_solving_mils:
-        - 6
-        - 6
+        - 7
+        - 7
         - 4
     solution:
         number_of_solutions: 2
@@ -1292,13 +1292,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 63
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 65
         sat_solving_mils:
-        - 7
+        - 5
         - 4
     solution:
         number_of_solutions: 1
@@ -1315,13 +1315,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 44
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 47
         sat_solving_mils:
-        - 5
+        - 6
         - 6
         - 4
     solution:
@@ -1339,10 +1339,10 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
+        cnf_compilation_mils: 145
         final_var_state_calc_mils: 28
         sat_solving_mils:
         - 6
@@ -1362,14 +1362,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 44
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 41
         sat_solving_mils:
         - 6
-        - 5
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1385,14 +1385,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4608
+        clauses_num: 4173
         variables_num: 1830
     execution_time:
-        cnf_compilation_mils: 117
-        final_var_state_calc_mils: 34
+        cnf_compilation_mils: 145
+        final_var_state_calc_mils: 32
         sat_solving_mils:
-        - 6
-        - 6
+        - 8
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1408,14 +1408,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 114
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 125
         sat_solving_mils:
-        - 8
-        - 5
+        - 11
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1431,14 +1431,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 109
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 116
         sat_solving_mils:
-        - 9
-        - 5
+        - 7
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1454,13 +1454,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 83
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 105
         sat_solving_mils:
-        - 8
+        - 6
         - 5
     solution:
         number_of_solutions: 1
@@ -1477,13 +1477,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 70
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 73
         sat_solving_mils:
-        - 5
+        - 7
         - 5
     solution:
         number_of_solutions: 1
@@ -1500,14 +1500,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 112
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 121
         sat_solving_mils:
-        - 5
-        - 5
+        - 6
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1523,14 +1523,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 98
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 89
         sat_solving_mils:
-        - 8
-        - 7
+        - 5
+        - 9
         - 5
     solution:
         number_of_solutions: 2
@@ -1547,14 +1547,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 75
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 68
         sat_solving_mils:
+        - 8
         - 7
-        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1570,14 +1570,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
+        cnf_compilation_mils: 105
         final_var_state_calc_mils: 108
         sat_solving_mils:
-        - 7
-        - 3
+        - 6
+        - 4
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1593,14 +1593,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 91
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 86
         sat_solving_mils:
         - 5
-        - 4
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1616,14 +1616,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 105
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 115
         sat_solving_mils:
-        - 9
-        - 4
+        - 6
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1639,14 +1639,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 108
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 118
         sat_solving_mils:
         - 6
-        - 4
+        - 3
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1662,14 +1662,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 116
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 123
         sat_solving_mils:
         - 5
-        - 3
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1685,14 +1685,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 108
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 121
         sat_solving_mils:
         - 5
-        - 4
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1708,14 +1708,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 82
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 78
         sat_solving_mils:
-        - 6
-        - 5
+        - 7
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1731,15 +1731,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 91
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 111
         sat_solving_mils:
+        - 7
         - 6
         - 7
-        - 8
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -1755,15 +1755,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 130
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 85
         sat_solving_mils:
-        - 9
-        - 7
-        - 5
+        - 6
+        - 8
+        - 0
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -1779,13 +1779,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 118
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 101
         sat_solving_mils:
-        - 7
+        - 10
         - 4
     solution:
         number_of_solutions: 1
@@ -1802,14 +1802,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 110
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 128
         sat_solving_mils:
-        - 6
-        - 3
+        - 5
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1825,14 +1825,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 116
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 124
         sat_solving_mils:
-        - 6
-        - 4
+        - 5
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1848,14 +1848,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 4501
+        clauses_num: 3835
         variables_num: 1502
     execution_time:
-        cnf_compilation_mils: 91
-        final_var_state_calc_mils: 107
+        cnf_compilation_mils: 105
+        final_var_state_calc_mils: 114
         sat_solving_mils:
-        - 6
-        - 4
+        - 5
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1871,14 +1871,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 403
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 368
         sat_solving_mils:
-        - 24
-        - 16
+        - 31
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1894,13 +1894,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 355
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 312
         sat_solving_mils:
-        - 21
+        - 24
         - 13
     solution:
         number_of_solutions: 1
@@ -1917,14 +1917,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 386
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 354
         sat_solving_mils:
-        - 30
-        - 17
+        - 21
+        - 18
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1940,14 +1940,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 337
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 291
         sat_solving_mils:
-        - 26
-        - 14
+        - 22
+        - 12
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -1963,13 +1963,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 389
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 323
         sat_solving_mils:
-        - 25
+        - 24
         - 14
     solution:
         number_of_solutions: 1
@@ -1986,14 +1986,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 388
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 341
         sat_solving_mils:
-        - 23
-        - 11
+        - 21
+        - 17
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2009,14 +2009,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 361
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 395
         sat_solving_mils:
-        - 22
-        - 10
+        - 24
+        - 14
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2032,13 +2032,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 249
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 264
         sat_solving_mils:
-        - 25
+        - 21
         - 12
     solution:
         number_of_solutions: 1
@@ -2055,14 +2055,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 358
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 331
         sat_solving_mils:
-        - 28
-        - 11
+        - 25
+        - 13
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2078,14 +2078,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 376
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 332
         sat_solving_mils:
-        - 23
-        - 13
+        - 20
+        - 14
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2101,14 +2101,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 264
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 216
         sat_solving_mils:
-        - 25
-        - 16
+        - 21
+        - 13
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2124,14 +2124,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 395
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 325
         sat_solving_mils:
-        - 31
-        - 13
+        - 25
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2147,14 +2147,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 387
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 321
         sat_solving_mils:
-        - 21
-        - 11
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2170,14 +2170,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 331
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 250
         sat_solving_mils:
-        - 24
-        - 12
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2193,14 +2193,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 335
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 271
         sat_solving_mils:
-        - 24
-        - 13
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2216,14 +2216,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 264
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 241
         sat_solving_mils:
-        - 22
-        - 11
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2239,14 +2239,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 243
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 280
         sat_solving_mils:
-        - 24
-        - 14
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2262,14 +2262,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 353
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 363
         sat_solving_mils:
-        - 23
-        - 13
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2285,14 +2285,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 281
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 330
         sat_solving_mils:
-        - 22
-        - 17
+        - 20
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2308,14 +2308,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 18276
+        clauses_num: 16446
         variables_num: 8656
     execution_time:
-        cnf_compilation_mils: 333
-        final_var_state_calc_mils: 221
+        cnf_compilation_mils: 373
+        final_var_state_calc_mils: 240
         sat_solving_mils:
-        - 21
-        - 11
+        - 30
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2331,14 +2331,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 208
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 230
         sat_solving_mils:
-        - 14
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2354,14 +2354,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 135
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 160
         sat_solving_mils:
-        - 13
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2377,14 +2377,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 199
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 196
         sat_solving_mils:
-        - 15
-        - 7
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2400,14 +2400,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 228
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 250
         sat_solving_mils:
-        - 13
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2423,14 +2423,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 239
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 280
         sat_solving_mils:
-        - 12
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2446,14 +2446,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 224
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 320
         sat_solving_mils:
-        - 12
-        - 6
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2469,14 +2469,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 228
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 220
         sat_solving_mils:
-        - 12
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2492,14 +2492,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 143
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 140
         sat_solving_mils:
-        - 11
-        - 7
+        - 21
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2515,14 +2515,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 174
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 170
         sat_solving_mils:
-        - 13
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2538,14 +2538,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 174
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 140
         sat_solving_mils:
-        - 14
-        - 8
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2561,14 +2561,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 225
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 200
         sat_solving_mils:
-        - 12
-        - 8
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2584,14 +2584,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 248
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 210
         sat_solving_mils:
-        - 12
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2607,14 +2607,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 245
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 200
         sat_solving_mils:
-        - 13
-        - 7
+        - 2
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2630,14 +2630,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 242
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 227
         sat_solving_mils:
-        - 13
-        - 8
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2653,14 +2653,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 180
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 160
         sat_solving_mils:
-        - 11
-        - 9
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2676,14 +2676,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
+        cnf_compilation_mils: 173
         final_var_state_calc_mils: 240
         sat_solving_mils:
-        - 12
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2699,14 +2699,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 239
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 240
         sat_solving_mils:
-        - 12
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2722,14 +2722,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 178
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 150
         sat_solving_mils:
-        - 15
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2745,14 +2745,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 168
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 150
         sat_solving_mils:
-        - 14
-        - 8
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2768,14 +2768,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9942
+        clauses_num: 9039
         variables_num: 4881
     execution_time:
-        cnf_compilation_mils: 154
-        final_var_state_calc_mils: 241
+        cnf_compilation_mils: 173
+        final_var_state_calc_mils: 220
         sat_solving_mils:
-        - 12
-        - 6
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2791,13 +2791,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 286
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 240
         sat_solving_mils:
-        - 18
+        - 20
         - 10
     solution:
         number_of_solutions: 1
@@ -2814,14 +2814,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 263
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 230
         sat_solving_mils:
-        - 17
-        - 9
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2837,14 +2837,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 320
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 310
         sat_solving_mils:
-        - 16
-        - 8
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2860,14 +2860,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 234
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 210
         sat_solving_mils:
-        - 16
-        - 8
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2883,13 +2883,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 335
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 300
         sat_solving_mils:
-        - 17
+        - 20
         - 10
     solution:
         number_of_solutions: 1
@@ -2906,14 +2906,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 343
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 300
         sat_solving_mils:
-        - 19
-        - 9
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2929,14 +2929,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 358
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 320
         sat_solving_mils:
-        - 16
-        - 7
+        - 20
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2952,14 +2952,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 344
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 313
         sat_solving_mils:
         - 16
-        - 9
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -2975,13 +2975,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 210
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 174
         sat_solving_mils:
-        - 18
+        - 17
         - 8
     solution:
         number_of_solutions: 1
@@ -2998,14 +2998,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 348
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 290
         sat_solving_mils:
-        - 16
-        - 9
+        - 20
+        - 11
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3021,13 +3021,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 275
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 258
         sat_solving_mils:
-        - 19
+        - 10
         - 10
     solution:
         number_of_solutions: 1
@@ -3044,14 +3044,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 350
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 330
         sat_solving_mils:
-        - 16
         - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3067,14 +3067,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 344
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 290
         sat_solving_mils:
-        - 18
-        - 9
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3090,14 +3090,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 261
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 240
         sat_solving_mils:
-        - 17
-        - 8
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3113,13 +3113,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 272
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 250
         sat_solving_mils:
-        - 17
+        - 20
         - 10
     solution:
         number_of_solutions: 1
@@ -3136,14 +3136,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 330
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 311
         sat_solving_mils:
-        - 16
-        - 9
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3159,14 +3159,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 324
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 300
         sat_solving_mils:
-        - 17
-        - 8
+        - 20
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3182,14 +3182,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 316
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 300
         sat_solving_mils:
-        - 16
-        - 9
+        - 20
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3205,13 +3205,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 394
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 317
         sat_solving_mils:
-        - 16
+        - 20
         - 10
     solution:
         number_of_solutions: 1
@@ -3228,14 +3228,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 13448
+        clauses_num: 12367
         variables_num: 7066
     execution_time:
-        cnf_compilation_mils: 216
-        final_var_state_calc_mils: 399
+        cnf_compilation_mils: 206
+        final_var_state_calc_mils: 314
         sat_solving_mils:
-        - 22
-        - 11
+        - 28
+        - 9
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3251,14 +3251,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1132
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 951
         sat_solving_mils:
-        - 82
-        - 49
+        - 77
+        - 41
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3274,14 +3274,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1246
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 1029
         sat_solving_mils:
-        - 73
-        - 34
+        - 80
+        - 41
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3297,14 +3297,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1102
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 1086
         sat_solving_mils:
-        - 77
-        - 37
+        - 83
+        - 39
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3320,13 +3320,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1114
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 1080
         sat_solving_mils:
-        - 80
+        - 79
         - 37
     solution:
         number_of_solutions: 1
@@ -3343,15 +3343,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 954
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 934
         sat_solving_mils:
-        - 76
-        - 77
-        - 35
+        - 95
+        - 90
+        - 40
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -3367,14 +3367,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1011
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 1152
         sat_solving_mils:
-        - 85
-        - 35
+        - 74
+        - 40
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3390,14 +3390,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 671
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 712
         sat_solving_mils:
-        - 78
-        - 38
+        - 70
+        - 50
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3413,14 +3413,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1112
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 990
         sat_solving_mils:
-        - 81
-        - 38
+        - 70
+        - 30
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3436,14 +3436,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1007
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 930
         sat_solving_mils:
-        - 75
-        - 35
+        - 80
+        - 47
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3459,14 +3459,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1029
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 1298
         sat_solving_mils:
-        - 72
-        - 35
+        - 80
+        - 43
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3482,14 +3482,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1006
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 940
         sat_solving_mils:
-        - 74
-        - 35
+        - 72
+        - 47
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3505,14 +3505,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1118
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 1026
         sat_solving_mils:
-        - 78
-        - 36
+        - 73
+        - 40
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3528,14 +3528,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 973
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 982
         sat_solving_mils:
-        - 73
-        - 44
+        - 70
+        - 50
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3551,14 +3551,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1004
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 775
         sat_solving_mils:
-        - 87
-        - 43
+        - 81
+        - 40
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3574,15 +3574,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 1118
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 870
         sat_solving_mils:
-        - 91
-        - 84
-        - 39
+        - 70
+        - 80
+        - 40
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -3598,14 +3598,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 937
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 734
         sat_solving_mils:
-        - 79
-        - 45
+        - 75
+        - 40
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3621,14 +3621,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 571
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 472
         sat_solving_mils:
-        - 89
-        - 37
+        - 74
+        - 42
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3644,14 +3644,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 959
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 874
         sat_solving_mils:
-        - 77
-        - 41
+        - 70
+        - 40
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3667,14 +3667,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 910
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 774
         sat_solving_mils:
-        - 78
-        - 34
+        - 70
+        - 30
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3690,13 +3690,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 59105
+        clauses_num: 54055
         variables_num: 32829
     execution_time:
-        cnf_compilation_mils: 888
-        final_var_state_calc_mils: 865
+        cnf_compilation_mils: 1005
+        final_var_state_calc_mils: 824
         sat_solving_mils:
-        - 82
+        - 70
         - 40
     solution:
         number_of_solutions: 1
@@ -3713,14 +3713,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 263
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 230
         sat_solving_mils:
-        - 18
-        - 7
+        - 10
+        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3736,13 +3736,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 156
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 140
         sat_solving_mils:
-        - 15
+        - 12
         - 9
     solution:
         number_of_solutions: 1
@@ -3759,14 +3759,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 224
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 204
         sat_solving_mils:
         - 12
-        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3782,14 +3782,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 224
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 200
         sat_solving_mils:
-        - 12
-        - 14
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3805,14 +3805,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 265
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 257
         sat_solving_mils:
-        - 14
-        - 7
+        - 20
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3828,13 +3828,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 109
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 90
         sat_solving_mils:
-        - 14
+        - 10
         - 10
     solution:
         number_of_solutions: 1
@@ -3851,11 +3851,11 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 179
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 151
         sat_solving_mils:
         - 13
         - 8
@@ -3874,13 +3874,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 219
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 217
         sat_solving_mils:
-        - 14
+        - 8
         - 8
     solution:
         number_of_solutions: 1
@@ -3897,14 +3897,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 219
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 207
         sat_solving_mils:
-        - 15
-        - 9
+        - 10
+        - 1
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3920,14 +3920,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 193
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 172
         sat_solving_mils:
-        - 12
-        - 7
+        - 11
+        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3943,14 +3943,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 238
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 242
         sat_solving_mils:
-        - 16
-        - 8
+        - 3
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -3966,11 +3966,11 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 187
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 169
         sat_solving_mils:
         - 12
         - 7
@@ -3989,15 +3989,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 250
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 226
         sat_solving_mils:
-        - 12
-        - 12
-        - 7
+        - 11
+        - 10
+        - 10
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -4013,14 +4013,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 236
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 231
         sat_solving_mils:
-        - 12
-        - 8
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4036,13 +4036,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 252
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 247
         sat_solving_mils:
-        - 12
+        - 11
         - 8
     solution:
         number_of_solutions: 1
@@ -4059,14 +4059,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 178
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 172
         sat_solving_mils:
-        - 14
-        - 8
+        - 12
+        - 9
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4082,14 +4082,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 236
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 255
         sat_solving_mils:
-        - 12
-        - 6
+        - 13
+        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4105,14 +4105,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 9222
+        clauses_num: 8694
         variables_num: 4311
     execution_time:
-        cnf_compilation_mils: 220
-        final_var_state_calc_mils: 205
+        cnf_compilation_mils: 236
+        final_var_state_calc_mils: 237
         sat_solving_mils:
-        - 12
-        - 9
+        - 14
+        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4128,14 +4128,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 153
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 129
         sat_solving_mils:
-        - 11
-        - 7
+        - 13
+        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4151,14 +4151,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 171
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 192
         sat_solving_mils:
-        - 10
-        - 5
+        - 12
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4174,14 +4174,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 201
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 225
         sat_solving_mils:
-        - 12
-        - 7
+        - 10
+        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4197,14 +4197,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 200
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 204
         sat_solving_mils:
+        - 12
         - 10
-        - 8
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4220,14 +4220,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 185
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 169
         sat_solving_mils:
+        - 10
         - 9
-        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4243,14 +4243,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 174
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 185
         sat_solving_mils:
         - 10
-        - 5
+        - 9
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4266,14 +4266,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 179
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 187
         sat_solving_mils:
-        - 11
-        - 6
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4289,14 +4289,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 174
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 180
         sat_solving_mils:
-        - 11
-        - 8
+        - 7
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4312,14 +4312,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 173
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 180
         sat_solving_mils:
-        - 12
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4335,14 +4335,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 198
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 201
         sat_solving_mils:
-        - 11
-        - 5
+        - 20
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4358,14 +4358,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 124
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 100
         sat_solving_mils:
-        - 13
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4381,14 +4381,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 202
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 180
         sat_solving_mils:
-        - 11
-        - 7
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4404,14 +4404,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 120
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 110
         sat_solving_mils:
         - 10
-        - 8
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4427,14 +4427,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 152
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 130
         sat_solving_mils:
-        - 13
-        - 7
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4450,14 +4450,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 204
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 180
         sat_solving_mils:
         - 10
-        - 6
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4473,14 +4473,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 164
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 150
         sat_solving_mils:
-        - 11
-        - 8
+        - 10
+        - 1
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4496,14 +4496,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 173
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 169
         sat_solving_mils:
-        - 12
-        - 7
+        - 11
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4519,14 +4519,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 118
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 110
         sat_solving_mils:
-        - 11
-        - 6
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4542,14 +4542,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 191
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 170
         sat_solving_mils:
         - 10
-        - 5
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4565,14 +4565,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7616
+        clauses_num: 7238
         variables_num: 3654
     execution_time:
-        cnf_compilation_mils: 192
-        final_var_state_calc_mils: 202
+        cnf_compilation_mils: 183
+        final_var_state_calc_mils: 170
         sat_solving_mils:
-        - 11
-        - 6
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4588,14 +4588,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 520
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 450
         sat_solving_mils:
-        - 38
-        - 32
+        - 30
+        - 30
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4611,14 +4611,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 628
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 530
         sat_solving_mils:
-        - 40
-        - 18
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4634,14 +4634,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 524
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 450
         sat_solving_mils:
-        - 38
-        - 23
+        - 30
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4657,14 +4657,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 633
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 586
         sat_solving_mils:
-        - 50
-        - 22
+        - 34
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4680,14 +4680,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 722
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 557
         sat_solving_mils:
-        - 40
-        - 19
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4703,14 +4703,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 638
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 512
         sat_solving_mils:
-        - 46
-        - 28
+        - 30
+        - 23
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4726,15 +4726,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 705
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 607
         sat_solving_mils:
-        - 37
-        - 34
-        - 24
+        - 32
+        - 30
+        - 20
     solution:
         number_of_solutions: 2
         solution_index: 0
@@ -4750,14 +4750,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 668
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 570
         sat_solving_mils:
-        - 38
-        - 17
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4773,14 +4773,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 523
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 420
         sat_solving_mils:
-        - 36
-        - 27
+        - 30
+        - 21
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4796,14 +4796,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 441
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 418
         sat_solving_mils:
-        - 39
-        - 28
+        - 30
+        - 30
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4819,14 +4819,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 435
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 370
         sat_solving_mils:
-        - 37
         - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4842,15 +4842,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 492
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 402
         sat_solving_mils:
-        - 39
-        - 37
-        - 25
+        - 30
+        - 36
+        - 21
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -4866,14 +4866,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 541
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 481
         sat_solving_mils:
-        - 42
-        - 28
+        - 34
+        - 25
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4889,14 +4889,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 542
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 501
         sat_solving_mils:
-        - 39
-        - 25
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4912,14 +4912,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 665
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 550
         sat_solving_mils:
-        - 35
-        - 26
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4935,14 +4935,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 632
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 520
         sat_solving_mils:
-        - 40
-        - 18
+        - 30
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4958,14 +4958,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 658
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 530
         sat_solving_mils:
-        - 35
-        - 21
+        - 30
+        - 31
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -4981,11 +4981,11 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 686
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 538
         sat_solving_mils:
         - 40
         - 20
@@ -5004,14 +5004,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 305
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 260
         sat_solving_mils:
-        - 48
-        - 25
+        - 40
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5027,14 +5027,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 25287
+        clauses_num: 23747
         variables_num: 12612
     execution_time:
-        cnf_compilation_mils: 465
-        final_var_state_calc_mils: 490
+        cnf_compilation_mils: 654
+        final_var_state_calc_mils: 401
         sat_solving_mils:
-        - 38
-        - 18
+        - 32
+        - 31
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5050,14 +5050,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 157
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 134
         sat_solving_mils:
         - 10
-        - 8
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5073,13 +5073,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 217
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 180
         sat_solving_mils:
-        - 9
+        - 10
         - 7
     solution:
         number_of_solutions: 1
@@ -5096,14 +5096,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 206
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 182
         sat_solving_mils:
-        - 10
-        - 7
+        - 9
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5119,14 +5119,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 209
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 192
         sat_solving_mils:
-        - 9
-        - 5
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5142,14 +5142,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 187
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 150
         sat_solving_mils:
-        - 11
-        - 7
+        - 20
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5165,14 +5165,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 235
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 200
         sat_solving_mils:
-        - 9
-        - 5
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5188,14 +5188,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 205
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 199
         sat_solving_mils:
         - 10
-        - 7
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5211,14 +5211,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 209
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 220
         sat_solving_mils:
         - 10
-        - 6
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5234,15 +5234,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 115
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 110
         sat_solving_mils:
-        - 9
-        - 12
-        - 7
+        - 10
+        - 10
+        - 8
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -5258,14 +5258,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 212
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 238
         sat_solving_mils:
         - 10
-        - 5
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5281,14 +5281,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
+        cnf_compilation_mils: 155
         final_var_state_calc_mils: 110
         sat_solving_mils:
-        - 11
-        - 8
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5304,14 +5304,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 193
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 180
         sat_solving_mils:
         - 10
-        - 6
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5327,14 +5327,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 162
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 150
         sat_solving_mils:
         - 10
-        - 7
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5350,14 +5350,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 125
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 130
         sat_solving_mils:
-        - 11
-        - 7
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5373,14 +5373,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 172
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 200
         sat_solving_mils:
-        - 13
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5396,14 +5396,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 221
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 210
         sat_solving_mils:
         - 10
-        - 8
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5419,14 +5419,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 243
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 210
         sat_solving_mils:
-        - 13
-        - 6
+        - 10
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5442,14 +5442,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 197
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 173
         sat_solving_mils:
-        - 11
-        - 6
+        - 10
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5465,14 +5465,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 221
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 250
         sat_solving_mils:
         - 10
-        - 7
+        - 10
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5488,14 +5488,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 7181
+        clauses_num: 6856
         variables_num: 3498
     execution_time:
-        cnf_compilation_mils: 170
-        final_var_state_calc_mils: 194
+        cnf_compilation_mils: 155
+        final_var_state_calc_mils: 170
         sat_solving_mils:
-        - 9
-        - 5
+        - 0
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5511,13 +5511,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 251
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 203
         sat_solving_mils:
-        - 11
+        - 9
         - 6
     solution:
         number_of_solutions: 1
@@ -5534,14 +5534,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 228
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 212
         sat_solving_mils:
-        - 9
-        - 6
+        - 11
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5557,13 +5557,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 219
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 210
         sat_solving_mils:
-        - 11
+        - 9
         - 6
     solution:
         number_of_solutions: 1
@@ -5580,14 +5580,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 253
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 214
         sat_solving_mils:
-        - 11
         - 8
+        - 0
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5603,14 +5603,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 266
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 197
         sat_solving_mils:
-        - 10
-        - 6
+        - 9
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5626,14 +5626,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 285
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 244
         sat_solving_mils:
-        - 10
-        - 5
+        - 9
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5649,14 +5649,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 159
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 123
         sat_solving_mils:
-        - 15
-        - 6
+        - 8
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5672,14 +5672,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 241
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 204
         sat_solving_mils:
         - 9
-        - 6
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5695,13 +5695,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 174
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 166
         sat_solving_mils:
-        - 11
+        - 9
         - 6
     solution:
         number_of_solutions: 1
@@ -5718,14 +5718,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 252
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 201
         sat_solving_mils:
-        - 11
-        - 8
+        - 9
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5741,14 +5741,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 130
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 110
         sat_solving_mils:
-        - 15
-        - 7
+        - 10
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5764,14 +5764,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 247
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 198
         sat_solving_mils:
-        - 9
-        - 7
+        - 0
+        - 5
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5787,13 +5787,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 301
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 233
         sat_solving_mils:
-        - 9
+        - 8
         - 6
     solution:
         number_of_solutions: 1
@@ -5810,14 +5810,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 265
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 297
         sat_solving_mils:
-        - 10
-        - 7
+        - 16
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5833,14 +5833,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 231
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 196
         sat_solving_mils:
-        - 10
-        - 8
+        - 9
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5856,13 +5856,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 311
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 250
         sat_solving_mils:
-        - 10
+        - 9
         - 6
     solution:
         number_of_solutions: 1
@@ -5879,14 +5879,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 157
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 136
         sat_solving_mils:
-        - 11
-        - 7
+        - 8
+        - 6
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5902,13 +5902,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 161
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 146
         sat_solving_mils:
-        - 10
+        - 9
         - 7
     solution:
         number_of_solutions: 1
@@ -5925,14 +5925,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 6937
+        clauses_num: 6637
         variables_num: 3451
     execution_time:
-        cnf_compilation_mils: 134
-        final_var_state_calc_mils: 258
+        cnf_compilation_mils: 175
+        final_var_state_calc_mils: 231
         sat_solving_mils:
-        - 10
-        - 6
+        - 9
+        - 7
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5948,14 +5948,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 127
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 122
         sat_solving_mils:
-        - 23
-        - 17
+        - 21
+        - 15
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5971,14 +5971,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 479
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 483
         sat_solving_mils:
-        - 27
-        - 13
+        - 25
+        - 15
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -5994,14 +5994,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 490
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 504
         sat_solving_mils:
-        - 26
-        - 18
+        - 24
+        - 15
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6017,14 +6017,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 550
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 447
         sat_solving_mils:
-        - 32
-        - 15
+        - 23
+        - 14
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6040,14 +6040,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 562
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 468
         sat_solving_mils:
-        - 30
-        - 19
+        - 29
+        - 21
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6063,14 +6063,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 199
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 209
         sat_solving_mils:
-        - 25
-        - 20
+        - 22
+        - 24
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6086,14 +6086,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 467
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 442
         sat_solving_mils:
         - 23
-        - 14
+        - 13
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6109,13 +6109,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 435
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 396
         sat_solving_mils:
-        - 26
+        - 24
         - 17
     solution:
         number_of_solutions: 1
@@ -6132,15 +6132,15 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 329
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 317
         sat_solving_mils:
-        - 25
-        - 25
-        - 17
+        - 23
+        - 33
+        - 19
     solution:
         number_of_solutions: 2
         solution_index: 1
@@ -6156,14 +6156,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 453
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 430
         sat_solving_mils:
-        - 22
-        - 13
+        - 21
+        - 14
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6179,14 +6179,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 246
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 234
         sat_solving_mils:
-        - 27
-        - 21
+        - 25
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6202,14 +6202,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 208
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 212
         sat_solving_mils:
-        - 23
-        - 17
+        - 21
+        - 16
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6225,14 +6225,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 356
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 337
         sat_solving_mils:
-        - 24
-        - 19
+        - 22
+        - 18
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6248,14 +6248,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 456
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 438
         sat_solving_mils:
-        - 22
-        - 17
+        - 20
+        - 16
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6271,14 +6271,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 298
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 262
         sat_solving_mils:
-        - 27
-        - 22
+        - 23
+        - 20
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6294,14 +6294,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 392
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 381
         sat_solving_mils:
-        - 24
-        - 14
+        - 22
+        - 19
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6317,14 +6317,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 440
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 456
         sat_solving_mils:
-        - 26
-        - 16
+        - 23
+        - 18
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6340,14 +6340,14 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 414
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 385
         sat_solving_mils:
         - 22
-        - 19
+        - 18
     solution:
         number_of_solutions: 1
         solution_index: 0
@@ -6363,13 +6363,13 @@
         conflict_retries_model: no retries
         max_failures_restriction: 1
     cnf:
-        clauses_num: 17186
+        clauses_num: 16240
         variables_num: 8753
     execution_time:
-        cnf_compilation_mils: 314
-        final_var_state_calc_mils: 458
+        cnf_compilation_mils: 409
+        final_var_state_calc_mils: 452
         sat_solving_mils:
-        - 22
+        - 21
         - 18
     solution:
         number_of_solutions: 1

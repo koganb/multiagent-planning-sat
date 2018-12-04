@@ -1,15 +1,15 @@
 package il.ac.bgu
 
-
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
-import il.ac.bgu.cnfCompilation.PlanUtils
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
+import il.ac.bgu.utils.PlanSolvingUtils
+import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
@@ -94,7 +94,7 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
     def cnfPlanClausesArr = [problemArr, planArr].transpose().collect { tuple ->
         Instant start = Instant.now()
         def constraints = TestUtils.createPlanHardConstraints(tuple[1], conflictRetriesModel, healthyCnfClausesCreator,
-                conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
+                conflictClausesCreator, failedClausesCreator)
 
         planClausesCreationTime[tuple[0].problemName] = Duration.between(start, Instant.now()).toMillis()
 
@@ -116,7 +116,7 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
         def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
 
         expect:
-        List<List<Formattable>> solutions = TestUtils.calculateSolutions(cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+        List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
                 .filter { solution -> !solution.isEmpty() }
                 .collect(Collectors.toList())
 
