@@ -90,7 +90,13 @@ dependencies {
     //combinatoric
     compile group: 'com.github.dpaukov', name: 'combinatoricslib3', version: '3.0.0'
 
+    compile group: 'com.github.opendevl', name: 'json2flat', version: '1.0.3'
+
+
 
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
+
+
+
 
 }
