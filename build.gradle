@@ -90,6 +90,8 @@ dependencies {
     //combinatoric
     compile group: 'com.github.dpaukov', name: 'combinatoricslib3', version: '3.0.0'
 
+    compile group: 'com.fasterxml.jackson.dataformat', name:'jackson-dataformat-yaml', version:'2.7.4'
+
     compile group: 'com.github.opendevl', name: 'json2flat', version: '1.0.3'
 
 
