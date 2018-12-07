@@ -29,7 +29,7 @@ public class FinalNoRetriesVariableStateCalc implements FinalVariableStateCalc {
         this.failureModelFunction = failureModelFunction;
     }
 
-    public ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Collection<? extends Formattable> failedActions) {
+    public ImmutableList<FormattableValue<? extends Formattable>> getFinalVariableState(Collection<? extends Formattable> failedActions) {
 
         Set<String> failedActionsKeys = failedActions.stream()
                 .map(Formattable::formatFunctionKey)

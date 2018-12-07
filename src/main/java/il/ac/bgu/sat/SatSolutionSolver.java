@@ -26,7 +26,7 @@ public class SatSolutionSolver implements SatSolutionSolverInter {
     WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
 
     @Override
-    public Optional<List<Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap) {
+    public Optional<List<? extends Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap) {
         //solver.setVerbose(true);
         Reader reader = new WDimacsReader(solver);
 

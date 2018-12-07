@@ -32,14 +32,14 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
 
 
     @Override
-    public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
-                                                                      Step step,
-                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState) {
+    public Stream<ImmutableList<FormattableValue<? extends Formattable>>> apply(Integer currentStage,
+                                                                                Step step,
+                                                                                ImmutableCollection<FormattableValue<Variable>> variablesState) {
 
         log.debug("Start conditions not met clause");
 
         // CONDITIONS_NOT_MET -> not(prec1) v not(prec2) => not(CONDITIONS_NOT_MET) v not(prec1) v not(prec2)
-        Stream<ImmutableList<FormattableValue<Formattable>>> precClauses1 = Stream.of(
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses1 = Stream.of(
 
 
                 StreamEx.<FormattableValue<Formattable>>of()
@@ -54,22 +54,22 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
 
 
         // not(prec1) v not(prec2) -> CONDITIONS_NOT_MET => (prec1 v CONDITIONS_NOT_MET) ^  (prec2 v CONDITIONS_NOT_MET)
-        Stream<ImmutableList<FormattableValue<Formattable>>> precClauses2 = step.getPopPrecs().stream()
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses2 = step.getPopPrecs().stream()
                 .map(actionPrec ->
-                        ImmutableList.<FormattableValue<Formattable>>builder()
+                        ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                 .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                 .add(FormattableValue.of(Variable.of(actionPrec, currentStage), true))
                                 .build());
         // (eff1=LOCKED_FOR_UPDATE) v (eff2=LOCKED_FOR_UPDATE) -> CONDITIONS_NOT_MET => (not eff1=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET) ^  (not eff2=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET)
-        Stream<ImmutableList<FormattableValue<Formattable>>> precClauses3 = step.getPopEffs().stream()
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses3 = step.getPopEffs().stream()
                 .flatMap(actionPrec ->
                         Stream.of(
-                                ImmutableList.<FormattableValue<Formattable>>builder()
+                                ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                         .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                         .add(FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE.name(), currentStage), false))
                                         .build()
                                 ,
-                                ImmutableList.<FormattableValue<Formattable>>builder()
+                                ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                         .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                         .add(FormattableValue.of(Variable.of(actionPrec, FREEZED.name(), currentStage), false))
                                         .build()
@@ -81,7 +81,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                 .collect(Collectors.toSet());
 
 
-        Stream<ImmutableList<FormattableValue<Formattable>>> effectClauses =
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> effectClauses =
                 Stream.concat(
                         step.getPopPrecs().stream()
                                 .map(Variable::of)
@@ -94,7 +94,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                         .flatMap(stateVar -> {
                                             if (Objects.equals(stateVar.getFormattable().getValue(), LOCKED_FOR_UPDATE.name())) {
                                                 return Stream.of(
-                                                        ImmutableList.<FormattableValue<Formattable>>builder()
+                                                        ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
@@ -104,7 +104,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                                 );
                                             } else if (Objects.equals(stateVar.getFormattable().getValue(), FREEZED.name())) {
                                                 return Stream.of(
-                                                        ImmutableList.<FormattableValue<Formattable>>builder()
+                                                        ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
@@ -112,7 +112,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                                                 .build());
                                             } else {
                                                 return Stream.of(
-                                                        ImmutableList.<FormattableValue<Formattable>>builder()
+                                                        ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
@@ -123,7 +123,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                                                         stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
                                                                 .build()
                                                         ,
-                                                        ImmutableList.<FormattableValue<Formattable>>builder()
+                                                        ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
@@ -138,8 +138,8 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                             }
                                         }));
 
-        List<ImmutableList<FormattableValue<Formattable>>> resultClauses =
-                StreamEx.<ImmutableList<FormattableValue<Formattable>>>of()
+        List<ImmutableList<FormattableValue<? extends Formattable>>> resultClauses =
+                StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
                         .append(precClauses1)
                         .append(precClauses2)
                         .append(precClauses3)

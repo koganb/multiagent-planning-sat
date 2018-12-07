@@ -116,7 +116,7 @@ public class CnfCompilation {
     }
 
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> calculatePassThroughClauses(Integer stage, Set<Step> actions) {
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculatePassThroughClauses(Integer stage, Set<Step> actions) {
         //calculate "pass through" variables
 
         //get prec & effects keys for stage actions
@@ -127,7 +127,7 @@ public class CnfCompilation {
 
         log.debug("Start pass through...");
 
-        Stream<ImmutableList<FormattableValue<Formattable>>> passThroughValuesStream =
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> passThroughValuesStream =
                 calcVariableState(variablesStateBeforeStepExec.stream(), stage).
                         filter(value -> !precAndEffectKeys.contains(value.getFormattable().formatFunctionKey())).
                         flatMap(g -> {
@@ -153,7 +153,7 @@ public class CnfCompilation {
                             }
                         });
 
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> passThroughValues =
+        ImmutableList<ImmutableList<FormattableValue<? extends Formattable>>> passThroughValues =
                 passThroughValuesStream.collect(ImmutableList.toImmutableList());
 
         log.debug("\n{}", passThroughValues.stream().map(t -> StringUtils.join(t, ",")).collect(Collectors.joining("\n")));
@@ -161,25 +161,25 @@ public class CnfCompilation {
         return passThroughValues.stream();
     }
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> calculateHealthyClauses(Integer stage) {
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculateHealthyClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
                 this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
 
     }
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> calculateActionFailedClauses(Integer stage) {
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculateActionFailedClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
                 this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec)));
     }
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
                 this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
     }
 
-    Stream<ImmutableList<FormattableValue<Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
 
-        Stream<ImmutableList<FormattableValue<Formattable>>> resultClausesStream = steps.stream()
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> resultClausesStream = steps.stream()
                 .flatMap(step ->
                         Stream.of(
                                 ImmutableList.of(
@@ -210,18 +210,18 @@ public class CnfCompilation {
 
                         ));
 
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses = resultClausesStream.collect(ImmutableList.toImmutableList());
+        ImmutableList<ImmutableList<FormattableValue<? extends Formattable>>> resultClauses = resultClausesStream.collect(ImmutableList.toImmutableList());
 
         return resultClauses.stream();
     }
 
 
-    public List<List<FormattableValue<Formattable>>> compileToCnf() {
+    public List<List<FormattableValue<? extends Formattable>>> compileToCnf() {
         return plan.entrySet().stream().
                         filter(i -> i.getKey() != -1).
                         flatMap(entry -> {
                             executeStage(entry.getKey(), entry.getValue());
-                            return StreamEx.<List<FormattableValue<Formattable>>>of()
+                            return StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                                     .append(addActionStatusConstraints(entry.getKey(), entry.getValue()))
                                     .append(calculatePassThroughClauses(entry.getKey(), entry.getValue()))
                                     .append(calculateHealthyClauses(entry.getKey()))

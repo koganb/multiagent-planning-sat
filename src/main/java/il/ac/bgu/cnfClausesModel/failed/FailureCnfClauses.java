@@ -38,9 +38,9 @@ public abstract class FailureCnfClauses implements CnfClausesFunction, NamedMode
     protected VariableModelFunction failureModel;
 
     @Override
-    public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
-                                                                      Step step,
-                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState) {
+    public Stream<ImmutableList<FormattableValue<? extends Formattable>>> apply(Integer currentStage,
+                                                                                Step step,
+                                                                                ImmutableCollection<FormattableValue<Variable>> variablesState) {
 
 
         log.debug("Start failed clause");
@@ -94,8 +94,8 @@ public abstract class FailureCnfClauses implements CnfClausesFunction, NamedMode
 
         List<FormattableValue<Formattable>> effects = effectStream.collect(toList());
 
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses =
-                StreamEx.<ImmutableList<FormattableValue<Formattable>>>of()
+        ImmutableList<ImmutableList<FormattableValue<? extends Formattable>>> resultClauses =
+                StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
                         .append(
                                 effects.stream().map(u ->
                                         Stream.concat(

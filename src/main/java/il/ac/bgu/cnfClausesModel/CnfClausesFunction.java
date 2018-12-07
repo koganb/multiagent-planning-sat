@@ -11,9 +11,9 @@ import org.agreement_technologies.common.map_planner.Step;
 import java.util.stream.Stream;
 
 public interface CnfClausesFunction {
-    Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage,
-                                                               Step step,
-                                                               ImmutableCollection<FormattableValue<Variable>> variablesState);
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> apply(Integer currentStage,
+                                                                         Step step,
+                                                                         ImmutableCollection<FormattableValue<Variable>> variablesState);
 
     VariableModelFunction getVariableModel();
 }

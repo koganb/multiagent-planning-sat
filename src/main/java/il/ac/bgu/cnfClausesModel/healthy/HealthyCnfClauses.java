@@ -34,10 +34,10 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
     private SuccessVariableModel successVariableModel = new SuccessVariableModel();
 
     @Override
-    public Stream<ImmutableList<FormattableValue<Formattable>>> apply(Integer currentStage, Step step,
-                                                                      ImmutableCollection<FormattableValue<Variable>> variablesState) {
+    public Stream<ImmutableList<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step,
+                                                                                ImmutableCollection<FormattableValue<Variable>> variablesState) {
         log.debug("Start add healthy clause");
-        ImmutableList<FormattableValue<Formattable>> preconditionList =
+        ImmutableList<FormattableValue<? extends Formattable>> preconditionList =
                 Stream.concat(
                         step.getPopPrecs().stream().
                                 map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, currentStage), false)),
@@ -74,13 +74,13 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                 });
 
 
-        ImmutableList<ImmutableList<FormattableValue<Formattable>>> resultClauses =
-                StreamEx.<ImmutableList<FormattableValue<Formattable>>>of()
+        ImmutableList<ImmutableList<FormattableValue<? extends Formattable>>> resultClauses =
+                StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
                         .append(effectStream.map(u ->
-                                Stream.concat(
-                                        preconditionList.stream(),
-                                        Stream.of(FormattableValue.<Formattable>of(Action.of(step, currentStage, HEALTHY), false), u)).
-                                        collect(ImmutableList.toImmutableList())
+                                StreamEx.<FormattableValue<? extends Formattable>>of()
+                                        .append(preconditionList.stream())
+                                        .append(Stream.of(FormattableValue.of(Action.of(step, currentStage, HEALTHY), false), u))
+                                        .collect(ImmutableList.toImmutableList())
                         ))
                         .collect(ImmutableList.toImmutableList());
 

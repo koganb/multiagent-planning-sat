@@ -7,5 +7,5 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface SatSolutionSolverInter {
-    Optional<List<Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap);
+    Optional<List<? extends Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap);
 }

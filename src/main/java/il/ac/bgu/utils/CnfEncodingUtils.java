@@ -84,7 +84,7 @@ public class CnfEncodingUtils {
 
 
     public static Pair<Map<Formattable, Integer>, String> encode(
-            List<List<FormattableValue<Formattable>>> hardConstraints,
+            List<List<FormattableValue<? extends Formattable>>> hardConstraints,
             List<FormattableValue<Formattable>> softConstraints) {
         Map<Formattable, Integer> planCodes = new HashMap<>();
         MutableInt currentCode = new MutableInt(0);

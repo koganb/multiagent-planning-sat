@@ -17,27 +17,27 @@ import java.util.*;
 import static org.slf4j.MarkerFactory.getMarker;
 
 
-public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
+public class SolutionIterator implements Iterator<Optional<List<? extends Formattable>>> {
 
     private static final Logger log = LoggerFactory.getLogger(SolutionIterator.class);
 
     private final static int MAX_SOLUTION_SIZE = 5;
 
-    private List<List<FormattableValue<Formattable>>> hardConstraints;
+    private List<List<FormattableValue<? extends Formattable>>> hardConstraints;
     private final List<FormattableValue<Formattable>> softConstraints;
 
     private final SatSolutionSolverInter satSolutionSolver = new SatSolutionSolver();
     private final MaxFailureConstraintsCreator maxFailureConstraintsCreator;
 
 
-    private List<List<FormattableValue<Formattable>>> solutionConstraints = new ArrayList<>();
+    private List<List<FormattableValue<? extends Formattable>>> solutionConstraints = new ArrayList<>();
 
     private boolean solutionFound = true;
 
     private int currentSolutionSize = 1;
 
     public SolutionIterator(Map<Integer, Set<Step>> plan,
-                            List<List<FormattableValue<Formattable>>> hardConstraints,
+                            List<List<FormattableValue<? extends Formattable>>> hardConstraints,
                             List<FormattableValue<Formattable>> softConstraints) {
         this.hardConstraints = hardConstraints;
         this.softConstraints = softConstraints;
@@ -47,10 +47,10 @@ public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
 
 
     @Override
-    public Optional<List<Formattable>> next() {
+    public Optional<List<? extends Formattable>> next() {
 
-        List<List<FormattableValue<Formattable>>> hardConstraintsFull =
-                ImmutableList.<List<FormattableValue<Formattable>>>builder()
+        List<List<FormattableValue<? extends Formattable>>> hardConstraintsFull =
+                ImmutableList.<List<FormattableValue<? extends Formattable>>>builder()
                         .addAll(hardConstraints)
                         .addAll(maxFailureConstraintsCreator.createMaxFailuresClauses(currentSolutionSize))
                         .addAll(solutionConstraints)
@@ -65,7 +65,7 @@ public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
 
         Instant satSolverStartTime = Instant.now();
 
-        Optional<List<Formattable>> diagnosisCandidates = satSolutionSolver.solveCnf(
+        Optional<List<? extends Formattable>> diagnosisCandidates = satSolutionSolver.solveCnf(
                 cnfEncoding.getRight(),
                 cnfEncoding.getLeft());
 
@@ -74,12 +74,12 @@ public class SolutionIterator implements Iterator<Optional<List<Formattable>>> {
         log.info("Solution candidate found: {}", diagnosisCandidates.isPresent());
 
         //add solution negation to solution constraints
-        diagnosisCandidates
+        Optional<ImmutableList<FormattableValue<? extends Formattable>>> constraintOptional = diagnosisCandidates
                 .map(solution -> solution.stream()
-                                .map(constraint -> FormattableValue.of(constraint, false))
-                        .collect(ImmutableList.toImmutableList()))
-                .ifPresent(solution -> solutionConstraints.add(solution));
+                        .map(constraint -> FormattableValue.of(constraint, false))
+                        .collect(ImmutableList.toImmutableList()));
 
+        constraintOptional.ifPresent(solution -> solutionConstraints.add(solution));
 
         solutionFound = diagnosisCandidates.isPresent();
 

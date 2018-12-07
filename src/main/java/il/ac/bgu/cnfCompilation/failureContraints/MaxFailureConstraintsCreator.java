@@ -26,9 +26,9 @@ public class MaxFailureConstraintsCreator {
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    public List<List<FormattableValue<Formattable>>> createMaxFailuresClauses(int maxFailuresNumber) {
+    public List<List<FormattableValue<? extends Formattable>>> createMaxFailuresClauses(int maxFailuresNumber) {
 
-        ImmutableList<FormattableValue<Formattable>> allPossibleFailedClauses = plan.entrySet().stream().
+        ImmutableList<FormattableValue<? extends Formattable>> allPossibleFailedClauses = plan.entrySet().stream().
                 filter(i -> i.getKey() != -1).
                 flatMap(entry -> entry.getValue().stream().flatMap(
                         step -> Stream.of(

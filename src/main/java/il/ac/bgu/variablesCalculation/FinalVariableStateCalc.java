@@ -7,5 +7,5 @@ import il.ac.bgu.dataModel.FormattableValue;
 import java.util.Collection;
 
 public interface FinalVariableStateCalc {
-    ImmutableList<FormattableValue<Formattable>> getFinalVariableState(Collection<? extends Formattable> failedActions);
+    ImmutableList<FormattableValue<? extends Formattable>> getFinalVariableState(Collection<? extends Formattable> failedActions);
 }
