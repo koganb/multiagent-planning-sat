@@ -9,7 +9,13 @@ import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater;
 import il.ac.bgu.cnfCompilation.retries.OneRetryPlanUpdater;
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
+import il.ac.bgu.dataModel.Formattable;
+import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.utils.PlanSolvingUtils;
 import il.ac.bgu.utils.PlanUtils;
+import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc;
+import il.ac.bgu.variablesCalculation.FinalOneRetryVariableStateCalc;
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import io.bretty.console.view.ActionView;
 import io.bretty.console.view.MenuView;
 import io.bretty.console.view.Validator;
@@ -178,43 +184,61 @@ public class ProblemRunner {
     private static class ProblemExecutor {
         private CnfClausesFunction failedClausesCreator;
         private RetryPlanUpdater conflictRetriesModel;
+        private final Map<Integer, Set<Step>> plan;
         private CnfClausesFunction conflictClausesCreator = new ConflictNoEffectsCnfClauses();
         private CnfClausesFunction healthyCnfClausesCreator = new HealthyCnfClauses();
+        private FinalVariableStateCalc finalVariableStateCalc;
+        private List<Action> failedActions;
 
         public ProblemExecutor(String problemName, FailedConflictModel failedConflictModel, List<Action> failedActions) throws IOException, URISyntaxException {
-            populateModels(failedConflictModel);
-
-            Map<Integer, Set<Step>> plan = PlanUtils.loadSerializedPlan("plans/" + problemName);
-
-            plan = conflictRetriesModel.updatePlan(plan).updatedPlan;
+            plan = PlanUtils.loadSerializedPlan("plans/" + problemName);
+            this.failedActions = failedActions;
+            populateModels(failedConflictModel, plan);
 
         }
 
-        private void populateModels(FailedConflictModel failedConflictModel) {
+        private void populateModels(FailedConflictModel failedConflictModel, Map<Integer, Set<Step>> plan) {
 
             switch (failedConflictModel) {
                 case FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES:
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new NoRetriesPlanUpdater();
+                    finalVariableStateCalc =
+                            new FinalNoRetriesVariableStateCalc(plan, failedClausesCreator.getVariableModel());
                     break;
                 case FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_ONE_RETRY:
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
+                    finalVariableStateCalc =
+                            new FinalOneRetryVariableStateCalc(plan, failedClausesCreator.getVariableModel());
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new NoRetriesPlanUpdater();
+                    finalVariableStateCalc =
+                            new FinalNoRetriesVariableStateCalc(plan, failedClausesCreator.getVariableModel());
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_ONE_RETRY:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
+                    finalVariableStateCalc =
+                            new FinalOneRetryVariableStateCalc(plan, failedClausesCreator.getVariableModel());
                     break;
-
             }
         }
 
 
-        public void execute() {
+        void execute() {
+            //add agent to preconditions and effects of every action to prevent action collisions in delay failure model
+            PlanUtils.updatePlanWithAgentDependencies(plan);
+
+            List<List<FormattableValue<? extends Formattable>>> hardConstraints =
+                    PlanSolvingUtils.createPlanHardConstraints(plan, conflictRetriesModel, healthyCnfClausesCreator,
+                            conflictClausesCreator, failedClausesCreator);
+            List<FormattableValue<Formattable>> softConstraints = PlanUtils.encodeHealthyClauses(plan);
+            PlanSolvingUtils.calculateSolutions(plan, hardConstraints, softConstraints, finalVariableStateCalc, failedActions)
+                    .forEach(solution -> System.out.println("Found solution: " + solution));
+
 
         }
     }

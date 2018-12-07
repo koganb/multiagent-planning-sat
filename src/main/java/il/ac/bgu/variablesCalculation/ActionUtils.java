@@ -62,8 +62,18 @@ public class ActionUtils {
 
         Action.State actionState = null;
 
-        //step is failed and effects are not locked
-        if (isFailed) {
+        if (!checkPreconditionsValidity(action.getPopPrecs(), prevStageVariableState) ||
+                !checkEffectsValidity(action.getPopEffs(), prevStageVariableState)) {
+
+            actionState = CONDITIONS_NOT_MET;
+            //preconditions are not valid or effects are locked
+            for (POPPrecEff eff : action.getPopEffs()) {
+                newVariablesState = conflictModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
+                        .collect(ImmutableList.toImmutableList());
+            }
+
+        } else if (isFailed) {
+            //step is failed and effects are not locked
             actionState = FAILED;
 
             for (POPPrecEff prec : action.getPopPrecs()) {
@@ -75,26 +85,13 @@ public class ActionUtils {
                 newVariablesState = failureModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
                         .collect(ImmutableList.toImmutableList());
             }
-        }
-
-        //all preconditions valid and effects are not locked
-        else if (checkPreconditionsValidity(action.getPopPrecs(), prevStageVariableState) &&
-                checkEffectsValidity(action.getPopEffs(), prevStageVariableState)) {
-
+        } else {
             actionState = Action.State.HEALTHY;
-
             for (POPPrecEff eff : action.getPopEffs()) {
                 newVariablesState = successModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
                         .collect(ImmutableList.toImmutableList());
             }
-        } else {
 
-            actionState = CONDITIONS_NOT_MET;
-            //preconditions are not valid or effects are locked
-            for (POPPrecEff eff : action.getPopEffs()) {
-                newVariablesState = conflictModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
-                        .collect(ImmutableList.toImmutableList());
-            }
         }
 
         return ImmutablePair.of(actionState, newVariablesState);

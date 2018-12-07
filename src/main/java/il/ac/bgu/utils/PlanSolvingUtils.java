@@ -13,6 +13,7 @@ import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
+import org.apache.commons.collections4.ListUtils;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -59,32 +60,34 @@ public class PlanSolvingUtils {
         SolutionIterator solutionIterator = new SolutionIterator(plan, hardConstraintsWithFinal, softConstraints);
 
         log.info(getMarker("STATS"), "    sat_solving_mils:");
-        return Streams.stream(solutionIterator)
+        List<List<? extends Formattable>> results = Streams.stream(solutionIterator)
                 .filter(Optional::isPresent)
-                .map(Optional::get);
-//                .peek(solution -> {
-//                    log.info("Solution candidate: {}", solution);
-//
-//                    ImmutableList<FormattableValue<? extends Formattable>> solutionFinalVariablesState = finalVariableStateCalc.getFinalVariableState(solution);
-//
-//                    if (ListUtils.intersection(finalFacts, solutionFinalVariablesState).size() !=
-//                            solutionFinalVariablesState.size()) {
-//                        throw new RuntimeException("Not equal final states: failedActionsFinalVariablesState: and solutionFinalVariablesState" +
-//                                ListUtils.subtract(finalFacts, solutionFinalVariablesState));
-//
-//                    }
-//                }
-//                );
+                .map(Optional::get)
+                .collect(Collectors.toList());
 
+        results.forEach(solution -> {
+                    log.info("Solution candidate: {}", solution);
 
+                    List<FormattableValue<? extends Formattable>> solutionFinalVariablesState = finalVariableStateCalc.getFinalVariableState(solution);
+
+                    if (ListUtils.intersection(finalFacts, solutionFinalVariablesState).size() !=
+                            solutionFinalVariablesState.size()) {
+                        throw new RuntimeException("Not equal final states: failedActionsFinalVariablesState: and solutionFinalVariablesState" +
+                                ListUtils.subtract(finalFacts, solutionFinalVariablesState));
+
+                    }
+                }
+        );
+
+        return results.stream();
     }
 
 
-    static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, Set<Step>> plan,
-                                                                                         RetryPlanUpdater retryPlanUpdater,
-                                                                                         CnfClausesFunction healthyCnfClausesCreator,
-                                                                                         CnfClausesFunction conflictCnfClausesCreator,
-                                                                                         CnfClausesFunction failedCnfClausesCreator) {
+    public static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, Set<Step>> plan,
+                                                                                                RetryPlanUpdater retryPlanUpdater,
+                                                                                                CnfClausesFunction healthyCnfClausesCreator,
+                                                                                                CnfClausesFunction conflictCnfClausesCreator,
+                                                                                                CnfClausesFunction failedCnfClausesCreator) {
 
 
         CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
