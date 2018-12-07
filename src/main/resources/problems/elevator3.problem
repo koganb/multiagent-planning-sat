@@ -1,10 +1,10 @@
 fast0
-elevators/Pfile3/DomainElevators.pddl
-elevators/Pfile3/ProblemElevatorsfast0.pddl
+src/main/resources/problem_files/elevators/Pfile3/DomainElevators.pddl
+src/main/resources/problem_files/elevators/Pfile3/ProblemElevatorsfast0.pddl
 fast1
 slow0-0
-elevators/Pfile3/DomainElevators.pddl
-elevators/Pfile3/ProblemElevatorsslow0-0.pddl
+src/main/resources/problem_files/elevators/Pfile3/DomainElevators.pddl
+src/main/resources/problem_files/elevators/Pfile3/ProblemElevatorsslow0-0.pddl
 slow1-0
-elevators/Pfile3/DomainElevators.pddl
-elevators/Pfile3/ProblemElevatorsslow1-0.pddl
+src/main/resources/problem_files/elevators/Pfile3/DomainElevators.pddl
+src/main/resources/problem_files/elevators/Pfile3/ProblemElevatorsslow1-0.pddl

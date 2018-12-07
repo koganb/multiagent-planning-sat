@@ -1,0 +1,24 @@
+{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~depot0=HEALTHY}=false,{Stage:01, State:on~crate1=hoist0}=true
+{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~depot0=FAILED}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true
+{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~depot0=FAILED}=false,{Stage:01, State:on~crate1=hoist0}=false
+{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~depot0=CONDITIONS_NOT_MET}=false,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=true
+{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~depot0=CONDITIONS_NOT_MET}=true,{Stage:00, State:on~crate1=LOCKED_FOR_UPDATE}=false
+{Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~depot0=CONDITIONS_NOT_MET}=false,{Stage:01, State:on~crate1=hoist0}=false
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=HEALTHY}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=HEALTHY}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=HEALTHY}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=HEALTHY}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,{Stage:03, State:pos~crate1=truck1}=true
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,{Stage:03, State:pos~crate1=LOCKED_FOR_UPDATE}=false
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,{Stage:03, State:pos~crate1=depot0}=false
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,{Stage:03, State:on~crate1=LOCKED_FOR_UPDATE}=false
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,{Stage:03, State:on~crate1=truck1}=true
+{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true,{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=FAILED}=false,{Stage:03, State:on~crate1=hoist0}=false
+{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=CONDITIONS_NOT_MET}=false,{Stage:01, State:on~crate1=hoist0}=false,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=true
+{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=CONDITIONS_NOT_MET}=true,{Stage:01, State:on~crate1=hoist0}=true
+{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=CONDITIONS_NOT_MET}=true,{Stage:01, State:on~crate1=LOCKED_FOR_UPDATE}=false
+{Index:01, Agent:truck1,Action:Load~hoist0~crate1~truck1~depot0=CONDITIONS_NOT_MET}=false,{Stage:01, State:on~crate1=hoist0}=true,
