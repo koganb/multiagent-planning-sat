@@ -22,32 +22,33 @@ import io.bretty.console.view.Validator;
 import io.bretty.console.view.ViewConfig;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.Range;
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static il.ac.bgu.ProblemRunner.FailedConflictModel.*;
+import static java.lang.String.format;
 
 public class ProblemRunner {
 
-    public static final String SATELLITE_DOMAIN = "satellite";
-
-
     private static final Logger log;
-    public static final String DEPORT_DOMAIN = "deport";
-    public static final String ELEVATOR_DOMAIN = "elevator";
+
+    private static Map<String, MenuView> domainViewMap = new HashMap<>();
+    private static List<MenuView> modelViewList = new ArrayList<>();
 
     private static void addPlanActionsMenu(MenuView menuView, String fileName) {
 
@@ -58,7 +59,7 @@ public class ProblemRunner {
             public void executeCustomAction() {
                 Map<Integer, Set<Step>> plan;
                 try {
-                    plan = PlanUtils.loadSerializedPlan("plans/" + fileName);
+                    plan = PlanUtils.loadSerializedPlan("src/main/resources/plans/" + fileName);
                     List<ImmutablePair<Integer, Step>> planActions = plan.entrySet().stream()
                             .filter(entry -> entry.getKey() != -1)
                             .flatMap(entry ->
@@ -68,7 +69,7 @@ public class ProblemRunner {
 
                     MutableInt index = new MutableInt(-1);
                     planActions.forEach(pair ->
-                            this.println(String.format("%3d) Step: %d   Agent: %s Action:%s",
+                            this.println(format("%3d) Step: %d   Agent: %s Action:%s",
                                     index.incrementAndGet(), pair.getKey(), pair.getValue().getAgent(), pair.getValue())
                             ));
 
@@ -107,10 +108,6 @@ public class ProblemRunner {
         });
     }
 
-
-    private static Map<String, MenuView> domainView = new HashMap<>();
-    private static List<MenuView> modelView = new ArrayList<>();
-
     static {
         Configurator.initialize(null, "conf/log4j.properties");
         log = LoggerFactory.getLogger(YmlToCsvConverter.class);
@@ -122,40 +119,82 @@ public class ProblemRunner {
                 new ViewConfig.Builder().setMenuSelectionMessage("Please select fault and conflict model: ").build());
 
         ViewConfig domainViewConfig = new ViewConfig.Builder().setMenuSelectionMessage("Please select problem domain: ").build();
-        modelView.add(new MenuView(FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES.modelId,
+        modelViewList.add(new MenuView(FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES.modelId,
                 FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES.modelId, domainViewConfig));
-        modelView.add(new MenuView(FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES.modelId,
+        modelViewList.add(new MenuView(FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES.modelId,
                 FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES.modelId, domainViewConfig));
-        modelView.add(new MenuView(FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_ONE_RETRY.modelId,
+        modelViewList.add(new MenuView(FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_ONE_RETRY.modelId,
                 FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_ONE_RETRY.modelId, domainViewConfig));
-        modelView.add(new MenuView(FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_ONE_RETRY.modelId,
+        modelViewList.add(new MenuView(FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_ONE_RETRY.modelId,
                 FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_ONE_RETRY.modelId, domainViewConfig));
 
         ViewConfig problemViewConfig = new ViewConfig.Builder().setMenuSelectionMessage("Please select problem: ").build();
-        domainView.put(SATELLITE_DOMAIN, new MenuView("Satellite domain - problems", SATELLITE_DOMAIN, problemViewConfig));
-        domainView.put(DEPORT_DOMAIN, new MenuView("Deport domain - problems", DEPORT_DOMAIN, problemViewConfig));
-        domainView.put(ELEVATOR_DOMAIN, new MenuView("Elevator domain - problems", ELEVATOR_DOMAIN, problemViewConfig));
 
-        modelView.forEach(mainView::addMenuItem);
-        modelView.forEach(modelView -> domainView.values().forEach(modelView::addMenuItem));
+        List<String> serializedPlans = Files.list(Paths.get("src/main/resources/plans"))
+                .map(path -> path.getFileName().toString())
+                .filter(fileName -> fileName.endsWith(".ser"))
+                .collect(Collectors.toList());
+
+        //create domain menu view
+        serializedPlans.stream()
+                .map(ProblemRunner::getDomain) //get domain from problem name
+                .distinct()
+                .forEach(domainName -> domainViewMap.put(domainName,
+                        new MenuView(format("%s domain - problems", domainName), domainName, problemViewConfig)));
+
+        modelViewList.forEach(mainView::addMenuItem);
+        modelViewList.forEach(modelView -> domainViewMap.values().forEach(modelView::addMenuItem));
 
 
-        try (Stream<Path> paths = Files.walk(Paths.get("src/main/resources/plans"))) {
-            paths.filter(Files::isRegularFile)
-                    .map(path -> path.getFileName().toString())
-                    .sorted(Comparator.comparing(f -> NumberUtils.toInt(f.replaceAll("\\D+", ""), 0)))  //sort by plan number
-                    .forEach(fileName -> {
-                        if (fileName.startsWith(DEPORT_DOMAIN)) {
-                            addPlanActionsMenu(domainView.get(DEPORT_DOMAIN), fileName);
-                        } else if (fileName.startsWith(ELEVATOR_DOMAIN)) {
-                            addPlanActionsMenu(domainView.get(ELEVATOR_DOMAIN), fileName);
-                        } else if (fileName.startsWith(SATELLITE_DOMAIN)) {
-                            addPlanActionsMenu(domainView.get(SATELLITE_DOMAIN), fileName);
-                        }
-                    });
-        }
+        modelViewList.forEach(view -> view.addMenuItem(new ActionView("custom problem", "custom problem") {
+            @Override
+            public void executeCustomAction() {
+                try {
+                    String problemFilePath = prompt("Please supply problem file absolute path: ", String.class,
+                            input -> new File(input).isFile());
+
+                    String[] agentDefs = Files.readAllLines(Paths.get(problemFilePath)).stream()
+                            .flatMap(t -> Arrays.stream(t.split("\t")))
+                            .toArray(String[]::new);
+
+                    String serPlanPath = String.format("src/main/resources/plans/%s.ser", new File(problemFilePath).getName());
+                    SerializationUtils.serialize(SatSolver.calculateSolution(agentDefs),
+                            new FileOutputStream(serPlanPath));
+
+                    pause();
+
+                    String domainName = getDomain(new File(serPlanPath).getName());
+                    if (!domainViewMap.containsKey(domainName)) {
+                        //add new domain (if not exists)
+                        MenuView domainView = new MenuView(format("%s domain - problems", domainName), domainName, problemViewConfig);
+                        domainViewMap.put(domainName, domainView);
+                        modelViewList.forEach(modelView -> modelView.addMenuItem(domainView));
+                    }
+
+                    addPlanActionsMenu(domainViewMap.get(domainName), new File(serPlanPath).getName());
+
+                    goBack();
+
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        }));
+
+
+        serializedPlans.stream()
+                .sorted(Comparator.comparing(f -> NumberUtils.toInt(f.replaceAll("\\D+", ""), 0)))  //sort by plan number
+                .forEach(fileName -> addPlanActionsMenu(domainViewMap.get(getDomain(fileName)), fileName));
+
         mainView.display();
 
+    }
+
+    @NotNull
+    private static String getDomain(String fileName) {
+        return fileName.split("\\.")[0].replaceAll("[-\\d]", "");
     }
 
 
@@ -191,7 +230,7 @@ public class ProblemRunner {
         private List<Action> failedActions;
 
         public ProblemExecutor(String problemName, FailedConflictModel failedConflictModel, List<Action> failedActions) throws IOException, URISyntaxException {
-            plan = PlanUtils.loadSerializedPlan("plans/" + problemName);
+            plan = PlanUtils.loadSerializedPlan("src/main/resources/plans/" + problemName);
             this.failedActions = failedActions;
             populateModels(failedConflictModel, plan);
 

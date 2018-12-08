@@ -9,8 +9,11 @@ import il.ac.bgu.dataModel.FormattableValue;
 import lombok.extern.slf4j.Slf4j;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SerializationUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -67,12 +70,12 @@ public class PlanUtils {
     }
 
 
-    public static Map<Integer, Set<Step>> loadSerializedPlan(String planName) throws URISyntaxException, IOException {
-        log.info("Start loading plan {}", planName);
+    public static Map<Integer, Set<Step>> loadSerializedPlan(String planPath) throws URISyntaxException, IOException {
+        log.info("Start loading plan {}", planPath);
 
-        return SerializationUtils.deserialize(
-                PlanUtils.class.getClassLoader().getResourceAsStream(planName));
-
+        try (FileInputStream in = FileUtils.openInputStream(new File(planPath))) {
+            return SerializationUtils.deserialize(in);
+        }
     }
 
 
