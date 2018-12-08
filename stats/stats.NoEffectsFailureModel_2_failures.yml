@@ -13,15 +13,15 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 313
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 1250
     sat_solving_mils:
-    - 94
     - 78
-    - 62
+    - 94
+    - 94
     - 47
-    - 187
-    - 110
+    - 62
+    - 31
   solution: 
     number_of_solutions: 4
     solution_index: 1
@@ -40,13 +40,13 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 478
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 172
     sat_solving_mils:
-    - 47
-    - 109
-    - 15
-    - 0
+    - 62
+    - 141
+    - 157
+    - 110
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -65,11 +65,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 156
     sat_solving_mils:
     - 15
-    - 16
+    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -88,13 +88,13 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
+    cnf_compilation_mils: 1281
     final_var_state_calc_mils: 94
     sat_solving_mils:
     - 0
-    - 15
-    - 15
+    - 32
     - 16
+    - 15
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -113,10 +113,10 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 121
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 15
+    - 16
     - 0
   solution: 
     number_of_solutions: 1
@@ -136,11 +136,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 110
     sat_solving_mils:
-    - 0
-    - 0
+    - 16
+    - 31
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -159,15 +159,15 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 69
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 250
     sat_solving_mils:
-    - 15
+    - 31
+    - 63
+    - 78
+    - 47
     - 16
-    - 16
-    - 15
-    - 15
-    - 15
+    - 31
   solution: 
     number_of_solutions: 4
     solution_index: 3
@@ -186,12 +186,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 16
-    - 16
     - 15
+    - 0
+    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -210,12 +210,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 109
     sat_solving_mils:
-    - 32
-    - 37
+    - 0
     - 16
+    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -234,12 +234,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 282
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 32
-    - 31
+    - 0
     - 16
+    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -258,15 +258,15 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 272
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 375
     sat_solving_mils:
     - 31
-    - 47
-    - 47
-    - 47
-    - 63
+    - 62
     - 15
+    - 15
+    - 15
+    - 32
   solution: 
     number_of_solutions: 4
     solution_index: 2
@@ -285,13 +285,13 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 94
     sat_solving_mils:
-    - 0
-    - 0
     - 16
     - 15
+    - 16
+    - 32
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -310,13 +310,13 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 109
     sat_solving_mils:
     - 16
-    - 18
-    - 14
+    - 16
     - 15
+    - 16
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -335,15 +335,15 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 250
     sat_solving_mils:
-    - 0
-    - 16
-    - 16
-    - 16
     - 31
-    - 15
+    - 63
+    - 62
+    - 79
+    - 78
+    - 47
   solution: 
     number_of_solutions: 4
     solution_index: 1
@@ -362,12 +362,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 0
-    - 16
     - 15
+    - 31
+    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -386,12 +386,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 109
     sat_solving_mils:
-    - 15
     - 16
-    - 15
+    - 31
+    - 32
     - 16
   solution: 
     number_of_solutions: 2
@@ -411,12 +411,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 63
     sat_solving_mils:
     - 0
-    - 16
-    - 15
+    - 47
+    - 63
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -435,12 +435,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 281
     sat_solving_mils:
-    - 0
-    - 13
-    - 8
+    - 15
+    - 62
+    - 46
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -459,13 +459,13 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
+    cnf_compilation_mils: 1281
     final_var_state_calc_mils: 47
     sat_solving_mils:
+    - 0
     - 15
     - 16
     - 16
-    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -484,11 +484,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 1641
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1281
+    final_var_state_calc_mils: 94
     sat_solving_mils:
-    - 0
-    - 0
+    - 16
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -507,12 +507,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 78
     sat_solving_mils:
     - 0
     - 0
-    - 15
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -531,8 +531,8 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 78
     sat_solving_mils:
     - 0
     - 0
@@ -554,8 +554,8 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 78
     sat_solving_mils:
     - 0
     - 16
@@ -578,13 +578,13 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 78
     sat_solving_mils:
     - 0
     - 0
-    - 16
-    - 0
+    - 15
+    - 15
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -603,11 +603,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 344
     sat_solving_mils:
-    - 0
-    - 0
+    - 31
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -626,12 +626,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 76
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 391
     sat_solving_mils:
-    - 0
-    - 0
-    - 0
+    - 31
+    - 31
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -650,11 +650,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 46
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 94
     sat_solving_mils:
     - 0
-    - 0
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -673,11 +673,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 47
     sat_solving_mils:
-    - 16
-    - 16
+    - 15
+    - 0
     - 0
   solution: 
     number_of_solutions: 2
@@ -697,13 +697,13 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 32
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 47
     sat_solving_mils:
     - 0
+    - 16
     - 15
     - 16
-    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -722,12 +722,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 62
     sat_solving_mils:
-    - 0
     - 15
     - 0
+    - 15
     - 15
   solution: 
     number_of_solutions: 2
@@ -747,13 +747,13 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 63
     sat_solving_mils:
-    - 0
-    - 0
     - 16
+    - 0
     - 15
+    - 16
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -772,15 +772,15 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 31
     sat_solving_mils:
-    - 25
-    - 16
+    - 0
     - 31
-    - 141
+    - 31
+    - 31
+    - 31
     - 32
-    - 16
   solution: 
     number_of_solutions: 4
     solution_index: 2
@@ -799,13 +799,13 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 157
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 188
     sat_solving_mils:
-    - 15
-    - 32
-    - 16
     - 31
+    - 31
+    - 46
+    - 15
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -824,11 +824,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 141
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 62
     sat_solving_mils:
-    - 15
-    - 31
+    - 0
+    - 0
     - 15
   solution: 
     number_of_solutions: 1
@@ -848,12 +848,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 63
     sat_solving_mils:
+    - 0
     - 16
-    - 16
-    - 16
+    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -872,12 +872,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 78
     sat_solving_mils:
     - 0
-    - 0
     - 15
+    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -896,12 +896,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 62
     sat_solving_mils:
     - 0
     - 0
-    - 0
+    - 16
     - 0
   solution: 
     number_of_solutions: 2
@@ -921,12 +921,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 63
     sat_solving_mils:
-    - 0
-    - 0
-    - 0
+    - 16
+    - 15
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -945,12 +945,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 78
     sat_solving_mils:
-    - 16
     - 0
     - 16
+    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -969,12 +969,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 52
+    cnf_compilation_mils: 766
+    final_var_state_calc_mils: 171
     sat_solving_mils:
-    - 4
-    - 0
     - 16
+    - 32
+    - 31
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -993,13 +993,13 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 16
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 79
     sat_solving_mils:
-    - 0
     - 16
+    - 47
+    - 47
     - 15
-    - 16
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -1018,12 +1018,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
+    cnf_compilation_mils: 250
     final_var_state_calc_mils: 16
     sat_solving_mils:
+    - 0
     - 15
     - 15
-    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1042,11 +1042,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 67
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 94
     sat_solving_mils:
-    - 0
-    - 20
+    - 16
+    - 16
     - 16
     - 0
   solution: 
@@ -1067,11 +1067,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 32
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 47
     sat_solving_mils:
     - 16
-    - 0
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1090,12 +1090,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 94
     sat_solving_mils:
-    - 0
-    - 0
-    - 0
+    - 16
+    - 15
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1114,11 +1114,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 109
     sat_solving_mils:
     - 0
-    - 12
+    - 16
     - 16
     - 16
   solution: 
@@ -1139,12 +1139,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 172
     sat_solving_mils:
-    - 19
     - 15
-    - 16
+    - 47
+    - 32
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1163,11 +1163,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 328
     sat_solving_mils:
     - 15
-    - 16
+    - 31
     - 16
   solution: 
     number_of_solutions: 1
@@ -1187,8 +1187,8 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 109
     sat_solving_mils:
     - 0
     - 16
@@ -1211,13 +1211,13 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 62
     sat_solving_mils:
+    - 16
+    - 16
+    - 16
     - 0
-    - 16
-    - 16
-    - 15
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1236,11 +1236,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 32
     sat_solving_mils:
-    - 16
     - 0
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1259,12 +1259,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 78
     sat_solving_mils:
     - 0
-    - 0
-    - 0
+    - 16
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1283,12 +1283,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 110
     sat_solving_mils:
-    - 0
-    - 0
-    - 0
+    - 16
+    - 15
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1307,13 +1307,13 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 250
     sat_solving_mils:
-    - 0
-    - 15
-    - 16
-    - 16
+    - 31
+    - 31
+    - 47
+    - 31
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1332,11 +1332,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 31
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 156
     sat_solving_mils:
+    - 47
     - 15
-    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1355,12 +1355,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 219
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 94
     sat_solving_mils:
-    - 15
-    - 47
-    - 47
+    - 16
+    - 16
+    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1379,12 +1379,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 282
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 78
     sat_solving_mils:
+    - 0
     - 31
-    - 63
-    - 47
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1403,11 +1403,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 266
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 94
     sat_solving_mils:
-    - 11
     - 0
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1426,13 +1426,13 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 72
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 93
     sat_solving_mils:
     - 0
     - 0
-    - 0
-    - 0
+    - 16
+    - 15
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1451,11 +1451,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 184
-    final_var_state_calc_mils: 31
+    cnf_compilation_mils: 250
+    final_var_state_calc_mils: 47
     sat_solving_mils:
     - 0
-    - 16
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1474,12 +1474,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 140
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 266
     sat_solving_mils:
-    - 15
-    - 15
-    - 15
+    - 46
+    - 62
+    - 46
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1498,12 +1498,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 344
     sat_solving_mils:
+    - 0
     - 16
-    - 16
-    - 16
+    - 32
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1522,11 +1522,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 16
-    - 6
+    - 15
+    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1545,8 +1545,8 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 125
     sat_solving_mils:
     - 0
     - 16
@@ -1568,11 +1568,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 110
     sat_solving_mils:
-    - 8
-    - 3
+    - 16
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1591,12 +1591,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 124
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 156
     sat_solving_mils:
-    - 16
-    - 15
     - 0
+    - 16
+    - 47
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1615,12 +1615,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 110
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 594
     sat_solving_mils:
-    - 0
-    - 16
-    - 0
+    - 47
+    - 15
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1639,12 +1639,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 141
     sat_solving_mils:
-    - 0
-    - 0
-    - 15
+    - 16
+    - 16
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1663,12 +1663,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 84
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 140
     sat_solving_mils:
-    - 0
-    - 13
     - 16
+    - 31
+    - 31
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1687,13 +1687,13 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 125
     sat_solving_mils:
     - 16
     - 16
-    - 16
-    - 0
+    - 31
+    - 15
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1712,12 +1712,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 515
     sat_solving_mils:
     - 15
-    - 0
-    - 0
+    - 31
+    - 31
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1736,11 +1736,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 125
     sat_solving_mils:
     - 0
-    - 16
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1759,11 +1759,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 79
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 109
     sat_solving_mils:
     - 0
-    - 15
+    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1782,12 +1782,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 22
-    - 15
     - 16
+    - 15
+    - 31
     - 15
   solution: 
     number_of_solutions: 2
@@ -1807,8 +1807,8 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 109
     sat_solving_mils:
     - 0
     - 16
@@ -1830,11 +1830,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 390
     sat_solving_mils:
-    - 15
-    - 0
+    - 47
+    - 31
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1853,11 +1853,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 281
     sat_solving_mils:
     - 16
-    - 0
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1876,11 +1876,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 110
     sat_solving_mils:
     - 16
-    - 15
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1899,12 +1899,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 110
     sat_solving_mils:
     - 0
     - 16
-    - 15
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1923,11 +1923,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 204
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 234
+    final_var_state_calc_mils: 125
     sat_solving_mils:
-    - 9
-    - 0
+    - 15
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1946,11 +1946,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 406
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 1203
     sat_solving_mils:
-    - 31
-    - 31
+    - 109
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1969,10 +1969,10 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 1329
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 485
     sat_solving_mils:
-    - 31
+    - 46
     - 16
   solution: 
     number_of_solutions: 1
@@ -1992,12 +1992,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 328
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 1141
     sat_solving_mils:
-    - 16
+    - 15
     - 62
-    - 51
+    - 62
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2016,12 +2016,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 328
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 937
     sat_solving_mils:
-    - 16
-    - 63
-    - 47
+    - 78
+    - 172
+    - 62
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2040,12 +2040,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 367
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 547
     sat_solving_mils:
-    - 31
-    - 47
-    - 62
+    - 15
+    - 265
+    - 203
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2064,12 +2064,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 330
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 484
     sat_solving_mils:
-    - 15
-    - 62
-    - 46
+    - 16
+    - 63
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2088,12 +2088,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 366
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 624
     sat_solving_mils:
-    - 16
-    - 47
+    - 32
     - 63
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2112,12 +2112,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 343
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 1312
     sat_solving_mils:
-    - 15
+    - 16
     - 47
-    - 47
+    - 94
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2136,12 +2136,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 399
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 1109
     sat_solving_mils:
-    - 15
-    - 46
+    - 62
     - 47
+    - 63
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2160,12 +2160,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 383
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 562
     sat_solving_mils:
     - 16
-    - 47
-    - 47
+    - 265
+    - 203
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2184,12 +2184,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 392
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 563
     sat_solving_mils:
-    - 1
-    - 47
-    - 47
+    - 16
+    - 78
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2208,12 +2208,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 392
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 547
     sat_solving_mils:
-    - 15
-    - 55
-    - 47
+    - 31
+    - 78
+    - 219
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2232,12 +2232,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 422
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 562
     sat_solving_mils:
-    - 16
-    - 62
-    - 44
+    - 31
+    - 78
+    - 63
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2256,12 +2256,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 391
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 625
     sat_solving_mils:
-    - 15
-    - 47
-    - 47
+    - 16
+    - 78
+    - 79
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2280,12 +2280,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 404
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 2163
     sat_solving_mils:
-    - 16
-    - 62
-    - 62
+    - 70
+    - 51
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2304,12 +2304,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 407
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 883
     sat_solving_mils:
-    - 16
+    - 80
+    - 208
     - 62
-    - 47
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2328,12 +2328,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 281
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 421
     sat_solving_mils:
-    - 15
-    - 38
-    - 63
+    - 31
+    - 62
+    - 250
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2352,12 +2352,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 294
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 344
     sat_solving_mils:
     - 15
-    - 212
-    - 187
+    - 77
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2376,12 +2376,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 501
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 1571
     sat_solving_mils:
-    - 16
-    - 47
-    - 47
+    - 15
+    - 92
+    - 72
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2400,12 +2400,12 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 453
-    final_var_state_calc_mils: 219
+    cnf_compilation_mils: 625
+    final_var_state_calc_mils: 411
     sat_solving_mils:
-    - 16
-    - 47
-    - 62
+    - 122
+    - 119
+    - 133
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2424,12 +2424,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 512
     sat_solving_mils:
-    - 16
-    - 31
-    - 31
+    - 83
+    - 169
+    - 91
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2448,11 +2448,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 276
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 723
     sat_solving_mils:
-    - 15
-    - 0
+    - 39
+    - 29
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2471,12 +2471,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 112
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 430
     sat_solving_mils:
-    - 16
-    - 31
-    - 15
+    - 18
+    - 52
+    - 60
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2495,12 +2495,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 2068
     sat_solving_mils:
-    - 0
-    - 31
-    - 31
+    - 16
+    - 72
+    - 84
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2519,11 +2519,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 169
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 692
     sat_solving_mils:
-    - 15
-    - 0
+    - 42
+    - 23
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2542,12 +2542,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 2100
     sat_solving_mils:
-    - 16
-    - 15
-    - 31
+    - 80
+    - 108
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2566,12 +2566,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 812
     sat_solving_mils:
-    - 16
-    - 32
-    - 15
+    - 20
+    - 65
+    - 66
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2590,11 +2590,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 157
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 590
     sat_solving_mils:
-    - 16
-    - 0
+    - 43
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2613,12 +2613,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 774
     sat_solving_mils:
-    - 16
-    - 31
-    - 16
+    - 25
+    - 56
+    - 61
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2637,12 +2637,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 250
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 415
     sat_solving_mils:
-    - 16
-    - 16
-    - 9
+    - 13
+    - 40
+    - 42
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2661,12 +2661,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 172
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 476
     sat_solving_mils:
-    - 0
-    - 31
-    - 16
+    - 69
+    - 227
+    - 150
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2685,12 +2685,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 265
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 408
     sat_solving_mils:
-    - 16
-    - 31
-    - 32
+    - 11
+    - 37
+    - 38
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2709,12 +2709,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 296
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 1783
     sat_solving_mils:
-    - 18
-    - 15
-    - 16
+    - 14
+    - 31
+    - 31
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2733,12 +2733,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 968
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 547
     sat_solving_mils:
-    - 31
-    - 94
-    - 80
+    - 17
+    - 65
+    - 140
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2757,11 +2757,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 227
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 2085
     sat_solving_mils:
-    - 15
-    - 16
+    - 170
+    - 60
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2780,12 +2780,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 472
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 271
     sat_solving_mils:
-    - 16
-    - 31
-    - 31
+    - 11
+    - 39
+    - 35
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2804,11 +2804,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 250
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 555
     sat_solving_mils:
-    - 15
-    - 0
+    - 79
+    - 45
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2827,12 +2827,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 1761
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 436
     sat_solving_mils:
-    - 66
-    - 110
-    - 78
+    - 12
+    - 33
+    - 36
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2851,12 +2851,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 609
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 1556
     sat_solving_mils:
-    - 16
-    - 31
+    - 38
     - 28
+    - 38
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2875,12 +2875,12 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 1912
-    final_var_state_calc_mils: 270
+    cnf_compilation_mils: 2078
+    final_var_state_calc_mils: 695
     sat_solving_mils:
     - 15
-    - 16
-    - 31
+    - 44
+    - 82
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2899,8 +2899,8 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 2073
     sat_solving_mils:
     - 31
     - 16
@@ -2922,12 +2922,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 339
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 490
     sat_solving_mils:
-    - 0
-    - 32
     - 15
+    - 53
+    - 167
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2946,12 +2946,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 296
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 627
     sat_solving_mils:
-    - 16
     - 31
-    - 31
+    - 79
+    - 62
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2970,12 +2970,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 214
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 894
     sat_solving_mils:
-    - 16
-    - 33
-    - 32
+    - 11
+    - 31
+    - 41
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2994,12 +2994,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 188
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 337
     sat_solving_mils:
     - 16
-    - 31
-    - 16
+    - 156
+    - 109
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3018,11 +3018,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 320
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 449
     sat_solving_mils:
     - 31
-    - 0
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3041,12 +3041,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 312
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 748
     sat_solving_mils:
-    - 16
-    - 32
-    - 31
+    - 67
+    - 172
+    - 128
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3065,12 +3065,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 287
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 401
     sat_solving_mils:
-    - 15
-    - 31
-    - 31
+    - 20
+    - 63
+    - 47
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3089,12 +3089,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 312
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 1459
     sat_solving_mils:
-    - 16
-    - 32
+    - 0
     - 31
+    - 47
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3113,12 +3113,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 324
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 497
     sat_solving_mils:
-    - 0
-    - 31
-    - 16
+    - 10
+    - 46
+    - 125
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3137,12 +3137,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 406
     sat_solving_mils:
     - 16
-    - 25
-    - 32
+    - 47
+    - 38
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3161,11 +3161,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 1256
     sat_solving_mils:
-    - 31
-    - 16
+    - 94
+    - 46
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3184,12 +3184,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 359
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 519
     sat_solving_mils:
-    - 0
+    - 20
+    - 58
     - 41
-    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3208,12 +3208,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 444
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 518
     sat_solving_mils:
-    - 31
-    - 104
-    - 107
+    - 16
+    - 53
+    - 46
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3232,11 +3232,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 782
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 1676
     sat_solving_mils:
-    - 15
     - 31
+    - 47
     - 31
   solution: 
     number_of_solutions: 1
@@ -3256,12 +3256,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 281
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 453
     sat_solving_mils:
-    - 16
-    - 32
-    - 25
+    - 18
+    - 53
+    - 119
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3280,12 +3280,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 380
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 613
     sat_solving_mils:
-    - 0
-    - 31
-    - 31
+    - 16
+    - 47
+    - 32
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3304,11 +3304,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 417
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 1700
     sat_solving_mils:
-    - 16
-    - 31
+    - 13
+    - 51
     - 31
   solution: 
     number_of_solutions: 1
@@ -3328,12 +3328,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 328
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 846
     sat_solving_mils:
-    - 16
-    - 31
-    - 32
+    - 61
+    - 180
+    - 37
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3352,12 +3352,12 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 256
-    final_var_state_calc_mils: 312
+    cnf_compilation_mils: 297
+    final_var_state_calc_mils: 603
     sat_solving_mils:
-    - 16
-    - 32
-    - 15
+    - 23
+    - 56
+    - 150
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3376,12 +3376,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1164
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 4214
     sat_solving_mils:
-    - 47
-    - 218
-    - 281
+    - 151
+    - 1197
+    - 371
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3400,12 +3400,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1268
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 4698
     sat_solving_mils:
-    - 47
-    - 265
-    - 283
+    - 58
+    - 411
+    - 388
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3424,11 +3424,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 2639
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 4874
     sat_solving_mils:
-    - 141
-    - 47
+    - 197
+    - 61
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3447,12 +3447,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1343
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2128
     sat_solving_mils:
-    - 46
-    - 376
-    - 275
+    - 65
+    - 268
+    - 525
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3471,12 +3471,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1343
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2511
     sat_solving_mils:
-    - 38
-    - 234
-    - 265
+    - 216
+    - 266
+    - 984
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3495,12 +3495,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1346
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 3572
     sat_solving_mils:
-    - 54
-    - 234
-    - 266
+    - 78
+    - 479
+    - 640
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3519,13 +3519,13 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1547
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 4299
     sat_solving_mils:
-    - 172
-    - 219
-    - 328
-    - 266
+    - 112
+    - 413
+    - 559
+    - 656
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -3544,13 +3544,13 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 2350
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2214
     sat_solving_mils:
-    - 46
-    - 188
-    - 344
-    - 275
+    - 56
+    - 400
+    - 1669
+    - 1539
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -3569,13 +3569,13 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1147
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2983
     sat_solving_mils:
-    - 47
-    - 219
-    - 343
-    - 527
+    - 73
+    - 1275
+    - 453
+    - 1054
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -3594,12 +3594,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1877
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 1986
     sat_solving_mils:
-    - 47
-    - 195
+    - 153
     - 290
+    - 555
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3618,12 +3618,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 2314
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2642
     sat_solving_mils:
-    - 63
-    - 187
-    - 312
+    - 65
+    - 889
+    - 441
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3642,12 +3642,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1252
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2985
     sat_solving_mils:
-    - 47
-    - 203
-    - 288
+    - 63
+    - 831
+    - 385
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3666,12 +3666,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1257
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2793
     sat_solving_mils:
-    - 149
-    - 203
-    - 265
+    - 60
+    - 909
+    - 360
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3690,13 +3690,13 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 1064
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 3115
     sat_solving_mils:
-    - 47
-    - 467
-    - 337
-    - 312
+    - 111
+    - 462
+    - 502
+    - 827
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -3715,11 +3715,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 788
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 2553
     sat_solving_mils:
-    - 110
-    - 63
+    - 100
+    - 55
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3738,2897 +3738,15 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 730
+    cnf_compilation_mils: 1844
+    final_var_state_calc_mils: 809
     sat_solving_mils:
-    - 47
-    - 219
-    - 1009
+    - 44
+    - 215
+    - 275
   solution: 
     number_of_solutions: 1
     solution_index: 0
 - problem: satellite20.problem
   plan_properties:
-    failed_actions: "[Index:08, Agent:satellite4,Action:take_image~satellite4~star6~instrument28~spectrograph0=FAILED, Index:29, Agent:satellite1,Action:turn_to~satellite1~star6~star10=FAILED]"
-    number_of_steps: 77
-    number_of_actions: 101
-    number_of_agents: 3
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 54055
-    variables_num: 32829
-  execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 749
-    sat_solving_mils:
-    - 47
-    - 203
-    - 281
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: satellite20.problem
-  plan_properties:
-    failed_actions: "[Index:16, Agent:satellite1,Action:take_image~satellite1~planet18~instrument11~thermograph7=FAILED, Index:29, Agent:satellite1,Action:turn_to~satellite1~star6~star10=FAILED]"
-    number_of_steps: 77
-    number_of_actions: 101
-    number_of_agents: 3
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 54055
-    variables_num: 32829
-  execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 782
-    sat_solving_mils:
-    - 63
-    - 219
-    - 297
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: satellite20.problem
-  plan_properties:
-    failed_actions: "[Index:42, Agent:satellite1,Action:turn_to~satellite1~star24~phenomenon19=FAILED, Index:29, Agent:satellite1,Action:turn_to~satellite1~star6~star10=FAILED]"
-    number_of_steps: 77
-    number_of_actions: 101
-    number_of_agents: 3
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 54055
-    variables_num: 32829
-  execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 803
-    sat_solving_mils:
-    - 109
-    - 62
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: satellite20.problem
-  plan_properties:
-    failed_actions: "[Index:07, Agent:satellite3,Action:turn_to~satellite3~star11~star6=FAILED, Index:29, Agent:satellite1,Action:turn_to~satellite1~star6~star10=FAILED]"
-    number_of_steps: 77
-    number_of_actions: 101
-    number_of_agents: 3
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 54055
-    variables_num: 32829
-  execution_time:
-    cnf_compilation_mils: 1099
-    final_var_state_calc_mils: 733
-    sat_solving_mils:
-    - 47
-    - 671
-    - 297
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED, Index:02, Agent:depot0,Action:LiftC~hoist0~crate7~crate4~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 172
-    sat_solving_mils:
-    - 11
-    - 31
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:15, Agent:truck1,Action:Unload~hoist0~crate7~truck1~depot0=FAILED, Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 277
-    sat_solving_mils:
-    - 16
-    - 15
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED, Index:16, Agent:depot0,Action:DropP~hoist0~crate7~pallet0~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 250
-    sat_solving_mils:
-    - 16
-    - 31
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:15, Agent:truck1,Action:Unload~hoist0~crate7~truck1~depot0=FAILED, Index:16, Agent:depot0,Action:DropP~hoist0~crate7~pallet0~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 287
-    sat_solving_mils:
-    - 15
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED, Index:25, Agent:distributor1,Action:DropP~hoist2~crate5~pallet2~distributor1=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 313
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:25, Agent:distributor1,Action:DropP~hoist2~crate5~pallet2~distributor1=FAILED, Index:02, Agent:depot0,Action:LiftC~hoist0~crate7~crate4~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 175
-    sat_solving_mils:
-    - 10
-    - 32
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:15, Agent:truck1,Action:Unload~hoist0~crate7~truck1~depot0=FAILED, Index:25, Agent:distributor1,Action:DropP~hoist2~crate5~pallet2~distributor1=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 531
-    sat_solving_mils:
-    - 47
-    - 79
-    - 62
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:25, Agent:distributor1,Action:DropP~hoist2~crate5~pallet2~distributor1=FAILED, Index:16, Agent:depot0,Action:DropP~hoist0~crate7~pallet0~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 734
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED, Index:02, Agent:truck1,Action:Drive~truck1~distributor1~distributor0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 141
-    sat_solving_mils:
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck1,Action:Drive~truck1~distributor1~distributor0=FAILED, Index:02, Agent:depot0,Action:LiftC~hoist0~crate7~crate4~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 125
-    sat_solving_mils:
-    - 16
-    - 31
-    - 15
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 3
-    solution_index: 2
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:15, Agent:truck1,Action:Unload~hoist0~crate7~truck1~depot0=FAILED, Index:02, Agent:truck1,Action:Drive~truck1~distributor1~distributor0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 125
-    sat_solving_mils:
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck1,Action:Drive~truck1~distributor1~distributor0=FAILED, Index:16, Agent:depot0,Action:DropP~hoist0~crate7~pallet0~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 125
-    sat_solving_mils:
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck1,Action:Load~hoist0~crate4~truck1~depot0=FAILED, Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 188
-    sat_solving_mils:
-    - 15
-    - 15
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck1,Action:Load~hoist0~crate4~truck1~depot0=FAILED, Index:25, Agent:distributor1,Action:DropP~hoist2~crate5~pallet2~distributor1=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 204
-    sat_solving_mils:
-    - 27
-    - 16
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck1,Action:Load~hoist0~crate4~truck1~depot0=FAILED, Index:02, Agent:truck1,Action:Drive~truck1~distributor1~distributor0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 133
-    sat_solving_mils:
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:07, Agent:distributor0,Action:DropC~hoist1~crate2~crate6~distributor0=FAILED, Index:20, Agent:truck1,Action:Drive~truck1~depot0~distributor1=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 250
-    sat_solving_mils:
-    - 16
-    - 38
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:20, Agent:truck1,Action:Drive~truck1~depot0~distributor1=FAILED, Index:16, Agent:depot0,Action:DropP~hoist0~crate7~pallet0~depot0=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 219
-    sat_solving_mils:
-    - 16
-    - 32
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot2,Action:LiftP~hoist2~crate4~pallet2~depot2=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 185
-    sat_solving_mils:
-    - 0
-    - 16
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck1,Action:Unload~hoist3~crate2~truck1~distributor0=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 188
-    sat_solving_mils:
-    - 15
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck1,Action:Unload~hoist3~crate2~truck1~distributor0=FAILED, Index:00, Agent:depot2,Action:LiftP~hoist2~crate4~pallet2~depot2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 153
-    sat_solving_mils:
-    - 16
-    - 32
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=FAILED, Index:00, Agent:depot2,Action:LiftP~hoist2~crate4~pallet2~depot2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 219
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=FAILED, Index:10, Agent:truck1,Action:Unload~hoist3~crate2~truck1~distributor0=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 219
-    sat_solving_mils:
-    - 15
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck1,Action:Load~hoist2~crate4~truck1~depot2=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 167
-    sat_solving_mils:
-    - 9
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck1,Action:Load~hoist2~crate4~truck1~depot2=FAILED, Index:10, Agent:truck1,Action:Unload~hoist3~crate2~truck1~distributor0=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 0
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=FAILED, Index:01, Agent:truck1,Action:Load~hoist2~crate4~truck1~depot2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 188
-    sat_solving_mils:
-    - 0
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 140
-    sat_solving_mils:
-    - 15
-    - 16
-    - 11
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED, Index:00, Agent:depot2,Action:LiftP~hoist2~crate4~pallet2~depot2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 150
-    sat_solving_mils:
-    - 15
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=FAILED, Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 0
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED, Index:01, Agent:truck1,Action:Load~hoist2~crate4~truck1~depot2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 188
-    sat_solving_mils:
-    - 0
-    - 15
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot1,Action:LiftP~hoist1~crate0~pallet1~depot1=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 181
-    sat_solving_mils:
-    - 15
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot1,Action:LiftP~hoist1~crate0~pallet1~depot1=FAILED, Index:00, Agent:depot2,Action:LiftP~hoist2~crate4~pallet2~depot2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 172
-    sat_solving_mils:
-    - 15
-    - 16
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot1,Action:LiftP~hoist1~crate0~pallet1~depot1=FAILED, Index:10, Agent:truck1,Action:Unload~hoist3~crate2~truck1~distributor0=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 375
-    sat_solving_mils:
-    - 32
-    - 63
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist0~crate1~truck0~depot0=FAILED, Index:00, Agent:depot1,Action:LiftP~hoist1~crate0~pallet1~depot1=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 710
-    sat_solving_mils:
-    - 16
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:truck1,Action:Load~hoist2~crate4~truck1~depot2=FAILED, Index:00, Agent:depot1,Action:LiftP~hoist1~crate0~pallet1~depot1=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 187
-    sat_solving_mils:
-    - 0
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED, Index:00, Agent:depot1,Action:LiftP~hoist1~crate0~pallet1~depot1=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 171
-    sat_solving_mils:
-    - 0
-    - 16
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:09, Agent:truck1,Action:Load~hoist3~crate5~truck1~distributor0=FAILED, Index:05, Agent:truck1,Action:Load~hoist5~crate2~truck1~distributor2=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 167
-    sat_solving_mils:
-    - 9
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:37, Agent:distributor2,Action:DropC~hoist5~crate9~crate2~distributor2=FAILED, Index:39, Agent:truck0,Action:Drive~truck0~distributor2~distributor1=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 594
-    sat_solving_mils:
-    - 31
-    - 77
-    - 62
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor0=FAILED, Index:39, Agent:truck0,Action:Drive~truck0~distributor2~distributor1=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 656
-    sat_solving_mils:
-    - 32
-    - 78
-    - 172
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor0=FAILED, Index:37, Agent:distributor2,Action:DropC~hoist5~crate9~crate2~distributor2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 1626
-    sat_solving_mils:
-    - 31
-    - 63
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor0=FAILED, Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 608
-    sat_solving_mils:
-    - 31
-    - 63
-    - 63
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:24, Agent:distributor0,Action:DropP~hoist3~crate8~pallet3~distributor0=FAILED, Index:39, Agent:truck0,Action:Drive~truck0~distributor2~distributor1=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 570
-    sat_solving_mils:
-    - 31
-    - 63
-    - 63
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:37, Agent:distributor2,Action:DropC~hoist5~crate9~crate2~distributor2=FAILED, Index:24, Agent:distributor0,Action:DropP~hoist3~crate8~pallet3~distributor0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 759
-    sat_solving_mils:
-    - 16
-    - 78
-    - 62
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED, Index:24, Agent:distributor0,Action:DropP~hoist3~crate8~pallet3~distributor0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 600
-    sat_solving_mils:
-    - 16
-    - 63
-    - 54
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:21, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED, Index:39, Agent:truck0,Action:Drive~truck0~distributor2~distributor1=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 562
-    sat_solving_mils:
-    - 31
-    - 62
-    - 78
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor0=FAILED, Index:21, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 672
-    sat_solving_mils:
-    - 32
-    - 69
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:21, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED, Index:24, Agent:distributor0,Action:DropP~hoist3~crate8~pallet3~distributor0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 672
-    sat_solving_mils:
-    - 16
-    - 63
-    - 63
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor0=FAILED, Index:10, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 772
-    sat_solving_mils:
-    - 16
-    - 78
-    - 94
-    - 62
-  solution: 
-    number_of_solutions: 2
-    solution_index: 1
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED, Index:24, Agent:distributor0,Action:DropP~hoist3~crate8~pallet3~distributor0=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 804
-    sat_solving_mils:
-    - 93
-    - 234
-    - 140
-    - 62
-  solution: 
-    number_of_solutions: 2
-    solution_index: 1
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED, Index:39, Agent:truck0,Action:Drive~truck0~distributor2~distributor1=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 626
-    sat_solving_mils:
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:37, Agent:distributor2,Action:DropC~hoist5~crate9~crate2~distributor2=FAILED, Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 748
-    sat_solving_mils:
-    - 31
-    - 63
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED, Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 640
-    sat_solving_mils:
-    - 31
-    - 78
-    - 62
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor0=FAILED, Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 1360
-    sat_solving_mils:
-    - 203
-    - 87
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:24, Agent:distributor0,Action:DropP~hoist3~crate8~pallet3~distributor0=FAILED, Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 1070
-    sat_solving_mils:
-    - 32
-    - 62
-    - 63
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:21, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED, Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 698
-    sat_solving_mils:
-    - 31
-    - 79
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED, Index:48, Agent:truck0,Action:Unload~hoist2~crate6~truck0~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 926
-    sat_solving_mils:
-    - 118
-    - 250
-    - 94
-    - 47
-  solution: 
-    number_of_solutions: 2
-    solution_index: 1
-- problem: deports11.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:depot0,Action:LiftP~hoist0~crate1~pallet0~depot0=FAILED, Index:06, Agent:depot2,Action:LiftP~hoist2~crate2~pallet2~depot2=FAILED]"
-    number_of_steps: 50
-    number_of_actions: 56
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 23747
-    variables_num: 12612
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 469
-    sat_solving_mils:
-    - 31
-    - 63
-    - 63
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:06, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED, Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 172
-    sat_solving_mils:
-    - 15
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:depot1,Action:DropP~hoist1~crate2~pallet1~depot1=FAILED, Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 219
-    sat_solving_mils:
-    - 0
-    - 28
-    - 11
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:depot1,Action:DropP~hoist1~crate2~pallet1~depot1=FAILED, Index:16, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 250
-    sat_solving_mils:
-    - 0
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:16, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED, Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 219
-    sat_solving_mils:
-    - 16
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist2~crate4~pallet2~distributor0=FAILED, Index:06, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 156
-    sat_solving_mils:
-    - 15
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:depot1,Action:DropP~hoist1~crate2~pallet1~depot1=FAILED, Index:00, Agent:distributor0,Action:LiftP~hoist2~crate4~pallet2~distributor0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 0
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist2~crate4~pallet2~distributor0=FAILED, Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 625
-    sat_solving_mils:
-    - 25
-    - 47
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:depot1,Action:DropP~hoist1~crate2~pallet1~depot1=FAILED, Index:17, Agent:depot0,Action:DropC~hoist0~crate4~crate3~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 656
-    sat_solving_mils:
-    - 7
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED, Index:17, Agent:depot0,Action:DropC~hoist0~crate4~crate3~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 235
-    sat_solving_mils:
-    - 0
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:16, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED, Index:17, Agent:depot0,Action:DropC~hoist0~crate4~crate3~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 234
-    sat_solving_mils:
-    - 0
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:14, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor0=FAILED, Index:06, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 156
-    sat_solving_mils:
-    - 0
-    - 16
-    - 26
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:depot1,Action:DropP~hoist1~crate2~pallet1~depot1=FAILED, Index:14, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 241
-    sat_solving_mils:
-    - 0
-    - 16
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:14, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor0=FAILED, Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 235
-    sat_solving_mils:
-    - 16
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:16, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED, Index:14, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 234
-    sat_solving_mils:
-    - 0
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:14, Agent:truck0,Action:Unload~hoist2~crate5~truck0~distributor0=FAILED, Index:17, Agent:depot0,Action:DropC~hoist0~crate4~crate3~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 234
-    sat_solving_mils:
-    - 0
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:06, Agent:truck0,Action:Load~hoist0~crate2~truck0~depot0=FAILED, Index:15, Agent:truck0,Action:Drive~truck0~distributor0~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 172
-    sat_solving_mils:
-    - 0
-    - 15
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:10, Agent:depot1,Action:DropP~hoist1~crate2~pallet1~depot1=FAILED, Index:15, Agent:truck0,Action:Drive~truck0~distributor0~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 235
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:15, Agent:truck0,Action:Drive~truck0~distributor0~depot0=FAILED, Index:02, Agent:truck0,Action:Load~hoist5~crate0~truck0~depot1=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 204
-    sat_solving_mils:
-    - 16
-    - 16
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:16, Agent:truck0,Action:Unload~hoist0~crate4~truck0~depot0=FAILED, Index:15, Agent:truck0,Action:Drive~truck0~distributor0~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 241
-    sat_solving_mils:
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports16.problem
-  plan_properties:
-    failed_actions: "[Index:15, Agent:truck0,Action:Drive~truck0~distributor0~depot0=FAILED, Index:17, Agent:depot0,Action:DropC~hoist0~crate4~crate3~depot0=FAILED]"
-    number_of_steps: 18
-    number_of_actions: 26
-    number_of_agents: 5
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6856
-    variables_num: 3498
-  execution_time:
-    cnf_compilation_mils: 1394
-    final_var_state_calc_mils: 250
-    sat_solving_mils:
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:05, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor1=FAILED, Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 227
-    sat_solving_mils:
-    - 0
-    - 0
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:04, Agent:distributor1,Action:LiftP~hoist3~crate6~pallet7~distributor1=FAILED, Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 265
-    sat_solving_mils:
-    - 31
-    - 47
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:distributor1,Action:LiftC~hoist7~crate7~crate5~distributor1=FAILED, Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 904
-    sat_solving_mils:
-    - 32
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:04, Agent:distributor1,Action:LiftP~hoist3~crate6~pallet7~distributor1=FAILED, Index:01, Agent:distributor1,Action:LiftC~hoist7~crate7~crate5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 0
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED, Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 255
-    sat_solving_mils:
-    - 15
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:05, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor1=FAILED, Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 228
-    sat_solving_mils:
-    - 16
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:04, Agent:distributor1,Action:LiftP~hoist3~crate6~pallet7~distributor1=FAILED, Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 219
-    sat_solving_mils:
-    - 16
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED, Index:01, Agent:distributor1,Action:LiftC~hoist7~crate7~crate5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 283
-    sat_solving_mils:
-    - 15
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED, Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 280
-    sat_solving_mils:
-    - 16
-    - 16
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:05, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor1=FAILED, Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 281
-    sat_solving_mils:
-    - 15
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:01, Agent:distributor1,Action:LiftC~hoist7~crate7~crate5~distributor1=FAILED, Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 248
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED, Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 266
-    sat_solving_mils:
-    - 0
-    - 15
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:06, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED, Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 172
-    sat_solving_mils:
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED, Index:06, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 157
-    sat_solving_mils:
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:06, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED, Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 156
-    sat_solving_mils:
-    - 7
-    - 14
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:05, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor1=FAILED, Index:09, Agent:truck0,Action:Unload~hoist4~crate8~truck0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 16
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:09, Agent:truck0,Action:Unload~hoist4~crate8~truck0~depot0=FAILED, Index:04, Agent:distributor1,Action:LiftP~hoist3~crate6~pallet7~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 203
-    sat_solving_mils:
-    - 0
-    - 15
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:09, Agent:truck0,Action:Unload~hoist4~crate8~truck0~depot0=FAILED, Index:01, Agent:distributor1,Action:LiftC~hoist7~crate7~crate5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 734
-    sat_solving_mils:
-    - 31
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:09, Agent:truck0,Action:Unload~hoist4~crate8~truck0~depot0=FAILED, Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 610
-    sat_solving_mils:
-    - 16
-    - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports17.problem
-  plan_properties:
-    failed_actions: "[Index:09, Agent:truck0,Action:Unload~hoist4~crate8~truck0~depot0=FAILED, Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
-    number_of_steps: 15
-    number_of_actions: 25
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 6637
-    variables_num: 3451
-  execution_time:
-    cnf_compilation_mils: 558
-    final_var_state_calc_mils: 237
-    sat_solving_mils:
-    - 16
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED, Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 153
-    sat_solving_mils:
-    - 31
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:33, Agent:truck0,Action:Drive~truck0~distributor1~distributor2=FAILED, Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 515
-    sat_solving_mils:
-    - 16
-    - 47
-    - 50
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED, Index:02, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 146
-    sat_solving_mils:
-    - 31
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED, Index:33, Agent:truck0,Action:Drive~truck0~distributor1~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 562
-    sat_solving_mils:
-    - 40
-    - 10
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED, Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 522
-    sat_solving_mils:
-    - 31
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:33, Agent:truck0,Action:Drive~truck0~distributor1~distributor2=FAILED, Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 507
-    sat_solving_mils:
-    - 16
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED, Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 1325
-    sat_solving_mils:
-    - 94
-    - 47
-    - 32
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED, Index:11, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 156
-    sat_solving_mils:
-    - 32
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED, Index:11, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 227
-    sat_solving_mils:
-    - 32
-    - 23
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED, Index:11, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 234
-    sat_solving_mils:
-    - 31
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED, Index:11, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 229
-    sat_solving_mils:
-    - 47
-    - 33
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED, Index:31, Agent:distributor1,Action:DropC~hoist5~crate7~crate4~distributor1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 250
-    sat_solving_mils:
-    - 31
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:31, Agent:distributor1,Action:DropC~hoist5~crate7~crate4~distributor1=FAILED, Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 512
-    sat_solving_mils:
-    - 31
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:31, Agent:distributor1,Action:DropC~hoist5~crate7~crate4~distributor1=FAILED, Index:33, Agent:truck0,Action:Drive~truck0~distributor1~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 532
-    sat_solving_mils:
-    - 16
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED, Index:31, Agent:distributor1,Action:DropC~hoist5~crate7~crate4~distributor1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 531
-    sat_solving_mils:
-    - 16
-    - 41
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:31, Agent:distributor1,Action:DropC~hoist5~crate7~crate4~distributor1=FAILED, Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 533
-    sat_solving_mils:
-    - 16
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:02, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED, Index:28, Agent:truck0,Action:Unload~hoist5~crate4~truck0~distributor1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 148
-    sat_solving_mils:
-    - 31
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:28, Agent:truck0,Action:Unload~hoist5~crate4~truck0~distributor1=FAILED, Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 671
-    sat_solving_mils:
-    - 78
-    - 141
-    - 109
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED, Index:28, Agent:truck0,Action:Unload~hoist5~crate4~truck0~distributor1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 1796
-    sat_solving_mils:
-    - 16
-    - 39
-    - 47
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports19.problem
-  plan_properties:
-    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED, Index:28, Agent:truck0,Action:Unload~hoist5~crate4~truck0~distributor1=FAILED]"
-    number_of_steps: 36
-    number_of_actions: 44
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 2
-  cnf:
-    clauses_num: 16240
-    variables_num: 8753
-  execution_time:
-    cnf_compilation_mils: 594
-    final_var_state_calc_mils: 484
-    sat_solving_mils:
-    - 31
-    - 47
-    - 31
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
+    failed_actions

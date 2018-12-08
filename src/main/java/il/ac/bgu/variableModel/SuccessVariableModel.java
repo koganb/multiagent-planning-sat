@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.VariableFunctions.variableFilter;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
+import static il.ac.bgu.utils.VariableFunctions.variableFilter;
 
 public class SuccessVariableModel implements VariableModelFunction {
     @Override

@@ -1,8 +1,8 @@
 package il.ac.bgu.cnfCompilation
 
 import com.google.common.collect.ImmutableSet
-import il.ac.bgu.SatSolver
 import il.ac.bgu.dataModel.Action
+import il.ac.bgu.sat.SatSolver
 import il.ac.bgu.variableModel.DelayStageVariableFailureModel
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variableModel.VariableModelFunction

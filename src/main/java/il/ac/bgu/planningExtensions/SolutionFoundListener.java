@@ -1,4 +1,4 @@
-package il.ac.bgu;
+package il.ac.bgu.planningExtensions;
 
 import org.agreement_technologies.common.map_planner.Step;
 

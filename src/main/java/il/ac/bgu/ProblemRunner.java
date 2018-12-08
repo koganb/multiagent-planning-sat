@@ -11,6 +11,7 @@ import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.sat.SatSolver;
 import il.ac.bgu.utils.PlanSolvingUtils;
 import il.ac.bgu.utils.PlanUtils;
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc;

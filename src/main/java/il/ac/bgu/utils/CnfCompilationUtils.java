@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.VariableFunctions.*;
+import static il.ac.bgu.utils.VariableFunctions.*;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 

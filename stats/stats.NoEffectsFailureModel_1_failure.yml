@@ -13,12 +13,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 271
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 1414
     sat_solving_mils:
-    - 109
-    - 47
-    - 31
+    - 141
+    - 82
+    - 51
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -37,12 +37,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 174
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 268
     sat_solving_mils:
-    - 32
-    - 16
-    - 16
+    - 54
+    - 89
+    - 133
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -61,11 +61,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 219
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 176
     sat_solving_mils:
-    - 94
-    - 78
+    - 32
+    - 34
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -84,11 +84,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 563
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 119
     sat_solving_mils:
-    - 125
-    - 31
+    - 16
+    - 35
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -107,12 +107,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 140
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 119
     sat_solving_mils:
-    - 32
-    - 16
-    - 2
+    - 14
+    - 13
+    - 17
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -131,15 +131,15 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 172
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 622
     sat_solving_mils:
-    - 16
-    - 31
-    - 16
+    - 82
+    - 88
+    - 41
   solution: 
     number_of_solutions: 2
-    solution_index: 1
+    solution_index: 0
 - problem: elevator27.problem
   plan_properties:
     failed_actions: "[Index:02, Agent:slow0-0,Action:move-down-slow~slow0-0~n3~n1=FAILED]"
@@ -155,11 +155,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 99
     sat_solving_mils:
-    - 15
-    - 0
+    - 21
+    - 8
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -178,34 +178,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 105
     sat_solving_mils:
     - 16
-    - 0
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: elevator27.problem
-  plan_properties:
-    failed_actions: "[Index:08, Agent:fast0,Action:move-up-fast~fast0~n0~n2=FAILED]"
-    number_of_steps: 12
-    number_of_actions: 35
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 1
-  cnf:
-    clauses_num: 3307
-    variables_num: 1262
-  execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 109
-    sat_solving_mils:
-    - 16
-    - 0
+    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -224,11 +201,34 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 134
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 178
     sat_solving_mils:
-    - 15
-    - 16
+    - 19
+    - 18
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: elevator27.problem
+  plan_properties:
+    failed_actions: "[Index:08, Agent:fast0,Action:move-up-fast~fast0~n0~n2=FAILED]"
+    number_of_steps: 12
+    number_of_actions: 35
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 3307
+    variables_num: 1262
+  execution_time:
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 288
+    sat_solving_mils:
+    - 62
+    - 49
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -247,11 +247,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 88
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 274
     sat_solving_mils:
-    - 15
-    - 0
+    - 11
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -270,11 +270,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 137
     sat_solving_mils:
-    - 16
-    - 16
+    - 9
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -293,11 +293,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 157
     sat_solving_mils:
-    - 15
-    - 16
+    - 12
+    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -316,12 +316,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 140
     sat_solving_mils:
-    - 0
-    - 0
-    - 16
+    - 10
+    - 11
+    - 7
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -340,11 +340,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 700
     sat_solving_mils:
-    - 0
-    - 15
+    - 55
+    - 34
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -363,12 +363,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 100
     sat_solving_mils:
-    - 16
-    - 16
-    - 0
+    - 12
+    - 10
+    - 8
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -387,12 +387,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 96
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 132
     sat_solving_mils:
-    - 0
-    - 15
-    - 16
+    - 11
+    - 12
+    - 13
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -411,11 +411,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 511
     sat_solving_mils:
-    - 16
-    - 0
+    - 105
+    - 50
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -434,11 +434,11 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 141
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 142
     sat_solving_mils:
-    - 15
-    - 16
+    - 14
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -457,12 +457,12 @@
     clauses_num: 3307
     variables_num: 1262
   execution_time:
-    cnf_compilation_mils: 734
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 1756
+    final_var_state_calc_mils: 141
     sat_solving_mils:
-    - 0
-    - 15
-    - 0
+    - 10
+    - 14
+    - 9
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -481,11 +481,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 79
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 55
     sat_solving_mils:
-    - 15
-    - 0
+    - 13
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -504,11 +504,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 95
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 2583
     sat_solving_mils:
-    - 0
-    - 16
+    - 15
+    - 5
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -527,11 +527,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 203
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 81
     sat_solving_mils:
-    - 31
     - 15
+    - 5
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -550,12 +550,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 188
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 67
     sat_solving_mils:
-    - 63
-    - 63
-    - 32
+    - 9
+    - 10
+    - 6
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -574,11 +574,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 172
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 142
     sat_solving_mils:
-    - 31
-    - 15
+    - 12
+    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -597,12 +597,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 424
     sat_solving_mils:
-    - 16
-    - 0
-    - 15
+    - 58
+    - 57
+    - 20
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -621,11 +621,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 110
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 599
     sat_solving_mils:
-    - 16
-    - 16
+    - 58
+    - 36
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -644,11 +644,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 91
     sat_solving_mils:
-    - 15
-    - 17
+    - 7
+    - 4
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -667,11 +667,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 49
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 73
     sat_solving_mils:
-    - 15
-    - 18
+    - 10
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -690,12 +690,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 104
     sat_solving_mils:
-    - 18
-    - 0
-    - 0
+    - 7
+    - 9
+    - 6
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -714,15 +714,15 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 79
     sat_solving_mils:
-    - 0
-    - 0
-    - 0
+    - 13
+    - 8
+    - 5
   solution: 
     number_of_solutions: 2
-    solution_index: 1
+    solution_index: 0
 - problem: elevator28.problem
   plan_properties:
     failed_actions: "[Index:02, Agent:fast0,Action:board~p2~fast0~n10~n1~n2=FAILED]"
@@ -738,11 +738,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 86
     sat_solving_mils:
-    - 15
-    - 16
+    - 11
+    - 5
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -761,12 +761,12 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 46
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 61
     sat_solving_mils:
-    - 0
-    - 0
-    - 0
+    - 6
+    - 8
+    - 6
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -785,11 +785,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 100
     sat_solving_mils:
-    - 16
-    - 15
+    - 10
+    - 4
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -808,11 +808,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 89
     sat_solving_mils:
-    - 16
-    - 15
+    - 8
+    - 5
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -831,15 +831,15 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 102
     sat_solving_mils:
-    - 16
-    - 16
-    - 15
+    - 9
+    - 10
+    - 4
   solution: 
     number_of_solutions: 2
-    solution_index: 0
+    solution_index: 1
 - problem: elevator28.problem
   plan_properties:
     failed_actions: "[Index:00, Agent:slow0-0,Action:board~p5~slow0-0~n4~n0~n1=FAILED]"
@@ -855,11 +855,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 124
     sat_solving_mils:
-    - 16
-    - 0
+    - 8
+    - 5
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -878,11 +878,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 124
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 90
     sat_solving_mils:
-    - 16
-    - 0
+    - 8
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -901,10 +901,10 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 98
     sat_solving_mils:
-    - 15
+    - 7
     - 16
   solution: 
     number_of_solutions: 1
@@ -924,11 +924,11 @@
     clauses_num: 3167
     variables_num: 1483
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 492
+    final_var_state_calc_mils: 520
     sat_solving_mils:
-    - 16
-    - 15
+    - 33
+    - 44
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -947,12 +947,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 79
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 95
     sat_solving_mils:
-    - 16
-    - 15
-    - 0
+    - 13
+    - 10
+    - 7
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -971,11 +971,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 31
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 47
     sat_solving_mils:
-    - 0
-    - 16
+    - 9
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -994,11 +994,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 79
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 117
     sat_solving_mils:
-    - 0
-    - 0
+    - 11
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1017,11 +1017,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 120
     sat_solving_mils:
-    - 16
-    - 0
+    - 10
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1040,11 +1040,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 119
     sat_solving_mils:
-    - 0
-    - 0
+    - 12
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1063,11 +1063,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 194
     sat_solving_mils:
-    - 15
-    - 16
+    - 39
+    - 47
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1086,11 +1086,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 140
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 536
     sat_solving_mils:
-    - 0
-    - 15
+    - 37
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1109,11 +1109,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 92
     sat_solving_mils:
-    - 16
-    - 0
+    - 20
+    - 19
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1132,12 +1132,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 157
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 92
     sat_solving_mils:
-    - 31
-    - 31
-    - 31
+    - 8
+    - 10
+    - 6
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1156,11 +1156,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 460
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 120
     sat_solving_mils:
-    - 31
-    - 16
+    - 9
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1179,11 +1179,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 291
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 102
     sat_solving_mils:
-    - 32
-    - 0
+    - 15
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1202,11 +1202,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 62
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 71
     sat_solving_mils:
-    - 0
-    - 0
+    - 18
+    - 8
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1225,11 +1225,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 621
     sat_solving_mils:
-    - 0
-    - 6
+    - 45
+    - 37
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1248,11 +1248,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 65
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 81
     sat_solving_mils:
-    - 0
-    - 0
+    - 12
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1271,12 +1271,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 110
     sat_solving_mils:
-    - 0
-    - 0
-    - 15
+    - 9
+    - 10
+    - 6
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -1295,11 +1295,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 107
     sat_solving_mils:
-    - 0
-    - 0
+    - 12
+    - 5
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1318,12 +1318,12 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 63
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 74
     sat_solving_mils:
-    - 16
-    - 16
-    - 0
+    - 15
+    - 11
+    - 6
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -1342,11 +1342,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 31
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 56
     sat_solving_mils:
-    - 0
-    - 0
+    - 11
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1365,11 +1365,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 78
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 393
     sat_solving_mils:
-    - 16
-    - 0
+    - 46
+    - 53
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1388,11 +1388,11 @@
     clauses_num: 4173
     variables_num: 1830
   execution_time:
-    cnf_compilation_mils: 219
-    final_var_state_calc_mils: 47
+    cnf_compilation_mils: 324
+    final_var_state_calc_mils: 320
     sat_solving_mils:
-    - 16
-    - 0
+    - 13
+    - 8
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1411,11 +1411,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 187
     sat_solving_mils:
-    - 15
-    - 15
+    - 14
+    - 8
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1434,11 +1434,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 141
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 184
     sat_solving_mils:
-    - 15
-    - 16
+    - 13
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1457,11 +1457,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 184
     sat_solving_mils:
-    - 16
-    - 0
+    - 12
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1480,11 +1480,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 93
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 585
     sat_solving_mils:
-    - 15
-    - 0
+    - 50
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1503,11 +1503,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 156
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 179
     sat_solving_mils:
-    - 16
-    - 0
+    - 10
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1526,15 +1526,15 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 144
     sat_solving_mils:
-    - 16
-    - 0
-    - 0
+    - 12
+    - 15
+    - 10
   solution: 
     number_of_solutions: 2
-    solution_index: 0
+    solution_index: 1
 - problem: elevator30.problem
   plan_properties:
     failed_actions: "[Index:00, Agent:slow0-0,Action:move-up-slow~slow0-0~n2~n3=FAILED]"
@@ -1550,11 +1550,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 108
     sat_solving_mils:
-    - 15
-    - 0
+    - 9
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1573,11 +1573,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 182
     sat_solving_mils:
-    - 0
-    - 0
+    - 11
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1596,11 +1596,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 153
     sat_solving_mils:
-    - 0
-    - 0
+    - 8
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1619,11 +1619,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 139
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 178
     sat_solving_mils:
-    - 16
-    - 0
+    - 9
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1642,11 +1642,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 157
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 211
     sat_solving_mils:
-    - 0
-    - 0
+    - 9
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1665,11 +1665,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 157
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 277
     sat_solving_mils:
-    - 0
-    - 0
+    - 39
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1688,11 +1688,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 140
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 301
     sat_solving_mils:
-    - 16
-    - 0
+    - 10
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1711,11 +1711,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 94
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 133
     sat_solving_mils:
-    - 0
-    - 16
+    - 11
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1734,12 +1734,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 109
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 151
     sat_solving_mils:
-    - 15
-    - 21
-    - 7
+    - 10
+    - 14
+    - 10
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -1758,12 +1758,12 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 105
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 162
     sat_solving_mils:
-    - 0
-    - 0
-    - 15
+    - 10
+    - 10
+    - 9
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -1782,11 +1782,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 125
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 197
     sat_solving_mils:
-    - 16
-    - 15
+    - 9
+    - 7
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1805,11 +1805,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 141
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 225
     sat_solving_mils:
-    - 0
-    - 0
+    - 8
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1828,11 +1828,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 140
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 190
     sat_solving_mils:
-    - 0
-    - 0
+    - 13
+    - 6
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1851,11 +1851,11 @@
     clauses_num: 3835
     variables_num: 1502
   execution_time:
-    cnf_compilation_mils: 203
-    final_var_state_calc_mils: 156
+    cnf_compilation_mils: 194
+    final_var_state_calc_mils: 873
     sat_solving_mils:
-    - 16
-    - 15
+    - 11
+    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1874,11 +1874,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 563
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 601
     sat_solving_mils:
-    - 16
-    - 15
+    - 35
+    - 18
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1897,11 +1897,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 390
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 1120
     sat_solving_mils:
-    - 32
-    - 15
+    - 35
+    - 25
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1920,11 +1920,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 407
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 1807
     sat_solving_mils:
-    - 31
-    - 15
+    - 41
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1943,11 +1943,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 359
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 494
     sat_solving_mils:
-    - 32
-    - 15
+    - 41
+    - 19
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1966,11 +1966,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 391
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 559
     sat_solving_mils:
-    - 16
-    - 16
+    - 44
+    - 17
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -1989,11 +1989,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 408
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 2171
     sat_solving_mils:
-    - 31
-    - 15
+    - 41
+    - 30
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2012,11 +2012,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 421
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 1856
     sat_solving_mils:
-    - 42
-    - 16
+    - 46
+    - 18
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2035,11 +2035,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 403
     sat_solving_mils:
-    - 31
-    - 16
+    - 37
+    - 24
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2058,11 +2058,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 412
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 590
     sat_solving_mils:
-    - 32
-    - 15
+    - 41
+    - 20
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2081,11 +2081,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 468
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 1885
     sat_solving_mils:
-    - 16
-    - 15
+    - 38
+    - 25
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2104,11 +2104,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 281
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 414
     sat_solving_mils:
-    - 15
-    - 16
+    - 203
+    - 96
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2127,11 +2127,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 343
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 511
     sat_solving_mils:
-    - 31
-    - 16
+    - 38
+    - 24
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2150,11 +2150,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 416
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 1868
     sat_solving_mils:
-    - 32
-    - 16
+    - 38
+    - 20
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2173,11 +2173,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 359
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 464
     sat_solving_mils:
-    - 31
-    - 16
+    - 143
+    - 86
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2196,11 +2196,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 366
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 542
     sat_solving_mils:
-    - 31
-    - 16
+    - 35
+    - 25
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2219,11 +2219,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 312
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 445
     sat_solving_mils:
-    - 31
-    - 15
+    - 34
+    - 19
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2242,11 +2242,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 320
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 485
     sat_solving_mils:
-    - 31
-    - 15
+    - 166
+    - 132
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2265,11 +2265,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 421
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 627
     sat_solving_mils:
-    - 37
-    - 16
+    - 39
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2288,11 +2288,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 336
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 640
     sat_solving_mils:
-    - 32
-    - 15
+    - 36
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2311,11 +2311,11 @@
     clauses_num: 16446
     variables_num: 8656
   execution_time:
-    cnf_compilation_mils: 429
-    final_var_state_calc_mils: 250
+    cnf_compilation_mils: 1670
+    final_var_state_calc_mils: 373
     sat_solving_mils:
-    - 32
-    - 16
+    - 103
+    - 98
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2334,11 +2334,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 259
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 353
     sat_solving_mils:
-    - 16
-    - 0
+    - 25
+    - 14
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2357,11 +2357,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 188
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 324
     sat_solving_mils:
-    - 16
-    - 16
+    - 26
+    - 12
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2380,11 +2380,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 250
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 835
     sat_solving_mils:
-    - 16
-    - 16
+    - 19
+    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2403,11 +2403,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 280
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 391
     sat_solving_mils:
-    - 15
-    - 0
+    - 21
+    - 13
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2426,11 +2426,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1550
     sat_solving_mils:
-    - 15
-    - 16
+    - 24
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2449,11 +2449,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 287
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 435
     sat_solving_mils:
-    - 15
-    - 15
+    - 22
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2472,11 +2472,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 281
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1044
     sat_solving_mils:
-    - 15
-    - 0
+    - 24
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2495,11 +2495,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 181
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 385
     sat_solving_mils:
-    - 15
-    - 16
+    - 58
+    - 88
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2518,11 +2518,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 235
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1002
     sat_solving_mils:
-    - 16
-    - 15
+    - 124
+    - 115
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2541,11 +2541,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 187
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 2229
     sat_solving_mils:
-    - 15
-    - 15
+    - 31
+    - 49
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2564,11 +2564,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 266
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 2027
     sat_solving_mils:
-    - 16
-    - 0
+    - 77
+    - 33
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2587,11 +2587,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 335
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1510
     sat_solving_mils:
-    - 15
-    - 0
+    - 31
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2610,11 +2610,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 328
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1341
     sat_solving_mils:
+    - 30
     - 15
-    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2633,11 +2633,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1737
     sat_solving_mils:
-    - 31
-    - 16
+    - 33
+    - 13
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2656,11 +2656,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 226
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1273
     sat_solving_mils:
-    - 15
-    - 16
+    - 294
+    - 19
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2679,11 +2679,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 942
     sat_solving_mils:
-    - 16
-    - 0
+    - 42
+    - 85
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2702,11 +2702,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 769
     sat_solving_mils:
-    - 16
-    - 20
+    - 31
+    - 19
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2725,11 +2725,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 218
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 958
     sat_solving_mils:
-    - 16
-    - 0
+    - 39
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2748,11 +2748,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 218
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 506
     sat_solving_mils:
-    - 15
-    - 15
+    - 68
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2771,11 +2771,11 @@
     clauses_num: 9039
     variables_num: 4881
   execution_time:
-    cnf_compilation_mils: 766
-    final_var_state_calc_mils: 312
+    cnf_compilation_mils: 987
+    final_var_state_calc_mils: 1633
     sat_solving_mils:
+    - 28
     - 15
-    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2794,11 +2794,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 344
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2050
     sat_solving_mils:
-    - 31
-    - 0
+    - 49
+    - 33
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2817,11 +2817,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 297
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1863
     sat_solving_mils:
-    - 15
-    - 15
+    - 35
+    - 21
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2840,11 +2840,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 421
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2165
     sat_solving_mils:
-    - 15
-    - 16
+    - 44
+    - 23
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2863,11 +2863,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 309
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1512
     sat_solving_mils:
-    - 32
-    - 15
+    - 155
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2886,11 +2886,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 415
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1302
     sat_solving_mils:
+    - 354
     - 31
-    - 15
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2909,11 +2909,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 406
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2153
     sat_solving_mils:
-    - 16
-    - 0
+    - 43
+    - 24
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2932,11 +2932,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 416
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2162
     sat_solving_mils:
-    - 15
-    - 0
+    - 34
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2955,11 +2955,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 438
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2074
     sat_solving_mils:
-    - 26
-    - 4
+    - 65
+    - 20
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -2978,11 +2978,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 235
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1239
     sat_solving_mils:
-    - 15
-    - 15
+    - 39
+    - 19
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3001,11 +3001,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 422
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2129
     sat_solving_mils:
-    - 15
-    - 16
+    - 37
+    - 18
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3024,11 +3024,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 342
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1963
     sat_solving_mils:
-    - 16
-    - 16
+    - 38
+    - 20
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3047,11 +3047,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 422
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2129
     sat_solving_mils:
-    - 16
-    - 16
+    - 41
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3070,11 +3070,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 414
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 3401
     sat_solving_mils:
-    - 16
-    - 16
+    - 42
+    - 26
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3093,11 +3093,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 328
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1935
     sat_solving_mils:
-    - 31
-    - 0
+    - 48
+    - 24
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3116,11 +3116,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 384
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1840
     sat_solving_mils:
-    - 31
-    - 16
+    - 35
+    - 29
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3139,11 +3139,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 424
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 1779
     sat_solving_mils:
-    - 15
-    - 16
+    - 88
+    - 21
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3162,11 +3162,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 437
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2102
     sat_solving_mils:
-    - 16
-    - 16
+    - 37
+    - 17
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3185,11 +3185,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 437
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2109
     sat_solving_mils:
-    - 22
-    - 1
+    - 36
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3208,11 +3208,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 422
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2094
     sat_solving_mils:
-    - 31
-    - 0
+    - 38
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3231,11 +3231,11 @@
     clauses_num: 12367
     variables_num: 7066
   execution_time:
-    cnf_compilation_mils: 253
-    final_var_state_calc_mils: 436
+    cnf_compilation_mils: 351
+    final_var_state_calc_mils: 2107
     sat_solving_mils:
-    - 31
-    - 16
+    - 43
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3254,11 +3254,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 2908
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 5037
     sat_solving_mils:
-    - 156
-    - 47
+    - 125
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3277,11 +3277,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1294
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 6561
     sat_solving_mils:
-    - 94
-    - 47
+    - 197
+    - 438
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3300,11 +3300,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1370
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 1421
     sat_solving_mils:
-    - 88
-    - 47
+    - 93
+    - 63
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3323,11 +3323,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1375
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 1406
     sat_solving_mils:
-    - 134
-    - 62
+    - 93
+    - 63
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3346,12 +3346,12 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 2295
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 1203
     sat_solving_mils:
-    - 94
-    - 132
-    - 47
+    - 125
+    - 109
+    - 78
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -3370,11 +3370,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1320
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 6489
     sat_solving_mils:
-    - 95
-    - 47
+    - 125
+    - 188
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3393,11 +3393,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 834
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 1078
     sat_solving_mils:
-    - 94
-    - 47
+    - 343
+    - 203
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3416,11 +3416,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1398
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 4781
     sat_solving_mils:
-    - 94
-    - 47
+    - 234
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3439,11 +3439,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1593
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2952
     sat_solving_mils:
-    - 424
-    - 62
+    - 313
+    - 218
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3462,11 +3462,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1385
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 3781
     sat_solving_mils:
-    - 94
-    - 47
+    - 109
+    - 62
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3485,10 +3485,10 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1218
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2859
     sat_solving_mils:
-    - 93
+    - 125
     - 63
   solution: 
     number_of_solutions: 1
@@ -3508,11 +3508,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 2603
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2919
     sat_solving_mils:
-    - 103
-    - 47
+    - 110
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3531,11 +3531,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1297
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2874
     sat_solving_mils:
-    - 94
-    - 59
+    - 141
+    - 109
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3554,11 +3554,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1085
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2500
     sat_solving_mils:
-    - 94
-    - 47
+    - 125
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3577,15 +3577,15 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1211
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2703
     sat_solving_mils:
-    - 94
-    - 93
-    - 46
+    - 110
+    - 172
+    - 63
   solution: 
     number_of_solutions: 2
-    solution_index: 0
+    solution_index: 1
 - problem: satellite20.problem
   plan_properties:
     failed_actions: "[Index:33, Agent:satellite1,Action:turn_to~satellite1~phenomenon8~planet7=FAILED]"
@@ -3601,10 +3601,10 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1064
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2546
     sat_solving_mils:
-    - 94
+    - 110
     - 47
   solution: 
     number_of_solutions: 1
@@ -3624,11 +3624,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 719
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 860
     sat_solving_mils:
-    - 94
-    - 46
+    - 282
+    - 219
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3647,11 +3647,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1268
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2672
     sat_solving_mils:
-    - 94
-    - 46
+    - 109
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3670,11 +3670,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1109
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 1500
     sat_solving_mils:
-    - 94
-    - 47
+    - 125
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3693,11 +3693,11 @@
     clauses_num: 54055
     variables_num: 32829
   execution_time:
-    cnf_compilation_mils: 1116
-    final_var_state_calc_mils: 1142
+    cnf_compilation_mils: 2728
+    final_var_state_calc_mils: 2656
     sat_solving_mils:
-    - 111
-    - 47
+    - 140
+    - 78
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3716,11 +3716,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 328
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 821
     sat_solving_mils:
-    - 63
-    - 15
+    - 16
+    - 8
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3739,11 +3739,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 201
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 263
     sat_solving_mils:
+    - 28
     - 16
-    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3762,10 +3762,10 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 313
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1370
     sat_solving_mils:
-    - 16
+    - 32
     - 16
   solution: 
     number_of_solutions: 1
@@ -3785,10 +3785,10 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 281
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 377
     sat_solving_mils:
-    - 16
+    - 25
     - 16
   solution: 
     number_of_solutions: 1
@@ -3808,11 +3808,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 870
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1460
     sat_solving_mils:
-    - 47
-    - 47
+    - 78
+    - 16
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3831,11 +3831,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 531
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 172
     sat_solving_mils:
-    - 16
-    - 0
+    - 31
+    - 31
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3854,11 +3854,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 236
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 328
     sat_solving_mils:
-    - 16
-    - 0
+    - 32
+    - 14
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3877,11 +3877,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 271
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 948
     sat_solving_mils:
-    - 16
-    - 0
+    - 37
+    - 18
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3900,11 +3900,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 266
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 398
     sat_solving_mils:
-    - 15
-    - 16
+    - 25
+    - 23
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3923,11 +3923,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 244
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 693
     sat_solving_mils:
-    - 16
-    - 16
+    - 38
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3946,11 +3946,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 322
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1655
     sat_solving_mils:
-    - 16
-    - 0
+    - 34
+    - 18
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3969,11 +3969,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1775
     sat_solving_mils:
-    - 16
-    - 16
+    - 33
+    - 28
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -3992,12 +3992,12 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 323
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 2095
     sat_solving_mils:
-    - 15
-    - 15
-    - 0
+    - 42
+    - 36
+    - 40
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -4016,11 +4016,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 312
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1668
     sat_solving_mils:
-    - 15
-    - 15
+    - 150
+    - 58
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4039,34 +4039,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 318
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1177
     sat_solving_mils:
-    - 15
-    - 15
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports4.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor1,Action:LiftC~hoist2~crate6~crate5~distributor1=FAILED]"
-    number_of_steps: 26
-    number_of_actions: 33
-    number_of_agents: 4
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 1
-  cnf:
-    clauses_num: 8694
-    variables_num: 4311
-  execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 234
-    sat_solving_mils:
-    - 15
-    - 16
+    - 52
+    - 27
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4085,11 +4062,34 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 281
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 1038
     sat_solving_mils:
-    - 15
-    - 15
+    - 138
+    - 82
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports4.problem
+  plan_properties:
+    failed_actions: "[Index:00, Agent:distributor1,Action:LiftC~hoist2~crate6~crate5~distributor1=FAILED]"
+    number_of_steps: 26
+    number_of_actions: 33
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 8694
+    variables_num: 4311
+  execution_time:
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 729
+    sat_solving_mils:
+    - 180
+    - 136
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4108,11 +4108,11 @@
     clauses_num: 8694
     variables_num: 4311
   execution_time:
-    cnf_compilation_mils: 266
-    final_var_state_calc_mils: 290
+    cnf_compilation_mils: 365
+    final_var_state_calc_mils: 423
     sat_solving_mils:
-    - 31
-    - 15
+    - 28
+    - 25
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4131,11 +4131,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 562
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 908
     sat_solving_mils:
-    - 47
-    - 31
+    - 96
+    - 69
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4154,11 +4154,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 766
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 345
     sat_solving_mils:
-    - 16
-    - 15
+    - 22
+    - 14
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4177,11 +4177,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 228
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 401
     sat_solving_mils:
-    - 16
-    - 16
+    - 21
+    - 44
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4200,11 +4200,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 219
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 336
     sat_solving_mils:
     - 15
-    - 16
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4223,34 +4223,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 235
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 483
     sat_solving_mils:
-    - 16
-    - 16
-  solution: 
-    number_of_solutions: 1
-    solution_index: 0
-- problem: deports10.problem
-  plan_properties:
-    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED]"
-    number_of_steps: 20
-    number_of_actions: 28
-    number_of_agents: 7
-  cnf_model_details: 
-    failure_model: no effects model
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 1
-  cnf:
-    clauses_num: 7238
-    variables_num: 3654
-  execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 225
-    sat_solving_mils:
-    - 15
-    - 16
+    - 89
+    - 43
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4269,11 +4246,34 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 219
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 517
     sat_solving_mils:
-    - 16
-    - 0
+    - 27
+    - 25
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports10.problem
+  plan_properties:
+    failed_actions: "[Index:00, Agent:distributor0,Action:LiftP~hoist3~crate5~pallet3~distributor0=FAILED]"
+    number_of_steps: 20
+    number_of_actions: 28
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 7238
+    variables_num: 3654
+  execution_time:
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 1397
+    sat_solving_mils:
+    - 22
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4292,11 +4292,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 219
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 380
     sat_solving_mils:
+    - 18
     - 16
-    - 0
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4315,11 +4315,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 505
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 924
     sat_solving_mils:
-    - 15
-    - 16
+    - 81
+    - 62
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4338,11 +4338,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 235
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 338
     sat_solving_mils:
-    - 16
-    - 15
+    - 18
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4361,11 +4361,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 156
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 221
     sat_solving_mils:
-    - 15
-    - 0
+    - 20
+    - 20
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4384,11 +4384,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 254
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 1232
     sat_solving_mils:
-    - 16
-    - 0
+    - 23
+    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4407,11 +4407,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 141
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 379
     sat_solving_mils:
-    - 16
-    - 15
+    - 24
+    - 22
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4430,11 +4430,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 187
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 926
     sat_solving_mils:
-    - 16
-    - 16
+    - 86
+    - 69
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4453,11 +4453,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 266
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 1692
     sat_solving_mils:
-    - 16
-    - 0
+    - 75
+    - 58
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4476,10 +4476,10 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 256
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 451
     sat_solving_mils:
-    - 15
+    - 16
     - 16
   solution: 
     number_of_solutions: 1
@@ -4499,11 +4499,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 203
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 615
     sat_solving_mils:
-    - 15
-    - 15
+    - 78
+    - 47
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4522,10 +4522,10 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 156
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 258
     sat_solving_mils:
-    - 15
+    - 31
     - 16
   solution: 
     number_of_solutions: 1
@@ -4545,8 +4545,8 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 243
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 469
     sat_solving_mils:
     - 15
     - 16
@@ -4568,11 +4568,11 @@
     clauses_num: 7238
     variables_num: 3654
   execution_time:
-    cnf_compilation_mils: 172
-    final_var_state_calc_mils: 250
+    cnf_compilation_mils: 241
+    final_var_state_calc_mils: 1219
     sat_solving_mils:
-    - 15
     - 16
+    - 8
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4591,11 +4591,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 657
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1783
     sat_solving_mils:
-    - 47
-    - 47
+    - 156
+    - 67
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4614,11 +4614,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 797
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2299
     sat_solving_mils:
-    - 47
-    - 31
+    - 64
+    - 34
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4637,11 +4637,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 627
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1674
     sat_solving_mils:
-    - 31
-    - 31
+    - 62
+    - 39
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4660,11 +4660,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 786
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1545
     sat_solving_mils:
-    - 47
-    - 31
+    - 45
+    - 50
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4683,11 +4683,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 806
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1337
     sat_solving_mils:
-    - 31
-    - 31
+    - 201
+    - 111
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4706,11 +4706,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 711
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2207
     sat_solving_mils:
-    - 47
-    - 32
+    - 63
+    - 39
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4729,12 +4729,12 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 837
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2283
     sat_solving_mils:
+    - 62
     - 47
-    - 47
-    - 31
+    - 16
   solution: 
     number_of_solutions: 2
     solution_index: 0
@@ -4753,11 +4753,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 856
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2477
     sat_solving_mils:
-    - 31
-    - 16
+    - 75
+    - 34
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4776,11 +4776,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 1769
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2745
     sat_solving_mils:
-    - 47
-    - 47
+    - 112
+    - 111
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4799,11 +4799,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 501
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2450
     sat_solving_mils:
-    - 47
-    - 31
+    - 61
+    - 99
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4822,11 +4822,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 585
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2164
     sat_solving_mils:
-    - 157
-    - 94
+    - 73
+    - 61
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4845,12 +4845,12 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 1036
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1045
     sat_solving_mils:
-    - 47
-    - 31
-    - 31
+    - 69
+    - 76
+    - 187
   solution: 
     number_of_solutions: 2
     solution_index: 1
@@ -4869,11 +4869,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 611
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1718
     sat_solving_mils:
-    - 40
-    - 31
+    - 83
+    - 108
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4892,11 +4892,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 640
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2158
     sat_solving_mils:
-    - 31
-    - 47
+    - 54
+    - 54
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4915,11 +4915,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 766
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1819
     sat_solving_mils:
-    - 63
-    - 34
+    - 56
+    - 228
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4938,10 +4938,10 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 750
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2977
     sat_solving_mils:
-    - 47
+    - 96
     - 31
   solution: 
     number_of_solutions: 1
@@ -4961,11 +4961,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 787
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 2321
     sat_solving_mils:
-    - 31
-    - 32
+    - 63
+    - 51
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -4984,11 +4984,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 766
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 1427
     sat_solving_mils:
-    - 47
-    - 36
+    - 65
+    - 41
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5007,11 +5007,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 375
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 521
     sat_solving_mils:
-    - 60
-    - 31
+    - 64
+    - 34
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5030,11 +5030,11 @@
     clauses_num: 23747
     variables_num: 12612
   execution_time:
-    cnf_compilation_mils: 1202
-    final_var_state_calc_mils: 587
+    cnf_compilation_mils: 794
+    final_var_state_calc_mils: 818
     sat_solving_mils:
-    - 47
-    - 31
+    - 49
+    - 38
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5053,11 +5053,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 188
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 342
     sat_solving_mils:
-    - 0
-    - 0
+    - 16
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5076,11 +5076,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 265
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 417
     sat_solving_mils:
-    - 15
-    - 3
+    - 23
+    - 32
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5099,11 +5099,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 234
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 998
     sat_solving_mils:
-    - 15
-    - 0
+    - 16
+    - 9
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5122,11 +5122,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 266
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 427
     sat_solving_mils:
     - 16
-    - 0
+    - 10
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5145,11 +5145,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 203
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 359
     sat_solving_mils:
-    - 0
-    - 0
+    - 24
+    - 11
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5168,10 +5168,10 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 274
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 2164
     sat_solving_mils:
-    - 16
+    - 49
     - 15
   solution: 
     number_of_solutions: 1
@@ -5191,11 +5191,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 266
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 1867
     sat_solving_mils:
-    - 16
-    - 0
+    - 23
+    - 18
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5214,11 +5214,11 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 250
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 1110
     sat_solving_mils:
-    - 15
-    - 0
+    - 102
+    - 49
   solution: 
     number_of_solutions: 1
     solution_index: 0
@@ -5237,13 +5237,1140 @@
     clauses_num: 6856
     variables_num: 3498
   execution_time:
-    cnf_compilation_mils: 173
-    final_var_state_calc_mils: 148
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 390
     sat_solving_mils:
+    - 30
+    - 35
     - 19
-    - 16
-    - 0
   solution: 
     number_of_solutions: 2
     solution_index: 1
-- pro
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:02, Agent:depot1,Action:LiftP~hoist6~crate1~pallet1~depot1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 803
+    sat_solving_mils:
+    - 23
+    - 17
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:00, Agent:depot0,Action:LiftC~hoist0~crate5~crate2~depot0=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 883
+    sat_solving_mils:
+    - 23
+    - 14
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:08, Agent:depot0,Action:DropP~hoist0~crate3~pallet0~depot0=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 673
+    sat_solving_mils:
+    - 20
+    - 47
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:05, Agent:depot0,Action:LiftP~hoist0~crate2~pallet0~depot0=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 482
+    sat_solving_mils:
+    - 24
+    - 21
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:08, Agent:truck0,Action:Drive~truck0~depot0~depot1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 223
+    sat_solving_mils:
+    - 17
+    - 35
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist1~crate3~truck0~depot1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 550
+    sat_solving_mils:
+    - 16
+    - 18
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:09, Agent:truck0,Action:Unload~hoist1~crate2~truck0~depot1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 382
+    sat_solving_mils:
+    - 14
+    - 12
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:12, Agent:distributor1,Action:DropP~hoist3~crate0~pallet3~distributor1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 920
+    sat_solving_mils:
+    - 15
+    - 8
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:01, Agent:depot1,Action:LiftP~hoist5~crate0~pallet4~depot1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 363
+    sat_solving_mils:
+    - 36
+    - 8
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:11, Agent:truck0,Action:Unload~hoist3~crate0~truck0~distributor1=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 1581
+    sat_solving_mils:
+    - 21
+    - 10
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports16.problem
+  plan_properties:
+    failed_actions: "[Index:07, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
+    number_of_steps: 18
+    number_of_actions: 26
+    number_of_agents: 5
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6856
+    variables_num: 3498
+  execution_time:
+    cnf_compilation_mils: 284
+    final_var_state_calc_mils: 350
+    sat_solving_mils:
+    - 19
+    - 12
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:12, Agent:truck0,Action:Unload~hoist0~crate3~truck0~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1287
+    sat_solving_mils:
+    - 65
+    - 30
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:05, Agent:truck0,Action:Load~hoist3~crate6~truck0~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 357
+    sat_solving_mils:
+    - 13
+    - 12
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:04, Agent:distributor1,Action:LiftP~hoist3~crate6~pallet7~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 512
+    sat_solving_mils:
+    - 55
+    - 38
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:01, Agent:distributor1,Action:LiftC~hoist7~crate7~crate5~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 714
+    sat_solving_mils:
+    - 29
+    - 15
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:12, Agent:depot0,Action:DropP~hoist4~crate4~pallet0~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1748
+    sat_solving_mils:
+    - 71
+    - 45
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:06, Agent:distributor1,Action:LiftP~hoist3~crate1~pallet5~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1460
+    sat_solving_mils:
+    - 78
+    - 62
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:06, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 469
+    sat_solving_mils:
+    - 31
+    - 16
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:09, Agent:truck0,Action:Unload~hoist4~crate8~truck0~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 890
+    sat_solving_mils:
+    - 16
+    - 15
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:00, Agent:depot0,Action:LiftP~hoist0~crate3~pallet6~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 375
+    sat_solving_mils:
+    - 16
+    - 0
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:01, Agent:truck0,Action:Load~hoist1~crate4~truck0~depot1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 937
+    sat_solving_mils:
+    - 16
+    - 15
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:02, Agent:truck0,Action:Drive~truck0~depot1~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 234
+    sat_solving_mils:
+    - 15
+    - 16
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:00, Agent:depot1,Action:LiftP~hoist1~crate4~pallet1~depot1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1666
+    sat_solving_mils:
+    - 14
+    - 11
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:07, Agent:distributor1,Action:DropP~hoist3~crate1~pallet7~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 492
+    sat_solving_mils:
+    - 13
+    - 9
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:14, Agent:depot0,Action:DropC~hoist4~crate7~crate3~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1264
+    sat_solving_mils:
+    - 16
+    - 16
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:10, Agent:depot0,Action:DropP~hoist4~crate8~pallet6~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 343
+    sat_solving_mils:
+    - 16
+    - 16
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:08, Agent:depot1,Action:DropP~hoist1~crate6~pallet1~depot1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1273
+    sat_solving_mils:
+    - 16
+    - 14
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:03, Agent:truck0,Action:Load~hoist3~crate8~truck0~distributor1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 288
+    sat_solving_mils:
+    - 15
+    - 0
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:08, Agent:truck0,Action:Drive~truck0~depot1~depot0=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 1119
+    sat_solving_mils:
+    - 184
+    - 28
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports17.problem
+  plan_properties:
+    failed_actions: "[Index:07, Agent:truck0,Action:Unload~hoist1~crate6~truck0~depot1=FAILED]"
+    number_of_steps: 15
+    number_of_actions: 25
+    number_of_agents: 4
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 6637
+    variables_num: 3451
+  execution_time:
+    cnf_compilation_mils: 200
+    final_var_state_calc_mils: 2387
+    sat_solving_mils:
+    - 32
+    - 37
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:02, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 304
+    sat_solving_mils:
+    - 129
+    - 86
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:22, Agent:truck0,Action:Unload~hoist6~crate0~truck0~distributor2=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 758
+    sat_solving_mils:
+    - 40
+    - 20
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:33, Agent:truck0,Action:Drive~truck0~distributor1~distributor2=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1388
+    sat_solving_mils:
+    - 38
+    - 26
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:35, Agent:distributor2,Action:DropC~hoist6~crate3~crate1~distributor2=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1889
+    sat_solving_mils:
+    - 36
+    - 17
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:26, Agent:truck0,Action:Load~hoist0~crate5~truck0~depot0=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1849
+    sat_solving_mils:
+    - 40
+    - 33
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:11, Agent:truck0,Action:Drive~truck0~distributor1~depot1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 383
+    sat_solving_mils:
+    - 42
+    - 26
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:31, Agent:distributor1,Action:DropC~hoist5~crate7~crate4~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1085
+    sat_solving_mils:
+    - 40
+    - 18
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:28, Agent:truck0,Action:Unload~hoist5~crate4~truck0~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1646
+    sat_solving_mils:
+    - 36
+    - 45
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:20, Agent:truck0,Action:Drive~truck0~depot0~distributor2=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1742
+    sat_solving_mils:
+    - 48
+    - 55
+    - 32
+  solution: 
+    number_of_solutions: 2
+    solution_index: 1
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:24, Agent:truck0,Action:Unload~hoist6~crate1~truck0~distributor2=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1883
+    sat_solving_mils:
+    - 37
+    - 20
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:18, Agent:truck0,Action:Drive~truck0~distributor0~depot0=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1093
+    sat_solving_mils:
+    - 167
+    - 97
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:15, Agent:truck0,Action:Drive~truck0~depot1~distributor0=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 338
+    sat_solving_mils:
+    - 39
+    - 24
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:27, Agent:truck0,Action:Drive~truck0~depot0~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1710
+    sat_solving_mils:
+    - 32
+    - 34
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:33, Agent:distributor1,Action:DropC~hoist5~crate5~crate7~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1035
+    sat_solving_mils:
+    - 124
+    - 90
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:08, Agent:truck0,Action:Load~hoist5~crate5~truck0~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 526
+    sat_solving_mils:
+    - 47
+    - 36
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:12, Agent:truck0,Action:Load~hoist1~crate1~truck0~depot1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 721
+    sat_solving_mils:
+    - 36
+    - 24
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:16, Agent:truck0,Action:Load~hoist4~crate2~truck0~distributor0=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 2212
+    sat_solving_mils:
+    - 79
+    - 149
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:29, Agent:distributor1,Action:DropP~hoist5~crate4~pallet5~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 2681
+    sat_solving_mils:
+    - 32
+    - 32
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+- problem: deports19.problem
+  plan_properties:
+    failed_actions: "[Index:32, Agent:truck0,Action:Unload~hoist5~crate5~truck0~distributor1=FAILED]"
+    number_of_steps: 36
+    number_of_actions: 44
+    number_of_agents: 7
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 1
+  cnf:
+    clauses_num: 16240
+    variables_num: 8753
+  execution_time:
+    cnf_compilation_mils: 549
+    final_var_state_calc_mils: 1868
+    sat_solving_mils:
+    - 35
+    - 54
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0

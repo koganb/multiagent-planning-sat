@@ -1,4 +1,4 @@
-package il.ac.bgu;
+package il.ac.bgu.testUtils;
 
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;

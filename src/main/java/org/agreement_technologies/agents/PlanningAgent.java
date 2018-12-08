@@ -1,6 +1,6 @@
 package org.agreement_technologies.agents;
 
-import il.ac.bgu.SolutionFoundListener;
+import il.ac.bgu.planningExtensions.SolutionFoundListener;
 import org.agreement_technologies.common.map_communication.AgentCommunication;
 import org.agreement_technologies.common.map_communication.PlanningAgentListener;
 import org.agreement_technologies.common.map_grounding.GroundedTask;

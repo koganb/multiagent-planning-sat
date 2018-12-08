@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.VariableFunctions.variableFilter;
+import static il.ac.bgu.utils.VariableFunctions.variableFilter;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
 
