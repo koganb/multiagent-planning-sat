@@ -6,7 +6,6 @@ import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
-import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.testUtils.ActionDependencyCalculation
 import il.ac.bgu.utils.PlanSolvingUtils
@@ -43,38 +42,13 @@ class TestDelayFailureModel extends Specification {
     @Shared
     def problemArr = [
             new Problem("deports0.problem"),
-            new Problem("deports1.problem", [
-                    Action.of("LiftP hoist1 crate0 pallet1 distributor0", "distributor0", 0, FAILED),
-                    Action.of("DropP hoist1 crate1 pallet1 distributor0", "distributor0", 6, FAILED),
-            ]),
-            new Problem("deports2.problem", [
-                    Action.of("LiftC hoist2 crate2 crate1 distributor1", "distributor1", 0, FAILED),
-                    Action.of("DropP hoist2 crate0 pallet2 distributor1", "distributor1", 7, FAILED),
-                    Action.of("LiftC hoist2 crate2 crate1 distributor1", "distributor0", 7, FAILED),
-                    Action.of("DropC hoist1 crate1 crate3 distributor0", "distributor0", 9, FAILED),
-
-            ]),
-            new Problem("elevator1.problem", [
-                    Action.of("move-up-fast fast0 n0 n2", "fast0", 0, FAILED),
-                    Action.of("leave p0 slow1-0 n4 n1 n0", "slow1-0", 4, FAILED),
-            ]),
-            new Problem("elevator2.problem", [
-                    Action.of("leave p2 slow0-0 n1 n1 n0", "slow0-0", 2, FAILED)
-            ]),
-            new Problem("satellite1.problem", [
-                    Action.of("turn_to satellite0 groundstation2 phenomenon6", "satellite0", 0, FAILED)
-            ]),
-            new Problem("satellite8.problem", [
-                    Action.of("turn_to satellite1 star0 star4", "satellite1", 0, FAILED),
-                    Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED),
-                    Action.of("take_image satellite1 phenomenon14 instrument5 thermograph2", "satellite1", 10, FAILED)
-
-            ]),
-            new Problem("satellite9.problem", [
-                    Action.of("turn_to satellite0 phenomenon7 star0", "satellite0", 0, FAILED),
-                    Action.of("turn_to satellite4 planet5 star9", "satellite4", 0, FAILED),
-                    Action.of("turn_to satellite3 star9 planet10", "satellite3", 0, FAILED),
-            ]),
+            new Problem("deports1.problem"),
+            new Problem("deports2.problem"),
+            new Problem("elevator1.problem"),
+            new Problem("elevator2.problem"),
+            new Problem("satellite1.problem"),
+            new Problem("satellite8.problem"),
+            new Problem("satellite9.problem"),
     ]
 
 
@@ -148,7 +122,7 @@ class TestDelayFailureModel extends Specification {
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p -> new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
+                planArr.collect { p -> new ActionDependencyCalculation(p, failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
         ]
                 .transpose()
                 .collectNested {
@@ -160,7 +134,7 @@ class TestDelayFailureModel extends Specification {
             res -> [res[0], res[1], res[2], res[3][0].get()]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions) == []
+            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
         .collect {
             res -> [res[0].problemName, res[1], res[2].get(), res[3]]

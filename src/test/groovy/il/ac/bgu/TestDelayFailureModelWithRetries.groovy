@@ -49,13 +49,19 @@ class TestDelayFailureModelWithRetries extends Specification {
 
     @Shared
     def problemArr = [
-            new Problem("satellite8.problem", [
-                    Action.of("turn_to satellite1 star0 star4", "satellite1", 0, FAILED),
-                    Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED),
-                    Action.of("take_image satellite1 phenomenon14 instrument5 thermograph2", "satellite1", 10, FAILED),
-                    Action.of("turn_to satellite1 phenomenon14 phenomenon13", "satellite1", 9, FAILED),
-
-            ]),
+//            new Problem("satellite8.problem"),
+//            new Problem("satellite20.problem"),
+//            new Problem("deports0.problem"),
+new Problem("deports1.problem", [
+        Action.of("Unload hoist1 crate1 truck1 distributor0", "truck1", 5, FAILED)
+]),
+//new Problem("deports2.problem"),
+//new Problem("deports3.problem"),
+//new Problem("deports4.problem"),
+//new Problem("deports7.problem"),
+//new Problem("deports8.problem"),
+//            new Problem("deports19.problem", [
+//            ]),
     ]
 
 
@@ -105,6 +111,7 @@ class TestDelayFailureModelWithRetries extends Specification {
         def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
 
         expect:
+
         List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
                 .filter { solution -> !solution.isEmpty() }
                 .collect(Collectors.toList())
@@ -129,7 +136,10 @@ class TestDelayFailureModelWithRetries extends Specification {
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p -> new ActionDependencyCalculation(p).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
+                planArr.collect { p ->
+                    new ActionDependencyCalculation(p, failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                            MAX_FAILED_ACTIONS_NUM)
+                }
         ]
                 .transpose()
                 .collectNested {
@@ -141,7 +151,7 @@ class TestDelayFailureModelWithRetries extends Specification {
             res -> [res[0], res[1], res[2].get(), res[3][0].get()]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
+            res -> res[3].intersect(res[0].ignoreFailedActions).size() != 0
         }
         .collect {
             res -> [res[0].problemName, res[1], res[2], res[3]]

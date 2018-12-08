@@ -1,9 +1,13 @@
 package il.ac.bgu.testUtils;
 
+import com.google.common.collect.Sets;
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
+import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.variableModel.VariableModelFunction;
+import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +28,17 @@ public class ActionDependencyCalculation {
 
     private Map<ActionKey, Set<Action>> actionDependenciesFull = new HashMap<>();
 
-    public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan) {
+
+    private FinalNoRetriesVariableStateCalc finalVariableStateCalc;
+
+    public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan,
+                                       VariableModelFunction failureModelFunction,
+                                       RetryPlanUpdater conflictRetriesModel) {
         Map<VariableKey, Action> preconditionsToAction = new HashMap<>();
         Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
+
+        finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+                conflictRetriesModel.updatePlan(plan).updatedPlan, failureModelFunction);
 
         plan.entrySet().stream()
                 .filter(i -> i.getKey() != -1)
@@ -88,8 +100,17 @@ public class ActionDependencyCalculation {
                                     .map(action -> action.toBuilder().state(FAILED).build())
                                     .collect(Collectors.toSet())) : Stream.empty();
                 })
-                .map(t -> (Supplier<Set<Action>>) () -> t)
                 .limit(MAX_SIZE)
+                .filter(t -> {
+                    if (finalVariableStateCalc.getFinalVariableState(t).
+                            containsAll(finalVariableStateCalc.getFinalVariableState(Sets.newHashSet()))) {
+                        log.info("Filter out action failure candidate {} as it leads to correct state", t);
+                        return false;
+                    }
+                    return true;
+
+                })
+                .map(t -> (Supplier<Set<Action>>) () -> t)
                 .collect(Collectors.toList());
 
 
