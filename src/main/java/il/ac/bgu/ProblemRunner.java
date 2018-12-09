@@ -15,7 +15,6 @@ import il.ac.bgu.sat.SatSolver;
 import il.ac.bgu.utils.PlanSolvingUtils;
 import il.ac.bgu.utils.PlanUtils;
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc;
-import il.ac.bgu.variablesCalculation.FinalOneRetryVariableStateCalc;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import io.bretty.console.view.ActionView;
 import io.bretty.console.view.MenuView;
@@ -250,7 +249,8 @@ public class ProblemRunner {
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
                     finalVariableStateCalc =
-                            new FinalOneRetryVariableStateCalc(plan, failedClausesCreator.getVariableModel());
+                            new FinalNoRetriesVariableStateCalc(
+                                    conflictRetriesModel.updatePlan(plan).updatedPlan, failedClausesCreator.getVariableModel());
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
@@ -262,7 +262,8 @@ public class ProblemRunner {
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
                     finalVariableStateCalc =
-                            new FinalOneRetryVariableStateCalc(plan, failedClausesCreator.getVariableModel());
+                            new FinalNoRetriesVariableStateCalc(
+                                    conflictRetriesModel.updatePlan(plan).updatedPlan, failedClausesCreator.getVariableModel());
                     break;
             }
         }

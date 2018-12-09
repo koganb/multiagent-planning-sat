@@ -52,16 +52,23 @@ class TestDelayFailureModelWithRetries extends Specification {
 //            new Problem("satellite8.problem"),
 //            new Problem("satellite20.problem"),
 //            new Problem("deports0.problem"),
-new Problem("deports1.problem", [
-        Action.of("Unload hoist1 crate1 truck1 distributor0", "truck1", 5, FAILED)
-]),
+//            new Problem("deports1.problem"),
 //new Problem("deports2.problem"),
 //new Problem("deports3.problem"),
 //new Problem("deports4.problem"),
 //new Problem("deports7.problem"),
 //new Problem("deports8.problem"),
-//            new Problem("deports19.problem", [
-//            ]),
+//new Problem("elevator28.problem"),
+//new Problem("elevator29.problem"),
+//new Problem("elevator30.problem"),
+//new Problem("satellite14.problem"),
+//new Problem("satellite15.problem"),
+//new Problem("satellite20.problem"),
+//new Problem("deports16.problem"),
+//new Problem("deports17.problem"),
+new Problem("deports19.problem", [
+        Action.of("Unload hoist5 crate5 truck0 distributor1", "truck0", 32)
+]),
     ]
 
 
@@ -111,7 +118,8 @@ new Problem("deports1.problem", [
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
+        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+                conflictRetriesModel.updatePlan(plan).updatedPlan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
 
         expect:
 
