@@ -6,7 +6,6 @@ import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.retries.OneRetryPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
-import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.sat.SolutionIterator
 import il.ac.bgu.testUtils.ActionDependencyCalculation
@@ -49,26 +48,15 @@ class TestDelayFailureModelWithRetries extends Specification {
 
     @Shared
     def problemArr = [
-//            new Problem("satellite8.problem"),
-//            new Problem("satellite20.problem"),
-//            new Problem("deports0.problem"),
-//            new Problem("deports1.problem"),
-//new Problem("deports2.problem"),
-//new Problem("deports3.problem"),
-//new Problem("deports4.problem"),
-//new Problem("deports7.problem"),
-//new Problem("deports8.problem"),
-//new Problem("elevator28.problem"),
-//new Problem("elevator29.problem"),
-//new Problem("elevator30.problem"),
-//new Problem("satellite14.problem"),
-//new Problem("satellite15.problem"),
-//new Problem("satellite20.problem"),
-//new Problem("deports16.problem"),
-//new Problem("deports17.problem"),
-new Problem("deports19.problem", [
-        Action.of("Unload hoist5 crate5 truck0 distributor1", "truck0", 32)
-]),
+            new Problem("elevator28.problem"),
+            new Problem("elevator29.problem"),
+            new Problem("elevator30.problem"),
+            new Problem("satellite14.problem"),
+            new Problem("satellite15.problem"),
+            new Problem("satellite20.problem"),
+            new Problem("deports16.problem"),
+            new Problem("deports17.problem"),
+            new Problem("deports19.problem"),
     ]
 
 
@@ -162,7 +150,7 @@ new Problem("deports19.problem", [
             res -> [res[0], res[1], res[2].get(), res[3][0].get()]
         }
         .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions).size() != 0
+            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
         .collect {
             res -> [res[0].problemName, res[1], res[2], res[3]]

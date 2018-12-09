@@ -41,14 +41,15 @@ class TestDelayFailureModel extends Specification {
     public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
-            new Problem("deports0.problem"),
-            new Problem("deports1.problem"),
-//            new Problem("deports2.problem"),
-//            new Problem("elevator1.problem"),
-//            new Problem("elevator2.problem"),
-//            new Problem("satellite1.problem"),
-//            new Problem("satellite8.problem"),
-//            new Problem("satellite9.problem"),
+            new Problem("elevator28.problem"),
+            new Problem("elevator29.problem"),
+            new Problem("elevator30.problem"),
+            new Problem("satellite14.problem"),
+            new Problem("satellite15.problem"),
+            new Problem("satellite20.problem"),
+            new Problem("deports16.problem"),
+            new Problem("deports17.problem"),
+            new Problem("deports19.problem"),
     ]
 
 

@@ -84,7 +84,7 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public static final int MAX_SIZE = 20;  //no more than MAX_SIZE actions
+    public static final int MAX_SIZE = 50;  //no more than MAX_SIZE actions
 
     public List<Supplier<Set<Action>>> getIndependentActionsList(int listSize) {
         List<ActionKey> keys = new ArrayList<>(actionDependenciesFull.keySet());
