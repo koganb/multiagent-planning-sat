@@ -90,11 +90,14 @@ new Problem("deports1.problem", [
         Instant start = Instant.now()
         def constraints = TestUtils.createPlanHardConstraints(tuple[1], conflictRetriesModel, healthyCnfClausesCreator,
                 conflictClausesCreator, failedClausesCreator)
-
         planClausesCreationTime[tuple[0].problemName] = Duration.between(start, Instant.now()).toMillis()
 
         return constraints;
     }
+
+    @Shared
+    //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
+    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -136,8 +139,8 @@ new Problem("deports1.problem", [
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p ->
-                    new ActionDependencyCalculation(p, failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                [planArr, normalFinalStateArr].transpose().collect { tuple ->
+                    new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
                             MAX_FAILED_ACTIONS_NUM)
                 }
         ]

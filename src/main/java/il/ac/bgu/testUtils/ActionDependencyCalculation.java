@@ -1,10 +1,12 @@
 package il.ac.bgu.testUtils;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
+import il.ac.bgu.dataModel.Formattable;
+import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
 import il.ac.bgu.variableModel.VariableModelFunction;
 import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc;
@@ -30,10 +32,13 @@ public class ActionDependencyCalculation {
 
 
     private FinalNoRetriesVariableStateCalc finalVariableStateCalc;
+    private ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState;
 
     public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan,
+                                       ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState,
                                        VariableModelFunction failureModelFunction,
                                        RetryPlanUpdater conflictRetriesModel) {
+        this.normalExecutionFinalState = normalExecutionFinalState;
         Map<VariableKey, Action> preconditionsToAction = new HashMap<>();
         Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
 
@@ -102,8 +107,7 @@ public class ActionDependencyCalculation {
                 })
                 .limit(MAX_SIZE)
                 .filter(t -> {
-                    if (finalVariableStateCalc.getFinalVariableState(t).
-                            containsAll(finalVariableStateCalc.getFinalVariableState(Sets.newHashSet()))) {
+                    if (finalVariableStateCalc.getFinalVariableState(t).containsAll(normalExecutionFinalState)) {
                         log.info("Filter out action failure candidate {} as it leads to correct state", t);
                         return false;
                     }

@@ -103,6 +103,10 @@ new Problem("deports19.problem", [
         return constraints;
     }
 
+    @Shared
+    //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
+    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
+
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
             problemName, plan, cnfPlanClauses, failedActions) {
@@ -142,7 +146,10 @@ new Problem("deports19.problem", [
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p -> new ActionDependencyCalculation(p, failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
+                [planArr, normalFinalStateArr].transpose().collect { tuple ->
+                    new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                            MAX_FAILED_ACTIONS_NUM)
+                }
         ]
                 .transpose()
                 .collectNested {

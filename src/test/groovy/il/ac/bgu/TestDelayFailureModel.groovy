@@ -43,12 +43,12 @@ class TestDelayFailureModel extends Specification {
     def problemArr = [
             new Problem("deports0.problem"),
             new Problem("deports1.problem"),
-            new Problem("deports2.problem"),
-            new Problem("elevator1.problem"),
-            new Problem("elevator2.problem"),
-            new Problem("satellite1.problem"),
-            new Problem("satellite8.problem"),
-            new Problem("satellite9.problem"),
+//            new Problem("deports2.problem"),
+//            new Problem("elevator1.problem"),
+//            new Problem("elevator2.problem"),
+//            new Problem("satellite1.problem"),
+//            new Problem("satellite8.problem"),
+//            new Problem("satellite9.problem"),
     ]
 
 
@@ -82,6 +82,11 @@ class TestDelayFailureModel extends Specification {
 
         return constraints;
     }
+
+
+    @Shared
+    //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
+    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -122,7 +127,11 @@ class TestDelayFailureModel extends Specification {
                 problemArr,
                 planArr,
                 cnfPlanClausesArr,
-                planArr.collect { p -> new ActionDependencyCalculation(p, failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(MAX_FAILED_ACTIONS_NUM) }
+                [planArr, normalFinalStateArr].transpose().collect { tuple ->
+                    new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                            MAX_FAILED_ACTIONS_NUM)
+                }
+
         ]
                 .transpose()
                 .collectNested {
