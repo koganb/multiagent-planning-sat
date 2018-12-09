@@ -37,8 +37,9 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
         log = LoggerFactory.getLogger(TestDelayFailureModel.class)
     }
 
+    @Shared
+    def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
 
-    public static final int MAX_FAILED_ACTIONS_NUM = 1
     @Shared
     def problemArr = [
             new Problem("elevator28.problem"),
@@ -93,7 +94,7 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
         setup:
 
         TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
-                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
+                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, failedActions.size())
         TestUtils.printPlan(plan)
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
@@ -128,7 +129,7 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
                     new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
-                            MAX_FAILED_ACTIONS_NUM)
+                            maxFailedActionsNumArr)
                 }
         ]
                 .transpose()

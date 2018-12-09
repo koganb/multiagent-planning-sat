@@ -37,7 +37,9 @@ class TestDelayFailureModel extends Specification {
     }
 
 
-    public static final int MAX_FAILED_ACTIONS_NUM = 1
+    @Shared
+    def maxFailedActionsNumArr = [3]
+
     public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
@@ -95,7 +97,7 @@ class TestDelayFailureModel extends Specification {
         setup:
 
         TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
-                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
+                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, failedActions.size())
         TestUtils.printPlan(plan)
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
@@ -130,7 +132,7 @@ class TestDelayFailureModel extends Specification {
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
                     new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
-                            MAX_FAILED_ACTIONS_NUM)
+                            maxFailedActionsNumArr)
                 }
 
         ]

@@ -43,8 +43,11 @@ class TestDelayFailureModelWithRetries extends Specification {
         LoggerFactory.getLogger(SolutionIterator.class) //some strange bug
     }
 
-    public static final int MAX_FAILED_ACTIONS_NUM = 1
     public static final int DELAY_STEPS_NUM = 1
+
+    @Shared
+    def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
+
 
     @Shared
     def problemArr = [
@@ -100,7 +103,7 @@ class TestDelayFailureModelWithRetries extends Specification {
         setup:
 
         TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
-                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
+                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, failedActions.size())
         TestUtils.printPlan(plan)
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
@@ -137,7 +140,7 @@ class TestDelayFailureModelWithRetries extends Specification {
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
                     new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
-                            MAX_FAILED_ACTIONS_NUM)
+                            maxFailedActionsNumArr)
                 }
         ]
                 .transpose()

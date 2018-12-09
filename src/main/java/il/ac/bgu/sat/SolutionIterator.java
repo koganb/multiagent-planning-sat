@@ -86,7 +86,7 @@ public class SolutionIterator implements Iterator<Optional<List<? extends Format
 
         if (!solutionFound &&  //solution not found
                 solutionConstraints.isEmpty() &&  //no solution found so far
-                currentSolutionSize < MAX_SOLUTION_SIZE) {
+                currentSolutionSize <= MAX_SOLUTION_SIZE) {
             currentSolutionSize++;
         }
 

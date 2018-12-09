@@ -84,12 +84,18 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public static final int MAX_SIZE = 50;  //no more than MAX_SIZE actions
+    public static final int MAX_SIZE = 10;  //no more than MAX_SIZE actions
 
-    public List<Supplier<Set<Action>>> getIndependentActionsList(int listSize) {
+    public List<Supplier<Set<Action>>> getIndependentActionsList(List<Integer> actionNumbers) {
+        return actionNumbers.stream()
+                .flatMap(i -> getIndependentActionsList(i).stream())
+                .collect(Collectors.toList());
+    }
+
+    public List<Supplier<Set<Action>>> getIndependentActionsList(int actionNumber) {
         List<ActionKey> keys = new ArrayList<>(actionDependenciesFull.keySet());
 
-        List<Supplier<Set<Action>>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), listSize).iterator()).flatMap(
+        List<Supplier<Set<Action>>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), actionNumber).iterator()).flatMap(
                 combination -> {
                     Set<ActionKey> actionKeys = Arrays.stream(combination).
                             mapToObj(keys::get).
