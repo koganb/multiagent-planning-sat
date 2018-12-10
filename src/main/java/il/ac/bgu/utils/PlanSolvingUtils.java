@@ -8,6 +8,7 @@ import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.dataModel.Variable;
 import il.ac.bgu.sat.SolutionIterator;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +19,13 @@ import org.apache.commons.collections4.ListUtils;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
+import static java.util.stream.Collectors.toList;
 import static org.slf4j.MarkerFactory.getMarker;
 
 /**
@@ -28,6 +33,9 @@ import static org.slf4j.MarkerFactory.getMarker;
  */
 @Slf4j
 public class PlanSolvingUtils {
+
+    public static final int INITIAL_STAGE = 0;
+
 
     public static Stream<List<? extends Formattable>> calculateSolutions(
             Map<Integer, Set<Step>> plan,
@@ -94,7 +102,7 @@ public class PlanSolvingUtils {
                 conflictCnfClausesCreator, failedCnfClausesCreator);
 
         Stream<List<FormattableValue<? extends Formattable>>> initFacts =
-                cnfCompilation.calcInitFacts().stream().map(ImmutableList::of);
+                calcInitFacts(plan).stream().map(ImmutableList::of);
 
         return StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                 .append(cnfCompilation.compileToCnf())
@@ -104,4 +112,49 @@ public class PlanSolvingUtils {
 
     }
 
+    public static List<FormattableValue<Variable>> calcInitFacts(Map<Integer, Set<Step>> plan) {
+
+        //true facts added at initial stage
+        Map<String, FormattableValue<Variable>> initStageVars = plan.entrySet().stream()
+                .filter(i -> i.getKey() == -1)
+                .flatMap(t -> t.getValue().stream())
+                .flatMap(t -> t.getPopEffs().stream())
+                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true))
+                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity()));
+
+        //action effects that are not true at initial stage
+        Map<String, FormattableValue<Variable>> allStageVars = plan.entrySet().stream()
+                .filter(i -> i.getKey() != -1)
+                .flatMap(t -> t.getValue().stream())
+                .flatMap(t -> t.getPopEffs().stream())
+                .filter(eff -> !initStageVars.keySet().contains(Variable.of(eff).formatFunctionKeyWithValue()))
+                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), false))
+                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity(), (a, b) -> a));
+
+        //locked and freezed vars for every variable key
+        List<FormattableValue<Variable>> lockedAndFreezedVars = StreamEx.<FormattableValue<Variable>>of()
+                .append(initStageVars.values())
+                .append(allStageVars.values())
+                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKey(), Function.identity(), (a, b) -> a))
+                .values().stream()
+                .flatMap(v ->
+                        Stream.of(
+                                FormattableValue.of(Variable.of(v.getFormattable(), LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
+                                FormattableValue.of(Variable.of(v.getFormattable(), FREEZED.name(), INITIAL_STAGE), false)
+
+                        ))
+                .collect(toList());
+
+        List<FormattableValue<Variable>> initVars = StreamEx.<FormattableValue<Variable>>of()
+                .append(initStageVars.values())
+                .append(allStageVars.values())
+                .append(lockedAndFreezedVars)
+                .collect(Collectors.toList());
+
+        log.debug("Init vars: {} ", initVars);
+
+        return initVars;
+
+
+    }
 }

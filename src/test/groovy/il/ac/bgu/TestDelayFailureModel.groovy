@@ -6,6 +6,7 @@ import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
+import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.testUtils.ActionDependencyCalculation
 import il.ac.bgu.utils.PlanSolvingUtils
@@ -38,20 +39,20 @@ class TestDelayFailureModel extends Specification {
 
 
     @Shared
-    def maxFailedActionsNumArr = [3]
+    def maxFailedActionsNumArr = [2]
 
     public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
-            new Problem("elevator28.problem"),
-            new Problem("elevator29.problem"),
-            new Problem("elevator30.problem"),
-            new Problem("satellite14.problem"),
-            new Problem("satellite15.problem"),
-            new Problem("satellite20.problem"),
-            new Problem("deports16.problem"),
-            new Problem("deports17.problem"),
-            new Problem("deports19.problem"),
+//            new Problem("elevator28.problem"),
+//            new Problem("elevator29.problem"),
+//            new Problem("elevator30.problem"),
+//            new Problem("satellite14.problem"),
+new Problem("satellite8.problem"),
+//            new Problem("satellite20.problem"),
+//            new Problem("deports16.problem"),
+//            new Problem("deports17.problem"),
+//            new Problem("deports19.problem"),
     ]
 
 
@@ -148,8 +149,13 @@ class TestDelayFailureModel extends Specification {
         .findAll {
             res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
+        .take(1)
         .collect {
-            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
+            res ->
+                [res[0].problemName, res[1], res[2].get(), [
+                        Action.of("turn_to satellite1 star7 star0", "satellite1", 3, FAILED),
+                        Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED)
+                ]]
         }
     }
 

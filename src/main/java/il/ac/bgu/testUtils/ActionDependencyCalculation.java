@@ -84,7 +84,7 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public static final int MAX_SIZE = 10;  //no more than MAX_SIZE actions
+    public static final int MAX_SIZE = 1;  //no more than MAX_SIZE actions
 
     public List<Supplier<Set<Action>>> getIndependentActionsList(List<Integer> actionNumbers) {
         return actionNumbers.stream()

@@ -11,6 +11,7 @@ import il.ac.bgu.dataModel.FormattableValue
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SatSolver
 import il.ac.bgu.sat.SolutionIterator
+import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
 import one.util.streamex.StreamEx
@@ -171,7 +172,7 @@ class TestUtils {
 
         final def hardContraints = Tuple1.of(StreamEx.<List<FormattableValue<Formattable>>> of()
                 .append(cnfCompilation.compileToCnf())
-                .append(cnfCompilation.calcInitFacts().collect { f -> ImmutableList.of(f) })
+                .append(PlanSolvingUtils.calcInitFacts(plan).collect { f -> ImmutableList.of(f) })
                 .collect(ImmutableList.toImmutableList()))
 
         return hardContraints

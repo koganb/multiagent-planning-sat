@@ -1,5 +1,6 @@
 package il.ac.bgu.cnfCompilation
 
+import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variableModel.VariableModelFunction
 import org.agreement_technologies.common.map_planner.Step
@@ -22,7 +23,7 @@ class TestInitialFactsCalc extends Specification {
         CnfCompilation cnfCompilation = new CnfCompilation(plan, failureModel)
 
         expect:
-        cnfCompilation.calcInitFacts().stream()
+        PlanSolvingUtils.calcInitFacts(plan).stream()
                 .map({ val -> val.toString() })
                 .sorted()
                 .collect(Collectors.toList()) == expectedClauses

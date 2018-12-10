@@ -7,6 +7,7 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.utils.PlanSolvingUtils;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
@@ -16,7 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,7 +35,6 @@ import static java.util.stream.Collectors.toSet;
 @Slf4j
 public class CnfCompilation {
 
-    public static final int INITIAL_STAGE = 0;
     private List<FormattableValue<Variable>> variablesStateBeforeStepExec;
     private List<FormattableValue<Variable>> variablesStateAfterStepExec;
 
@@ -64,55 +63,8 @@ public class CnfCompilation {
 
         this.plan = retriesPlanCreatorResult.updatedPlan;
 
-        this.variablesStateBeforeStepExec = calcInitFacts();
+        this.variablesStateBeforeStepExec = PlanSolvingUtils.calcInitFacts(plan);
         log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
-    }
-
-
-    public List<FormattableValue<Variable>> calcInitFacts() {
-
-        //true facts added at initial stage
-        Map<String, FormattableValue<Variable>> initStageVars = plan.entrySet().stream()
-                .filter(i -> i.getKey() == -1)
-                .flatMap(t -> t.getValue().stream())
-                .flatMap(t -> t.getPopEffs().stream())
-                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true))
-                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity()));
-
-        //action effects that are not true at initial stage
-        Map<String, FormattableValue<Variable>> allStageVars = plan.entrySet().stream()
-                .filter(i -> i.getKey() != -1)
-                .flatMap(t -> t.getValue().stream())
-                .flatMap(t -> t.getPopEffs().stream())
-                .filter(eff -> !initStageVars.keySet().contains(Variable.of(eff).formatFunctionKeyWithValue()))
-                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), false))
-                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity(), (a, b) -> a));
-
-        //locked and freezed vars for every variable key
-        List<FormattableValue<Variable>> lockedAndFreezedVars = StreamEx.<FormattableValue<Variable>>of()
-                .append(initStageVars.values())
-                .append(allStageVars.values())
-                .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKey(), Function.identity(), (a, b) -> a))
-                .values().stream()
-                .flatMap(v ->
-                        Stream.of(
-                                FormattableValue.of(Variable.of(v.getFormattable(), LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
-                                FormattableValue.of(Variable.of(v.getFormattable(), FREEZED.name(), INITIAL_STAGE), false)
-
-                        ))
-                .collect(toList());
-
-        List<FormattableValue<Variable>> initVars = StreamEx.<FormattableValue<Variable>>of()
-                .append(initStageVars.values())
-                .append(allStageVars.values())
-                .append(lockedAndFreezedVars)
-                .collect(Collectors.toList());
-
-        log.debug("Init vars: {} ", initVars);
-
-        return initVars;
-
-
     }
 
 

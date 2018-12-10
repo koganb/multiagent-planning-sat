@@ -30,37 +30,20 @@ import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 @Slf4j
 public class ActionUtils {
 
-    static ImmutablePair<Action.State, ImmutableList<FormattableValue<Variable>>> executeAction(
+    static ImmutablePair<Action.State, List<FormattableValue<Variable>>> executeAction(
             Step action,
             Integer stage,
             Boolean isFailed,
             VariableModelFunction failureModelFunction,
             VariableModelFunction conflictModelFunction,
             VariableModelFunction successModelFunction,
-            final ImmutableList<FormattableValue<Variable>> variablesState,
-            final ImmutableList<FormattableValue<Variable>> prevStageVariableState) {
+            final List<FormattableValue<Variable>> variablesState,
+            final List<FormattableValue<Variable>> prevStageVariableState) {
 
 
-        ImmutableList<FormattableValue<Variable>> addedVariables = ImmutableList.of();
-        if (stage != -1) {
+        List<FormattableValue<Variable>> newVariablesState = variablesState;
 
-            //TODO think about variable is from new Group???
-            addedVariables = action.getPopEffs().stream()
-                    .map(eff -> Variable.of(eff, stage))
-                    .filter(var -> variablesState.stream()
-                            .noneMatch(v -> v.getFormattable().formatFunctionKeyWithValue().equals(
-                                    var.formatFunctionKeyWithValue())))
-                    .map(var -> FormattableValue.of(var, false))
-                    .collect(ImmutableList.toImmutableList());
-
-        }
-
-        ImmutableList<FormattableValue<Variable>> newVariablesState = ImmutableList.<FormattableValue<Variable>>builder()
-                .addAll(variablesState)
-                .addAll(addedVariables)
-                .build();
-
-        Action.State actionState = null;
+        Action.State actionState;
 
         if (!checkPreconditionsValidity(action.getPopPrecs(), prevStageVariableState) ||
                 !checkEffectsValidity(action.getPopEffs(), prevStageVariableState)) {
@@ -99,7 +82,7 @@ public class ActionUtils {
 
 
     private static boolean checkPreconditionsValidity(List<POPPrecEff> preconditions,
-                                                      ImmutableList<FormattableValue<Variable>> stageVars) {
+                                                      List<FormattableValue<Variable>> stageVars) {
 
         //check preconditions are true
         return
@@ -117,8 +100,7 @@ public class ActionUtils {
     }
 
 
-    private static boolean checkEffectsValidity(List<POPPrecEff> effects,
-                                                ImmutableList<FormattableValue<Variable>> stageVars) {
+    private static boolean checkEffectsValidity(List<POPPrecEff> effects, List<FormattableValue<Variable>> stageVars) {
         //check effects are not locked
         return effects.stream()
                 .noneMatch(eff -> stageVars.stream()

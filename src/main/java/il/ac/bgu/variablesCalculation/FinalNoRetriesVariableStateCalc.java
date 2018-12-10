@@ -6,6 +6,7 @@ import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
 import il.ac.bgu.utils.CnfCompilationUtils;
+import il.ac.bgu.utils.PlanSolvingUtils;
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel;
 import il.ac.bgu.variableModel.SuccessVariableModel;
 import il.ac.bgu.variableModel.VariableModelFunction;
@@ -13,6 +14,7 @@ import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -35,29 +37,32 @@ public class FinalNoRetriesVariableStateCalc implements FinalVariableStateCalc {
                 .map(Formattable::formatFunctionKey)
                 .collect(Collectors.toSet());
 
-        ImmutableList<FormattableValue<Variable>> currentVars = ImmutableList.of();
+        List<FormattableValue<Variable>> currentVars = PlanSolvingUtils.calcInitFacts(plan);
 
 
         for (Map.Entry<Integer, Set<Step>> stepEntry : plan.entrySet()) {
 
+            if (stepEntry.getKey() != -1) {
 
-            ImmutableList<FormattableValue<Variable>> prevStageVars =
-                    CnfCompilationUtils.calcVariableState(currentVars.stream(), stepEntry.getKey())
-                            .collect(ImmutableList.toImmutableList());
 
-            for (Step step : stepEntry.getValue()) {
+                ImmutableList<FormattableValue<Variable>> prevStageVars =
+                        CnfCompilationUtils.calcVariableState(currentVars.stream(), stepEntry.getKey())
+                                .collect(ImmutableList.toImmutableList());
 
-                boolean isActionFailed = failedActionsKeys.contains(
-                        Action.of(step, stepEntry.getKey()).formatFunctionKey());
+                for (Step step : stepEntry.getValue()) {
 
-                ImmutablePair<Action.State, ImmutableList<FormattableValue<Variable>>> actionResult =
-                        ActionUtils.executeAction(
-                                step, stepEntry.getKey(), isActionFailed,
-                                failureModelFunction, conflictModelFunction,
-                                successModelFunction, currentVars, prevStageVars);
+                    boolean isActionFailed = failedActionsKeys.contains(
+                            Action.of(step, stepEntry.getKey()).formatFunctionKey());
 
-                currentVars = actionResult.getRight();
+                    ImmutablePair<Action.State, List<FormattableValue<Variable>>> actionResult =
+                            ActionUtils.executeAction(
+                                    step, stepEntry.getKey(), isActionFailed,
+                                    failureModelFunction, conflictModelFunction,
+                                    successModelFunction, currentVars, prevStageVars);
 
+                    currentVars = actionResult.getRight();
+
+                }
             }
         }
         Integer maxStep = plan.keySet().stream().max(Integer::compareTo)
