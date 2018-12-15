@@ -186,7 +186,6 @@ class TestUtils {
 
             log.info(getMarker("STATS"), "- problem: {}", problemName)
             log.info(getMarker("STATS"), "  plan_properties:")
-            log.info(getMarker("STATS"), "    failed_actions: \"{}\"", failedActions)
             log.info(getMarker("STATS"), "    number_of_steps: {}", plan.size() - 1) //-1 for initial action
             log.info(getMarker("STATS"), "    number_of_actions: {}",
                     plan.values().stream().flatMap { v -> v.stream() }.count() - 1)
@@ -197,6 +196,9 @@ class TestUtils {
                             .filter { v -> v != null }
                             .distinct()
                             .count())
+            log.info(getMarker("STATS"), "  simulation:")
+            log.info(getMarker("STATS"), "    failed_actions: \"{}\"", failedActions)
+            log.info(getMarker("STATS"), "    failed_actions_cardinality: {}", failedActions.size())
             log.info(getMarker("STATS"), "  cnf_model_details: ")
             log.info(getMarker("STATS"), "    failure_model: {}", failedClausesCreator.getName())
             log.info(getMarker("STATS"), "    conflict_model: {}", conflictClausesCreator.getName())

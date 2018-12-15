@@ -51,7 +51,6 @@ public class PlanSolvingUtils {
                 finalVariableStateCalc.getFinalVariableState(failedActions);
         log.info(getMarker("STATS"), "    final_var_state_calc_mils: {}", Duration.between(start, Instant.now()).toMillis());
 
-        //noinspection GroovyAssignabilityCheck
         List<List<FormattableValue<? extends Formattable>>> hardConstraintsWithFinal =
                 StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                         .append(hardConstraints)

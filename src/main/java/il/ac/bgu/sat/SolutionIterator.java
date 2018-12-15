@@ -21,7 +21,7 @@ public class SolutionIterator implements Iterator<Optional<List<? extends Format
 
     private static final Logger log = LoggerFactory.getLogger(SolutionIterator.class);
 
-    private final static int MAX_SOLUTION_SIZE = 5;
+    private final static int MAX_SOLUTION_SIZE = 6;
 
     private List<List<FormattableValue<? extends Formattable>>> hardConstraints;
     private final List<FormattableValue<Formattable>> softConstraints;

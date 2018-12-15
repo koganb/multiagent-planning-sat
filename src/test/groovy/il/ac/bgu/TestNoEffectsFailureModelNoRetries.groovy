@@ -12,7 +12,7 @@ import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
@@ -28,13 +28,13 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestOneFailureNoEffectVariableFailureModel extends Specification {
+class TestNoEffectsFailureModelNoRetries extends Specification {
 
     private static final Logger log
 
     static {
-        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_1_failure'
-        log = LoggerFactory.getLogger(TestDelayFailureModel.class)
+        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_NoRetries'
+        log = LoggerFactory.getLogger(TestDelayFailureModelNoRetries.class)
     }
 
     @Shared
@@ -47,7 +47,7 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
             new Problem("elevator30.problem"),
             new Problem("satellite14.problem"),
             new Problem("satellite15.problem"),
-            new Problem("satellite20.problem"),
+            //new Problem("satellite20.problem"),
             new Problem("deports16.problem"),
             new Problem("deports17.problem"),
             new Problem("deports19.problem"),
@@ -86,7 +86,7 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
 
     @Shared
     //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
-    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
+    def normalFinalStateArr = planArr.collect { plan -> new FinalVariableStateCalcImpl(plan, null).getFinalVariableState([]) }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -100,7 +100,7 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new NoEffectVariableFailureModel())
 
         expect:
         List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
@@ -120,6 +120,7 @@ class TestOneFailureNoEffectVariableFailureModel extends Specification {
         assert foundSolution.isPresent()
 
         log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
+        log.info(MarkerFactory.getMarker("STATS"), "    solution_cardinality: {}", foundSolution.get().size())
 
 
         where:

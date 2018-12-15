@@ -7,8 +7,8 @@ import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.dataModel.Action
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl
 import org.agreement_technologies.common.map_planner.Step
 import org.apache.commons.lang3.SerializationUtils
 import spock.lang.Specification
@@ -31,7 +31,7 @@ class TestFinalFactsNoRetriesCalc extends Specification {
 
         def healthyCnfClauses = new HealthyCnfClauses();
 
-        FinalVariableStateCalc finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+        FinalVariableStateCalc finalVariableStateCalc = new FinalVariableStateCalcImpl(
                 plan, failureCnfClauses.getVariableModel())
 
         CnfCompilation cnfCompilation = new CnfCompilation(plan, healthyCnfClauses,

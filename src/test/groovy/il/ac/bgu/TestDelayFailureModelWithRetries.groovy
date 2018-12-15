@@ -13,7 +13,7 @@ import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variableModel.DelayStageVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
@@ -33,7 +33,7 @@ class TestDelayFailureModelWithRetries extends Specification {
 
     private static final Logger log
     static {
-        System.properties.'TEST_NAME' = 'DelayFailureModelWithRetries_1_failure'
+        System.properties.'TEST_NAME' = 'DelayFailureModel_OneRetry'
         log = LoggerFactory.getLogger(TestDelayFailureModelWithRetries.class)
     }
 
@@ -56,7 +56,7 @@ class TestDelayFailureModelWithRetries extends Specification {
             new Problem("elevator30.problem"),
             new Problem("satellite14.problem"),
             new Problem("satellite15.problem"),
-            new Problem("satellite20.problem"),
+            //new Problem("satellite20.problem"),
             new Problem("deports16.problem"),
             new Problem("deports17.problem"),
             new Problem("deports19.problem"),
@@ -95,7 +95,7 @@ class TestDelayFailureModelWithRetries extends Specification {
 
     @Shared
     //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
-    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
+    def normalFinalStateArr = planArr.collect { plan -> new FinalVariableStateCalcImpl(plan, null).getFinalVariableState([]) }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -109,7 +109,7 @@ class TestDelayFailureModelWithRetries extends Specification {
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(
                 conflictRetriesModel.updatePlan(plan).updatedPlan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
 
         expect:
@@ -131,6 +131,7 @@ class TestDelayFailureModelWithRetries extends Specification {
         assert foundSolution.isPresent()
 
         log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
+        log.info(MarkerFactory.getMarker("STATS"), "    solution_cardinality: {}", foundSolution.get().size())
 
 
         where:

@@ -4,7 +4,7 @@ import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
-import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
+import il.ac.bgu.cnfCompilation.retries.OneRetryPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.testUtils.ActionDependencyCalculation
@@ -12,7 +12,7 @@ import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
@@ -28,17 +28,18 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
+class TestNoEffectsFailureModelWithRetries extends Specification {
 
     private static final Logger log
 
     static {
-        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_2_failures'
-        log = LoggerFactory.getLogger(TestDelayFailureModel.class)
+        System.properties.'TEST_NAME' = 'NoEffectsFailureModel_OneRetry'
+        log = LoggerFactory.getLogger(TestDelayFailureModelNoRetries.class)
     }
 
+    @Shared
+    def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
 
-    public static final int MAX_FAILED_ACTIONS_NUM = 2
     @Shared
     def problemArr = [
             new Problem("elevator28.problem"),
@@ -46,7 +47,7 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
             new Problem("elevator30.problem"),
             new Problem("satellite14.problem"),
             new Problem("satellite15.problem"),
-            new Problem("satellite20.problem"),
+            //new Problem("satellite20.problem"),
             new Problem("deports16.problem"),
             new Problem("deports17.problem"),
             new Problem("deports19.problem"),
@@ -66,7 +67,7 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
     private CnfClausesFunction conflictClausesCreator = new ConflictNoEffectsCnfClauses()
 
     @Shared
-    private RetryPlanUpdater conflictRetriesModel = new NoRetriesPlanUpdater()
+    private RetryPlanUpdater conflictRetriesModel = new OneRetryPlanUpdater()
 
     @Shared
     private CnfClausesFunction healthyCnfClausesCreator = new HealthyCnfClauses()
@@ -85,20 +86,22 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
 
     @Shared
     //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
-    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
+    def normalFinalStateArr = planArr.collect { plan -> new FinalVariableStateCalcImpl(plan, null).getFinalVariableState([]) }
+
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
             problemName, plan, cnfPlanClauses, failedActions) {
         setup:
 
         TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
-                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, MAX_FAILED_ACTIONS_NUM)
+                conflictRetriesModel, conflictClausesCreator, failedClausesCreator, failedActions.size())
         TestUtils.printPlan(plan)
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(
+                conflictRetriesModel.updatePlan(plan).updatedPlan, new NoEffectVariableFailureModel())
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new NoEffectVariableFailureModel())
 
         expect:
         List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
@@ -118,6 +121,7 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
         assert foundSolution.isPresent()
 
         log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
+        log.info(MarkerFactory.getMarker("STATS"), "    solution_cardinality: {}", foundSolution.get().size())
 
 
         where:
@@ -127,7 +131,7 @@ class TestTwoFailuresNoEffectVariableFailureModel extends Specification {
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
                     new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
-                            MAX_FAILED_ACTIONS_NUM)
+                            maxFailedActionsNumArr)
                 }
         ]
                 .transpose()

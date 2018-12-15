@@ -6,14 +6,13 @@ import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
-import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.testUtils.ActionDependencyCalculation
 import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variableModel.DelayStageVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
@@ -29,30 +28,30 @@ import static TestUtils.Problem
 import static il.ac.bgu.dataModel.Action.State.FAILED
 
 @Unroll
-class TestDelayFailureModel extends Specification {
+class TestDelayFailureModelNoRetries extends Specification {
     private static final Logger log
 
     static {
-        System.properties.'TEST_NAME' = 'DelayFailureModel_1_failure'
-        log = LoggerFactory.getLogger(TestDelayFailureModel.class)
+        System.properties.'TEST_NAME' = 'DelayFailureModel_NoRetries'
+        log = LoggerFactory.getLogger(TestDelayFailureModelNoRetries.class)
     }
 
 
     @Shared
-    def maxFailedActionsNumArr = [2]
+    def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
 
     public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
-//            new Problem("elevator28.problem"),
-//            new Problem("elevator29.problem"),
-//            new Problem("elevator30.problem"),
-//            new Problem("satellite14.problem"),
-new Problem("satellite8.problem"),
-//            new Problem("satellite20.problem"),
-//            new Problem("deports16.problem"),
-//            new Problem("deports17.problem"),
-//            new Problem("deports19.problem"),
+            new Problem("elevator28.problem"),
+            new Problem("elevator29.problem"),
+            new Problem("elevator30.problem"),
+            new Problem("satellite14.problem"),
+            new Problem("satellite15.problem"),
+            //     new Problem("satellite20.problem"),
+            new Problem("deports16.problem"),
+            new Problem("deports17.problem"),
+            new Problem("deports19.problem"),
     ]
 
 
@@ -90,7 +89,7 @@ new Problem("satellite8.problem"),
 
     @Shared
     //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
-    def normalFinalStateArr = planArr.collect { plan -> new FinalNoRetriesVariableStateCalc(plan, null).getFinalVariableState([]) }
+    def normalFinalStateArr = planArr.collect { plan -> new FinalVariableStateCalcImpl(plan, null).getFinalVariableState([]) }
 
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
@@ -104,7 +103,7 @@ new Problem("satellite8.problem"),
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(DELAY_STEPS_NUM))
 
         expect:
         List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
@@ -124,6 +123,7 @@ new Problem("satellite8.problem"),
         assert foundSolution.isPresent()
 
         log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
+        log.info(MarkerFactory.getMarker("STATS"), "    solution_cardinality: {}", foundSolution.get().size())
 
 
         where:
@@ -149,13 +149,8 @@ new Problem("satellite8.problem"),
         .findAll {
             res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
         }
-        .take(1)
         .collect {
-            res ->
-                [res[0].problemName, res[1], res[2].get(), [
-                        Action.of("turn_to satellite1 star7 star0", "satellite1", 3, FAILED),
-                        Action.of("switch_on instrument7 satellite2", "satellite2", 0, FAILED)
-                ]]
+            res -> [res[0].problemName, res[1], res[2].get(), res[3]]
         }
     }
 

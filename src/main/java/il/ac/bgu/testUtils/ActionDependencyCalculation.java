@@ -9,7 +9,7 @@ import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
 import il.ac.bgu.variableModel.VariableModelFunction;
-import il.ac.bgu.variablesCalculation.FinalNoRetriesVariableStateCalc;
+import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +31,21 @@ public class ActionDependencyCalculation {
     private Map<ActionKey, Set<Action>> actionDependenciesFull = new HashMap<>();
 
 
-    private FinalNoRetriesVariableStateCalc finalVariableStateCalc;
+    public static final int MAX_SIZE = 30;  //no more than MAX_SIZE actions
     private ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState;
+    private FinalVariableStateCalcImpl finalVariableStateCalc;
+
+    private void createActionDependenciesFull(Map<ActionKey, Set<Action>> actionDependencies,
+                                              ActionKey actionKey, ActionKey currAction) {
+
+        Set<Action> dependencies = actionDependencies.get(currAction);
+        Set<Action> currentDependentActions = actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>());
+        if (CollectionUtils.isNotEmpty(dependencies)) {
+            currentDependentActions.addAll(dependencies);
+            dependencies.forEach(dependency ->
+                    createActionDependenciesFull(actionDependencies, actionKey, new ActionKey(dependency)));
+        }
+    }
 
     public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan,
                                        ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState,
@@ -42,7 +55,7 @@ public class ActionDependencyCalculation {
         Map<VariableKey, Action> preconditionsToAction = new HashMap<>();
         Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
 
-        finalVariableStateCalc = new FinalNoRetriesVariableStateCalc(
+        finalVariableStateCalc = new FinalVariableStateCalcImpl(
                 conflictRetriesModel.updatePlan(plan).updatedPlan, failureModelFunction);
 
         plan.entrySet().stream()
@@ -71,20 +84,6 @@ public class ActionDependencyCalculation {
         actionDependencies.keySet().forEach(dependency ->
                 createActionDependenciesFull(actionDependencies, dependency, dependency));
     }
-
-    private void createActionDependenciesFull(Map<ActionKey, Set<Action>> actionDependencies,
-                                              ActionKey actionKey, ActionKey currAction) {
-
-        Set<Action> dependencies = actionDependencies.get(currAction);
-        Set<Action> currentDependentActions = actionDependenciesFull.computeIfAbsent(actionKey, k -> new HashSet<>());
-        if (CollectionUtils.isNotEmpty(dependencies)) {
-            currentDependentActions.addAll(dependencies);
-            dependencies.forEach(dependency ->
-                    createActionDependenciesFull(actionDependencies, actionKey, new ActionKey(dependency)));
-        }
-    }
-
-    public static final int MAX_SIZE = 1;  //no more than MAX_SIZE actions
 
     public List<Supplier<Set<Action>>> getIndependentActionsList(List<Integer> actionNumbers) {
         return actionNumbers.stream()

@@ -20,13 +20,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-public class FinalNoRetriesVariableStateCalc implements FinalVariableStateCalc {
+public class FinalVariableStateCalcImpl implements FinalVariableStateCalc {
     private Map<Integer, Set<Step>> plan;
     private VariableModelFunction failureModelFunction;
     private VariableModelFunction conflictModelFunction = new NoEffectVariableFailureModel();
     private VariableModelFunction successModelFunction = new SuccessVariableModel();
 
-    public FinalNoRetriesVariableStateCalc(Map<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
+    public FinalVariableStateCalcImpl(Map<Integer, Set<Step>> plan, VariableModelFunction failureModelFunction) {
         this.plan = plan;
         this.failureModelFunction = failureModelFunction;
     }
