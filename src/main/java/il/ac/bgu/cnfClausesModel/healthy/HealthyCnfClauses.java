@@ -1,41 +1,37 @@
 package il.ac.bgu.cnfClausesModel.healthy;
 
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
+import il.ac.bgu.cnfClausesModel.CnfClausesUtils;
 import il.ac.bgu.cnfClausesModel.NamedModel;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.variableModel.SuccessVariableModel;
-import il.ac.bgu.variableModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.HEALTHY;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
-import static il.ac.bgu.utils.CnfCompilationUtils.calcVariableState;
-import static il.ac.bgu.utils.VariableFunctions.variableKeyFilter;
 
 @SuppressWarnings("UnstableApiUsage")
 @Slf4j
 public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
 
-    private SuccessVariableModel successVariableModel = new SuccessVariableModel();
 
     @Override
-    public Stream<ImmutableList<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step,
-                                                                                ImmutableCollection<FormattableValue<Variable>> variablesState) {
+    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step,
+                                                                       Map<String, List<Variable>> variableStateMap) {
         log.debug("Start add healthy clause");
         ImmutableList<FormattableValue<? extends Formattable>> preconditionList =
                 Stream.concat(
@@ -55,31 +51,24 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                 .collect(Collectors.toSet());
 
         //healthy function
-        Stream<FormattableValue<Formattable>> effectStream =
+        Stream<List<FormattableValue<? extends Formattable>>> effectStream =
                 Stream.concat(
                         step.getPopPrecs().stream()
                                 .filter(prec ->
                                         !actionEffKeys.contains(Variable.of(prec).formatFunctionKey())),
                         step.getPopEffs().stream()
-                ).flatMap(actionEff -> {
-                    Predicate<FormattableValue<Variable>> variableKeyPredicate = variableKeyFilter.apply(Variable.of(actionEff));
-
-                    //prec or effect variable
-                    return calcVariableState(variablesState.stream(), currentStage + 1)
-                            .filter(variableKeyPredicate)
-                            .map(formattableValue ->
-                                    FormattableValue.of(
-                                            formattableValue.getFormattable().toBuilder().stage(currentStage + 1).build(),
-                                            formattableValue.getValue()));
-                });
+                ).flatMap(actionEff ->
+                        CnfClausesUtils.applyTrue(Variable.of(actionEff), variableStateMap, currentStage + 1)
+                );
 
 
-        ImmutableList<ImmutableList<FormattableValue<? extends Formattable>>> resultClauses =
-                StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
+        List<List<FormattableValue<? extends Formattable>>> resultClauses =
+                StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                         .append(effectStream.map(u ->
                                 StreamEx.<FormattableValue<? extends Formattable>>of()
                                         .append(preconditionList.stream())
-                                        .append(Stream.of(FormattableValue.of(Action.of(step, currentStage, HEALTHY), false), u))
+                                        .append(FormattableValue.of(Action.of(step, currentStage, HEALTHY), false))
+                                        .append(u)
                                         .collect(ImmutableList.toImmutableList())
                         ))
                         .collect(ImmutableList.toImmutableList());
@@ -91,12 +80,9 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
     }
 
     @Override
-    public VariableModelFunction getVariableModel() {
-        return successVariableModel;
-    }
-
-    @Override
     public String getName() {
         throw new NotImplementedException("");
     }
+
+
 }

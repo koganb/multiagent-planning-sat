@@ -130,7 +130,7 @@ class TestNoEffectsFailureModelWithRetries extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
-                    new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                    new ActionDependencyCalculation(tuple[0], tuple[1], new NoEffectVariableFailureModel(), conflictRetriesModel).getIndependentActionsList(
                             maxFailedActionsNumArr)
                 }
         ]

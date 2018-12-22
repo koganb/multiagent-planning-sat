@@ -14,6 +14,8 @@ import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.sat.SatSolver;
 import il.ac.bgu.utils.PlanSolvingUtils;
 import il.ac.bgu.utils.PlanUtils;
+import il.ac.bgu.variableModel.DelayStageVariableFailureModel;
+import il.ac.bgu.variableModel.NoEffectVariableFailureModel;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl;
 import io.bretty.console.view.ActionView;
@@ -243,27 +245,27 @@ public class ProblemRunner {
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new NoRetriesPlanUpdater();
                     finalVariableStateCalc =
-                            new FinalVariableStateCalcImpl(plan, failedClausesCreator.getVariableModel());
+                            new FinalVariableStateCalcImpl(plan, new NoEffectVariableFailureModel());
                     break;
                 case FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_ONE_RETRY:
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
                     finalVariableStateCalc =
                             new FinalVariableStateCalcImpl(
-                                    conflictRetriesModel.updatePlan(plan).updatedPlan, failedClausesCreator.getVariableModel());
+                                    conflictRetriesModel.updatePlan(plan).updatedPlan, new NoEffectVariableFailureModel());
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new NoRetriesPlanUpdater();
                     finalVariableStateCalc =
-                            new FinalVariableStateCalcImpl(plan, failedClausesCreator.getVariableModel());
+                            new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(1));
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_ONE_RETRY:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
                     finalVariableStateCalc =
                             new FinalVariableStateCalcImpl(
-                                    conflictRetriesModel.updatePlan(plan).updatedPlan, failedClausesCreator.getVariableModel());
+                                    conflictRetriesModel.updatePlan(plan).updatedPlan, new DelayStageVariableFailureModel(1));
                     break;
             }
         }

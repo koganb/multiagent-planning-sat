@@ -31,7 +31,7 @@ public class ActionDependencyCalculation {
     private Map<ActionKey, Set<Action>> actionDependenciesFull = new HashMap<>();
 
 
-    public static final int MAX_SIZE = 30;  //no more than MAX_SIZE actions
+    public static final int MAX_SIZE = 1;  //no more than MAX_SIZE actions
     private ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState;
     private FinalVariableStateCalcImpl finalVariableStateCalc;
 
