@@ -11,7 +11,6 @@ import il.ac.bgu.utils.PlanSolvingUtils;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
-import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -23,9 +22,6 @@ import java.util.stream.Stream;
 import static il.ac.bgu.dataModel.Action.State.*;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
-import static il.ac.bgu.utils.CnfCompilationUtils.calcVariableState;
-import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 /**
@@ -35,10 +31,8 @@ import static java.util.stream.Collectors.toSet;
 @Slf4j
 public class CnfCompilation {
 
-    private List<FormattableValue<Variable>> variablesStateBeforeStepExec;
-    private List<FormattableValue<Variable>> variablesStateAfterStepExec;
 
-
+    private Map<String, List<Variable>> variableStateMap;
     private Map<Integer, Set<Step>> plan;
 
 
@@ -63,8 +57,13 @@ public class CnfCompilation {
 
         this.plan = retriesPlanCreatorResult.updatedPlan;
 
-        this.variablesStateBeforeStepExec = PlanSolvingUtils.calcInitFacts(plan);
-        log.debug("Initialized variable state to: {}", variablesStateBeforeStepExec);
+        variableStateMap = PlanSolvingUtils.calcInitFacts(plan).stream()
+                .map(v -> v.getFormattable().toBuilder().stage(null).build())
+                .collect(Collectors.groupingBy(Variable::formatFunctionKey,
+                        Collectors.toList()));
+
+
+        log.debug("Initialized variable state to: {}", variableStateMap);
     }
 
 
@@ -80,26 +79,26 @@ public class CnfCompilation {
         log.debug("Start pass through...");
 
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> passThroughValuesStream =
-                calcVariableState(variablesStateBeforeStepExec.stream(), stage).
-                        filter(value -> !precAndEffectKeys.contains(value.getFormattable().formatFunctionKey())).
-                        flatMap(g -> {
-                            if (g.getFormattable().getValue().equals(LOCKED_FOR_UPDATE.name()) ||
-                                    g.getFormattable().getValue().equals(FREEZED.name())) {
+                this.variableStateMap.entrySet().stream()
+                        .filter(entry -> !precAndEffectKeys.contains(entry.getKey()))
+                        .flatMap(entry -> entry.getValue().stream())
+                        .flatMap(g -> {
+                            if (g.getValue().equals(LOCKED_FOR_UPDATE.name()) ||
+                                    g.getValue().equals(FREEZED.name())) {
                                 return Stream.of(
                                         //locked_for_update is set to false on next stage
-                                        ImmutableList.of(
-                                                FormattableValue.of((g.getFormattable()).toBuilder().stage(stage + 1).build(), false))
+                                        ImmutableList.of(FormattableValue.of(g.toBuilder().stage(stage + 1).build(), false))
                                 );
                             } else {
                                 return Stream.of(
                                         ImmutableList.of(
-                                                FormattableValue.of((g.getFormattable()).toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage).build(), true),
-                                                FormattableValue.of((g.getFormattable()).toBuilder().stage(stage).build(), false),
-                                                FormattableValue.of((g.getFormattable()).toBuilder().stage(stage + 1).build(), true)),
+                                                FormattableValue.of(g.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage).build(), true),
+                                                FormattableValue.of(g.toBuilder().stage(stage).build(), false),
+                                                FormattableValue.of(g.toBuilder().stage(stage + 1).build(), true)),
                                         ImmutableList.of(
-                                                FormattableValue.of((g.getFormattable()).toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage).build(), true),
-                                                FormattableValue.of((g.getFormattable()).toBuilder().stage(stage).build(), true),
-                                                FormattableValue.of((g.getFormattable()).toBuilder().stage(stage + 1).build(), false)
+                                                FormattableValue.of(g.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(stage).build(), true),
+                                                FormattableValue.of(g.toBuilder().stage(stage).build(), true),
+                                                FormattableValue.of(g.toBuilder().stage(stage + 1).build(), false)
 
                                         ));
                             }
@@ -113,23 +112,23 @@ public class CnfCompilation {
         return passThroughValues.stream();
     }
 
-    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculateHealthyClauses(Integer stage) {
+    Stream<List<FormattableValue<? extends Formattable>>> calculateHealthyClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.healthyCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
+                this.healthyCnfClausesCreator.apply(stage, step, variableStateMap));
 
     }
 
-    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculateActionFailedClauses(Integer stage) {
+    Stream<List<FormattableValue<? extends Formattable>>> calculateActionFailedClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.failedCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateBeforeStepExec)));
+                this.failedCnfClausesCreator.apply(stage, step, this.variableStateMap));
     }
 
-    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
+    Stream<List<FormattableValue<? extends Formattable>>> calculateConditionsNotMetClauses(Integer stage) {
         return plan.get(stage).stream().flatMap(step ->
-                this.conflictCnfClausesCreator.apply(stage, step, ImmutableList.copyOf(variablesStateAfterStepExec)));
+                this.conflictCnfClausesCreator.apply(stage, step, this.variableStateMap));
     }
 
-    Stream<ImmutableList<FormattableValue<? extends Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
+    private Stream<ImmutableList<FormattableValue<? extends Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
 
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> resultClausesStream = steps.stream()
                 .flatMap(step ->
@@ -171,39 +170,17 @@ public class CnfCompilation {
     public List<List<FormattableValue<? extends Formattable>>> compileToCnf() {
         return plan.entrySet().stream().
                         filter(i -> i.getKey() != -1).
-                        flatMap(entry -> {
-                            executeStage(entry.getKey(), entry.getValue());
-                            return StreamEx.<List<FormattableValue<? extends Formattable>>>of()
-                                    .append(addActionStatusConstraints(entry.getKey(), entry.getValue()))
-                                    .append(calculatePassThroughClauses(entry.getKey(), entry.getValue()))
-                                    .append(calculateHealthyClauses(entry.getKey()))
-                                    .append(calculateActionFailedClauses(entry.getKey()))
-                                    .append(calculateConditionsNotMetClauses(entry.getKey()));
-
-                        })
+                flatMap(this::apply)
                 .collect(ImmutableList.toImmutableList());
     }
 
 
-    void executeStage(Integer stage, Set<Step> actions) {
-        log.debug("Execute stage {} steps {}", stage, actions);
-
-        //copy after variables from the previous stage if exist
-        if (variablesStateAfterStepExec != null) {
-            variablesStateBeforeStepExec = ImmutableList.copyOf(variablesStateAfterStepExec);
-        }
-
-        //update state according to step effects
-        variablesStateAfterStepExec = ImmutableList.copyOf(variablesStateBeforeStepExec);
-        for (Step action : actions) {
-            for (POPPrecEff eff : action.getPopEffs()) {
-                variablesStateAfterStepExec = this.healthyCnfClausesCreator.getVariableModel().apply(
-                        Variable.of(eff), stage, variablesStateAfterStepExec, EFFECT)
-                        .collect(toList());
-
-            }
-        }
+    private Stream<? extends List<FormattableValue<? extends Formattable>>> apply(Map.Entry<Integer, Set<Step>> entry) {
+        return StreamEx.<List<FormattableValue<? extends Formattable>>>of()
+                .append(addActionStatusConstraints(entry.getKey(), entry.getValue()))
+                .append(calculatePassThroughClauses(entry.getKey(), entry.getValue()))
+                .append(calculateHealthyClauses(entry.getKey()))
+                .append(calculateActionFailedClauses(entry.getKey()))
+                .append(calculateConditionsNotMetClauses(entry.getKey()));
     }
-
-
 }

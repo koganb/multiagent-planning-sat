@@ -37,10 +37,11 @@ class TestDelayFailureModelNoRetries extends Specification {
     }
 
 
+
+    public static final int DELAY_STEPS_NUM = 1
     @Shared
     def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
 
-    public static final int DELAY_STEPS_NUM = 1
     @Shared
     def problemArr = [
             new Problem("elevator28.problem"),
@@ -48,7 +49,7 @@ class TestDelayFailureModelNoRetries extends Specification {
             new Problem("elevator30.problem"),
             new Problem("satellite14.problem"),
             new Problem("satellite15.problem"),
-            //     new Problem("satellite20.problem"),
+            //new Problem("satellite20.problem"),
             new Problem("deports16.problem"),
             new Problem("deports17.problem"),
             new Problem("deports19.problem"),
@@ -132,7 +133,7 @@ class TestDelayFailureModelNoRetries extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
-                    new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                    new ActionDependencyCalculation(tuple[0], tuple[1], new DelayStageVariableFailureModel(1), conflictRetriesModel).getIndependentActionsList(
                             maxFailedActionsNumArr)
                 }
 

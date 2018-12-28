@@ -1,6 +1,5 @@
 package il.ac.bgu.cnfClausesModel.conflict;
 
-import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.cnfClausesModel.NamedModel;
@@ -8,14 +7,13 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
-import il.ac.bgu.variableModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
-import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,17 +22,15 @@ import java.util.stream.Stream;
 import static il.ac.bgu.dataModel.Action.State.CONDITIONS_NOT_MET;
 import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
-import static il.ac.bgu.utils.CnfCompilationUtils.calcVariableState;
 
 @SuppressWarnings("UnstableApiUsage")
 @Slf4j
 public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedModel {
 
 
+
     @Override
-    public Stream<ImmutableList<FormattableValue<? extends Formattable>>> apply(Integer currentStage,
-                                                                                Step step,
-                                                                                ImmutableCollection<FormattableValue<Variable>> variablesState) {
+    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step, Map<String, List<Variable>> variableStateMap) {
 
         log.debug("Start conditions not met clause");
 
@@ -87,28 +83,25 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                 .map(Variable::of)
                                 .filter(v -> !actionEffKeys.contains(v.formatFunctionKey())),
                         step.getPopEffs().stream().map(Variable::of)).
-                        flatMap(v ->
-                                calcVariableState(variablesState.stream(), currentStage + 1)
-                                        .filter(var -> var.getFormattable().formatFunctionKey().equals(
-                                                v.formatFunctionKey()))
+                        flatMap(v -> variableStateMap.get(v.formatFunctionKey()).stream()
                                         .flatMap(stateVar -> {
-                                            if (Objects.equals(stateVar.getFormattable().getValue(), LOCKED_FOR_UPDATE.name())) {
+                                            if (Objects.equals(stateVar.getValue(), LOCKED_FOR_UPDATE.name())) {
                                                 return Stream.of(
                                                         ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
+                                                                        stateVar.toBuilder().stage(currentStage + 1).build(), false))
                                                                 .build()
 
                                                 );
-                                            } else if (Objects.equals(stateVar.getFormattable().getValue(), FREEZED.name())) {
+                                            } else if (Objects.equals(stateVar.getValue(), FREEZED.name())) {
                                                 return Stream.of(
                                                         ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
+                                                                        stateVar.toBuilder().stage(currentStage + 1).build(), false))
                                                                 .build());
                                             } else {
                                                 return Stream.of(
@@ -116,29 +109,29 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(currentStage).build(), true))
+                                                                        stateVar.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(currentStage).build(), true))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().stage(currentStage).build(), true))
+                                                                        stateVar.toBuilder().stage(currentStage).build(), true))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), false))
+                                                                        stateVar.toBuilder().stage(currentStage + 1).build(), false))
                                                                 .build()
                                                         ,
                                                         ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                                                 .add(FormattableValue.of(
                                                                         Action.of(step, currentStage, CONDITIONS_NOT_MET), false))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(currentStage).build(), true))
+                                                                        stateVar.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).stage(currentStage).build(), true))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().stage(currentStage).build(), false))
+                                                                        stateVar.toBuilder().stage(currentStage).build(), false))
                                                                 .add(FormattableValue.of(
-                                                                        stateVar.getFormattable().toBuilder().stage(currentStage + 1).build(), true))
+                                                                        stateVar.toBuilder().stage(currentStage + 1).build(), true))
                                                                 .build()
 
                                                 );
                                             }
                                         }));
 
-        List<ImmutableList<FormattableValue<? extends Formattable>>> resultClauses =
+        List<List<FormattableValue<? extends Formattable>>> resultClauses =
                 StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
                         .append(precClauses1)
                         .append(precClauses2)
@@ -157,10 +150,6 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
 
     }
 
-    @Override
-    public VariableModelFunction getVariableModel() {
-        throw new NotImplementedException("TBD");
-    }
 
     @Override
     public String getName() {

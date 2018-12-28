@@ -140,7 +140,7 @@ class TestDelayFailureModelWithRetries extends Specification {
                 planArr,
                 cnfPlanClausesArr,
                 [planArr, normalFinalStateArr].transpose().collect { tuple ->
-                    new ActionDependencyCalculation(tuple[0], tuple[1], failedClausesCreator.getVariableModel(), conflictRetriesModel).getIndependentActionsList(
+                    new ActionDependencyCalculation(tuple[0], tuple[1], new DelayStageVariableFailureModel(1), conflictRetriesModel).getIndependentActionsList(
                             maxFailedActionsNumArr)
                 }
         ]
