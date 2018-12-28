@@ -52,14 +52,14 @@ class TestDelayFailureModelWithRetries extends Specification {
     @Shared
     def problemArr = [
             new Problem("elevator28.problem"),
-//            new Problem("elevator29.problem"),
-//            new Problem("elevator30.problem"),
-//            new Problem("satellite14.problem"),
-//            new Problem("satellite15.problem"),
-//            //new Problem("satellite20.problem"),
-//            new Problem("deports16.problem"),
-//            new Problem("deports17.problem"),
-//            new Problem("deports19.problem"),
+            new Problem("elevator29.problem"),
+            new Problem("elevator30.problem"),
+            new Problem("satellite14.problem"),
+            new Problem("satellite15.problem"),
+            //new Problem("satellite20.problem"),
+            new Problem("deports16.problem"),
+            new Problem("deports17.problem"),
+            new Problem("deports19.problem"),
     ]
 
 

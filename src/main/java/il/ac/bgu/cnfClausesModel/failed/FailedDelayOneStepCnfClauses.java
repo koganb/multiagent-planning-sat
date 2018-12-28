@@ -81,7 +81,7 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
                                                 ))
                                         .append(actionEffKeys.contains(variable.formatFunctionKey()) ?
                                                 CnfClausesUtils.switchTrueExclusive(variable, variableStateMap, currentStage + STAGE_DELAYED_NUM + 1) :
-                                                CnfClausesUtils.applyPassThrough(variable, variableStateMap, currentStage, STAGE_DELAYED_NUM + 1)));
+                                                CnfClausesUtils.applyPassThrough(variable, variableStateMap, currentStage, currentStage + STAGE_DELAYED_NUM + 1)));
 
 
         List<List<FormattableValue<? extends Formattable>>> resultClauses =

@@ -37,21 +37,22 @@ class TestDelayFailureModelNoRetries extends Specification {
     }
 
 
-    @Shared
-    def maxFailedActionsNumArr = [1]
 
     public static final int DELAY_STEPS_NUM = 1
     @Shared
+    def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
+
+    @Shared
     def problemArr = [
-            new Problem("deports0.problem"),
-            //new Problem("elevator29.problem"),
-            //new Problem("elevator30.problem"),
-//            new Problem("satellite14.problem"),
-//            new Problem("satellite15.problem"),
-//            //     new Problem("satellite20.problem"),
-//            new Problem("deports16.problem"),
-//            new Problem("deports17.problem"),
-//            new Problem("deports19.problem"),
+            new Problem("elevator28.problem"),
+            new Problem("elevator29.problem"),
+            new Problem("elevator30.problem"),
+            new Problem("satellite14.problem"),
+            new Problem("satellite15.problem"),
+            //new Problem("satellite20.problem"),
+            new Problem("deports16.problem"),
+            new Problem("deports17.problem"),
+            new Problem("deports19.problem"),
     ]
 
 
