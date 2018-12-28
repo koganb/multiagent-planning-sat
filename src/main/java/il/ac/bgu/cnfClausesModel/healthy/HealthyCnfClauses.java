@@ -58,7 +58,7 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                                         !actionEffKeys.contains(Variable.of(prec).formatFunctionKey())),
                         step.getPopEffs().stream()
                 ).flatMap(actionEff ->
-                        CnfClausesUtils.applyTrue(Variable.of(actionEff), variableStateMap, currentStage + 1)
+                        CnfClausesUtils.switchTrueExclusive(Variable.of(actionEff), variableStateMap, currentStage + 1)
                 );
 
 

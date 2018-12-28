@@ -72,15 +72,15 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
                                         .append(IntStream.rangeClosed(currentStage + 1, currentStage + STAGE_DELAYED_NUM).boxed()
                                                 .flatMap(stepAddition ->
                                                         actionEffKeys.contains(variable.formatFunctionKey()) ?
-                                                                CnfClausesUtils.applyTrue(
+                                                                CnfClausesUtils.switchTrueExclusive(
                                                                         variable.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).build(),
                                                                         variableStateMap, stepAddition) :
-                                                                CnfClausesUtils.applyTrue(
+                                                                CnfClausesUtils.addTrue(
                                                                         variable.toBuilder().functionValue(FREEZED.name()).build(),
-                                                                        variableStateMap, stepAddition)
+                                                                        variableStateMap, currentStage, stepAddition)
                                                 ))
                                         .append(actionEffKeys.contains(variable.formatFunctionKey()) ?
-                                                CnfClausesUtils.applyTrue(variable, variableStateMap, currentStage + STAGE_DELAYED_NUM + 1) :
+                                                CnfClausesUtils.switchTrueExclusive(variable, variableStateMap, currentStage + STAGE_DELAYED_NUM + 1) :
                                                 CnfClausesUtils.applyPassThrough(variable, variableStateMap, currentStage, STAGE_DELAYED_NUM + 1)));
 
 
