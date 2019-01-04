@@ -1,5 +1,6 @@
 package il.ac.bgu;
 
+import com.google.common.base.Charsets;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses;
 import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses;
@@ -22,9 +23,12 @@ import io.bretty.console.view.ActionView;
 import io.bretty.console.view.MenuView;
 import io.bretty.console.view.Validator;
 import io.bretty.console.view.ViewConfig;
+import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Range;
 import org.apache.commons.lang3.SerializationUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -38,16 +42,43 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.jar.JarFile;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
 
 import static il.ac.bgu.ProblemRunner.FailedConflictModel.*;
 import static java.lang.String.format;
 
 public class ProblemRunner {
 
+    @SuppressWarnings("unused")
     private static final Logger log;
+
+    private static boolean jarMode;
+
+    private static Path planPath = Paths.get("plans");
+
+    static {
+        Configurator.initialize(null, "conf/log4j.properties");
+        log = LoggerFactory.getLogger(YmlToCsvConverter.class);
+
+
+        //in case:  java -jar build/libs/multiagent-planning-sat-1.0-SNAPSHOT-all.jar
+        //in this case the new plans will be serialized into new plans directory
+        jarMode = !Files.exists(Paths.get("src"));
+
+        if (jarMode && !Files.exists(planPath)) {
+            try {
+                Files.createDirectory(planPath);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
     private static Map<String, MenuView> domainViewMap = new HashMap<>();
     private static List<MenuView> modelViewList = new ArrayList<>();
@@ -61,7 +92,7 @@ public class ProblemRunner {
             public void executeCustomAction() {
                 Map<Integer, Set<Step>> plan;
                 try {
-                    plan = PlanUtils.loadSerializedPlan("src/main/resources/plans/" + fileName);
+                    plan = PlanUtils.loadSerializedPlan("plans/" + fileName);
                     List<ImmutablePair<Integer, Step>> planActions = plan.entrySet().stream()
                             .filter(entry -> entry.getKey() != -1)
                             .flatMap(entry ->
@@ -110,11 +141,6 @@ public class ProblemRunner {
         });
     }
 
-    static {
-        Configurator.initialize(null, "conf/log4j.properties");
-        log = LoggerFactory.getLogger(YmlToCsvConverter.class);
-
-    }
 
     public static void main(String[] args) throws IOException {
         MenuView mainView = new MenuView("Welcome to SAT problem runner", "",
@@ -132,10 +158,22 @@ public class ProblemRunner {
 
         ViewConfig problemViewConfig = new ViewConfig.Builder().setMenuSelectionMessage("Please select problem: ").build();
 
-        List<String> serializedPlans = Files.list(Paths.get("src/main/resources/plans"))
-                .map(path -> path.getFileName().toString())
-                .filter(fileName -> fileName.endsWith(".ser"))
-                .collect(Collectors.toList());
+        List<String> serializedPlans =
+                jarMode ?
+                        StreamEx.of(
+                                //get plans from jar classpath
+                                new JarFile(
+                                        new File(ProblemRunner.class.getProtectionDomain().getCodeSource().getLocation().getPath())).entries())
+                                .map(ZipEntry::getName)
+                                .filter(t -> t.startsWith("plans/") && t.endsWith(".ser"))
+                                .map(t -> t.replace("plans/", ""))
+
+                                //append plans from local dir
+                                .append(Files.list(planPath).map(path -> path.getFileName().toString()))
+                                .collect(Collectors.toList())
+                        :
+                        IOUtils.readLines(ProblemRunner.class.getClassLoader().getResourceAsStream("plans"), Charsets.UTF_8);
+
 
         //create domain menu view
         serializedPlans.stream()
@@ -156,10 +194,10 @@ public class ProblemRunner {
                             input -> new File(input).isFile());
 
                     String[] agentDefs = Files.readAllLines(Paths.get(problemFilePath)).stream()
-                            .flatMap(t -> Arrays.stream(t.split("\t")))
+                            .filter(t -> StringUtils.isNotEmpty(t.trim()))
                             .toArray(String[]::new);
 
-                    String serPlanPath = String.format("src/main/resources/plans/%s.ser", new File(problemFilePath).getName());
+                    String serPlanPath = String.format(jarMode ? "plans/%s.ser" : "src/main/resources/plans/%s.ser", new File(problemFilePath).getName());
                     SerializationUtils.serialize(SatSolver.calculateSolution(agentDefs),
                             new FileOutputStream(serPlanPath));
 
@@ -231,8 +269,8 @@ public class ProblemRunner {
         private FinalVariableStateCalc finalVariableStateCalc;
         private List<Action> failedActions;
 
-        public ProblemExecutor(String problemName, FailedConflictModel failedConflictModel, List<Action> failedActions) throws IOException, URISyntaxException {
-            plan = PlanUtils.loadSerializedPlan("src/main/resources/plans/" + problemName);
+        ProblemExecutor(String problemName, FailedConflictModel failedConflictModel, List<Action> failedActions) throws IOException, URISyntaxException {
+            plan = PlanUtils.loadSerializedPlan("plans/" + problemName);
             this.failedActions = failedActions;
             populateModels(failedConflictModel, plan);
 

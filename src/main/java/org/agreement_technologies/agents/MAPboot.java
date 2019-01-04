@@ -114,9 +114,14 @@ public class MAPboot {
                 for (PlanningAgent ag : planningAgents)
                     ag.join();
 
+
+                shutdown();
+
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
+
+
         }
         return solutionPlans;
     }

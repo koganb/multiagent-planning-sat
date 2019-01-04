@@ -2,6 +2,7 @@ package org.agreement_technologies.service.map_communication;
 
 import org.agreement_technologies.common.map_communication.AgentCommunication;
 import org.agreement_technologies.common.map_communication.Message;
+import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -60,7 +61,8 @@ public class CommunicationServer extends Thread {
                         out.flush();
                     }
                 }
-            } catch (IOException | ClassNotFoundException ex) {
+            } catch (Exception ex) {
+                IOUtils.closeQuietly(server);
             }
         }
     }

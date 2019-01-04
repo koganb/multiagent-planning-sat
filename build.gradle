@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
     }
 }
 
@@ -38,11 +38,20 @@ sourceSets {
 }
 
 
+jar.enabled = false
+
+//mainClassName = 'il.ac.bgu.SatSolver'
 jar {
     manifest {
-        attributes 'Main-Class': 'il.ac.bgu.SatSolver'
+        attributes 'Main-Class': 'il.ac.bgu.ProblemRunner'
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
+
+build.dependsOn(shadowJar);
 
 repositories {
     mavenCentral()
@@ -82,27 +91,25 @@ dependencies {
 
     compile group: 'com.intellij', name: 'annotations', version: '12.0'
 
-    compile group: 'one.util', name:'streamex', version: '0.6.7'
+    compile group: 'one.util', name: 'streamex', version: '0.6.7'
 
     //create object without constructor
-    compile group: 'org.objenesis', name:'objenesis', version: '3.0.1'
+    compile group: 'org.objenesis', name: 'objenesis', version: '3.0.1'
 
     //combinatoric
     compile group: 'com.github.dpaukov', name: 'combinatoricslib3', version: '3.0.0'
 
     //yaml to json
-    compile group: 'com.fasterxml.jackson.dataformat', name:'jackson-dataformat-yaml', version:'2.7.4'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.7.4'
 
     //json to csv
     compile group: 'com.github.opendevl', name: 'json2flat', version: '1.0.3'
 
     //text menues
-    compile group:'io.bretty', name: 'console-view', version:'3.4'
+    compile group: 'io.bretty', name: 'console-view', version: '3.4'
 
 
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
-
-
 
 
 }

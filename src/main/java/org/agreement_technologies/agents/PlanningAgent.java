@@ -19,8 +19,6 @@ public class PlanningAgent extends Thread implements AgentListener {
     /**
      * Constructor of a planning agent
      *
-     * @param domain                Domain filename
-     * @param problem               Problem filename
      * @param name                  Agent name
      * @param sameObjects           Same object enabled
      * @param traceOn               Activate trace

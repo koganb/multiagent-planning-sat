@@ -7,7 +7,6 @@ import org.agreement_technologies.service.map_parser.SynAnalyzer.Symbol;
 import org.agreement_technologies.service.map_parser.TaskImp.MetricImp;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class MAPDDLParserImp implements PDDLParser {
 
     @Override
     public Task parseDomain(String domainFile) throws ParseException, IOException {
-        String content = readToString(domainFile);
+        String content = ParserUtils.readToString(domainFile);
         SynAnalyzer syn = new SynAnalyzer(content);
         TaskImp task = new TaskImp();
         syn.openPar();
@@ -69,27 +68,10 @@ public class MAPDDLParserImp implements PDDLParser {
         return task;
     }
 
-    private String readToString(String fileName) throws IOException {
-        Reader source = new java.io.FileReader(fileName);
-        StringBuilder buf = new StringBuilder();
-        try {
-            for (int c = source.read(); c != -1; c = source.read()) {
-                buf.append((char) c);
-            }
-            return buf.toString();
-        } catch (IOException e) {
-            throw e;
-        } finally {
-            try {
-                source.close();
-            } catch (Exception e) {
-            }
-        }
-    }
 
     @Override
     public AgentList parseAgentList(String agentsFile) throws ParseException, IOException {
-        String content = readToString(agentsFile);
+        String content = ParserUtils.readToString(agentsFile);
         SynAnalyzer syn = new SynAnalyzer(content);
         AgentList agList = new AgentListImp();
         SynAnalyzer.Token t;
@@ -562,7 +544,7 @@ public class MAPDDLParserImp implements PDDLParser {
 
     @Override
     public void parseProblem(String problemFile, Task planningTask, AgentList agList, String agentName) throws ParseException, IOException {
-        String content = readToString(problemFile);
+        String content = ParserUtils.readToString(problemFile);
         SynAnalyzer syn = new SynAnalyzer(content);
         TaskImp taskImp = (TaskImp) planningTask;
         syn.openPar();
@@ -1095,7 +1077,7 @@ public class MAPDDLParserImp implements PDDLParser {
 
     @Override
     public boolean isMAPDDL(String domainFile) throws IOException {
-        String content = readToString(domainFile).toLowerCase();
+        String content = ParserUtils.readToString(domainFile).toLowerCase();
         return content.contains(":factored");
     }
 

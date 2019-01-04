@@ -6,10 +6,7 @@ import org.agreement_technologies.common.map_parser.Task;
 import org.agreement_technologies.service.map_parser.SynAnalyzer.Symbol;
 import org.agreement_technologies.service.map_parser.TaskImp.MetricImp;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
-import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -29,8 +26,9 @@ public class ParserImp implements PDDLParser {
      * @throws ParseException if there are syntactic errors
      * @throws IOException    if the source cannot be read
      */
-    public Task parseDomain(Reader source) throws ParseException, IOException {
-        String content = readToString(source);
+    @Override
+    public Task parseDomain(String source) throws ParseException, IOException {
+        String content = ParserUtils.readToString(source);
         SynAnalyzer syn = new SynAnalyzer(content);
         TaskImp task = new TaskImp();
         syn.openPar();
@@ -77,29 +75,7 @@ public class ParserImp implements PDDLParser {
         return task;
     }
 
-    /**
-     * Parses a planning domain from a file
-     *
-     * @param source File containing the MAP domain description
-     * @return Parsed planning task
-     * @throws ParseException if there are syntactic errors
-     * @throws IOException    if the source cannot be read
-     */
-    public Task parseDomain(File source) throws ParseException, IOException {
-        return parseDomain(new java.io.FileReader(source));
-    }
 
-    /**
-     * Parses a planning domain from an URL address
-     *
-     * @param source URL Address
-     * @return Parsed planning task
-     * @throws ParseException if there are syntactic errors
-     * @throws IOException    if the source cannot be read
-     */
-    public Task parseDomain(URL source) throws ParseException, IOException {
-        return parseDomain(new java.io.InputStreamReader(source.openStream()));
-    }
 
     /**
      * Parses a planning problem from a generic reader
@@ -109,9 +85,9 @@ public class ParserImp implements PDDLParser {
      * @throws ParseException if there are syntactic errors
      * @throws IOException    if the source cannot be read
      */
-    public void parseProblem(Reader source, Task task) throws ParseException,
+    public void parseProblem(String source, Task task) throws ParseException,
             IOException {
-        String content = readToString(source);
+        String content = ParserUtils.readToString(source);
         SynAnalyzer syn = new SynAnalyzer(content);
         TaskImp taskImp = (TaskImp) task;
         syn.openPar();
@@ -262,55 +238,7 @@ public class ParserImp implements PDDLParser {
         }
     }
 
-    /**
-     * Parses a planning problem from a file
-     *
-     * @param source File containing the MAP problem description
-     * @param task   Parsed planning task
-     * @throws ParseException if there are syntactic errors
-     * @throws IOException    if the source cannot be read
-     */
-    public void parseProblem(File source, Task task) throws ParseException,
-            IOException {
-        parseProblem(new java.io.FileReader(source), task);
-    }
 
-    /**
-     * Parses a planning problem from an URL address
-     *
-     * @param source URL Address
-     * @param task   Parsed planning task
-     * @throws ParseException if there are syntactic errors
-     * @throws IOException    if the source cannot be read
-     */
-    public void parseProblem(URL source, Task task) throws ParseException,
-            IOException {
-        parseProblem(new java.io.InputStreamReader(source.openStream()), task);
-    }
-
-    /**
-     * Stores the source in a String
-     *
-     * @param source Reader containing the MAP task description
-     * @return String with the read content
-     * @throws IOException if the source cannot be read
-     */
-    private String readToString(Reader source) throws IOException {
-        StringBuffer buf = new StringBuffer();
-        try {
-            for (int c = source.read(); c != -1; c = source.read()) {
-                buf.append((char) c);
-            }
-            return buf.toString();
-        } catch (IOException e) {
-            throw e;
-        } finally {
-            try {
-                source.close();
-            } catch (Exception e) {
-            }
-        }
-    }
 
     /**
      * Parses the requirements section
@@ -1247,7 +1175,6 @@ public class ParserImp implements PDDLParser {
      *
      * @param syn    Syntactic analyzer
      * @param task   Planning task
-     * @param global True for global goals
      * @throws ParseException If an error is detected
      */
     private void parseGoal(SynAnalyzer syn, TaskImp task) throws ParseException {
@@ -1614,14 +1541,11 @@ public class ParserImp implements PDDLParser {
         return v;
     }
 
-    @Override
-    public Task parseDomain(String domainFile) throws ParseException, IOException {
-        return parseDomain(new java.io.File(domainFile));
-    }
+
 
     @Override
     public void parseProblem(String problemFile, Task planningTask, AgentList agList, String agentName) throws ParseException, IOException {
-        parseProblem(new java.io.File(problemFile), planningTask);
+        parseProblem(problemFile, planningTask);
     }
 
     @Override
@@ -1631,13 +1555,13 @@ public class ParserImp implements PDDLParser {
 
     @Override
     public boolean isMAPDDL(String domainFile) throws IOException {
-        String content = readToString(new java.io.FileReader(domainFile)).toLowerCase();
+        String content = ParserUtils.readToString(domainFile).toLowerCase();
         return content.contains(":factored");
     }
 
     @Override
     public AgentList parseAgentList(String agentsFile) throws ParseException, IOException {
-        String content = readToString(new java.io.FileReader(agentsFile));
+        String content = ParserUtils.readToString(agentsFile);
         SynAnalyzer syn = new SynAnalyzer(content);
         AgentList agList = new AgentListImp();
         SynAnalyzer.Token t;

@@ -1,0 +1,15 @@
+depot0
+problem_files/depots/Pfile7/DomainDepotsDepot.pddl
+problem_files/depots/Pfile7/ProblemDepotsdepot0.pddl
+distributor0
+problem_files/depots/Pfile7/DomainDepotsDepot.pddl
+problem_files/depots/Pfile7/ProblemDepotsdistributor0.pddl
+distributor1
+problem_files/depots/Pfile7/DomainDepotsDepot.pddl
+problem_files/depots/Pfile7/ProblemDepotsdistributor1.pddl
+truck0
+problem_files/depots/Pfile7/DomainDepotsTruck.pddl
+problem_files/depots/Pfile7/ProblemDepotstruck0.pddl
+truck1
+problem_files/depots/Pfile7/DomainDepotsTruck.pddl
+problem_files/depots/Pfile7/ProblemDepotstruck1.pddl

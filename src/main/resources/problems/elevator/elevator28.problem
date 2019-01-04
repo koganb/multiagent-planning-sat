@@ -1,0 +1,15 @@
+fast0
+problem_files/elevators/Pfile28/DomainElevators.pddl
+problem_files/elevators/Pfile28/ProblemElevatorsfast0.pddl
+fast1
+problem_files/elevators/Pfile28/DomainElevators.pddl
+problem_files/elevators/Pfile28/ProblemElevatorsfast1.pddl
+slow0-0
+problem_files/elevators/Pfile28/DomainElevators.pddl
+problem_files/elevators/Pfile28/ProblemElevatorsslow0-0.pddl
+slow1-0
+problem_files/elevators/Pfile28/DomainElevators.pddl
+problem_files/elevators/Pfile28/ProblemElevatorsslow1-0.pddl
+slow2-0
+problem_files/elevators/Pfile28/DomainElevators.pddl
+problem_files/elevators/Pfile28/ProblemElevatorsslow2-0.pddl
