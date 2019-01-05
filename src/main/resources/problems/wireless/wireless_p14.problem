@@ -10,9 +10,6 @@ problem_files/wireless/p14/problem-node2.pddl
 node3
 problem_files/wireless/p14/domain-node3.pddl
 problem_files/wireless/p14/problem-node3.pddl
-node4
-problem_files/wireless/p14/domain-node4.pddl
-problem_files/wireless/p14/problem-node4.pddl
 node5
 problem_files/wireless/p14/domain-node5.pddl
 problem_files/wireless/p14/problem-node5.pddl

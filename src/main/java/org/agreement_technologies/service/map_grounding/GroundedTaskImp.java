@@ -1099,7 +1099,7 @@ public class GroundedTaskImp implements GroundedTask {
         return metricRequiresMakespan;
     }
 
-    public static class GroundedNumericEffImp implements GroundedNumericEff {
+    public static class GroundedNumericEffImp implements GroundedNumericEff, Serializable {
         int type;
         GroundedVar var;
         GroundedNumericExpression exp;
@@ -1126,7 +1126,7 @@ public class GroundedTaskImp implements GroundedTask {
         }
     }
 
-    public static class GroundedNumericExpressionImp implements GroundedNumericExpression {
+    public static class GroundedNumericExpressionImp implements GroundedNumericExpression, Serializable {
         int type;
         double value;
         GroundedVar var;
