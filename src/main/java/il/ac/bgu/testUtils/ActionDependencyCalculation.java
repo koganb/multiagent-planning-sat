@@ -110,7 +110,6 @@ public class ActionDependencyCalculation {
                                     .map(action -> action.toBuilder().state(FAILED).build())
                                     .collect(Collectors.toSet())) : Stream.empty();
                 })
-                .limit(MAX_SIZE)
                 .filter(t -> {
                     if (finalVariableStateCalc.getFinalVariableState(t).containsAll(normalExecutionFinalState)) {
                         log.info("Filter out action failure candidate {} as it leads to correct state", t);
@@ -119,6 +118,7 @@ public class ActionDependencyCalculation {
                     return true;
 
                 })
+                .limit(MAX_SIZE)
                 .map(t -> (Supplier<Set<Action>>) () -> t)
                 .collect(Collectors.toList());
 

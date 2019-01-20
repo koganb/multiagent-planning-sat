@@ -1,6 +1,7 @@
 package il.ac.bgu.utils;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.cnfCompilation.CnfCompilation;
@@ -67,10 +68,16 @@ public class PlanSolvingUtils {
         SolutionIterator solutionIterator = new SolutionIterator(plan, hardConstraintsWithFinal, softConstraints);
 
         log.info(getMarker("STATS"), "    sat_solving_mils:");
-        List<List<? extends Formattable>> results = Streams.stream(solutionIterator)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
+        List<List<? extends Formattable>> results;
+        try {
+            results = Streams.stream(solutionIterator)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .collect(Collectors.toList());
+        } catch (OutOfMemoryError e) {
+            log.info(getMarker("STATS"), "    out_of_memory: true");
+            results = Lists.newArrayList();
+        }
 
         results.forEach(solution -> {
                     log.info("Solution candidate: {}", solution);
