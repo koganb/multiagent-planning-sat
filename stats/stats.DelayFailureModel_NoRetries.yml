@@ -93977,30 +93977,3 @@
     number_of_solutions: 1
     solution_index: 0
     solution_cardinality: 1
-- problem: zenotravel_pfile20.problem
-  plan_properties:
-    number_of_steps: 92
-    number_of_actions: 96
-    number_of_agents: 2
-  simulation:
-    failed_actions: "[Index:13, Agent:plane1,Action:fly~plane1~city21~city5~fl2~fl1=FAILED, Index:04, Agent:plane1,Action:fly~plane1~city8~city4~fl5~fl4=FAILED, Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:38, Agent:plane1,Action:board~plane1~person4~city1=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
-    failed_actions_cardinality: 5
-  cnf_model_details: 
-    failure_model: delay one step
-    conflict_model: no effects model
-    conflict_retries_model: no retries
-    max_failures_restriction: 5
-  cnf:
-    clauses_num: 68230
-    variables_num: 41781
-  execution_time:
-    cnf_compilation_mils: 1617
-    final_var_state_calc_mils: 412
-    sat_solving_mils:
-    - 41
-    - 110
-    - 1724
-    - 58615
-  solution: 
-    number_of_solutions: 1
-    solution_ind
