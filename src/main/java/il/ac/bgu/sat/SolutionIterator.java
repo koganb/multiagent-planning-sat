@@ -26,23 +26,27 @@ public class SolutionIterator implements Iterator<Optional<List<? extends Format
     private List<List<FormattableValue<? extends Formattable>>> hardConstraints;
     private final List<FormattableValue<Formattable>> softConstraints;
 
-    private final SatSolutionSolverInter satSolutionSolver = new SatSolutionSolver();
+    private final SatSolutionSolverInter satSolutionSolver;
+    private DiagnosisFindingStopIndicator stopIndicator;
     private final MaxFailureConstraintsCreator maxFailureConstraintsCreator;
 
 
     private List<List<FormattableValue<? extends Formattable>>> solutionConstraints = new ArrayList<>();
 
-    private boolean solutionFound = true;
+    private boolean solutionFoundInCurIteration = false;
+    private boolean solutionFound = false;
 
     private int currentSolutionSize = 1;
 
     public SolutionIterator(Map<Integer, Set<Step>> plan,
                             List<List<FormattableValue<? extends Formattable>>> hardConstraints,
-                            List<FormattableValue<Formattable>> softConstraints) {
+                            List<FormattableValue<Formattable>> softConstraints,
+                            long satTimeoutMils, DiagnosisFindingStopIndicator stopIndicator) {
         this.hardConstraints = hardConstraints;
         this.softConstraints = softConstraints;
-        maxFailureConstraintsCreator = new MaxFailureConstraintsCreator(plan);
-
+        this.maxFailureConstraintsCreator = new MaxFailureConstraintsCreator(plan);
+        this.satSolutionSolver = new SatSolutionSolver(satTimeoutMils);
+        this.stopIndicator = stopIndicator;
     }
 
 
@@ -70,7 +74,10 @@ public class SolutionIterator implements Iterator<Optional<List<? extends Format
                 cnfEncoding.getLeft());
 
         Instant satSolverEndTime = Instant.now();
-        log.info(getMarker("STATS"), "    - {}", Duration.between(satSolverStartTime, satSolverEndTime).toMillis());
+        log.info(getMarker("STATS"), "      - ");
+        log.info(getMarker("STATS"), "        mils: {}", Duration.between(satSolverStartTime, satSolverEndTime).toMillis());
+        log.info(getMarker("STATS"), "        is_found: {}", diagnosisCandidates.isPresent());
+        log.info(getMarker("STATS"), "        solution_size: {}", currentSolutionSize);
         log.info("Solution candidate found: {}", diagnosisCandidates.isPresent());
 
         //add solution negation to solution constraints
@@ -81,17 +88,13 @@ public class SolutionIterator implements Iterator<Optional<List<? extends Format
 
         constraintOptional.ifPresent(solution -> solutionConstraints.add(solution));
 
-        solutionFound = diagnosisCandidates.isPresent();
+        solutionFoundInCurIteration = diagnosisCandidates.isPresent();
 
-
-        if (!solutionFound &&  //solution not found
-                solutionConstraints.isEmpty() &&  //no solution found so far
-                currentSolutionSize <= MAX_SOLUTION_SIZE) {
+        if (solutionFoundInCurIteration) {
+            solutionFound = true;
+        } else {
             currentSolutionSize++;
         }
-
-
-
         return diagnosisCandidates;
 
 
@@ -100,7 +103,19 @@ public class SolutionIterator implements Iterator<Optional<List<? extends Format
 
     @Override
     public boolean hasNext() {
-        return solutionFound || (solutionConstraints.isEmpty() && currentSolutionSize < MAX_SOLUTION_SIZE);
+        switch (stopIndicator) {
+            case FIRST_SOLUTION:
+                //continue to search for solution till it is found
+                return !solutionFound && currentSolutionSize < MAX_SOLUTION_SIZE;
+            case MINIMAL_CARDINALITY:
+                //continue to search for solution if it is found in current iteration or not found so far
+                return (solutionFoundInCurIteration || !solutionFound) && currentSolutionSize < MAX_SOLUTION_SIZE;
+            case MINIMAL_SUBSET:
+            default:
+                //continue to search till constraints are valid
+                return currentSolutionSize < MAX_SOLUTION_SIZE;
+        }
+
     }
 
 }

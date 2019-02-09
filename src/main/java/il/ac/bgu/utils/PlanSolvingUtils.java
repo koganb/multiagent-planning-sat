@@ -10,6 +10,7 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.sat.DiagnosisFindingStopIndicator;
 import il.ac.bgu.sat.SolutionIterator;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +44,9 @@ public class PlanSolvingUtils {
             List<List<FormattableValue<? extends Formattable>>> hardConstraints,
             List<FormattableValue<Formattable>> softConstraints,
             FinalVariableStateCalc finalVariableStateCalc,
-            Collection<Action> failedActions) {
+            Collection<Action> failedActions,
+            Long satTimeoutMils,
+            DiagnosisFindingStopIndicator stopIndicator) {
 
 
         log.info("final facts calculation");
@@ -65,7 +68,8 @@ public class PlanSolvingUtils {
                             .collect(Collectors.joining("\n")));
         }
 
-        SolutionIterator solutionIterator = new SolutionIterator(plan, hardConstraintsWithFinal, softConstraints);
+        SolutionIterator solutionIterator = new SolutionIterator(plan, hardConstraintsWithFinal, softConstraints,
+                satTimeoutMils, stopIndicator);
 
         log.info(getMarker("STATS"), "    sat_solving_mils:");
         List<List<? extends Formattable>> results;

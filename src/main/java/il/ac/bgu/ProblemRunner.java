@@ -1,6 +1,8 @@
 package il.ac.bgu;
 
 import com.google.common.base.Charsets;
+import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses;
 import il.ac.bgu.cnfClausesModel.failed.FailedDelayOneStepCnfClauses;
@@ -12,6 +14,7 @@ import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.sat.DiagnosisFindingStopIndicator;
 import il.ac.bgu.sat.SatSolver;
 import il.ac.bgu.utils.PlanSolvingUtils;
 import il.ac.bgu.utils.PlanUtils;
@@ -33,6 +36,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.logging.log4j.core.config.Configurator;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +54,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 
 import static il.ac.bgu.ProblemRunner.FailedConflictModel.*;
+import static il.ac.bgu.sat.DiagnosisFindingStopIndicator.MINIMAL_CARDINALITY;
 import static java.lang.String.format;
 
 public class ProblemRunner {
@@ -129,9 +134,35 @@ public class ProblemRunner {
                             .collect(Collectors.toList());
                     println("Failed Actions: " + failedActions);
 
-                    pause();
+                    System.out.println("-----------------");
+                    String satTimeout = this.prompt("Please set SAT timeout (sec) or press enter for default [300]: ",
+                            String.class, s -> {
+                                if (StringUtils.isNotEmpty(s)) {
+                                    @Nullable Integer timeout = Ints.tryParse(s);
+                                    return timeout != null && timeout > 0;
+                                }
+                                return true;
+                            });
 
-                    new ProblemExecutor(fileName, failedConflictModel, failedActions).execute();
+                    Long timeout = Optional.ofNullable(Longs.tryParse(satTimeout)).orElse(300L) * 1000;
+
+                    System.out.println("-----------------");
+                    String diagStopIndicatorStr = this.prompt(
+                            format("Please select the diagnosis finding type or enter for: %s\n", MINIMAL_CARDINALITY.name()) +
+                                    Arrays.stream(DiagnosisFindingStopIndicator.values()).map(i ->
+                                            format("%3d) %s\n", i.ordinal() + 1, i.name())).collect(Collectors.joining("")), String.class, s -> {
+                                if (StringUtils.isNotEmpty(s)) {
+                                    @Nullable Integer stopIndicatorInd = Ints.tryParse(s);
+                                    return stopIndicatorInd != null && stopIndicatorInd > 0 && stopIndicatorInd <= DiagnosisFindingStopIndicator.values().length;
+                                }
+                                return true;
+                            });
+
+                    DiagnosisFindingStopIndicator stopIndicator = Optional.ofNullable(Longs.tryParse(diagStopIndicatorStr))
+                            .map(i -> DiagnosisFindingStopIndicator.values()[i.intValue() - 1]).orElse(MINIMAL_CARDINALITY);
+
+
+                    new ProblemExecutor(fileName, failedConflictModel, failedActions).execute(timeout, stopIndicator);
 
 
                 } catch (Exception e) {
@@ -309,7 +340,7 @@ public class ProblemRunner {
         }
 
 
-        void execute() {
+        void execute(Long timeoutMs, DiagnosisFindingStopIndicator stopIndicator) {
             //add agent to preconditions and effects of every action to prevent action collisions in delay failure model
             PlanUtils.updatePlanWithAgentDependencies(plan);
 
@@ -317,7 +348,8 @@ public class ProblemRunner {
                     PlanSolvingUtils.createPlanHardConstraints(plan, conflictRetriesModel, healthyCnfClausesCreator,
                             conflictClausesCreator, failedClausesCreator);
             List<FormattableValue<Formattable>> softConstraints = PlanUtils.encodeHealthyClauses(plan);
-            PlanSolvingUtils.calculateSolutions(plan, hardConstraints, softConstraints, finalVariableStateCalc, failedActions)
+            PlanSolvingUtils.calculateSolutions(plan, hardConstraints, softConstraints, finalVariableStateCalc, failedActions,
+                    timeoutMs, stopIndicator)
                     .forEach(solution -> System.out.println("Found solution: " + solution));
 
 

@@ -23,7 +23,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class SatSolutionSolver implements SatSolutionSolverInter {
-    WeightedMaxSatDecorator solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
+    WeightedMaxSatDecorator solver;
+
+    public SatSolutionSolver(long timeoutMs) {
+        this.solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
+        solver.setTimeoutMs(timeoutMs);
+    }
 
     @Override
     public Optional<List<? extends Formattable>> solveCnf(String cnfPlan, Map<Formattable, Integer> codeMap) {

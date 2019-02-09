@@ -7,6 +7,7 @@ import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
 import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Formattable
+import il.ac.bgu.sat.DiagnosisFindingStopIndicator
 import il.ac.bgu.testUtils.ActionDependencyCalculation
 import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
@@ -48,10 +49,14 @@ class TestNoEffectsFailureModelNoRetries extends Specification {
             new Problem("satellite14.problem"),
             new Problem("satellite15.problem"),
             //new Problem("satellite20.problem"),
-            new Problem("deports16.problem"),
+            new Problem("deports13.problem"),
             new Problem("deports17.problem"),
             new Problem("deports19.problem"),
     ]
+
+    public static final long SAT_TIMEOUT = 300L
+    public static final DiagnosisFindingStopIndicator SOLUTION_STOP_IND =
+            DiagnosisFindingStopIndicator.MINIMAL_CARDINALITY
 
 
     @Shared
@@ -103,7 +108,8 @@ class TestNoEffectsFailureModelNoRetries extends Specification {
         def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new NoEffectVariableFailureModel())
 
         expect:
-        List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses, PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions)
+        List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses,
+                PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions, SAT_TIMEOUT, SOLUTION_STOP_IND)
                 .filter { solution -> !solution.isEmpty() }
                 .collect(Collectors.toList())
 

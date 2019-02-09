@@ -2,17 +2,19 @@ package il.ac.bgu.utils;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
+import il.ac.bgu.cnfCompilation.CnfCompilation;
+import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import lombok.extern.slf4j.Slf4j;
+import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
 import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.SerializationUtils;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -24,6 +26,22 @@ import static il.ac.bgu.dataModel.Action.State.HEALTHY;
 
 @Slf4j
 public class PlanUtils {
+
+    public static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, Set<Step>> plan,
+                                                                                                RetryPlanUpdater retryPlanUpdater,
+                                                                                                CnfClausesFunction healthyCnfClausesCreator,
+                                                                                                CnfClausesFunction conflictCnfClausesCreator,
+                                                                                                CnfClausesFunction failedCnfClausesCreator) {
+
+        CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
+                conflictCnfClausesCreator, failedCnfClausesCreator);
+
+        return StreamEx.<List<FormattableValue<? extends Formattable>>>of()
+                .append(cnfCompilation.compileToCnf().stream())
+                .append(PlanSolvingUtils.calcInitFacts(plan).stream().map(ImmutableList::of))
+                .collect(ImmutableList.toImmutableList());
+    }
+
 
     public static void updatePlanWithAgentDependencies(Map<Integer, Set<Step>> plan) {
 
@@ -67,7 +85,7 @@ public class PlanUtils {
     }
 
 
-    public static Map<Integer, Set<Step>> loadSerializedPlan(String planPath) throws URISyntaxException, IOException {
+    public static Map<Integer, Set<Step>> loadSerializedPlan(String planPath) {
         log.info("Start loading plan {}", planPath);
         return SerializationUtils.deserialize(PlanUtils.class.getClassLoader().getResourceAsStream(planPath));
     }

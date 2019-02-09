@@ -3,6 +3,7 @@ package il.ac.bgu.dataModel;
 import com.google.errorprone.annotations.Immutable;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,6 +13,7 @@ import static java.lang.String.format;
 
 @EqualsAndHashCode(of = "actionDataFormatted")
 @Immutable
+@Getter
 public class Action implements Formattable {
 
     private final String actionName;

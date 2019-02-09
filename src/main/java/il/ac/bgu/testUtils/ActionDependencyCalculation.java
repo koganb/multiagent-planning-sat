@@ -1,6 +1,5 @@
 package il.ac.bgu.testUtils;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
@@ -19,7 +18,6 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.util.Combinations;
 
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,9 +28,7 @@ public class ActionDependencyCalculation {
 
     private Map<ActionKey, Set<Action>> actionDependenciesFull = new HashMap<>();
 
-
-    public static final int MAX_SIZE = 30;  //no more than MAX_SIZE actions
-    private ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState;
+    private List<FormattableValue<? extends Formattable>> normalExecutionFinalState;
     private FinalVariableStateCalcImpl finalVariableStateCalc;
 
     private void createActionDependenciesFull(Map<ActionKey, Set<Action>> actionDependencies,
@@ -47,8 +43,8 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public ActionDependencyCalculation(TreeMap<Integer, Set<Step>> plan,
-                                       ImmutableList<FormattableValue<? extends Formattable>> normalExecutionFinalState,
+    public ActionDependencyCalculation(Map<Integer, Set<Step>> plan,
+                                       List<FormattableValue<? extends Formattable>> normalExecutionFinalState,
                                        VariableModelFunction failureModelFunction,
                                        RetryPlanUpdater conflictRetriesModel) {
         this.normalExecutionFinalState = normalExecutionFinalState;
@@ -85,16 +81,16 @@ public class ActionDependencyCalculation {
                 createActionDependenciesFull(actionDependencies, dependency, dependency));
     }
 
-    public List<Supplier<Set<Action>>> getIndependentActionsList(List<Integer> actionNumbers) {
-        return actionNumbers.stream()
-                .flatMap(i -> getIndependentActionsList(i).stream())
-                .collect(Collectors.toList());
-    }
+//    public List<Supplier<Set<Action>>> getIndependentActionsList(List<Integer> actionNumbers) {
+//        return actionNumbers.stream()
+//                .flatMap(i -> getIndependentActionsList(i).stream())
+//                .collect(Collectors.toList());
+//    }
 
-    public List<Supplier<Set<Action>>> getIndependentActionsList(int actionNumber) {
+    public Stream<Set<Action>> getIndependentActionsList(int actionNumber) {
         List<ActionKey> keys = new ArrayList<>(actionDependenciesFull.keySet());
 
-        List<Supplier<Set<Action>>> independentActions = Streams.stream(new Combinations(actionDependenciesFull.size(), actionNumber).iterator()).flatMap(
+        return Streams.stream(new Combinations(actionDependenciesFull.size(), actionNumber).iterator()).flatMap(
                 combination -> {
                     Set<ActionKey> actionKeys = Arrays.stream(combination).
                             mapToObj(keys::get).
@@ -117,13 +113,7 @@ public class ActionDependencyCalculation {
                     }
                     return true;
 
-                })
-                .limit(MAX_SIZE)
-                .map(t -> (Supplier<Set<Action>>) () -> t)
-                .collect(Collectors.toList());
-
-
-        return independentActions;
+                });
     }
 
     @EqualsAndHashCode(of = "variableKey")

@@ -198,6 +198,17 @@ class TestUtils {
                             .count())
             log.info(getMarker("STATS"), "  simulation:")
             log.info(getMarker("STATS"), "    failed_actions: \"{}\"", failedActions)
+
+
+            println(problemName)
+            println("    - action_set:")
+            for (Action action : failedActions) {
+                println("      - action:")
+                println("        agent: " + action.agentName)
+                println("        stage: " + action.stage)
+                println("        action_name: " + action.actionName)
+            }
+
             log.info(getMarker("STATS"), "    failed_actions_cardinality: {}", failedActions.size())
             log.info(getMarker("STATS"), "  cnf_model_details: ")
             log.info(getMarker("STATS"), "    failure_model: {}", failedClausesCreator.getName())
