@@ -1,10 +1,10 @@
 package il.ac.bgu.dataModel;
 
 import com.google.errorprone.annotations.Immutable;
+import il.ac.bgu.plan.PlanAction;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
@@ -25,12 +25,12 @@ public class Action implements Formattable {
     private final String actionKeyFormatted;
     private final String actionNameFormatted;
 
-    private Action(Step step, Integer stage, State state) {
-        this(step.getActionName(), step.getAgent(), stage, state);
+    private Action(PlanAction step, Integer stage, State state) {
+        this(step.getActionName(), step.getAgentName(), stage, state);
     }
 
-    private Action(Step step, Integer stage) {
-        this(step.getActionName(), step.getAgent(), stage, null);
+    private Action(PlanAction step, Integer stage) {
+        this(step.getActionName(), step.getAgentName(), stage, null);
     }
 
     @Builder(toBuilder = true)
@@ -56,11 +56,15 @@ public class Action implements Formattable {
 
 
 
-    public static Action of(Step step, Integer stage) {
+    public static Action of(PlanAction step, Integer stage) {
         return new Action(step, stage);
     }
 
-    public static Action of(Step step, Integer stage, State state) {
+    public static Action of(PlanAction step, State state) {
+        return new Action(step, step.getIndex(), state);
+    }
+
+    public static Action of(PlanAction step, Integer stage, State state) {
         return new Action(step, stage, state);
     }
 

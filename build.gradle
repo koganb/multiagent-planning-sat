@@ -3,18 +3,19 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
     }
     dependencies {
-        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
+        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.3'
     }
 }
+
 
 apply plugin: 'java'
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: "groovy"
+
+
 
 sourceSets {
     main {
@@ -43,7 +44,7 @@ jar.enabled = false
 //mainClassName = 'il.ac.bgu.SatSolver'
 jar {
     manifest {
-        attributes 'Main-Class': 'il.ac.bgu.ProblemRunner'
+        attributes 'Main-Class': 'il.ac.bgu.CreateTestData'
     }
 
     from {
@@ -60,6 +61,8 @@ repositories {
 
 
 dependencies {
+    annotationProcessor "org.projectlombok:lombok:1.18.2"
+
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
 
     compile group: 'org.ow2.sat4j', name: 'org.ow2.sat4j.maxsat', version: '2.3.4'
@@ -83,6 +86,8 @@ dependencies {
     compile group: 'org.reflections', name: 'reflections', version: '0.9.11'
 
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    
+    compile group: 'io.vavr', name: 'vavr', version: '0.9.0'
 
     // mandatory dependencies for using Spock
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.13'
@@ -110,6 +115,5 @@ dependencies {
 
 
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
-
 
 }

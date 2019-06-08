@@ -1,0 +1,86 @@
+action_cardinality: 1
+problem_name: deports19.problem
+plan_steps_number: 37
+plan_actions_number: 45
+plan_agent_number: 8
+test_actions:
+- action_set:
+  - agent: truck0
+    stage: 2
+    action_name: Drive truck0 depot0 distributor1
+- action_set:
+  - agent: truck0
+    stage: 22
+    action_name: Unload hoist6 crate0 truck0 distributor2
+- action_set:
+  - agent: truck0
+    stage: 33
+    action_name: Drive truck0 distributor1 distributor2
+- action_set:
+  - agent: distributor2
+    stage: 35
+    action_name: DropC hoist6 crate3 crate1 distributor2
+- action_set:
+  - agent: truck0
+    stage: 26
+    action_name: Load hoist0 crate5 truck0 depot0
+- action_set:
+  - agent: truck0
+    stage: 11
+    action_name: Drive truck0 distributor1 depot1
+- action_set:
+  - agent: distributor1
+    stage: 31
+    action_name: DropC hoist5 crate7 crate4 distributor1
+- action_set:
+  - agent: truck0
+    stage: 28
+    action_name: Unload hoist5 crate4 truck0 distributor1
+- action_set:
+  - agent: truck0
+    stage: 20
+    action_name: Drive truck0 depot0 distributor2
+- action_set:
+  - agent: truck0
+    stage: 24
+    action_name: Unload hoist6 crate1 truck0 distributor2
+- action_set:
+  - agent: truck0
+    stage: 15
+    action_name: Drive truck0 depot1 distributor0
+- action_set:
+  - agent: truck0
+    stage: 27
+    action_name: Drive truck0 depot0 distributor1
+- action_set:
+  - agent: truck0
+    stage: 8
+    action_name: Load hoist5 crate5 truck0 distributor1
+- action_set:
+  - agent: truck0
+    stage: 16
+    action_name: Load hoist4 crate2 truck0 distributor0
+- action_set:
+  - agent: distributor1
+    stage: 29
+    action_name: DropP hoist5 crate4 pallet5 distributor1
+- action_set:
+  - agent: truck0
+    stage: 13
+    action_name: Unload hoist1 crate3 truck0 depot1
+- action_set:
+  - agent: truck0
+    stage: 32
+    action_name: Unload hoist5 crate5 truck0 distributor1
+- action_set:
+  - agent: truck0
+    stage: 10
+    action_name: Load hoist5 crate3 truck0 distributor1
+- action_set:
+  - agent: truck0
+    stage: 1
+    action_name: Load hoist0 crate6 truck0 depot0
+- action_set:
+  - agent: truck0
+    stage: 6
+    action_name: Load hoist3 crate7 truck0 depot3

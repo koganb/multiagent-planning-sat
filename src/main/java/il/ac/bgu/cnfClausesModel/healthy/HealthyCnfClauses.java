@@ -8,9 +8,9 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,14 +30,14 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
 
 
     @Override
-    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step,
+    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, PlanAction step,
                                                                        Map<String, List<Variable>> variableStateMap) {
         log.debug("Start add healthy clause");
         ImmutableList<FormattableValue<? extends Formattable>> preconditionList =
                 Stream.concat(
-                        step.getPopPrecs().stream().
+                        step.getPreconditions().stream().
                                 map(actionPrec -> FormattableValue.<Formattable>of(Variable.of(actionPrec, currentStage), false)),
-                        step.getPopEffs().stream().
+                        step.getEffects().stream().
                                 flatMap(actionEff ->
                                         StreamEx.<FormattableValue<Formattable>>of()
                                                 .append(FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true))
@@ -46,19 +46,19 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                 ).collect(ImmutableList.toImmutableList());
 
 
-        Set<String> actionEffKeys = step.getPopEffs().stream()
-                .map(eff -> Variable.of(eff).formatFunctionKey())
+        Set<String> actionEffKeys = step.getEffects().stream()
+                .map(Variable::formatFunctionKey)
                 .collect(Collectors.toSet());
 
         //healthy function
         Stream<List<FormattableValue<? extends Formattable>>> effectStream =
                 Stream.concat(
-                        step.getPopPrecs().stream()
+                        step.getPreconditions().stream()
                                 .filter(prec ->
-                                        !actionEffKeys.contains(Variable.of(prec).formatFunctionKey())),
-                        step.getPopEffs().stream()
+                                        !actionEffKeys.contains(prec.formatFunctionKey())),
+                        step.getEffects().stream()
                 ).flatMap(actionEff ->
-                        CnfClausesUtils.switchTrueExclusive(Variable.of(actionEff), variableStateMap, currentStage + 1)
+                        CnfClausesUtils.switchTrueExclusive(actionEff, variableStateMap, currentStage + 1)
                 );
 
 

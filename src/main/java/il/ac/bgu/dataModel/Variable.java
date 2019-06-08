@@ -71,8 +71,20 @@ public class Variable implements Formattable {
         postConstruct();
     }
 
+    public static Variable of(Variable variable, Integer stage) {
+        return new Variable(variable.functionKey, variable.getValue(), stage);
+    }
+
     public static Variable of(Variable variable, String functionValue, Integer stage) {
         return new Variable(variable.functionKey, functionValue, stage);
+    }
+
+    public static Variable of(String functionKey, String functionValue) {
+        return new Variable(functionKey, functionValue);
+    }
+
+    public static Variable of(String functionKey, String functionValue, Integer stage) {
+        return new Variable(functionKey, functionValue, stage);
     }
 
     private String createFunctionKey(POPPrecEff eff) {
@@ -118,6 +130,10 @@ public class Variable implements Formattable {
     @Override
     public String getValue() {
         return functionValue;
+    }
+
+    public String getFunctionKey() {
+        return functionKey;
     }
 
     public Optional<Integer> getStage() {

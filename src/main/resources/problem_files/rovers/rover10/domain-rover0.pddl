@@ -1,4 +1,5 @@
-(define (domain rover)
+2
+2(define (domain rover)
 	(:requirements :factored-privacy :typing)
 (:types
 	 rover waypoint store camera mode lander objective - object 

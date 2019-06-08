@@ -1,6 +1,7 @@
 package il.ac.bgu;
 
 import com.google.common.base.Charsets;
+import com.google.common.collect.ImmutableList;
 import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
@@ -14,6 +15,8 @@ import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.plan.PlanAction;
+import il.ac.bgu.resultsExport.YmlToCsvConverter;
 import il.ac.bgu.sat.DiagnosisFindingStopIndicator;
 import il.ac.bgu.sat.SatSolver;
 import il.ac.bgu.utils.PlanSolvingUtils;
@@ -22,12 +25,8 @@ import il.ac.bgu.variableModel.DelayStageVariableFailureModel;
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl;
-import io.bretty.console.view.ActionView;
-import io.bretty.console.view.MenuView;
-import io.bretty.console.view.Validator;
-import io.bretty.console.view.ViewConfig;
+import io.bretty.console.view.*;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Range;
 import org.apache.commons.lang3.SerializationUtils;
@@ -85,7 +84,7 @@ public class ProblemRunner {
     }
 
 
-    private static Map<String, MenuView> domainViewMap = new HashMap<>();
+    private static Map<String, List<MenuView>> domainViewMap = new HashMap<>();
     private static List<MenuView> modelViewList = new ArrayList<>();
 
     private static void addPlanActionsMenu(MenuView menuView, String fileName) {
@@ -95,10 +94,10 @@ public class ProblemRunner {
         menuView.addMenuItem(new ActionView(planName + " problem actions:", planName) {
             @Override
             public void executeCustomAction() {
-                Map<Integer, Set<Step>> plan;
+                Map<Integer, ImmutableList<PlanAction>>plan;
                 try {
                     plan = PlanUtils.loadSerializedPlan("plans/" + fileName);
-                    List<ImmutablePair<Integer, Step>> planActions = plan.entrySet().stream()
+                    List<ImmutablePair<Integer, PlanAction>> planActions = plan.entrySet().stream()
                             .filter(entry -> entry.getKey() != -1)
                             .flatMap(entry ->
                                     entry.getValue().stream().map(step ->
@@ -108,7 +107,7 @@ public class ProblemRunner {
                     MutableInt index = new MutableInt(-1);
                     planActions.forEach(pair ->
                             this.println(format("%3d) Step: %d   Agent: %s Action:%s",
-                                    index.incrementAndGet(), pair.getKey(), pair.getValue().getAgent(), pair.getValue())
+                                    index.incrementAndGet(), pair.getKey(), pair.getValue().getAgentName(), pair.getValue())
                             ));
 
                     Validator<String> actionChooserValidation = input -> Arrays.stream(input.split(","))
@@ -175,9 +174,13 @@ public class ProblemRunner {
 
     public static void main(String[] args) throws IOException {
         MenuView mainView = new MenuView("Welcome to SAT problem runner", "",
-                new ViewConfig.Builder().setMenuSelectionMessage("Please select fault and conflict model: ").build());
+                new ViewConfig.Builder()
+                        .setMenuSelectionMessage("Please select fault and conflict model: ")
+                        .build());
 
-        ViewConfig domainViewConfig = new ViewConfig.Builder().setMenuSelectionMessage("Please select problem domain: ").build();
+        ViewConfig domainViewConfig = new ViewConfig.Builder()
+                .setMenuSelectionMessage("Please select problem domain: ")
+                .build();
         modelViewList.add(new MenuView(FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES.modelId,
                 FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES.modelId, domainViewConfig));
         modelViewList.add(new MenuView(FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES.modelId,
@@ -210,12 +213,20 @@ public class ProblemRunner {
         serializedPlans.stream()
                 .map(ProblemRunner::getDomain) //get domain from problem name
                 .distinct()
-                .forEach(domainName -> domainViewMap.put(domainName,
-                        new MenuView(format("%s domain - problems", domainName), domainName, problemViewConfig)));
+                .forEach(domainName -> {
+                    modelViewList.forEach(modelView -> {
+                        final MenuView domainMenuView =
+                                new MenuView(format("%s domain - problems", domainName), domainName, problemViewConfig);
+                        modelView.addMenuItem(domainMenuView);
+
+                        final List<MenuView> domainViewMList = domainViewMap.getOrDefault(domainName, new ArrayList<>());
+                        domainViewMList.add(domainMenuView);
+                        domainViewMap.put(domainName, domainViewMList);
+                    });
+
+                });
 
         modelViewList.forEach(mainView::addMenuItem);
-        modelViewList.forEach(modelView -> domainViewMap.values().forEach(modelView::addMenuItem));
-
 
         modelViewList.forEach(view -> view.addMenuItem(new ActionView("custom problem", "custom problem") {
             @Override
@@ -234,15 +245,15 @@ public class ProblemRunner {
 
                     pause();
 
-                    String domainName = getDomain(new File(serPlanPath).getName());
-                    if (!domainViewMap.containsKey(domainName)) {
-                        //add new domain (if not exists)
-                        MenuView domainView = new MenuView(format("%s domain - problems", domainName), domainName, problemViewConfig);
-                        domainViewMap.put(domainName, domainView);
-                        modelViewList.forEach(modelView -> modelView.addMenuItem(domainView));
-                    }
-
-                    addPlanActionsMenu(domainViewMap.get(domainName), new File(serPlanPath).getName());
+//                    String domainName = getDomain(new File(serPlanPath).getName());
+//                    if (!domainViewMap.containsKey(domainName)) {
+//                        //add new domain (if not exists)
+//                        MenuView domainView = new MenuView(format("%s domain - problems", domainName), domainName, problemViewConfig);
+//                        domainViewMap.put(domainName, domainView);
+//                        modelViewList.forEach(modelView -> modelView.addMenuItem(domainView));
+//                    }
+//
+//                    addPlanActionsMenu(domainViewMap.get(domainName), new File(serPlanPath).getName());
 
                     goBack();
 
@@ -257,7 +268,9 @@ public class ProblemRunner {
 
         serializedPlans.stream()
                 .sorted(Comparator.comparing(f -> NumberUtils.toInt(f.replaceAll("\\D+", ""), 0)))  //sort by plan number
-                .forEach(fileName -> addPlanActionsMenu(domainViewMap.get(getDomain(fileName)), fileName));
+                .forEach(fileName -> {
+                    domainViewMap.get(getDomain(fileName)).forEach(domainView -> addPlanActionsMenu(domainView, fileName));
+                });
 
         mainView.display();
 
@@ -294,61 +307,61 @@ public class ProblemRunner {
     private static class ProblemExecutor {
         private CnfClausesFunction failedClausesCreator;
         private RetryPlanUpdater conflictRetriesModel;
-        private final Map<Integer, Set<Step>> plan;
+        private final Map<Integer, ImmutableList<PlanAction>> plan;
         private CnfClausesFunction conflictClausesCreator = new ConflictNoEffectsCnfClauses();
         private CnfClausesFunction healthyCnfClausesCreator = new HealthyCnfClauses();
         private FinalVariableStateCalc finalVariableStateCalc;
         private List<Action> failedActions;
 
         ProblemExecutor(String problemName, FailedConflictModel failedConflictModel, List<Action> failedActions) throws IOException, URISyntaxException {
-            plan = PlanUtils.loadSerializedPlan("plans/" + problemName);
+            //add agent to preconditions and effects of every action to prevent action collisions in delay failure model
+            this.plan = PlanUtils.loadSerializedPlan("plans/" + problemName);
             this.failedActions = failedActions;
             populateModels(failedConflictModel, plan);
 
         }
 
-        private void populateModels(FailedConflictModel failedConflictModel, Map<Integer, Set<Step>> plan) {
+        private void populateModels(FailedConflictModel failedConflictModel, Map<Integer, ImmutableList<PlanAction>> plan) {
 
             switch (failedConflictModel) {
                 case FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_NO_RETRIES:
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new NoRetriesPlanUpdater();
                     finalVariableStateCalc =
-                            new FinalVariableStateCalcImpl(plan, new NoEffectVariableFailureModel());
+                            new FinalVariableStateCalcImpl(plan, new NoEffectVariableFailureModel(), conflictRetriesModel);
                     break;
                 case FAIL_MODEL_NO_EFFECT_CONFLICT_MODEL_ONE_RETRY:
                     failedClausesCreator = new FailedNoEffectsCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
                     finalVariableStateCalc =
                             new FinalVariableStateCalcImpl(
-                                    conflictRetriesModel.updatePlan(plan).updatedPlan, new NoEffectVariableFailureModel());
+                                    conflictRetriesModel.updatePlan(plan).updatedPlan, new NoEffectVariableFailureModel(), conflictRetriesModel);
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_NO_RETRIES:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new NoRetriesPlanUpdater();
                     finalVariableStateCalc =
-                            new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(1));
+                            new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(1), conflictRetriesModel);
                     break;
                 case FAIL_MODEL_DELAY_ONE_STEP_CONFLICT_MODEL_ONE_RETRY:
                     failedClausesCreator = new FailedDelayOneStepCnfClauses();
                     conflictRetriesModel = new OneRetryPlanUpdater();
                     finalVariableStateCalc =
                             new FinalVariableStateCalcImpl(
-                                    conflictRetriesModel.updatePlan(plan).updatedPlan, new DelayStageVariableFailureModel(1));
+                                    conflictRetriesModel.updatePlan(plan).updatedPlan, new DelayStageVariableFailureModel(1), conflictRetriesModel);
                     break;
             }
         }
 
 
         void execute(Long timeoutMs, DiagnosisFindingStopIndicator stopIndicator) {
-            //add agent to preconditions and effects of every action to prevent action collisions in delay failure model
-            PlanUtils.updatePlanWithAgentDependencies(plan);
 
             List<List<FormattableValue<? extends Formattable>>> hardConstraints =
                     PlanSolvingUtils.createPlanHardConstraints(plan, conflictRetriesModel, healthyCnfClausesCreator,
                             conflictClausesCreator, failedClausesCreator);
             List<FormattableValue<Formattable>> softConstraints = PlanUtils.encodeHealthyClauses(plan);
-            PlanSolvingUtils.calculateSolutions(plan, hardConstraints, softConstraints, finalVariableStateCalc, failedActions,
+            PlanSolvingUtils.calculateSolutions(conflictRetriesModel.updatePlan(plan).updatedPlan, hardConstraints,
+                    softConstraints, finalVariableStateCalc, failedActions,
                     timeoutMs, stopIndicator)
                     .forEach(solution -> System.out.println("Found solution: " + solution));
 

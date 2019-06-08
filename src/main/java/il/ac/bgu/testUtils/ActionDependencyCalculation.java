@@ -1,5 +1,6 @@
 package il.ac.bgu.testUtils;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfCompilation.AgentPOPPrecEffFactory;
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
@@ -7,12 +8,12 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import il.ac.bgu.variableModel.VariableModelFunction;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.math3.util.Combinations;
@@ -43,39 +44,47 @@ public class ActionDependencyCalculation {
         }
     }
 
-    public ActionDependencyCalculation(Map<Integer, Set<Step>> plan,
+    public ActionDependencyCalculation(Map<Integer, ImmutableList<PlanAction>> plan,
                                        List<FormattableValue<? extends Formattable>> normalExecutionFinalState,
                                        VariableModelFunction failureModelFunction,
                                        RetryPlanUpdater conflictRetriesModel) {
         this.normalExecutionFinalState = normalExecutionFinalState;
-        Map<VariableKey, Action> preconditionsToAction = new HashMap<>();
+        Map<VariableKey, Action> effectsToAction = new HashMap<>();
         Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
 
-        finalVariableStateCalc = new FinalVariableStateCalcImpl(
-                conflictRetriesModel.updatePlan(plan).updatedPlan, failureModelFunction);
+        finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, failureModelFunction, conflictRetriesModel);
 
         plan.entrySet().stream()
                 .filter(i -> i.getKey() != -1)
                 .flatMap(entry -> entry.getValue().stream().map(step ->
                         ImmutablePair.of(entry.getKey(), step))).
                 forEach(pair -> {
-                    Action action = Action.of(pair.right, pair.left);
+                    final PlanAction planAction = pair.right;
+                    final Integer stage = pair.left;
+                    Action action = Action.of(planAction, stage);
                     ActionKey actionKey = new ActionKey(action);
                     actionDependencies.computeIfAbsent(actionKey, k -> new HashSet<>());
 
-                    pair.getRight().getPopPrecs().stream()
+                    planAction.getEffects().stream()
                             //remove action dependency (that we added) from action dependency calculation
-                            .filter(prec -> !prec.getFunction().getName().equals(AgentPOPPrecEffFactory.ACTION_NAME))
-                            .forEach(prec -> {
-                                        VariableKey preconditionKey = new VariableKey(Variable.of(prec));
-                                        Action dependentAction = preconditionsToAction.get(preconditionKey);
-                                        if (dependentAction != null && !new ActionKey(dependentAction).equals(actionKey)) {
-                                            //add dependent steps
-                                            actionDependencies.get(actionKey).add(dependentAction);
-                                        }
-                                        preconditionsToAction.put(preconditionKey, action);
+                            .filter(eff -> !eff.getFunctionKey().startsWith(AgentPOPPrecEffFactory.READY))
+                            .forEach(eff -> {
+                                        VariableKey preconditionKey = new VariableKey(eff);
+                                        effectsToAction.put(preconditionKey, action);
                                     }
                             );
+                     planAction.getPreconditions().stream()
+                            //remove action dependency (that we added) from action dependency calculation
+                            .filter(prec -> !prec.getFunctionKey().startsWith(AgentPOPPrecEffFactory.READY))
+                            .forEach(prec -> {
+                                        VariableKey preconditionKey = new VariableKey(prec);
+                                Optional.ofNullable(effectsToAction.get(preconditionKey))
+                                        .filter(conditionAction -> ! new ActionKey(conditionAction).equals(actionKey))  //eliminate self reference
+                                        .ifPresent(conditionAction -> actionDependencies.get(actionKey).add(conditionAction));
+                                    }
+                            );
+
+
                 });
         actionDependencies.keySet().forEach(dependency ->
                 createActionDependenciesFull(actionDependencies, dependency, dependency));
@@ -105,15 +114,15 @@ public class ActionDependencyCalculation {
                                     .map(ActionKey::getAction)
                                     .map(action -> action.toBuilder().state(FAILED).build())
                                     .collect(Collectors.toSet())) : Stream.empty();
-                })
-                .filter(t -> {
-                    if (finalVariableStateCalc.getFinalVariableState(t).containsAll(normalExecutionFinalState)) {
-                        log.info("Filter out action failure candidate {} as it leads to correct state", t);
-                        return false;
-                    }
-                    return true;
-
                 });
+//                .filter(t -> {
+//                    if (finalVariableStateCalc.getFinalVariableState(t).containsAll(normalExecutionFinalState)) {
+//                        log.info("Filter out action failure candidate {} as it leads to correct state", t);
+//                        return false;
+//                    }
+//                    return true;
+//
+//                });
     }
 
     @EqualsAndHashCode(of = "variableKey")

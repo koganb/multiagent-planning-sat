@@ -8,6 +8,7 @@ import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
 import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
 import il.ac.bgu.dataModel.FormattableValue
+import il.ac.bgu.plan.PlanAction
 import il.ac.bgu.sat.SatSolutionSolver
 import il.ac.bgu.sat.SatSolver
 import il.ac.bgu.sat.SolutionIterator
@@ -127,18 +128,16 @@ class TestUtils {
         }
 
         //add agent to preconditions and effects of every action to prevent action collisions in delay failure model
-        PlanUtils.updatePlanWithAgentDependencies(plan)
+        return PlanUtils.updatePlanWithAgentDependencies(plan)
 
-
-        return plan
     }
 
-    def static printPlan(Map<Integer, Set<Step>> plan) {
+    def static printPlan(Map<Integer, List<PlanAction>> plan) {
         plan.entrySet().stream()
                 .filter({ entry -> entry.key != -1 })
                 .forEach({ entry ->
             printf("Step: %s\n", entry.key)
-            entry.value.forEach({ step -> printf("\t%-13s: %s\n", step.agent, step) })
+            entry.value.forEach({ step -> printf("\t%-13s: %s\n", step.agentName, step) })
         })
     }
 
@@ -160,7 +159,7 @@ class TestUtils {
     }
 
 
-    def static createPlanHardConstraints(Map<Integer, Set<Step>> plan,
+    def static createPlanHardConstraints(Map<Integer, ImmutableList<PlanAction>> plan,
                                          RetryPlanUpdater retryPlanUpdater,
                                          CnfClausesFunction healthyCnfClausesCreator,
                                          CnfClausesFunction conflictCnfClausesCreator,
@@ -170,10 +169,10 @@ class TestUtils {
         CnfCompilation cnfCompilation = new CnfCompilation(plan, retryPlanUpdater, healthyCnfClausesCreator,
                 conflictCnfClausesCreator, failedCnfClausesCreator);
 
-        final def hardContraints = Tuple1.of(StreamEx.<List<FormattableValue<Formattable>>> of()
+        final def hardContraints = StreamEx.<List<FormattableValue<Formattable>>> of()
                 .append(cnfCompilation.compileToCnf())
                 .append(PlanSolvingUtils.calcInitFacts(plan).collect { f -> ImmutableList.of(f) })
-                .collect(ImmutableList.toImmutableList()))
+                .collect(ImmutableList.toImmutableList())
 
         return hardContraints
 
@@ -192,7 +191,7 @@ class TestUtils {
             log.info(getMarker("STATS"), "    number_of_agents: {}",
                     plan.values().stream()
                             .flatMap { v -> v.stream() }
-                            .map { v -> v.getAgent() }
+                            .map { v -> v.getAgentName() }
                             .filter { v -> v != null }
                             .distinct()
                             .count())

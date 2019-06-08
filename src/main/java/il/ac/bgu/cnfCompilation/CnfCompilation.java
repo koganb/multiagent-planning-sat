@@ -7,10 +7,10 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import il.ac.bgu.utils.PlanSolvingUtils;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class CnfCompilation {
 
 
     private Map<String, List<Variable>> variableStateMap;
-    private Map<Integer, Set<Step>> plan;
+    private Map<Integer, ImmutableList<PlanAction>> plan;
 
 
     private CnfClausesFunction healthyCnfClausesCreator;
@@ -41,7 +41,7 @@ public class CnfCompilation {
     private CnfClausesFunction conflictCnfClausesCreator;
 
 
-    public CnfCompilation(Map<Integer, Set<Step>> plan,
+    public CnfCompilation(Map<Integer, ImmutableList<PlanAction>> plan,
                           RetryPlanUpdater retryPlanUpdater,
                           CnfClausesFunction healthyCnfClausesCreator,
                           CnfClausesFunction conflictCnfClausesCreator,
@@ -53,10 +53,7 @@ public class CnfCompilation {
 
 
         //update plans with retries - if configured
-        RetryPlanUpdater.RetriesPlanCreatorResult retriesPlanCreatorResult = retryPlanUpdater.updatePlan(plan);
-
-        this.plan = retriesPlanCreatorResult.updatedPlan;
-
+        this.plan = retryPlanUpdater.updatePlan(plan).updatedPlan;
         variableStateMap = PlanSolvingUtils.calcInitFacts(plan).stream()
                 .map(v -> v.getFormattable().toBuilder().stage(null).build())
                 .collect(Collectors.groupingBy(Variable::formatFunctionKey,
@@ -67,13 +64,13 @@ public class CnfCompilation {
     }
 
 
-    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculatePassThroughClauses(Integer stage, Set<Step> actions) {
+    Stream<ImmutableList<FormattableValue<? extends Formattable>>> calculatePassThroughClauses(Integer stage, List<PlanAction> actions) {
         //calculate "pass through" variables
 
         //get prec & effects keys for stage actions
         Set<String> precAndEffectKeys = actions.stream()
-                .flatMap(k -> Stream.concat(k.getPopPrecs().stream(), k.getPopEffs().stream()))
-                .map(precEff -> Variable.of(precEff).formatFunctionKey())
+                .flatMap(k -> Stream.concat(k.getPreconditions().stream(), k.getEffects().stream()))
+                .map(Variable::formatFunctionKey)
                 .collect(toSet());
 
         log.debug("Start pass through...");
@@ -128,7 +125,7 @@ public class CnfCompilation {
                 this.conflictCnfClausesCreator.apply(stage, step, this.variableStateMap));
     }
 
-    private Stream<ImmutableList<FormattableValue<? extends Formattable>>> addActionStatusConstraints(Integer stage, Set<Step> steps) {
+    private Stream<ImmutableList<FormattableValue<? extends Formattable>>> addActionStatusConstraints(Integer stage, List<PlanAction> steps) {
 
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> resultClausesStream = steps.stream()
                 .flatMap(step ->
@@ -175,7 +172,7 @@ public class CnfCompilation {
     }
 
 
-    private Stream<? extends List<FormattableValue<? extends Formattable>>> apply(Map.Entry<Integer, Set<Step>> entry) {
+    private Stream<? extends List<FormattableValue<? extends Formattable>>> apply(Map.Entry<Integer, ImmutableList<PlanAction>> entry) {
         return StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                 .append(addActionStatusConstraints(entry.getKey(), entry.getValue()))
                 .append(calculatePassThroughClauses(entry.getKey(), entry.getValue()))

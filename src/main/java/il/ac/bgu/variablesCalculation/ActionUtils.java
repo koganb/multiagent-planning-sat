@@ -4,17 +4,15 @@ import com.google.common.collect.ImmutableList;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import il.ac.bgu.variableModel.VariableModelFunction;
 import lombok.extern.slf4j.Slf4j;
-import org.agreement_technologies.common.map_planner.Step;
-import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static il.ac.bgu.dataModel.Action.State.CONDITIONS_NOT_MET;
@@ -31,7 +29,7 @@ import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 public class ActionUtils {
 
     static ImmutablePair<Action.State, List<FormattableValue<Variable>>> executeAction(
-            Step action,
+            PlanAction action,
             Integer stage,
             Boolean isFailed,
             VariableModelFunction failureModelFunction,
@@ -45,13 +43,13 @@ public class ActionUtils {
 
         Action.State actionState;
 
-        if (!checkPreconditionsValidity(action.getPopPrecs(), prevStageVariableState) ||
-                !checkEffectsValidity(action.getPopEffs(), prevStageVariableState)) {
+        if (!checkPreconditionsValidity(action.getPreconditions(), prevStageVariableState) ||
+                !checkEffectsValidity(action.getEffects(), prevStageVariableState)) {
 
             actionState = CONDITIONS_NOT_MET;
             //preconditions are not valid or effects are locked
-            for (POPPrecEff eff : action.getPopEffs()) {
-                newVariablesState = conflictModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
+            for (Variable eff : action.getEffects()) {
+                newVariablesState = conflictModelFunction.apply(eff, stage, newVariablesState, EFFECT)
                         .collect(ImmutableList.toImmutableList());
             }
 
@@ -59,19 +57,19 @@ public class ActionUtils {
             //step is failed and effects are not locked
             actionState = FAILED;
 
-            for (POPPrecEff prec : action.getPopPrecs()) {
-                newVariablesState = failureModelFunction.apply(Variable.of(prec), stage, newVariablesState, PRECONDITION)
+            for (Variable prec : action.getPreconditions()) {
+                newVariablesState = failureModelFunction.apply(prec, stage, newVariablesState, PRECONDITION)
                         .collect(ImmutableList.toImmutableList());
             }
 
-            for (POPPrecEff eff : action.getPopEffs()) {
-                newVariablesState = failureModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
+            for (Variable eff : action.getEffects()) {
+                newVariablesState = failureModelFunction.apply(eff, stage, newVariablesState, EFFECT)
                         .collect(ImmutableList.toImmutableList());
             }
         } else {
             actionState = Action.State.HEALTHY;
-            for (POPPrecEff eff : action.getPopEffs()) {
-                newVariablesState = successModelFunction.apply(Variable.of(eff), stage, newVariablesState, EFFECT)
+            for (Variable eff : action.getEffects()) {
+                newVariablesState = successModelFunction.apply(eff, stage, newVariablesState, EFFECT)
                         .collect(ImmutableList.toImmutableList());
             }
 
@@ -81,38 +79,37 @@ public class ActionUtils {
     }
 
 
-    private static boolean checkPreconditionsValidity(List<POPPrecEff> preconditions,
+    private static boolean checkPreconditionsValidity(List<Variable> preconditions,
                                                       List<FormattableValue<Variable>> stageVars) {
 
         //check preconditions are true
-        return
-                preconditions.stream()
-                        .allMatch(prec -> stageVars.stream()
-                                .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
-                                        Variable.of(prec).formatFunctionKeyWithValue()) && var.getValue()))
-                        &&
-                        preconditions.stream()
-                                .noneMatch(prec -> stageVars.stream()
-                                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
-                                                Variable.of(prec).toBuilder().functionValue(FREEZED.name()).build().formatFunctionKeyWithValue())
-                                                && var.getValue()));
+        boolean preconditionsValid = preconditions.stream()
+                .allMatch(prec -> stageVars.stream()
+                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+                                prec.formatFunctionKeyWithValue()) && var.getValue()));
+        boolean preconditionsNotFreezed = preconditions.stream()
+                .noneMatch(prec -> stageVars.stream()
+                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+                                prec.toBuilder().functionValue(FREEZED.name()).build().formatFunctionKeyWithValue())
+                                && var.getValue()));
+        return preconditionsValid && preconditionsNotFreezed;
 
     }
 
 
-    private static boolean checkEffectsValidity(List<POPPrecEff> effects, List<FormattableValue<Variable>> stageVars) {
+    private static boolean checkEffectsValidity(List<Variable> effects, List<FormattableValue<Variable>> stageVars) {
         //check effects are not locked
         return effects.stream()
                 .noneMatch(eff -> stageVars.stream()
                         .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
-                                Variable.of(eff).toBuilder()
+                                eff.toBuilder()
                                         .functionValue(LOCKED_FOR_UPDATE.name()).build().formatFunctionKeyWithValue()) &&
                                 var.getValue()
                         ));
     }
 
 
-    static public boolean checkPlanContainsFailedActions(Map<Integer, Set<Step>> plan, Collection<Action> failedActions) {
+    static public boolean checkPlanContainsFailedActions(Map<Integer, List<PlanAction>> plan, Collection<Action> failedActions) {
 
         Collection<Action> allPlanActions = plan.entrySet().stream()
                 .flatMap(entry -> entry.getValue().stream()

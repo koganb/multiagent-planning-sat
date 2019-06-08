@@ -8,9 +8,9 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -32,15 +32,15 @@ public class FailedNoEffectsCnfClauses implements CnfClausesFunction, NamedModel
 
 
     @Override
-    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step, Map<String, List<Variable>> variableStateMap) {
+    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, PlanAction step, Map<String, List<Variable>> variableStateMap) {
         log.debug("Start failed clause");
 
         ImmutableList<FormattableValue<Formattable>> preconditionList =
                 Stream.concat(
-                        step.getPopPrecs().stream()
+                        step.getPreconditions().stream()
                                 .map(actionPrec -> FormattableValue.<Formattable>of(
                                         Variable.of(actionPrec, currentStage), false)),
-                        step.getPopEffs().stream()
+                        step.getEffects().stream()
                                 .flatMap(actionEff ->
                                         StreamEx.<FormattableValue<Formattable>>of()
                                                 .append(FormattableValue.of(
@@ -53,8 +53,7 @@ public class FailedNoEffectsCnfClauses implements CnfClausesFunction, NamedModel
 
 
         Stream<List<FormattableValue<? extends Formattable>>> effectStream =
-                Stream.concat(step.getPopPrecs().stream(), step.getPopEffs().stream())
-                        .map(Variable::of)
+                Stream.concat(step.getPreconditions().stream(), step.getEffects().stream())
                         .flatMap(variable ->
                                 CnfClausesUtils.applyPassThrough(variable, variableStateMap, currentStage, currentStage + 1));
 

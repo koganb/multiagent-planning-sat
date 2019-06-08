@@ -4,12 +4,11 @@ import com.google.common.collect.ImmutableList;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
-import org.agreement_technologies.common.map_planner.Step;
+import il.ac.bgu.plan.PlanAction;
 import org.paukov.combinatorics3.Generator;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.FAILED;
@@ -19,9 +18,9 @@ import static il.ac.bgu.dataModel.Action.State.FAILED;
  */
 public class MaxFailureConstraintsCreator {
 
-    private final Map<Integer, Set<Step>> plan;
+    private final Map<Integer, ImmutableList<PlanAction>> plan;
 
-    public MaxFailureConstraintsCreator(Map<Integer, Set<Step>> plan) {
+    public MaxFailureConstraintsCreator(Map<Integer, ImmutableList<PlanAction>> plan) {
         this.plan = plan;
     }
 

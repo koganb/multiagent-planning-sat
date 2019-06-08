@@ -8,9 +8,9 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -36,16 +36,16 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
 
 
     @Override
-    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step, Map<String,
+    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, PlanAction step, Map<String,
             List<Variable>> variableStateMap) {
         log.debug("Start failed clause");
 
         ImmutableList<FormattableValue<Formattable>> preconditionList =
                 Stream.concat(
-                        step.getPopPrecs().stream()
+                        step.getPreconditions().stream()
                                 .map(actionPrec -> FormattableValue.<Formattable>of(
                                         Variable.of(actionPrec, currentStage), false)),
-                        step.getPopEffs().stream()
+                        step.getEffects().stream()
                                 .flatMap(actionEff ->
                                         StreamEx.<FormattableValue<Formattable>>of()
                                                 .append(FormattableValue.of(
@@ -57,16 +57,16 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
                 ).collect(ImmutableList.toImmutableList());
 
 
-        Set<String> actionEffKeys = step.getPopEffs().stream()
-                .map(eff -> Variable.of(eff).formatFunctionKey())
+        Set<String> actionEffKeys = step.getEffects().stream()
+                .map(Variable::formatFunctionKey)
                 .collect(Collectors.toSet());
 
 
         Stream<List<FormattableValue<? extends Formattable>>> effectStream =
-                Stream.concat(step.getPopPrecs().stream().map(Variable::of)
+                Stream.concat(step.getPreconditions().stream()
                                 .filter(variable ->
                                         !actionEffKeys.contains(variable.formatFunctionKey())),
-                        step.getPopEffs().stream().map(Variable::of))
+                        step.getEffects().stream())
                         .flatMap(variable ->
                                 StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                                         .append(IntStream.rangeClosed(currentStage + 1, currentStage + STAGE_DELAYED_NUM).boxed()

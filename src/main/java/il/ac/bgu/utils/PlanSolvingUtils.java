@@ -1,7 +1,6 @@
 package il.ac.bgu.utils;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction;
 import il.ac.bgu.cnfCompilation.CnfCompilation;
@@ -10,12 +9,13 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import il.ac.bgu.sat.DiagnosisFindingStopIndicator;
 import il.ac.bgu.sat.SolutionIterator;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
+import io.vavr.control.Either;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.collections4.ListUtils;
 
 import java.time.Duration;
@@ -39,8 +39,8 @@ public class PlanSolvingUtils {
     public static final int INITIAL_STAGE = 0;
 
 
-    public static Stream<List<? extends Formattable>> calculateSolutions(
-            Map<Integer, Set<Step>> plan,
+    public static List<Either<Throwable, List<? extends Formattable>>> calculateSolutions(
+            Map<Integer, ImmutableList<PlanAction>> plan,
             List<List<FormattableValue<? extends Formattable>>> hardConstraints,
             List<FormattableValue<Formattable>> softConstraints,
             FinalVariableStateCalc finalVariableStateCalc,
@@ -72,19 +72,18 @@ public class PlanSolvingUtils {
                 satTimeoutMils, stopIndicator);
 
         log.info(getMarker("STATS"), "    sat_solving_mils:");
-        List<List<? extends Formattable>> results;
-        try {
-            results = Streams.stream(solutionIterator)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .collect(Collectors.toList());
-        } catch (OutOfMemoryError e) {
-            log.info(getMarker("STATS"), "    out_of_memory: true");
-            results = Lists.newArrayList();
-        }
+        List<Either<Throwable, List<? extends Formattable>>> results =
+                Streams.stream(solutionIterator)
+                        .filter(t -> t.isLeft() || (t.isRight() && t.get().isPresent()))
+                        .map(t -> {
+                            Either.RightProjection<Throwable, List<? extends Formattable>> res = t.right().map(Optional::get);
+                            return res.toEither();
+                        })
+                        .collect(Collectors.toList());
 
-        results.forEach(solution -> {
-                    log.info("Solution candidate: {}", solution);
+
+        results.stream().filter(Either::isRight).map(Either::get).forEach(solution -> {
+             log.info("Solution candidate: {}", solution);
 
                     List<FormattableValue<? extends Formattable>> solutionFinalVariablesState = finalVariableStateCalc.getFinalVariableState(solution);
 
@@ -97,11 +96,11 @@ public class PlanSolvingUtils {
                 }
         );
 
-        return results.stream();
+        return results;
     }
 
 
-    public static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, Set<Step>> plan,
+    public static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, ImmutableList<PlanAction>> plan,
                                                                                                 RetryPlanUpdater retryPlanUpdater,
                                                                                                 CnfClausesFunction healthyCnfClausesCreator,
                                                                                                 CnfClausesFunction conflictCnfClausesCreator,
@@ -122,22 +121,22 @@ public class PlanSolvingUtils {
 
     }
 
-    public static List<FormattableValue<Variable>> calcInitFacts(Map<Integer, Set<Step>> plan) {
+    public static List<FormattableValue<Variable>> calcInitFacts(Map<Integer, ImmutableList<PlanAction>> plan) {
 
         //true facts added at initial stage
         Map<String, FormattableValue<Variable>> initStageVars = plan.entrySet().stream()
                 .filter(i -> i.getKey() == -1)
                 .flatMap(t -> t.getValue().stream())
-                .flatMap(t -> t.getPopEffs().stream())
-                .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), true))
+                .flatMap(t -> t.getEffects().stream())
+                .map(eff -> FormattableValue.of(Variable.of(eff,INITIAL_STAGE), true))
                 .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity()));
 
         //action effects that are not true at initial stage
         Map<String, FormattableValue<Variable>> allStageVars = plan.entrySet().stream()
                 .filter(i -> i.getKey() != -1)
                 .flatMap(t -> t.getValue().stream())
-                .flatMap(t -> t.getPopEffs().stream())
-                .filter(eff -> !initStageVars.keySet().contains(Variable.of(eff).formatFunctionKeyWithValue()))
+                .flatMap(t -> t.getEffects().stream())
+                .filter(eff -> !initStageVars.keySet().contains(eff.formatFunctionKeyWithValue()))
                 .map(eff -> FormattableValue.of(Variable.of(eff, INITIAL_STAGE), false))
                 .collect(Collectors.toMap(p -> p.getFormattable().formatFunctionKeyWithValue(), Function.identity(), (a, b) -> a));
 

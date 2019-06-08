@@ -7,9 +7,9 @@ import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
 import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
-import org.agreement_technologies.common.map_planner.Step;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
 
 
     @Override
-    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, Step step, Map<String, List<Variable>> variableStateMap) {
+    public Stream<List<FormattableValue<? extends Formattable>>> apply(Integer currentStage, PlanAction step, Map<String, List<Variable>> variableStateMap) {
 
         log.debug("Start conditions not met clause");
 
@@ -40,24 +40,24 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
 
                 StreamEx.<FormattableValue<Formattable>>of()
                         .append(Stream.of(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), false)))
-                        .append(step.getPopPrecs().stream().map(actionPrec ->
-                                FormattableValue.of(Variable.of(actionPrec, currentStage), false)))
-                        .append(step.getPopEffs().stream().map(actionEff ->
+                        .append(step.getPreconditions().stream().map(actionPrec ->
+                                FormattableValue.of(Variable.of(actionPrec , currentStage), false)))
+                        .append(step.getEffects().stream().map(actionEff ->
                                 FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)))
-                        .append(step.getPopEffs().stream().map(actionEff ->
+                        .append(step.getEffects().stream().map(actionEff ->
                                 FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true)))
                         .collect(ImmutableList.toImmutableList()));
 
 
         // not(prec1) v not(prec2) -> CONDITIONS_NOT_MET => (prec1 v CONDITIONS_NOT_MET) ^  (prec2 v CONDITIONS_NOT_MET)
-        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses2 = step.getPopPrecs().stream()
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses2 = step.getPreconditions().stream()
                 .map(actionPrec ->
                         ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                 .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                 .add(FormattableValue.of(Variable.of(actionPrec, currentStage), true))
                                 .build());
         // (eff1=LOCKED_FOR_UPDATE) v (eff2=LOCKED_FOR_UPDATE) -> CONDITIONS_NOT_MET => (not eff1=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET) ^  (not eff2=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET)
-        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses3 = step.getPopEffs().stream()
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses3 = step.getEffects().stream()
                 .flatMap(actionPrec ->
                         Stream.of(
                                 ImmutableList.<FormattableValue<? extends Formattable>>builder()
@@ -72,17 +72,16 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                         ));
 
 
-        Set<String> actionEffKeys = step.getPopEffs().stream()
-                .map(eff -> Variable.of(eff).formatFunctionKey())
+        Set<String> actionEffKeys = step.getEffects().stream()
+                .map(Variable::formatFunctionKey)
                 .collect(Collectors.toSet());
 
 
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> effectClauses =
                 Stream.concat(
-                        step.getPopPrecs().stream()
-                                .map(Variable::of)
+                        step.getPreconditions().stream()
                                 .filter(v -> !actionEffKeys.contains(v.formatFunctionKey())),
-                        step.getPopEffs().stream().map(Variable::of)).
+                        step.getEffects().stream()).
                         flatMap(v -> variableStateMap.get(v.formatFunctionKey()).stream()
                                         .flatMap(stateVar -> {
                                             if (Objects.equals(stateVar.getValue(), LOCKED_FOR_UPDATE.name())) {

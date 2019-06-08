@@ -9,16 +9,21 @@ import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
+import il.ac.bgu.dataModel.Variable;
+import il.ac.bgu.plan.PlanAction;
 import lombok.extern.slf4j.Slf4j;
 import one.util.streamex.StreamEx;
 import org.agreement_technologies.common.map_planner.Step;
-import org.agreement_technologies.service.map_planner.POPPrecEff;
 import org.apache.commons.lang3.SerializationUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.HEALTHY;
+import static il.ac.bgu.plan.PlanAction.StepType.NORMAL;
 
 /**
  * Created by borisk on 11/26/2018.
@@ -27,7 +32,7 @@ import static il.ac.bgu.dataModel.Action.State.HEALTHY;
 @Slf4j
 public class PlanUtils {
 
-    public static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, Set<Step>> plan,
+    public static List<List<FormattableValue<? extends Formattable>>> createPlanHardConstraints(Map<Integer, ImmutableList<PlanAction>> plan,
                                                                                                 RetryPlanUpdater retryPlanUpdater,
                                                                                                 CnfClausesFunction healthyCnfClausesCreator,
                                                                                                 CnfClausesFunction conflictCnfClausesCreator,
@@ -43,32 +48,48 @@ public class PlanUtils {
     }
 
 
-    public static void updatePlanWithAgentDependencies(Map<Integer, Set<Step>> plan) {
-
+    public static Map<Integer, ImmutableList<PlanAction>> updatePlanWithAgentDependencies(Map<Integer, ImmutableList<PlanAction>> plan) {
         ImmutableSet<String> agentNames = plan.values().stream().flatMap(Collection::stream)
-                .filter(step -> step.getAgent() != null)
-                .map(Step::getAgent)
+                .filter(step -> step.getAgentName() != null)
+                .map(PlanAction::getAgentName)
                 .collect(ImmutableSet.toImmutableSet());
 
-
         //add dependency on agent for precondition and effect
-        plan.forEach((index, steps) -> steps.forEach(step -> {
-                    if (Objects.equals(step.getActionName(), "Initial")) {
-                        agentNames.stream()
-                                .map(AgentPOPPrecEffFactory::createConditionOnAgent)
-                                .forEach(cond -> step.getPopEffs().add(cond));
-                    } else {
-                        POPPrecEff agentCondition = AgentPOPPrecEffFactory.createConditionOnAgent(step.getAgent());
-                        step.getPopPrecs().add(agentCondition);
-                        step.getPopEffs().add(agentCondition);
-                    }
-                }
-        ));
+        return plan.entrySet().stream().map(entry -> {
+            ImmutableList<PlanAction> steps = entry.getValue().stream().map(step -> {
+                if (Objects.equals(step.getActionName(), "Initial")) {
 
+                    ImmutableList<Variable> updatedEffects = new ImmutableList.Builder<Variable>()
+                            .addAll(step.getEffects())
+                            .addAll(agentNames.stream()
+                                    .map(AgentPOPPrecEffFactory::createConditionOnAgent).iterator())
+                            .build();
+                    return new PlanAction(step.getAgentName(), step.getIndex(), step.getActionName(), NORMAL,
+                            step.getPreconditions(), updatedEffects);
+
+                }
+                else {
+                    Variable agentCondition = AgentPOPPrecEffFactory.createConditionOnAgent(step.getAgentName());
+
+                    ImmutableList<Variable> updatedPreconditions = new ImmutableList.Builder<Variable>()
+                            .addAll(step.getPreconditions())
+                            .add(agentCondition)
+                            .build();
+                    ImmutableList<Variable> updatedEffects = new ImmutableList.Builder<Variable>()
+                            .addAll(step.getEffects())
+                            .add(agentCondition)
+                            .build();
+
+                    return new PlanAction(step.getAgentName(), step.getIndex(), step.getActionName(), NORMAL,
+                            updatedPreconditions, updatedEffects);
+                }
+            }).collect(ImmutableList.toImmutableList());
+            return ImmutablePair.of(entry.getKey(), steps);
+        }).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
     }
 
 
-    public static List<FormattableValue<Formattable>> encodeHealthyClauses(Map<Integer, Set<Step>> plan) {
+    public static List<FormattableValue<Formattable>> encodeHealthyClauses(Map<Integer, ImmutableList<PlanAction>> plan) {
 
         ImmutableList<FormattableValue<Formattable>> healthyClauses =
 
@@ -84,11 +105,25 @@ public class PlanUtils {
         return healthyClauses;
     }
 
-
-    public static Map<Integer, Set<Step>> loadSerializedPlan(String planPath) {
+    public static Map<Integer, ImmutableList<PlanAction>> loadSerializedPlan(String planPath) {
         log.info("Start loading plan {}", planPath);
-        return SerializationUtils.deserialize(PlanUtils.class.getClassLoader().getResourceAsStream(planPath));
-    }
+        Map<Integer, Set<Step>> deserializedPlan = SerializationUtils.deserialize(
+                PlanUtils.class.getClassLoader().getResourceAsStream(planPath));
+        Map<Integer, ImmutableList<PlanAction>> plan = deserializedPlan.entrySet().stream().
+                map(entry -> ImmutablePair.of(
+                        entry.getKey(),
+                        entry.getValue().stream().map(step -> new PlanAction(
+                                step.getAgent(),
+                                entry.getKey(),
+                                step.getActionName(),
+                                NORMAL,
+                                step.getPopPrecs().stream().map(Variable::of).collect(ImmutableList.toImmutableList()),
+                                step.getPopEffs().stream().map(Variable::of).collect(ImmutableList.toImmutableList())
 
+                        )).collect(ImmutableList.toImmutableList()))).
+                collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+
+        return PlanUtils.updatePlanWithAgentDependencies(plan);
+    }
 
 }

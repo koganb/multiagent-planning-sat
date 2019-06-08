@@ -1,0 +1,16 @@
+action_cardinality: 3
+problem_name: satellite20.problem
+plan_steps_number: 78
+plan_actions_number: 102
+plan_agent_number: 4
+test_actions:
+  - action_set:
+      - agent: satellite1
+        stage: 16
+        action_name: take_image satellite1 planet18 instrument11 thermograph7
+      - agent: satellite1
+        stage: 29
+        action_name: turn_to satellite1 star6 star10
+      - agent: satellite4
+        stage: 1
+        action_name: switch_on instrument28 satellite4

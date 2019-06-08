@@ -1,19 +1,26 @@
 package il.ac.bgu
 
+import com.google.common.collect.ImmutableList
 import il.ac.bgu.cnfClausesModel.CnfClausesFunction
 import il.ac.bgu.cnfClausesModel.conflict.ConflictNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.failed.FailedNoEffectsCnfClauses
 import il.ac.bgu.cnfClausesModel.healthy.HealthyCnfClauses
+import il.ac.bgu.cnfCompilation.retries.NoRetriesPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.OneRetryPlanUpdater
 import il.ac.bgu.cnfCompilation.retries.RetryPlanUpdater
+import il.ac.bgu.dataModel.Action
 import il.ac.bgu.dataModel.Formattable
+import il.ac.bgu.dataModel.FormattableValue
+import il.ac.bgu.plan.PlanAction
 import il.ac.bgu.sat.DiagnosisFindingStopIndicator
 import il.ac.bgu.testUtils.ActionDependencyCalculation
+import il.ac.bgu.testUtils.PreparedTestActionReader
 import il.ac.bgu.utils.PlanSolvingUtils
 import il.ac.bgu.utils.PlanUtils
 import il.ac.bgu.variableModel.NoEffectVariableFailureModel
 import il.ac.bgu.variablesCalculation.ActionUtils
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl
+import io.vavr.control.Either
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.slf4j.MarkerFactory
@@ -35,11 +42,21 @@ class TestNoEffectsFailureModelWithRetries extends Specification {
 
     static {
         System.properties.'TEST_NAME' = 'NoEffectsFailureModel_OneRetry'
-        log = LoggerFactory.getLogger(TestDelayFailureModelNoRetries.class)
+        log = LoggerFactory.getLogger(TestNoEffectsFailureModelWithRetries.class)
     }
 
     @Shared
     def maxFailedActionsNumArr = [1, 2, 3, 4, 5]
+
+    @Shared
+    def problemArr = [
+            "deports11",
+            "deports19",
+            "elevator23",
+            "elevator24",
+            "elevator30",
+//            "satellite20",
+    ]
 
     public static final long SAT_TIMEOUT = 300L
     public static final DiagnosisFindingStopIndicator SOLUTION_STOP_IND =
@@ -47,21 +64,7 @@ class TestNoEffectsFailureModelWithRetries extends Specification {
 
 
     @Shared
-    def problemArr = [
-            new Problem("elevator28.problem"),
-            new Problem("elevator29.problem"),
-            new Problem("elevator30.problem"),
-            new Problem("satellite14.problem"),
-            new Problem("satellite15.problem"),
-            //new Problem("satellite20.problem"),
-            new Problem("deports13.problem"),
-            new Problem("deports17.problem"),
-            new Problem("deports19.problem"),
-    ]
-
-
-    @Shared
-    def planArr = problemArr.collect { TestUtils.loadPlan(it.problemName) }
+    def planArr = problemArr.collect { PlanUtils.loadSerializedPlan("plans/${it}.problem.ser") }
 
     @Shared
     def planClausesCreationTime = [:]
@@ -85,18 +88,15 @@ class TestNoEffectsFailureModelWithRetries extends Specification {
         def constraints = TestUtils.createPlanHardConstraints(tuple[1], conflictRetriesModel, healthyCnfClausesCreator,
                 conflictClausesCreator, failedClausesCreator)
 
-        planClausesCreationTime[tuple[0].problemName] = Duration.between(start, Instant.now()).toMillis()
+        planClausesCreationTime[tuple[0]] = Duration.between(start, Instant.now()).toMillis()
 
         return constraints;
     }
 
-    @Shared
-    //final variables state if no errors - to filter out failed actions that lead to 'normal' final state
-    def normalFinalStateArr = planArr.collect { plan -> new FinalVariableStateCalcImpl(plan, null).getFinalVariableState([]) }
-
 
     def "test diagnostics calculation for plan: #problemName, failures: #failedActions "(
-            problemName, plan, cnfPlanClauses, failedActions) {
+            problemName, Map<Integer, ImmutableList<PlanAction>> plan,
+            List<List<FormattableValue<? extends Formattable>>> cnfPlanClauses, List<Action> failedActions) {
         setup:
 
         TestUtils.createStatsLogging(problemName, plan, planClausesCreationTime, failedActions, cnfPlanClauses,
@@ -105,26 +105,27 @@ class TestNoEffectsFailureModelWithRetries extends Specification {
 
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
-        def finalVariableStateCalc = new FinalVariableStateCalcImpl(
-                conflictRetriesModel.updatePlan(plan).updatedPlan, new NoEffectVariableFailureModel())
 
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new NoEffectVariableFailureModel(), conflictRetriesModel)
 
         expect:
-        List<List<Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses,
+        List<List<? extends Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses,
                 PlanUtils.encodeHealthyClauses(plan), finalVariableStateCalc, failedActions, SAT_TIMEOUT, SOLUTION_STOP_IND)
-                .filter { solution -> !solution.isEmpty() }
-                .collect(Collectors.toList())
+                .stream().map { t -> t.flatten() }
+                .filter {t -> !t.isEmpty() }.collect(Collectors.toList())
 
 
         log.info(MarkerFactory.getMarker("STATS"), "  solution: ")
         log.info(MarkerFactory.getMarker("STATS"), "    number_of_solutions: {}", solutions.size())
 
-        def foundSolution = solutions.stream().filter { solution ->
+        assert solutions.size() > 0
+
+        def foundSolution = solutions.stream()
+                .filter { solution ->
             failedActions.stream()
                     .map { t -> t.toBuilder().state(FAILED).build() }
                     .collect(Collectors.toSet()).containsAll(solution)
-        }
-        .findFirst()
+        }.findFirst()
         assert foundSolution.isPresent()
 
         log.info(MarkerFactory.getMarker("STATS"), "    solution_index: {}", solutions.indexOf(foundSolution.get()))
@@ -132,30 +133,18 @@ class TestNoEffectsFailureModelWithRetries extends Specification {
 
 
         where:
-        [problemName, plan, cnfPlanClauses, failedActions] << [
-                problemArr,
-                planArr,
-                cnfPlanClausesArr,
-                [planArr, normalFinalStateArr].transpose().collect { tuple ->
-                    new ActionDependencyCalculation(tuple[0], tuple[1], new NoEffectVariableFailureModel(), conflictRetriesModel).getIndependentActionsList(
-                            maxFailedActionsNumArr)
+        [problemName, plan, cnfPlanClauses, failedActions] <<
+                [[problemArr, planArr, cnfPlanClausesArr].transpose(), [1, 2, 3, 4]]
+                        .combinations()
+                        .collect { [it[0][0], it[0][1], it[0][2], it[1]] }
+                        .collect {
+                    [it, PreparedTestActionReader.getTestActions(it[0], it[3], "NoEffectsFailureModelWithRetriesParams")]
                 }
-        ]
-                .transpose()
-                .collectNested {
-            [it]
-        }
-        .collect { it.combinations() }
-                .collectMany { it }
                 .collect {
-            res -> [res[0], res[1], res[2].get(), res[3][0].get()]
-        }
-        .findAll {
-            res -> res[3].intersect(res[0].ignoreFailedActions).size() == 0
-        }
-        .collect {
-            res -> [res[0].problemName, res[1], res[2], res[3]]
-        }
+                    [new Tuple(it[0][0]), new Tuple(it[0][1]), new Tuple(it[0][2]), it[1]].combinations()
+                }.collectMany { it }
+                        .collect { [it[0], it[1], it[2], it[3].collect { Action.of(it, Action.State.FAILED) }] }
+
     }
 
 }

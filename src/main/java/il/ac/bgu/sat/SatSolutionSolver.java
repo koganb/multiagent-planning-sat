@@ -27,7 +27,7 @@ public class SatSolutionSolver implements SatSolutionSolverInter {
 
     public SatSolutionSolver(long timeoutMs) {
         this.solver = new WeightedMaxSatDecorator(SolverFactory.newDefault());
-        solver.setTimeoutMs(timeoutMs);
+        //solver.setTimeoutMs(timeoutMs);
     }
 
     @Override

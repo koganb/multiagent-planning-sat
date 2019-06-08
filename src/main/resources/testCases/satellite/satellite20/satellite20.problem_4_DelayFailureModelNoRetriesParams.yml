@@ -1,0 +1,266 @@
+action_cardinality: 4
+problem_name: satellite20.problem
+plan_steps_number: 78
+plan_actions_number: 102
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 52
+    action_name: turn_to satellite1 planet7 planet22
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 52
+    action_name: turn_to satellite1 planet7 planet22
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 52
+    action_name: turn_to satellite1 planet7 planet22
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4

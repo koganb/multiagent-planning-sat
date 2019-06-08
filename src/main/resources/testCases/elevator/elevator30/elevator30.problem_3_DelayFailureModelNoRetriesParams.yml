@@ -1,0 +1,206 @@
+action_cardinality: 3
+problem_name: elevator30.problem
+plan_steps_number: 13
+plan_actions_number: 38
+plan_agent_number: 6
+test_actions:
+- action_set:
+  - agent: slow2-0
+    stage: 8
+    action_name: leave p6 slow2-0 n8 n2 n1
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast0
+    stage: 4
+    action_name: board p0 fast0 n4 n0 n1
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: slow0-0
+    stage: 0
+    action_name: move-up-slow slow0-0 n2 n3
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: slow2-0
+    stage: 8
+    action_name: leave p6 slow2-0 n8 n2 n1
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: fast0
+    stage: 4
+    action_name: board p0 fast0 n4 n0 n1
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: slow0-0
+    stage: 0
+    action_name: move-up-slow slow0-0 n2 n3
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: slow2-0
+    stage: 9
+    action_name: move-up-slow slow2-0 n8 n11
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: slow2-0
+    stage: 9
+    action_name: move-up-slow slow2-0 n8 n11
+- action_set:
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: fast0
+    stage: 9
+    action_name: board p6 fast0 n8 n0 n1
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: fast0
+    stage: 9
+    action_name: board p6 fast0 n8 n0 n1
+- action_set:
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: fast0
+    stage: 9
+    action_name: board p6 fast0 n8 n0 n1
+  - agent: slow2-0
+    stage: 9
+    action_name: move-up-slow slow2-0 n8 n11
+- action_set:
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: fast0
+    stage: 9
+    action_name: board p6 fast0 n8 n0 n1
+  - agent: slow2-0
+    stage: 9
+    action_name: move-up-slow slow2-0 n8 n11
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: fast0
+    stage: 9
+    action_name: board p6 fast0 n8 n0 n1
+  - agent: slow2-0
+    stage: 9
+    action_name: move-up-slow slow2-0 n8 n11
+- action_set:
+  - agent: fast1
+    stage: 9
+    action_name: move-up-fast fast1 n0 n12
+  - agent: fast0
+    stage: 5
+    action_name: move-up-fast fast0 n4 n8
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 3
+    action_name: move-up-fast fast1 n2 n4
+  - agent: fast0
+    stage: 5
+    action_name: move-up-fast fast0 n4 n8
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 4
+    action_name: leave p2 fast1 n4 n3 n2
+  - agent: slow2-0
+    stage: 8
+    action_name: leave p6 slow2-0 n8 n2 n1
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 4
+    action_name: leave p2 fast1 n4 n3 n2
+  - agent: fast0
+    stage: 4
+    action_name: board p0 fast0 n4 n0 n1
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 4
+    action_name: leave p2 fast1 n4 n3 n2
+  - agent: slow0-0
+    stage: 0
+    action_name: move-up-slow slow0-0 n2 n3
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+- action_set:
+  - agent: fast1
+    stage: 4
+    action_name: leave p2 fast1 n4 n3 n2
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: slow2-0
+    stage: 9
+    action_name: move-up-slow slow2-0 n8 n11
+- action_set:
+  - agent: fast1
+    stage: 4
+    action_name: leave p2 fast1 n4 n3 n2
+  - agent: slow1-0
+    stage: 3
+    action_name: leave p4 slow1-0 n4 n1 n0
+  - agent: fast0
+    stage: 9
+    action_name: board p6 fast0 n8 n0 n1

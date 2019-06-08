@@ -1,0 +1,86 @@
+action_cardinality: 1
+problem_name: satellite20.problem
+plan_steps_number: 78
+plan_actions_number: 102
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: satellite1
+    stage: 68
+    action_name: turn_to satellite1 planet13 phenomenon8
+- action_set:
+  - agent: satellite4
+    stage: 1
+    action_name: switch_on instrument28 satellite4
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+- action_set:
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+- action_set:
+  - agent: satellite3
+    stage: 7
+    action_name: turn_to satellite3 star11 star6
+- action_set:
+  - agent: satellite1
+    stage: 29
+    action_name: turn_to satellite1 star6 star10
+- action_set:
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite3
+    stage: 2
+    action_name: calibrate satellite3 instrument21 star2
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+- action_set:
+  - agent: satellite1
+    stage: 61
+    action_name: switch_on instrument12 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 57
+    action_name: take_image satellite1 phenomenon19 instrument13 image2
+- action_set:
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite1
+    stage: 52
+    action_name: turn_to satellite1 planet7 planet22
+- action_set:
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+- action_set:
+  - agent: satellite1
+    stage: 12
+    action_name: turn_to satellite1 phenomenon21 phenomenon14
+- action_set:
+  - agent: satellite1
+    stage: 54
+    action_name: turn_to satellite1 planet13 planet7
+- action_set:
+  - agent: satellite1
+    stage: 44
+    action_name: switch_off instrument10 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 37
+    action_name: turn_to satellite1 phenomenon5 planet13
