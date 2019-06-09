@@ -108,7 +108,7 @@ class TestDelayFailureModelWithRetries extends Specification {
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(), conflictRetriesModel)
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(1), conflictRetriesModel)
 
         expect:
         List<List<? extends Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses,

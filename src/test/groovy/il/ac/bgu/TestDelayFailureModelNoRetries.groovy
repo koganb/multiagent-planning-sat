@@ -42,7 +42,7 @@ class TestDelayFailureModelNoRetries extends Specification {
     private static final Logger log
 
     static {
-        System.properties.'TEST_NAME' = 'DelayFailureModel_NoRetries'
+        System.properties.'TEST_NAME' = 'DelayFailureModelNoRetriesParams'
         log = LoggerFactory.getLogger(TestDelayFailureModelNoRetries.class)
     }
 
@@ -107,7 +107,7 @@ class TestDelayFailureModelNoRetries extends Specification {
         assert ActionUtils.checkPlanContainsFailedActions(plan, failedActions)
 
 
-        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(), conflictRetriesModel)
+        def finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, new DelayStageVariableFailureModel(1), conflictRetriesModel)
 
         expect:
         List<List<? extends Formattable>> solutions = PlanSolvingUtils.calculateSolutions(plan, cnfPlanClauses,
@@ -139,7 +139,7 @@ class TestDelayFailureModelNoRetries extends Specification {
                         .combinations()
                         .collect { [it[0][0], it[0][1], it[0][2], it[1]] }
                         .collect {
-                    [it, PreparedTestActionReader.getTestActions(it[0], it[3], "DelayFailureModel_NoRetries")]
+                    [it, PreparedTestActionReader.getTestActions(it[0], it[3], "DelayFailureModelNoRetriesParams")]
                 }
                 .collect {
                     [new Tuple(it[0][0]), new Tuple(it[0][1]), new Tuple(it[0][2]), it[1]].combinations()
