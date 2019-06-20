@@ -1,0 +1,12 @@
+aggrinder
+problem_files/woodworking/woodworking14/DomainWoodworkingGrinder.pddl
+problem_files/woodworking/woodworking14/ProblemWoodworkingagGrinder.pddl
+agplanner
+problem_files/woodworking/woodworking14/DomainWoodworkingPlanner.pddl
+problem_files/woodworking/woodworking14/ProblemWoodworkingagPlanner.pddl
+agsaw
+problem_files/woodworking/woodworking14/DomainWoodworkingSaw.pddl
+problem_files/woodworking/woodworking14/ProblemWoodworkingagSaw.pddl
+agvarnisher
+problem_files/woodworking/woodworking14/DomainWoodworkingVarnisher.pddl
+problem_files/woodworking/woodworking14/ProblemWoodworkingagVarnisher.pddl

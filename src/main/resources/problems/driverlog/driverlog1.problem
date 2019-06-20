@@ -1,6 +1,6 @@
 driver1
-problem_files/driverlog/pfile1/domain-driver1.pddl
-problem_files/driverlog/pfile1/problem-driver1.pddl
+problem_files/driverlog/driverlog1/DomainDriverlog.pddl
+problem_files/driverlog/driverlog1/ProblemDriverlogdriver1.pddl
 driver2
-problem_files/driverlog/pfile1/domain-driver2.pddl
-problem_files/driverlog/pfile1/problem-driver2.pddl
+problem_files/driverlog/driverlog1/DomainDriverlog.pddl
+problem_files/driverlog/driverlog1/ProblemDriverlogdriver2.pddl
