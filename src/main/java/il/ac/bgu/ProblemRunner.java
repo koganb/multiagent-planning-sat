@@ -363,7 +363,7 @@ public class ProblemRunner {
             PlanSolvingUtils.calculateSolutions(conflictRetriesModel.updatePlan(plan).updatedPlan, hardConstraints,
                     softConstraints, finalVariableStateCalc, failedActions,
                     timeoutMs, stopIndicator)
-                    .forEach(solution -> System.out.println("Found solution: " + solution));
+                    .forEach(solution -> System.out.println("Found solution: " + solution.right()));
 
 
         }
