@@ -141,8 +141,11 @@ class TestNoEffectsFailureModelNoRetries extends Specification {
                 }
                 .collect {
                     [new Tuple(it[0][0]), new Tuple(it[0][1]), new Tuple(it[0][2]), it[1]].combinations()
-                }.collectMany { it }
-                        .collect { [it[0], it[1], it[2], it[3].collect { Action.of(it, Action.State.FAILED) }] }
+                }.collectMany {
+                    it
+                }.collect {
+                    [it[0], it[1], it[2], it[3].collect { Action.of(it, Action.State.FAILED) }]
+                }
 
     }
 

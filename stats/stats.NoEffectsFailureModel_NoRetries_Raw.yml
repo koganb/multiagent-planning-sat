@@ -1,0 +1,4000 @@
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 851
+    sat_solving_mils:
+      - 
+        mils: 143
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 243
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 238
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 2761
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 716
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 193
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 224
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1692
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 962
+    sat_solving_mils:
+      - 
+        mils: 41
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 107
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 2037
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 49567
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 844
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 106
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1827
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54723
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 792
+    sat_solving_mils:
+      - 
+        mils: 53
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 171
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 170
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 3534
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 923
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 104
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 3085
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50237
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 872
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 105
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1909
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50990
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 965
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 113
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1681
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51317
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 796
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 207
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1690
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54638
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1050
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 110
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1713
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 52254
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 577
+    sat_solving_mils:
+      - 
+        mils: 93
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 57
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 120
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1808
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 578
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 157
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 188
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1781
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 668
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 146
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 199
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1866
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 650
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 154
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 188
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1795
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 692
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 154
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 185
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1901
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 663
+    sat_solving_mils:
+      - 
+        mils: 39
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 104
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1785
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 73923
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 726
+    sat_solving_mils:
+      - 
+        mils: 108
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 60
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 140
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1859
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 636
+    sat_solving_mils:
+      - 
+        mils: 105
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 64
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 137
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1856
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 629
+    sat_solving_mils:
+      - 
+        mils: 53
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 162
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 223
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1914
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 741
+    sat_solving_mils:
+      - 
+        mils: 48
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 173
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 212
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1880
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 797
+    sat_solving_mils:
+      - 
+        mils: 105
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 65
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 124
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1744
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1093
+    sat_solving_mils:
+      - 
+        mils: 56
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 117
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1861
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 49026
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 903
+    sat_solving_mils:
+      - 
+        mils: 51
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 164
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 221
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1892
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 988
+    sat_solving_mils:
+      - 
+        mils: 51
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 112
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1783
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 46475
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 861
+    sat_solving_mils:
+      - 
+        mils: 49
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 171
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 207
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1784
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1009
+    sat_solving_mils:
+      - 
+        mils: 48
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 129
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1863
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 53490
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1070
+    sat_solving_mils:
+      - 
+        mils: 57
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 128
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1761
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 53343
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1157
+    sat_solving_mils:
+      - 
+        mils: 73
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 182
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 197
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1719
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1122
+    sat_solving_mils:
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 115
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1862
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 53220
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 897
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 118
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1740
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50682
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 635
+    sat_solving_mils:
+      - 
+        mils: 100
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 54
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 115
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1774
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 585
+    sat_solving_mils:
+      - 
+        mils: 96
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 57
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 120
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 3638
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 596
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 158
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 207
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1830
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 687
+    sat_solving_mils:
+      - 
+        mils: 40
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 193
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 208
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1804
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 700
+    sat_solving_mils:
+      - 
+        mils: 98
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 54
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 118
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1862
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 859
+    sat_solving_mils:
+      - 
+        mils: 101
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 66
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 106
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1641
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 965
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 106
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1705
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50607
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 700
+    sat_solving_mils:
+      - 
+        mils: 80
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 156
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 179
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1749
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 989
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 111
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1789
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50677
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 791
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 155
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 185
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1759
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1028
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 101
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1753
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51683
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 991
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 115
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1682
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51571
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 782
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 160
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 160
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1686
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 953
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 113
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1780
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51708
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 969
+    sat_solving_mils:
+      - 
+        mils: 40
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 103
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1720
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50903
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 566
+    sat_solving_mils:
+      - 
+        mils: 102
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 56
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 155
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1858
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 624
+    sat_solving_mils:
+      - 
+        mils: 102
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 63
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 134
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1897
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 716
+    sat_solving_mils:
+      - 
+        mils: 53
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 162
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 228
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1873
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 743
+    sat_solving_mils:
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 220
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 207
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 2004
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 744
+    sat_solving_mils:
+      - 
+        mils: 109
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 63
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 131
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1947
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1057
+    sat_solving_mils:
+      - 
+        mils: 56
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 123
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1908
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 56861
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 821
+    sat_solving_mils:
+      - 
+        mils: 109
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 64
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 116
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1810
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 996
+    sat_solving_mils:
+      - 
+        mils: 55
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 124
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1864
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54073
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1015
+    sat_solving_mils:
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 137
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1895
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54550
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1028
+    sat_solving_mils:
+      - 
+        mils: 55
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 125
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1894
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54725
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 628
+    sat_solving_mils:
+      - 
+        mils: 108
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 63
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 138
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1827
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 884
+    sat_solving_mils:
+      - 
+        mils: 112
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 65
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 115
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1696
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1071
+    sat_solving_mils:
+      - 
+        mils: 54
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 121
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1851
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 55491
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 761
+    sat_solving_mils:
+      - 
+        mils: 52
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 166
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 235
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1753
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1120
+    sat_solving_mils:
+      - 
+        mils: 51
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 125
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1861
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 60405
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 854
+    sat_solving_mils:
+      - 
+        mils: 63
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 167
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 339
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1835
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1106
+    sat_solving_mils:
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 116
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1840
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 57159
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1123
+    sat_solving_mils:
+      - 
+        mils: 57
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 123
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1797
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 55646
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 850
+    sat_solving_mils:
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 202
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 194
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 2005
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1043
+    sat_solving_mils:
+      - 
+        mils: 48
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 119
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1721
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50293
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 891
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 114
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1738
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50531
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 651
+    sat_solving_mils:
+      - 
+        mils: 103
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 56
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 129
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1751
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 597
+    sat_solving_mils:
+      - 
+        mils: 96
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 53
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 123
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1821
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 687
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 163
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 183
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1816
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 695
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 201
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 181
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1807
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 721
+    sat_solving_mils:
+      - 
+        mils: 100
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 55
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 124
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1821
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1023
+    sat_solving_mils:
+      - 
+        mils: 47
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 109
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1705
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 52960
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 716
+    sat_solving_mils:
+      - 
+        mils: 124
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 116
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1650
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1016
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 119
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1740
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 50583
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 886
+    sat_solving_mils:
+      - 
+        mils: 41
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 118
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1768
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51179
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 943
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 104
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1756
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51257
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 690
+    sat_solving_mils:
+      - 
+        mils: 98
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 54
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 116
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1838
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 962
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 113
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1756
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 44193
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 792
+    sat_solving_mils:
+      - 
+        mils: 100
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 53
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 114
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1662
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 999
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 120
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1811
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51058
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1070
+    sat_solving_mils:
+      - 
+        mils: 52
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 123
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1775
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54209
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1065
+    sat_solving_mils:
+      - 
+        mils: 55
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 119
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1929
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 54456
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 628
+    sat_solving_mils:
+      - 
+        mils: 104
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 58
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 116
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1763
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:58, Agent:plane1,Action:debark~plane1~person18~city9=FAILED, Index:61, Agent:plane1,Action:debark~plane1~person9~city20=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 965
+    sat_solving_mils:
+      - 
+        mils: 46
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 108
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1756
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 43452
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 695
+    sat_solving_mils:
+      - 
+        mils: 140
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 50
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 105
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1612
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 979
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 112
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1659
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 46101
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 682
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 151
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 183
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1661
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 968
+    sat_solving_mils:
+      - 
+        mils: 43
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 153
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 217
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1677
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 694
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 154
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 190
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1732
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 924
+    sat_solving_mils:
+      - 
+        mils: 42
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 162
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 197
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1670
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1025
+    sat_solving_mils:
+      - 
+        mils: 51
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 119
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1843
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51709
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 741
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 160
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 153
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1661
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 987
+    sat_solving_mils:
+      - 
+        mils: 48
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 113
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1873
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 51413
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 930
+    sat_solving_mils:
+      - 
+        mils: 45
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 177
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 186
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1622
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 679
+    sat_solving_mils:
+      - 
+        mils: 98
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 58
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 121
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1824
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:52, Agent:plane1,Action:refuel~plane1~city12~fl0~fl1=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 665
+    sat_solving_mils:
+      - 
+        mils: 101
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 55
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 117
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1941
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:19, Agent:plane1,Action:debark~plane1~person8~city16=FAILED, Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 674
+    sat_solving_mils:
+      - 
+        mils: 46
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 156
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 209
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1764
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:01, Agent:plane1,Action:board~plane1~person11~city8=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 679
+    sat_solving_mils:
+      - 
+        mils: 40
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 148
+        is_found: true
+        solution_size: 2
+      - 
+        mils: 226
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1773
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 2
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:29, Agent:plane1,Action:fly~plane1~city13~city0~fl1~fl0=FAILED, Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:50, Agent:plane1,Action:board~plane1~person1~city12=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 681
+    sat_solving_mils:
+      - 
+        mils: 101
+        is_found: true
+        solution_size: 1
+      - 
+        mils: 57
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 161
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1720
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 1
+- problem: zenotravel_pfile20
+  plan_properties:
+    number_of_steps: 92
+    number_of_actions: 96
+    number_of_agents: 2
+  simulation:
+    failed_actions: "[Index:72, Agent:plane1,Action:debark~plane1~person11~city18=FAILED, Index:77, Agent:plane1,Action:board~plane1~person12~city14=FAILED, Index:88, Agent:plane1,Action:debark~plane1~person6~city4=FAILED]"
+    failed_actions_cardinality: 3
+  cnf_model_details: 
+    failure_model: no effects model
+    conflict_model: no effects model
+    conflict_retries_model: no retries
+    max_failures_restriction: 3
+  cnf:
+    clauses_num: 69277
+    variables_num: 41766
+  execution_time:
+    cnf_compilation_mils: 1127
+    final_var_state_calc_mils: 1028
+    sat_solving_mils:
+      - 
+        mils: 44
+        is_found: false
+        solution_size: 1
+      - 
+        mils: 108
+        is_found: false
+        solution_size: 2
+      - 
+        mils: 1718
+        is_found: true
+        solution_size: 3
+      - 
+        mils: 43606
+        is_found: false
+        solution_size: 3
+  solution: 
+    number_of_solutions: 1
+    solution_index: 0
+    solution_cardinality: 3
