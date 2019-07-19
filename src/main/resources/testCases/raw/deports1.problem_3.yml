@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: deports1.problem
+plan_steps_number: 10
+plan_actions_number: 12
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+- action_set:
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+- action_set:
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+- action_set:
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+- action_set:
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+- action_set:
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor1
+    stage: 8
+    action_name: DropP hoist2 crate0 pallet2 distributor1
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+  - agent: truck1
+    stage: 2
+    action_name: Drive truck1 depot0 distributor1
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 4
+    action_name: Load hoist1 crate0 truck1 distributor0
+- action_set:
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 4
+    action_name: Load hoist1 crate0 truck1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: depot0
+    stage: 0
+    action_name: LiftP hoist0 crate1 pallet0 depot0
+  - agent: truck1
+    stage: 4
+    action_name: Load hoist1 crate0 truck1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 6
+    action_name: DropP hoist1 crate1 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+  - agent: truck1
+    stage: 4
+    action_name: Load hoist1 crate0 truck1 distributor0
+- action_set:
+  - agent: distributor0
+    stage: 0
+    action_name: LiftP hoist1 crate0 pallet1 distributor0
+  - agent: truck1
+    stage: 5
+    action_name: Unload hoist1 crate1 truck1 distributor0
+  - agent: truck1
+    stage: 4
+    action_name: Load hoist1 crate0 truck1 distributor0

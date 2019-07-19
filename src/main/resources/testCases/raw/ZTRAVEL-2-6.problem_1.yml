@@ -1,0 +1,38 @@
+action_cardinality: 1
+problem_name: ZTRAVEL-2-6.problem
+plan_steps_number: 9
+plan_actions_number: 9
+plan_agent_number: 2
+test_actions:
+- action_set:
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city2 city0 fl5 fl4
+- action_set:
+  - agent: plane1
+    stage: 5
+    action_name: fly plane1 city1 city2 fl3 fl2
+- action_set:
+  - agent: plane1
+    stage: 6
+    action_name: debark person2 plane1 city2
+- action_set:
+  - agent: plane1
+    stage: 7
+    action_name: fly plane1 city2 city0 fl2 fl1
+- action_set:
+  - agent: plane1
+    stage: 1
+    action_name: board person4 plane1 city0
+- action_set:
+  - agent: plane1
+    stage: 3
+    action_name: debark person4 plane1 city1
+- action_set:
+  - agent: plane1
+    stage: 2
+    action_name: fly plane1 city0 city1 fl4 fl3
+- action_set:
+  - agent: plane1
+    stage: 4
+    action_name: board person2 plane1 city1

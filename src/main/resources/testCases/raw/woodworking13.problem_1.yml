@@ -1,0 +1,62 @@
+action_cardinality: 1
+problem_name: woodworking13.problem
+plan_steps_number: 9
+plan_actions_number: 15
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p1 immersion-varnisher0 green verysmooth natural
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p1 saw0 mahogany smooth s6 s5 s4
+- action_set:
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p1 immersion-varnisher0 green smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p0 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p2 glazer0 mauve
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p0 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p1 planer0 smooth green varnished
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p4 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b1 p3 saw0 mahogany smooth s4 s3 s2
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p3 glazer0 white
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-large b0 p4 saw0 teak rough s6 s4 s5 s3
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-small b0 p2 saw0 teak rough s3 s2

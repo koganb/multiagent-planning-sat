@@ -1,0 +1,86 @@
+action_cardinality: 1
+problem_name: taxi_p05.problem
+plan_steps_number: 21
+plan_actions_number: 21
+plan_agent_number: 6
+test_actions:
+- action_set:
+  - agent: p2
+    stage: 8
+    action_name: enter_p2 t2 h2
+- action_set:
+  - agent: t2
+    stage: 13
+    action_name: drive_t2 h2 h1
+- action_set:
+  - agent: p3
+    stage: 11
+    action_name: enter_p3 t2 h3
+- action_set:
+  - agent: p4
+    stage: 5
+    action_name: exit_p4 t2 h2
+- action_set:
+  - agent: t2
+    stage: 7
+    action_name: drive_t2 h1 h2
+- action_set:
+  - agent: t2
+    stage: 2
+    action_name: drive_t2 h2 h3
+- action_set:
+  - agent: t2
+    stage: 9
+    action_name: drive_t2 h2 h3
+- action_set:
+  - agent: p1
+    stage: 17
+    action_name: exit_p1 t2 h2
+- action_set:
+  - agent: t2
+    stage: 16
+    action_name: drive_t2 h1 h2
+- action_set:
+  - agent: p4
+    stage: 3
+    action_name: enter_p4 t2 h3
+- action_set:
+  - agent: p2
+    stage: 10
+    action_name: exit_p2 t2 h3
+- action_set:
+  - agent: p3
+    stage: 14
+    action_name: exit_p3 t2 h1
+- action_set:
+  - agent: p1
+    stage: 15
+    action_name: enter_p1 t2 h1
+- action_set:
+  - agent: t2
+    stage: 1
+    action_name: drive_t2 c h2
+- action_set:
+  - agent: t2
+    stage: 12
+    action_name: drive_t2 h3 h2
+- action_set:
+  - agent: t2
+    stage: 6
+    action_name: drive_t2 h2 h1
+- action_set:
+  - agent: t2
+    stage: 18
+    action_name: drive_t2 h2 c
+- action_set:
+  - agent: t2
+    stage: 4
+    action_name: drive_t2 h3 h2
+- action_set:
+  - agent: t2
+    stage: 19
+    action_name: drive_t2 c g2
+- action_set:
+  - agent: t2
+    stage: 0
+    action_name: drive_t2 g2 c

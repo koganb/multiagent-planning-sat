@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: woodworking10.problem
+plan_steps_number: 16
+plan_actions_number: 36
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+- action_set:
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b0 p5 saw0 beech rough s6 s5 s4
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b0 p5 saw0 beech rough s6 s5 s4
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b0 p5 saw0 beech rough s6 s5 s4
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b0 p5 saw0 beech rough s6 s5 s4
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p11 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p11 immersion-varnisher0 mauve smooth natural
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p11 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p11 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b0 p5 saw0 beech rough s6 s5 s4
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p11 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-immersion-varnish p4 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-immersion-varnish p4 immersion-varnisher0 black smooth natural
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-immersion-varnish p4 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-immersion-varnish p4 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b0 p5 saw0 beech rough s6 s5 s4
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-immersion-varnish p4 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p11 immersion-varnisher0 mauve smooth natural
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-immersion-varnish p4 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p3 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p9 saw0 beech rough s7 s6
+- action_set:
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p3 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p9 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p3 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 8
+    action_name: do-plane p0 planer0 rough blue glazed
+- action_set:
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p3 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 6
+    action_name: do-grind p5 grinder0 smooth natural untreated untreated

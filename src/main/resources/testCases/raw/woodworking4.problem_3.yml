@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: woodworking4.problem
+plan_steps_number: 8
+plan_actions_number: 17
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+- action_set:
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p3 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b0 p1 saw0 beech smooth s8 s7 s6
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b0 p1 saw0 beech smooth s8 s7 s6
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b0 p2 saw0 beech smooth s6 s5 s4
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b0 p1 saw0 beech smooth s8 s7 s6
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b0 p1 saw0 beech smooth s8 s7 s6
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 beech rough s4 s3 s2
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p3 grinder0 verysmooth blue varnished colourfragments
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b0 p1 saw0 beech smooth s8 s7 s6

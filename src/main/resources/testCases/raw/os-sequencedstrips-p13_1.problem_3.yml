@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: os-sequencedstrips-p13_1.problem
+plan_steps_number: 36
+plan_actions_number: 43
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+- action_set:
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+- action_set:
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 5
+    action_name: ship-order-o13 n0 n1
+  - agent: manager
+    stage: 20
+    action_name: ship-order-o4 n0 n1
+- action_set:
+  - agent: manager
+    stage: 3
+    action_name: start-order o13 n1 n0
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manager
+    stage: 3
+    action_name: start-order o13 n1 n0
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manager
+    stage: 8
+    action_name: ship-order-o7 n0 n1
+  - agent: manager
+    stage: 3
+    action_name: start-order o13 n1 n0
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 3
+    action_name: start-order o13 n1 n0
+  - agent: manager
+    stage: 34
+    action_name: ship-order-o5 n2 n3
+- action_set:
+  - agent: manufacturer
+    stage: 17
+    action_name: make-product-p5
+  - agent: manager
+    stage: 3
+    action_name: start-order o13 n1 n0
+  - agent: manufacturer
+    stage: 8
+    action_name: make-product-p8

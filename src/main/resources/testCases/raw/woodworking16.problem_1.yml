@@ -1,0 +1,86 @@
+action_cardinality: 1
+problem_name: woodworking16.problem
+plan_steps_number: 10
+plan_actions_number: 21
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-medium b0 p5 saw0 cherry smooth s2 s1 s0
+- action_set:
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-immersion-varnish p3 immersion-varnisher0 blue verysmooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p1 immersion-varnisher0 blue smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-medium b1 p0 saw0 walnut rough s5 s4 s3
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-immersion-varnish p6 immersion-varnisher0 green smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p7 planer0 rough black varnished
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p3 planer0 smooth blue varnished
+- action_set:
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p3 immersion-varnisher0 blue smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-immersion-varnish p4 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 walnut rough s3 s1 s2 s0
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b0 p3 saw0 cherry smooth s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-small b0 p1 saw0 cherry smooth s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b1 p6 saw0 walnut rough s6 s5
+- action_set:
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated

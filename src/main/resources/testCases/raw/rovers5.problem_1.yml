@@ -1,0 +1,94 @@
+action_cardinality: 1
+problem_name: rovers5.problem
+plan_steps_number: 14
+plan_actions_number: 23
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: rover0
+    stage: 0
+    action_name: calibrate rover0 camera2 objective1 waypoint0
+- action_set:
+  - agent: rover1
+    stage: 4
+    action_name: take_image rover1 waypoint1 objective0 camera0 high_res
+- action_set:
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint0 waypoint1
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: sample_rock rover0 rover0store waypoint1
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: navigate rover1 waypoint1 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 5
+    action_name: take_image rover0 waypoint1 objective0 camera2 colour
+- action_set:
+  - agent: rover0
+    stage: 2
+    action_name: navigate rover0 waypoint0 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 10
+    action_name: communicate_soil_data rover1 general waypoint2 waypoint2 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 9
+    action_name: communicate_soil_data rover1 general waypoint1 waypoint2 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 3
+    action_name: sample_soil rover1 rover1store waypoint1
+- action_set:
+  - agent: rover0
+    stage: 8
+    action_name: communicate_image_data rover0 general objective0 colour waypoint1 waypoint3
+- action_set:
+  - agent: rover0
+    stage: 7
+    action_name: communicate_rock_data rover0 general waypoint1 waypoint1 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 11
+    action_name: communicate_image_data rover1 general objective0 high_res waypoint2 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 12
+    action_name: communicate_image_data rover1 general objective2 high_res waypoint2 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 8
+    action_name: sample_soil rover1 rover1store waypoint2
+- action_set:
+  - agent: rover1
+    stage: 0
+    action_name: calibrate rover1 camera0 objective1 waypoint0
+- action_set:
+  - agent: rover0
+    stage: 3
+    action_name: drop rover0 rover0store
+- action_set:
+  - agent: rover0
+    stage: 1
+    action_name: sample_rock rover0 rover0store waypoint0
+- action_set:
+  - agent: rover1
+    stage: 1
+    action_name: calibrate rover1 camera1 objective1 waypoint0
+- action_set:
+  - agent: rover1
+    stage: 5
+    action_name: take_image rover1 waypoint1 objective2 camera1 high_res
+- action_set:
+  - agent: rover1
+    stage: 7
+    action_name: drop rover1 rover1store
+- action_set:
+  - agent: rover0
+    stage: 6
+    action_name: communicate_rock_data rover0 general waypoint0 waypoint1 waypoint3

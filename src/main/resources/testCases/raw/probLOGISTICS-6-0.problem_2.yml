@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: probLOGISTICS-6-0.problem
+plan_steps_number: 16
+plan_actions_number: 28
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+- action_set:
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+- action_set:
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+- action_set:
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+- action_set:
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2
+- action_set:
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2
+- action_set:
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+- action_set:
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+- action_set:
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+- action_set:
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+- action_set:
+  - agent: tru1
+    stage: 1
+    action_name: LoadTruck obj12 tru1 pos1
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+- action_set:
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+  - agent: tru1
+    stage: 1
+    action_name: LoadTruck obj12 tru1 pos1
+- action_set:
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+  - agent: tru1
+    stage: 1
+    action_name: LoadTruck obj12 tru1 pos1
+- action_set:
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2
+  - agent: tru1
+    stage: 1
+    action_name: LoadTruck obj12 tru1 pos1
+- action_set:
+  - agent: tru1
+    stage: 1
+    action_name: LoadTruck obj12 tru1 pos1
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+  - agent: apn1
+    stage: 14
+    action_name: UnloadAirplane obj22 apn1 apt1
+- action_set:
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+  - agent: apn1
+    stage: 14
+    action_name: UnloadAirplane obj22 apn1 apt1
+- action_set:
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+  - agent: apn1
+    stage: 14
+    action_name: UnloadAirplane obj22 apn1 apt1
+- action_set:
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2
+  - agent: apn1
+    stage: 14
+    action_name: UnloadAirplane obj22 apn1 apt1
+- action_set:
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+  - agent: apn1
+    stage: 14
+    action_name: UnloadAirplane obj22 apn1 apt1
+- action_set:
+  - agent: tru1
+    stage: 1
+    action_name: LoadTruck obj12 tru1 pos1
+  - agent: apn1
+    stage: 14
+    action_name: UnloadAirplane obj22 apn1 apt1
+- action_set:
+  - agent: tru2
+    stage: 12
+    action_name: DriveTruck tru2 apt2 pos2 cit2
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj11 apn1 apt2
+- action_set:
+  - agent: tru2
+    stage: 12
+    action_name: DriveTruck tru2 apt2 pos2 cit2
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+- action_set:
+  - agent: tru2
+    stage: 12
+    action_name: DriveTruck tru2 apt2 pos2 cit2
+  - agent: tru1
+    stage: 3
+    action_name: DriveTruck tru1 pos1 apt1 cit1
+- action_set:
+  - agent: tru2
+    stage: 12
+    action_name: DriveTruck tru2 apt2 pos2 cit2
+  - agent: tru2
+    stage: 10
+    action_name: LoadTruck obj12 tru2 apt2

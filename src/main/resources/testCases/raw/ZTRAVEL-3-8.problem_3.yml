@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: ZTRAVEL-3-8.problem
+plan_steps_number: 26
+plan_actions_number: 27
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+- action_set:
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+- action_set:
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+- action_set:
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city2 fl2 fl1
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 15
+    action_name: debark person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 13
+    action_name: board person1 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 13
+    action_name: board person1 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 19
+    action_name: refuel plane2 city1 fl0 fl1
+  - agent: plane2
+    stage: 13
+    action_name: board person1 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 13
+    action_name: board person1 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: debark person2 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 16
+    action_name: debark person8 plane2 city3
+  - agent: plane2
+    stage: 18
+    action_name: debark person1 plane2 city1
+  - agent: plane2
+    stage: 13
+    action_name: board person1 plane2 city3

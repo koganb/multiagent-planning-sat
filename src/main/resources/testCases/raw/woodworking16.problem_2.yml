@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: woodworking16.problem
+plan_steps_number: 10
+plan_actions_number: 21
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p6 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p7 immersion-varnisher0 mauve smooth natural
+  - agent: agplanner
+    stage: 5
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p3 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-immersion-varnish p6 immersion-varnisher0 green smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 black
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-immersion-varnish p6 immersion-varnisher0 green smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p4 planer0 rough black varnished
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-immersion-varnish p6 immersion-varnisher0 green smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-immersion-varnish p6 immersion-varnisher0 green smooth natural
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p5 immersion-varnisher0 black smooth natural

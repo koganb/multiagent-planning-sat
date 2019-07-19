@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: woodworking22.problem
+plan_steps_number: 5
+plan_actions_number: 9
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p2 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p2 immersion-varnisher0 natural smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p2 immersion-varnisher0 natural smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p2 immersion-varnisher0 natural smooth natural
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p2 immersion-varnisher0 natural smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p2 immersion-varnisher0 natural smooth natural
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p2 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p2 immersion-varnisher0 natural smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b1 p1 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-medium b0 p0 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p2 saw0 pine rough s5 s4 s3
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-medium b0 p0 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p3 saw0 mahogany rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-medium b0 p0 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p0 glazer0 black
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-medium b0 p0 saw0 mahogany rough s5 s4 s3

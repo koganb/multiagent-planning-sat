@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: ma-blocksworld7-1.problem
+plan_steps_number: 18
+plan_actions_number: 23
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+- action_set:
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 11
+    action_name: pickup b r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r3
+    stage: 0
+    action_name: unstack a g r3
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r2
+    stage: 9
+    action_name: stack f g r2
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r2
+    stage: 9
+    action_name: stack f g r2
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r2
+    stage: 9
+    action_name: stack f g r2
+  - agent: r2
+    stage: 14
+    action_name: unstack e nob r2
+- action_set:
+  - agent: r1
+    stage: 5
+    action_name: unstack b e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r2
+    stage: 9
+    action_name: stack f g r2
+- action_set:
+  - agent: r1
+    stage: 16
+    action_name: stack a e r1
+  - agent: r1
+    stage: 12
+    action_name: stack b f r1
+  - agent: r2
+    stage: 9
+    action_name: stack f g r2

@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: woodworking26.problem
+plan_steps_number: 9
+plan_actions_number: 19
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-immersion-varnish p5 immersion-varnisher0 white smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p6 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p6 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b2 p5 saw0 pine rough s3 s1 s2 s0
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p6 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p6 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p6 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 6
+    action_name: do-saw-large b0 p0 saw0 teak smooth s3 s1 s2 s0
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p6 grinder0 smooth natural untreated untreated

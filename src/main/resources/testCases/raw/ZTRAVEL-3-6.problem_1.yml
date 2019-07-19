@@ -1,0 +1,54 @@
+action_cardinality: 1
+problem_name: ZTRAVEL-3-6.problem
+plan_steps_number: 12
+plan_actions_number: 13
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: plane3
+    stage: 0
+    action_name: fly plane3 city0 city4 fl3 fl2
+- action_set:
+  - agent: plane3
+    stage: 7
+    action_name: refuel plane3 city1 fl0 fl1
+- action_set:
+  - agent: plane3
+    stage: 1
+    action_name: board person6 plane3 city4
+- action_set:
+  - agent: plane3
+    stage: 4
+    action_name: debark person6 plane3 city2
+- action_set:
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city3 fl6 fl5
+- action_set:
+  - agent: plane3
+    stage: 3
+    action_name: board person3 plane3 city2
+- action_set:
+  - agent: plane3
+    stage: 2
+    action_name: fly plane3 city4 city2 fl2 fl1
+- action_set:
+  - agent: plane3
+    stage: 10
+    action_name: debark person1 plane3 city0
+- action_set:
+  - agent: plane3
+    stage: 5
+    action_name: fly plane3 city2 city1 fl1 fl0
+- action_set:
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city1 city0 fl1 fl0
+- action_set:
+  - agent: plane3
+    stage: 6
+    action_name: board person1 plane3 city1
+- action_set:
+  - agent: plane3
+    stage: 8
+    action_name: debark person3 plane3 city1

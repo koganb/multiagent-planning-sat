@@ -1,0 +1,14 @@
+action_cardinality: 1
+problem_name: satellite1.problem
+plan_steps_number: 3
+plan_actions_number: 3
+plan_agent_number: 2
+test_actions:
+- action_set:
+  - agent: satellite0
+    stage: 0
+    action_name: turn_to satellite0 groundstation2 phenomenon6
+- action_set:
+  - agent: satellite0
+    stage: 1
+    action_name: switch_on instrument0 satellite0

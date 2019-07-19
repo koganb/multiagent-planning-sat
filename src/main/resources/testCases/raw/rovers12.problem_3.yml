@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: rovers12.problem
+plan_steps_number: 10
+plan_actions_number: 24
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_image_data rover3 general objective1 high_res waypoint0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+  - agent: rover3
+    stage: 2
+    action_name: calibrate rover3 camera0 objective2 waypoint0
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 6
+    action_name: communicate_soil_data rover3 general waypoint0 waypoint0 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 6
+    action_name: communicate_soil_data rover3 general waypoint0 waypoint0 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+- action_set:
+  - agent: rover3
+    stage: 6
+    action_name: communicate_soil_data rover3 general waypoint0 waypoint0 waypoint2
+  - agent: rover1
+    stage: 2
+    action_name: navigate rover1 waypoint6 waypoint4
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+- action_set:
+  - agent: rover0
+    stage: 4
+    action_name: communicate_image_data rover0 general objective3 low_res waypoint3 waypoint2
+  - agent: rover3
+    stage: 6
+    action_name: communicate_soil_data rover3 general waypoint0 waypoint0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2
+- action_set:
+  - agent: rover3
+    stage: 6
+    action_name: communicate_soil_data rover3 general waypoint0 waypoint0 waypoint2
+  - agent: rover0
+    stage: 1
+    action_name: calibrate rover0 camera2 objective0 waypoint2
+  - agent: rover1
+    stage: 4
+    action_name: navigate rover1 waypoint4 waypoint2

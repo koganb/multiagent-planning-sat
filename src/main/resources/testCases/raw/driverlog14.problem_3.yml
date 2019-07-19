@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: driverlog14.problem
+plan_steps_number: 24
+plan_actions_number: 33
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+- action_set:
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver3
+    stage: 4
+    action_name: Drive-Truck truck2 s1 s3 driver3
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+  - agent: driver2
+    stage: 16
+    action_name: Drive-Truck truck1 s3 s6 driver2
+- action_set:
+  - agent: driver1
+    stage: 13
+    action_name: Unload-Truck package1 truck1 s0
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+- action_set:
+  - agent: driver1
+    stage: 13
+    action_name: Unload-Truck package1 truck1 s0
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+- action_set:
+  - agent: driver1
+    stage: 13
+    action_name: Unload-Truck package1 truck1 s0
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck1 s2
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+- action_set:
+  - agent: driver1
+    stage: 13
+    action_name: Unload-Truck package1 truck1 s0
+  - agent: driver2
+    stage: 17
+    action_name: Disembark-Truck driver2 truck1 s6
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4
+- action_set:
+  - agent: driver1
+    stage: 13
+    action_name: Unload-Truck package1 truck1 s0
+  - agent: driver1
+    stage: 14
+    action_name: Unload-Truck package2 truck1 s0
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package6 truck1 s4

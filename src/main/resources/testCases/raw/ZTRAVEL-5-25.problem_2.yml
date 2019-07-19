@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: ZTRAVEL-5-25.problem
+plan_steps_number: 68
+plan_actions_number: 79
+plan_agent_number: 6
+test_actions:
+- action_set:
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+- action_set:
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+- action_set:
+  - agent: plane3
+    stage: 6
+    action_name: board person6 plane3 city6
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+- action_set:
+  - agent: plane3
+    stage: 6
+    action_name: board person6 plane3 city6
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 6
+    action_name: board person6 plane3 city6
+- action_set:
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+  - agent: plane3
+    stage: 6
+    action_name: board person6 plane3 city6
+- action_set:
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city6 city8 fl3 fl2
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+- action_set:
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city6 city8 fl3 fl2
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city6 city8 fl3 fl2
+- action_set:
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city6 city8 fl3 fl2
+- action_set:
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city6 city8 fl3 fl2
+  - agent: plane3
+    stage: 6
+    action_name: board person6 plane3 city6
+- action_set:
+  - agent: plane3
+    stage: 64
+    action_name: refuel plane3 city14 fl0 fl1
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+- action_set:
+  - agent: plane3
+    stage: 64
+    action_name: refuel plane3 city14 fl0 fl1
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 64
+    action_name: refuel plane3 city14 fl0 fl1
+- action_set:
+  - agent: plane3
+    stage: 64
+    action_name: refuel plane3 city14 fl0 fl1
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+- action_set:
+  - agent: plane3
+    stage: 64
+    action_name: refuel plane3 city14 fl0 fl1
+  - agent: plane3
+    stage: 6
+    action_name: board person6 plane3 city6
+- action_set:
+  - agent: plane3
+    stage: 64
+    action_name: refuel plane3 city14 fl0 fl1
+  - agent: plane3
+    stage: 9
+    action_name: fly plane3 city6 city8 fl3 fl2
+- action_set:
+  - agent: plane3
+    stage: 14
+    action_name: board person2 plane3 city3
+  - agent: plane3
+    stage: 34
+    action_name: board person17 plane3 city9
+- action_set:
+  - agent: plane3
+    stage: 34
+    action_name: board person17 plane3 city9
+  - agent: plane3
+    stage: 61
+    action_name: refuel plane3 city13 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city10 city15 fl2 fl1
+  - agent: plane3
+    stage: 34
+    action_name: board person17 plane3 city9
+- action_set:
+  - agent: plane3
+    stage: 5
+    action_name: board person3 plane3 city6
+  - agent: plane3
+    stage: 34
+    action_name: board person17 plane3 city9

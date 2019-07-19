@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: woodworking8.problem
+plan_steps_number: 12
+plan_actions_number: 25
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p3 immersion-varnisher0 white verysmooth natural
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p3 immersion-varnisher0 white verysmooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p3 immersion-varnisher0 white verysmooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p3 immersion-varnisher0 white verysmooth natural
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p3 immersion-varnisher0 white verysmooth natural
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-glaze p7 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p8 saw0 oak rough s2 s1
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p8 saw0 oak rough s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p8 saw0 oak rough s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p8 saw0 oak rough s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-immersion-varnish p3 immersion-varnisher0 white verysmooth natural
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p8 saw0 oak rough s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 10
+    action_name: do-glaze p7 glazer0 green
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p8 saw0 oak rough s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-immersion-varnish p8 immersion-varnisher0 red smooth natural
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p8 planer0 rough red glazed
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 rough red colourfragments
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p8 planer0 rough red glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p4 glazer0 black
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p8 planer0 rough red glazed
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p8 planer0 rough red glazed
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p7 glazer0 green

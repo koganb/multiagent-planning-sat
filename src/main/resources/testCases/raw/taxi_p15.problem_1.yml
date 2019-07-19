@@ -1,0 +1,106 @@
+action_cardinality: 1
+problem_name: taxi_p15.problem
+plan_steps_number: 24
+plan_actions_number: 27
+plan_agent_number: 9
+test_actions:
+- action_set:
+  - agent: t1
+    stage: 22
+    action_name: drive_t1 c g1
+- action_set:
+  - agent: p4
+    stage: 1
+    action_name: enter_p4 t1 d
+- action_set:
+  - agent: t3
+    stage: 3
+    action_name: drive_t3 c h3
+- action_set:
+  - agent: p1
+    stage: 19
+    action_name: enter_p1 t1 h1
+- action_set:
+  - agent: t3
+    stage: 11
+    action_name: drive_t3 c h2
+- action_set:
+  - agent: p3
+    stage: 4
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: t1
+    stage: 20
+    action_name: drive_t1 h1 c
+- action_set:
+  - agent: p1
+    stage: 21
+    action_name: exit_p1 t1 c
+- action_set:
+  - agent: t3
+    stage: 13
+    action_name: drive_t3 h2 c
+- action_set:
+  - agent: p2
+    stage: 14
+    action_name: exit_p2 t3 c
+- action_set:
+  - agent: t3
+    stage: 5
+    action_name: drive_t3 h3 c
+- action_set:
+  - agent: p3
+    stage: 6
+    action_name: exit_p3 t3 c
+- action_set:
+  - agent: p6
+    stage: 10
+    action_name: exit_p6 t3 c
+- action_set:
+  - agent: t3
+    stage: 1
+    action_name: drive_t3 g3 c
+- action_set:
+  - agent: p6
+    stage: 8
+    action_name: enter_p6 t3 h1
+- action_set:
+  - agent: p4
+    stage: 17
+    action_name: exit_p4 t1 c
+- action_set:
+  - agent: t1
+    stage: 18
+    action_name: drive_t1 c h1
+- action_set:
+  - agent: p2
+    stage: 12
+    action_name: enter_p2 t3 h2
+- action_set:
+  - agent: t3
+    stage: 9
+    action_name: drive_t3 h1 c
+- action_set:
+  - agent: t1
+    stage: 16
+    action_name: drive_t1 g1 c
+- action_set:
+  - agent: p5
+    stage: 2
+    action_name: exit_p5 t3 c
+- action_set:
+  - agent: t3
+    stage: 7
+    action_name: drive_t3 c h1
+- action_set:
+  - agent: t3
+    stage: 15
+    action_name: drive_t3 c g3
+- action_set:
+  - agent: p5
+    stage: 0
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t1
+    stage: 2
+    action_name: drive_t1 d g1

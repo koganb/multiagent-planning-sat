@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: woodworking19.problem
+plan_steps_number: 14
+plan_actions_number: 32
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p8 planer0 rough white colourfragments
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p7 saw0 beech rough s8 s7
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 white
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 white
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 white
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 green
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 white
+  - agent: aggrinder
+    stage: 8
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 white
+  - agent: agplanner
+    stage: 7
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2

@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: woodworking3.problem
+plan_steps_number: 9
+plan_actions_number: 20
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+- action_set:
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+- action_set:
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p4 saw0 oak rough s5 s4
+  - agent: aggrinder
+    stage: 5
+    action_name: do-grind p2 grinder0 smooth natural untreated untreated
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 blue
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+- action_set:
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough black glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p3 glazer0 black
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p0 grinder0 verysmooth blue glazed untreated
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p4 planer0 rough natural untreated

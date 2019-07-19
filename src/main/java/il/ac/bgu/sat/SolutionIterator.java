@@ -1,6 +1,7 @@
 package il.ac.bgu.sat;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import il.ac.bgu.cnfCompilation.failureContraints.MaxFailureConstraintsCreator;
 import il.ac.bgu.dataModel.Formattable;
 import il.ac.bgu.dataModel.FormattableValue;
@@ -83,6 +84,7 @@ public class SolutionIterator implements Iterator<Either<Throwable, Optional<Lis
             log.info(getMarker("STATS"), "        is_found: {}", diagnosisCandidates.isPresent());
             log.info(getMarker("STATS"), "        solution_size: {}", currentSolutionSize);
             log.info("Solution candidate found: {}", diagnosisCandidates.isPresent());
+            log.info("Solution candidate found: {}", diagnosisCandidates.orElse(Lists.newArrayList()));
 
             //add solution negation to solution constraints
             Optional<ImmutableList<FormattableValue<? extends Formattable>>> constraintOptional = diagnosisCandidates
@@ -90,9 +92,11 @@ public class SolutionIterator implements Iterator<Either<Throwable, Optional<Lis
                             .map(constraint -> FormattableValue.of(constraint, false))
                             .collect(ImmutableList.toImmutableList()));
 
-            constraintOptional.ifPresent(solution -> solutionConstraints.add(solution));
+            constraintOptional
+                    .filter(solution -> !solution.isEmpty())
+                    .ifPresent(solution -> solutionConstraints.add(solution));
 
-            solutionFoundInCurIteration = diagnosisCandidates.isPresent();
+        solutionFoundInCurIteration = diagnosisCandidates.map(l -> ! l.isEmpty()).orElse(false);
 
             if (solutionFoundInCurIteration) {
                 solutionFound = true;

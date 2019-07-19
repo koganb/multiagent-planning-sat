@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: satellite20.problem
+plan_steps_number: 78
+plan_actions_number: 102
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+  - agent: satellite4
+    stage: 2
+    action_name: calibrate satellite4 instrument28 groundstation1
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite4
+    stage: 2
+    action_name: calibrate satellite4 instrument28 groundstation1
+- action_set:
+  - agent: satellite4
+    stage: 2
+    action_name: calibrate satellite4 instrument28 groundstation1
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+  - agent: satellite4
+    stage: 2
+    action_name: calibrate satellite4 instrument28 groundstation1
+- action_set:
+  - agent: satellite1
+    stage: 24
+    action_name: calibrate satellite1 instrument10 star4
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 24
+    action_name: calibrate satellite1 instrument10 star4
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+- action_set:
+  - agent: satellite1
+    stage: 24
+    action_name: calibrate satellite1 instrument10 star4
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite1
+    stage: 24
+    action_name: calibrate satellite1 instrument10 star4
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+- action_set:
+  - agent: satellite1
+    stage: 24
+    action_name: calibrate satellite1 instrument10 star4
+  - agent: satellite4
+    stage: 2
+    action_name: calibrate satellite4 instrument28 groundstation1
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+  - agent: satellite4
+    stage: 2
+    action_name: calibrate satellite4 instrument28 groundstation1
+- action_set:
+  - agent: satellite4
+    stage: 8
+    action_name: take_image satellite4 star6 instrument28 spectrograph0
+  - agent: satellite1
+    stage: 24
+    action_name: calibrate satellite1 instrument10 star4
+- action_set:
+  - agent: satellite1
+    stage: 59
+    action_name: take_image satellite1 star23 instrument13 image2
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 59
+    action_name: take_image satellite1 star23 instrument13 image2
+- action_set:
+  - agent: satellite1
+    stage: 59
+    action_name: take_image satellite1 star23 instrument13 image2
+  - agent: satellite1
+    stage: 70
+    action_name: turn_to satellite1 planet18 planet13
+- action_set:
+  - agent: satellite1
+    stage: 59
+    action_name: take_image satellite1 star23 instrument13 image2
+  - agent: satellite3
+    stage: 8
+    action_name: take_image satellite3 star11 instrument21 image3

@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: woodworking21.problem
+plan_steps_number: 17
+plan_actions_number: 38
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b1 p1 saw0 mahogany rough s12 s10 s11 s9
+  - agent: agsaw
+    stage: 7
+    action_name: do-saw-large b1 p2 saw0 mahogany rough s9 s7 s8 s6
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agplanner
+    stage: 10
+    action_name: do-plane p11 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agplanner
+    stage: 10
+    action_name: do-plane p11 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agplanner
+    stage: 10
+    action_name: do-plane p11 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b4 p0 saw0 walnut smooth s3 s2
+- action_set:
+  - agent: agplanner
+    stage: 10
+    action_name: do-plane p11 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-medium b2 p9 saw0 mahogany smooth s2 s1 s0
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p3 planer0 verysmooth blue varnished
+  - agent: agplanner
+    stage: 10
+    action_name: do-plane p11 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 8
+    action_name: do-saw-large b0 p8 saw0 teak rough s4 s2 s3 s1

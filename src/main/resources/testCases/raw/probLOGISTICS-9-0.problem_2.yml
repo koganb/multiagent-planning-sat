@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: probLOGISTICS-9-0.problem
+plan_steps_number: 19
+plan_actions_number: 33
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+- action_set:
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+- action_set:
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+- action_set:
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+- action_set:
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+- action_set:
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj13 apn1 apt2
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj13 apn1 apt2
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj13 apn1 apt2
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj13 apn1 apt2
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+- action_set:
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+  - agent: tru3
+    stage: 14
+    action_name: LoadTruck obj22 tru3 apt3
+- action_set:
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+  - agent: tru3
+    stage: 14
+    action_name: LoadTruck obj22 tru3 apt3
+- action_set:
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+  - agent: tru3
+    stage: 14
+    action_name: LoadTruck obj22 tru3 apt3
+- action_set:
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+  - agent: tru3
+    stage: 14
+    action_name: LoadTruck obj22 tru3 apt3
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj13 apn1 apt2
+  - agent: tru3
+    stage: 14
+    action_name: LoadTruck obj22 tru3 apt3
+- action_set:
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+  - agent: apn1
+    stage: 13
+    action_name: UnloadAirplane obj22 apn1 apt3
+- action_set:
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+  - agent: apn1
+    stage: 13
+    action_name: UnloadAirplane obj22 apn1 apt3
+- action_set:
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+  - agent: apn1
+    stage: 13
+    action_name: UnloadAirplane obj22 apn1 apt3
+- action_set:
+  - agent: apn1
+    stage: 13
+    action_name: UnloadAirplane obj22 apn1 apt3
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+- action_set:
+  - agent: apn1
+    stage: 10
+    action_name: UnloadAirplane obj13 apn1 apt2
+  - agent: apn1
+    stage: 13
+    action_name: UnloadAirplane obj22 apn1 apt3
+- action_set:
+  - agent: apn1
+    stage: 13
+    action_name: UnloadAirplane obj22 apn1 apt3
+  - agent: tru3
+    stage: 14
+    action_name: LoadTruck obj22 tru3 apt3
+- action_set:
+  - agent: tru1
+    stage: 4
+    action_name: UnloadTruck obj11 tru1 apt1
+  - agent: apn1
+    stage: 14
+    action_name: FlyAirplane apn1 apt3 apt1
+- action_set:
+  - agent: tru3
+    stage: 2
+    action_name: DriveTruck tru3 pos3 apt3 cit3
+  - agent: apn1
+    stage: 14
+    action_name: FlyAirplane apn1 apt3 apt1
+- action_set:
+  - agent: apn1
+    stage: 9
+    action_name: FlyAirplane apn1 apt3 apt2
+  - agent: apn1
+    stage: 14
+    action_name: FlyAirplane apn1 apt3 apt1
+- action_set:
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj32 tru3 pos3
+  - agent: apn1
+    stage: 14
+    action_name: FlyAirplane apn1 apt3 apt1

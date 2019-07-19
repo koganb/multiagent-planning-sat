@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: satellite13.problem
+plan_steps_number: 37
+plan_actions_number: 62
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+- action_set:
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+- action_set:
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+- action_set:
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+- action_set:
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+- action_set:
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+- action_set:
+  - agent: satellite4
+    stage: 14
+    action_name: take_image satellite4 star26 instrument7 thermograph0
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+- action_set:
+  - agent: satellite4
+    stage: 14
+    action_name: take_image satellite4 star26 instrument7 thermograph0
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+- action_set:
+  - agent: satellite4
+    stage: 14
+    action_name: take_image satellite4 star26 instrument7 thermograph0
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+- action_set:
+  - agent: satellite4
+    stage: 14
+    action_name: take_image satellite4 star26 instrument7 thermograph0
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+- action_set:
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+  - agent: satellite4
+    stage: 25
+    action_name: turn_to satellite4 planet8 planet7
+- action_set:
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+  - agent: satellite4
+    stage: 25
+    action_name: turn_to satellite4 planet8 planet7
+- action_set:
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+  - agent: satellite4
+    stage: 25
+    action_name: turn_to satellite4 planet8 planet7
+- action_set:
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+  - agent: satellite4
+    stage: 25
+    action_name: turn_to satellite4 planet8 planet7
+- action_set:
+  - agent: satellite4
+    stage: 14
+    action_name: take_image satellite4 star26 instrument7 thermograph0
+  - agent: satellite4
+    stage: 25
+    action_name: turn_to satellite4 planet8 planet7
+- action_set:
+  - agent: satellite4
+    stage: 5
+    action_name: turn_to satellite4 planet9 planet11
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+- action_set:
+  - agent: satellite4
+    stage: 5
+    action_name: turn_to satellite4 planet9 planet11
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+- action_set:
+  - agent: satellite4
+    stage: 5
+    action_name: turn_to satellite4 planet9 planet11
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+- action_set:
+  - agent: satellite4
+    stage: 5
+    action_name: turn_to satellite4 planet9 planet11
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+- action_set:
+  - agent: satellite4
+    stage: 14
+    action_name: take_image satellite4 star26 instrument7 thermograph0
+  - agent: satellite4
+    stage: 5
+    action_name: turn_to satellite4 planet9 planet11
+- action_set:
+  - agent: satellite4
+    stage: 5
+    action_name: turn_to satellite4 planet9 planet11
+  - agent: satellite4
+    stage: 25
+    action_name: turn_to satellite4 planet8 planet7
+- action_set:
+  - agent: satellite4
+    stage: 12
+    action_name: take_image satellite4 planet24 instrument7 thermograph2
+  - agent: satellite0
+    stage: 19
+    action_name: turn_to satellite0 planet25 planet23
+- action_set:
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 planet9 instrument7 thermograph0
+  - agent: satellite0
+    stage: 19
+    action_name: turn_to satellite0 planet25 planet23
+- action_set:
+  - agent: satellite4
+    stage: 26
+    action_name: take_image satellite4 planet8 instrument6 image3
+  - agent: satellite0
+    stage: 19
+    action_name: turn_to satellite0 planet25 planet23
+- action_set:
+  - agent: satellite4
+    stage: 13
+    action_name: turn_to satellite4 star26 planet24
+  - agent: satellite0
+    stage: 19
+    action_name: turn_to satellite0 planet25 planet23

@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: ZTRAVEL-5-26.problem
+plan_steps_number: 99
+plan_actions_number: 99
+plan_agent_number: 2
+test_actions:
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+- action_set:
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2
+- action_set:
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2
+- action_set:
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 4
+    action_name: board person4 plane4 city1
+- action_set:
+  - agent: plane4
+    stage: 4
+    action_name: board person4 plane4 city1
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+- action_set:
+  - agent: plane4
+    stage: 4
+    action_name: board person4 plane4 city1
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+- action_set:
+  - agent: plane4
+    stage: 4
+    action_name: board person4 plane4 city1
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city11 city17 fl6 fl5
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city11 city17 fl6 fl5
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city11 city17 fl6 fl5
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+- action_set:
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city11 city17 fl6 fl5
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2
+- action_set:
+  - agent: plane4
+    stage: 4
+    action_name: board person4 plane4 city1
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city11 city17 fl6 fl5
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 41
+    action_name: refuel plane4 city1 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 41
+    action_name: refuel plane4 city1 fl0 fl1
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+- action_set:
+  - agent: plane4
+    stage: 41
+    action_name: refuel plane4 city1 fl0 fl1
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+- action_set:
+  - agent: plane4
+    stage: 41
+    action_name: refuel plane4 city1 fl0 fl1
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2
+- action_set:
+  - agent: plane4
+    stage: 4
+    action_name: board person4 plane4 city1
+  - agent: plane4
+    stage: 41
+    action_name: refuel plane4 city1 fl0 fl1
+- action_set:
+  - agent: plane4
+    stage: 41
+    action_name: refuel plane4 city1 fl0 fl1
+  - agent: plane4
+    stage: 0
+    action_name: fly plane4 city11 city17 fl6 fl5
+- action_set:
+  - agent: plane4
+    stage: 87
+    action_name: refuel plane4 city8 fl0 fl1
+  - agent: plane4
+    stage: 97
+    action_name: debark person16 plane4 city13
+- action_set:
+  - agent: plane4
+    stage: 97
+    action_name: debark person16 plane4 city13
+  - agent: plane4
+    stage: 37
+    action_name: board person12 plane4 city14
+- action_set:
+  - agent: plane4
+    stage: 97
+    action_name: debark person16 plane4 city13
+  - agent: plane4
+    stage: 49
+    action_name: debark person1 plane4 city5
+- action_set:
+  - agent: plane4
+    stage: 97
+    action_name: debark person16 plane4 city13
+  - agent: plane4
+    stage: 26
+    action_name: refuel plane4 city8 fl1 fl2

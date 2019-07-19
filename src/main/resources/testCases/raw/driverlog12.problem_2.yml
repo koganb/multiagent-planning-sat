@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: driverlog12.problem
+plan_steps_number: 22
+plan_actions_number: 41
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+- action_set:
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+- action_set:
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+- action_set:
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+- action_set:
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2
+- action_set:
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2
+- action_set:
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package5 truck2 s4
+- action_set:
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package5 truck2 s4
+- action_set:
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package5 truck2 s4
+- action_set:
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package5 truck2 s4
+- action_set:
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+  - agent: driver2
+    stage: 12
+    action_name: Load-Truck package1 truck2 s3
+- action_set:
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+  - agent: driver2
+    stage: 12
+    action_name: Load-Truck package1 truck2 s3
+- action_set:
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+  - agent: driver2
+    stage: 12
+    action_name: Load-Truck package1 truck2 s3
+- action_set:
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2
+  - agent: driver2
+    stage: 12
+    action_name: Load-Truck package1 truck2 s3
+- action_set:
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package5 truck2 s4
+  - agent: driver2
+    stage: 12
+    action_name: Load-Truck package1 truck2 s3
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s1 p1-7
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s1 p1-7
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s1 p1-7
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s1 p1-7
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s1 p1-7
+  - agent: driver2
+    stage: 6
+    action_name: Load-Truck package5 truck2 s4
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s1 p1-7
+  - agent: driver2
+    stage: 12
+    action_name: Load-Truck package1 truck2 s3
+- action_set:
+  - agent: driver2
+    stage: 11
+    action_name: Drive-Truck truck2 s1 s3 driver2
+  - agent: driver2
+    stage: 14
+    action_name: Drive-Truck truck2 s9 s2 driver2
+- action_set:
+  - agent: driver2
+    stage: 11
+    action_name: Drive-Truck truck2 s1 s3 driver2
+  - agent: driver2
+    stage: 3
+    action_name: Board-Truck driver2 truck2 s9
+- action_set:
+  - agent: driver2
+    stage: 11
+    action_name: Drive-Truck truck2 s1 s3 driver2
+  - agent: driver1
+    stage: 9
+    action_name: Walk driver1 p7-4 s7
+- action_set:
+  - agent: driver2
+    stage: 11
+    action_name: Drive-Truck truck2 s1 s3 driver2
+  - agent: driver1
+    stage: 11
+    action_name: Walk driver1 p2-7 s2

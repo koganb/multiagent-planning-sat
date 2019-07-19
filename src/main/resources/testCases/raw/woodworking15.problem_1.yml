@@ -1,0 +1,90 @@
+action_cardinality: 1
+problem_name: woodworking15.problem
+plan_steps_number: 11
+plan_actions_number: 22
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+- action_set:
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 2
+    action_name: do-saw-large b0 p5 saw0 teak smooth s9 s7 s8 s6
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-glaze p5 glazer0 natural
+- action_set:
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p4 glazer0 natural
+- action_set:
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p6 glazer0 natural
+- action_set:
+  - agent: agvarnisher
+    stage: 5
+    action_name: do-glaze p0 glazer0 red
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-small b2 p0 saw0 oak smooth s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p3 glazer0 natural
+- action_set:
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-medium b1 p1 saw0 teak rough s2 s1 s0
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+- action_set:
+  - agent: aggrinder
+    stage: 1
+    action_name: do-grind p6 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-glaze p2 glazer0 mauve
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: aggrinder
+    stage: 0
+    action_name: do-grind p6 grinder0 smooth mauve varnished colourfragments
+- action_set:
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-medium b1 p3 saw0 teak rough s4 s3 s2
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-small b0 p2 saw0 teak smooth s10 s9

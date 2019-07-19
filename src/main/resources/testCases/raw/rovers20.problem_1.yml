@@ -1,0 +1,106 @@
+action_cardinality: 1
+problem_name: rovers20.problem
+plan_steps_number: 40
+plan_actions_number: 94
+plan_agent_number: 6
+test_actions:
+- action_set:
+  - agent: rover0
+    stage: 3
+    action_name: navigate rover0 waypoint6 waypoint2
+- action_set:
+  - agent: rover4
+    stage: 37
+    action_name: communicate_rock_data rover4 general waypoint7 waypoint2 waypoint1
+- action_set:
+  - agent: rover4
+    stage: 26
+    action_name: communicate_rock_data rover4 general waypoint10 waypoint2 waypoint1
+- action_set:
+  - agent: rover3
+    stage: 22
+    action_name: navigate rover3 waypoint12 waypoint3
+- action_set:
+  - agent: rover4
+    stage: 22
+    action_name: navigate rover4 waypoint16 waypoint2
+- action_set:
+  - agent: rover3
+    stage: 25
+    action_name: drop rover3 rover3store
+- action_set:
+  - agent: rover0
+    stage: 0
+    action_name: navigate rover0 waypoint22 waypoint11
+- action_set:
+  - agent: rover3
+    stage: 5
+    action_name: sample_rock rover3 rover3store waypoint9
+- action_set:
+  - agent: rover4
+    stage: 18
+    action_name: sample_rock rover4 rover4store waypoint10
+- action_set:
+  - agent: rover3
+    stage: 26
+    action_name: navigate rover3 waypoint1 waypoint23
+- action_set:
+  - agent: rover3
+    stage: 28
+    action_name: communicate_soil_data rover3 general waypoint23 waypoint23 waypoint1
+- action_set:
+  - agent: rover3
+    stage: 11
+    action_name: navigate rover3 waypoint13 waypoint21
+- action_set:
+  - agent: rover6
+    stage: 7
+    action_name: navigate rover6 waypoint20 waypoint4
+- action_set:
+  - agent: rover6
+    stage: 1
+    action_name: sample_soil rover6 rover6store waypoint8
+- action_set:
+  - agent: rover3
+    stage: 8
+    action_name: navigate rover3 waypoint18 waypoint3
+- action_set:
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+- action_set:
+  - agent: rover0
+    stage: 1
+    action_name: sample_soil rover0 rover0store waypoint11
+- action_set:
+  - agent: rover3
+    stage: 20
+    action_name: navigate rover3 waypoint3 waypoint12
+- action_set:
+  - agent: rover4
+    stage: 21
+    action_name: calibrate rover4 camera2 objective0 waypoint16
+- action_set:
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+- action_set:
+  - agent: rover3
+    stage: 7
+    action_name: communicate_rock_data rover3 general waypoint9 waypoint18 waypoint1
+- action_set:
+  - agent: rover4
+    stage: 14
+    action_name: navigate rover4 waypoint2 waypoint16
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+- action_set:
+  - agent: rover4
+    stage: 35
+    action_name: navigate rover4 waypoint22 waypoint16
+- action_set:
+  - agent: rover3
+    stage: 24
+    action_name: navigate rover3 waypoint3 waypoint1

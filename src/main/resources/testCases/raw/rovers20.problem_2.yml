@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: rovers20.problem
+plan_steps_number: 40
+plan_actions_number: 94
+plan_agent_number: 6
+test_actions:
+- action_set:
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+- action_set:
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+- action_set:
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+- action_set:
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+- action_set:
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+- action_set:
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+- action_set:
+  - agent: rover4
+    stage: 34
+    action_name: sample_rock rover4 rover4store waypoint22
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+- action_set:
+  - agent: rover4
+    stage: 34
+    action_name: sample_rock rover4 rover4store waypoint22
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover4
+    stage: 34
+    action_name: sample_rock rover4 rover4store waypoint22
+- action_set:
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+  - agent: rover4
+    stage: 34
+    action_name: sample_rock rover4 rover4store waypoint22
+- action_set:
+  - agent: rover4
+    stage: 34
+    action_name: sample_rock rover4 rover4store waypoint22
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+- action_set:
+  - agent: rover6
+    stage: 9
+    action_name: navigate rover6 waypoint4 waypoint16
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+- action_set:
+  - agent: rover6
+    stage: 9
+    action_name: navigate rover6 waypoint4 waypoint16
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover6
+    stage: 9
+    action_name: navigate rover6 waypoint4 waypoint16
+- action_set:
+  - agent: rover6
+    stage: 9
+    action_name: navigate rover6 waypoint4 waypoint16
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+- action_set:
+  - agent: rover6
+    stage: 9
+    action_name: navigate rover6 waypoint4 waypoint16
+  - agent: rover3
+    stage: 9
+    action_name: navigate rover3 waypoint3 waypoint13
+- action_set:
+  - agent: rover6
+    stage: 9
+    action_name: navigate rover6 waypoint4 waypoint16
+  - agent: rover4
+    stage: 34
+    action_name: sample_rock rover4 rover4store waypoint22
+- action_set:
+  - agent: rover4
+    stage: 7
+    action_name: navigate rover4 waypoint2 waypoint14
+  - agent: rover4
+    stage: 32
+    action_name: drop rover4 rover4store
+- action_set:
+  - agent: rover4
+    stage: 11
+    action_name: take_image rover4 waypoint2 objective7 camera2 colour
+  - agent: rover4
+    stage: 32
+    action_name: drop rover4 rover4store
+- action_set:
+  - agent: rover4
+    stage: 28
+    action_name: drop rover4 rover4store
+  - agent: rover4
+    stage: 32
+    action_name: drop rover4 rover4store
+- action_set:
+  - agent: rover4
+    stage: 20
+    action_name: navigate rover4 waypoint10 waypoint16
+  - agent: rover4
+    stage: 32
+    action_name: drop rover4 rover4store

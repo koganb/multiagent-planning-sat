@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: woodworking5.problem
+plan_steps_number: 10
+plan_actions_number: 18
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p3 grinder0 smooth blue glazed untreated
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p3 grinder0 smooth blue glazed untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p3 grinder0 smooth blue glazed untreated
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p3 grinder0 smooth blue glazed untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 green
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 green
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 green
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 green
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p3 grinder0 smooth blue glazed untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p3 glazer0 blue
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p3 glazer0 blue
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p3 grinder0 smooth blue glazed untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 2
+    action_name: do-glaze p2 glazer0 green
+  - agent: agvarnisher
+    stage: 8
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-medium b1 p6 saw0 mahogany rough s5 s4 s3
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 5
+    action_name: do-saw-large b2 p1 saw0 mahogany smooth s4 s2 s3 s1
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agvarnisher
+    stage: 7
+    action_name: do-immersion-varnish p1 immersion-varnisher0 red smooth natural
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p3 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p5 planer0 rough white varnished
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p3 glazer0 blue

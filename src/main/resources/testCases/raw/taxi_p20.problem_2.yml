@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: taxi_p20.problem
+plan_steps_number: 26
+plan_actions_number: 30
+plan_agent_number: 11
+test_actions:
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+- action_set:
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+- action_set:
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: p4
+    stage: 9
+    action_name: exit_p4 t2 c
+- action_set:
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+  - agent: p4
+    stage: 9
+    action_name: exit_p4 t2 c
+- action_set:
+  - agent: p4
+    stage: 9
+    action_name: exit_p4 t2 c
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+  - agent: p4
+    stage: 9
+    action_name: exit_p4 t2 c
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: t1
+    stage: 5
+    action_name: drive_t1 g1 c
+- action_set:
+  - agent: t1
+    stage: 5
+    action_name: drive_t1 g1 c
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+- action_set:
+  - agent: t1
+    stage: 5
+    action_name: drive_t1 g1 c
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+  - agent: t1
+    stage: 5
+    action_name: drive_t1 g1 c
+- action_set:
+  - agent: t1
+    stage: 5
+    action_name: drive_t1 g1 c
+  - agent: p4
+    stage: 9
+    action_name: exit_p4 t2 c
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: p3
+    stage: 1
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+  - agent: p3
+    stage: 1
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+  - agent: p3
+    stage: 1
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+  - agent: p3
+    stage: 1
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: p4
+    stage: 9
+    action_name: exit_p4 t2 c
+  - agent: p3
+    stage: 1
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: t1
+    stage: 5
+    action_name: drive_t1 g1 c
+  - agent: p3
+    stage: 1
+    action_name: enter_p3 t3 h3
+- action_set:
+  - agent: t3
+    stage: 0
+    action_name: drive_t3 c h3
+  - agent: p3
+    stage: 3
+    action_name: exit_p3 t3 c
+- action_set:
+  - agent: t3
+    stage: 19
+    action_name: drive_t3 h1 c
+  - agent: p3
+    stage: 3
+    action_name: exit_p3 t3 c
+- action_set:
+  - agent: p3
+    stage: 3
+    action_name: exit_p3 t3 c
+  - agent: p5
+    stage: 14
+    action_name: enter_p5 t3 g3
+- action_set:
+  - agent: t1
+    stage: 7
+    action_name: drive_t1 c g1
+  - agent: p3
+    stage: 3
+    action_name: exit_p3 t3 c

@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: rovers9.problem
+plan_steps_number: 24
+plan_actions_number: 35
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+- action_set:
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 18
+    action_name: navigate rover1 waypoint2 waypoint0
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+  - agent: rover3
+    stage: 3
+    action_name: navigate rover3 waypoint4 waypoint1
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: take_image rover1 waypoint3 objective2 camera4 low_res
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: take_image rover1 waypoint3 objective2 camera4 low_res
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: take_image rover1 waypoint3 objective2 camera4 low_res
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 5
+    action_name: calibrate rover1 camera4 objective1 waypoint3
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: take_image rover1 waypoint3 objective2 camera4 low_res
+  - agent: rover2
+    stage: 0
+    action_name: sample_soil rover2 rover2store waypoint0
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: take_image rover1 waypoint3 objective2 camera4 low_res
+  - agent: rover3
+    stage: 2
+    action_name: sample_soil rover3 rover3store waypoint4
+  - agent: rover1
+    stage: 14
+    action_name: sample_rock rover1 rover1store waypoint6

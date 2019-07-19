@@ -1,0 +1,106 @@
+action_cardinality: 1
+problem_name: probLOGISTICS-22-0.problem
+plan_steps_number: 57
+plan_actions_number: 116
+plan_agent_number: 10
+test_actions:
+- action_set:
+  - agent: tru3
+    stage: 0
+    action_name: LoadTruck obj33 tru3 pos3
+- action_set:
+  - agent: tru8
+    stage: 30
+    action_name: UnloadTruck obj31 tru8 pos8
+- action_set:
+  - agent: tru8
+    stage: 3
+    action_name: UnloadTruck obj83 tru8 apt8
+- action_set:
+  - agent: apn1
+    stage: 24
+    action_name: UnloadAirplane obj71 apn1 apt3
+- action_set:
+  - agent: tru5
+    stage: 0
+    action_name: LoadTruck obj52 tru5 pos5
+- action_set:
+  - agent: tru1
+    stage: 46
+    action_name: DriveTruck tru1 apt1 pos1 cit1
+- action_set:
+  - agent: apn1
+    stage: 7
+    action_name: LoadAirplane obj83 apn1 apt8
+- action_set:
+  - agent: apn1
+    stage: 50
+    action_name: UnloadAirplane obj11 apn1 apt8
+- action_set:
+  - agent: tru1
+    stage: 5
+    action_name: UnloadTruck obj12 tru1 apt1
+- action_set:
+  - agent: tru1
+    stage: 0
+    action_name: LoadTruck obj13 tru1 pos1
+- action_set:
+  - agent: tru7
+    stage: 1
+    action_name: LoadTruck obj72 tru7 pos7
+- action_set:
+  - agent: tru2
+    stage: 0
+    action_name: LoadTruck obj22 tru2 pos2
+- action_set:
+  - agent: tru8
+    stage: 1
+    action_name: LoadTruck obj82 tru8 pos8
+- action_set:
+  - agent: apn1
+    stage: 29
+    action_name: UnloadAirplane obj32 apn1 apt5
+- action_set:
+  - agent: apn1
+    stage: 17
+    action_name: FlyAirplane apn1 apt6 apt7
+- action_set:
+  - agent: apn1
+    stage: 23
+    action_name: LoadAirplane obj31 apn1 apt3
+- action_set:
+  - agent: apn1
+    stage: 8
+    action_name: LoadAirplane obj82 apn1 apt8
+- action_set:
+  - agent: apn1
+    stage: 21
+    action_name: LoadAirplane obj33 apn1 apt3
+- action_set:
+  - agent: apn1
+    stage: 12
+    action_name: FlyAirplane apn1 apt7 apt6
+- action_set:
+  - agent: apn1
+    stage: 11
+    action_name: LoadAirplane obj71 apn1 apt7
+- action_set:
+  - agent: tru3
+    stage: 28
+    action_name: UnloadTruck obj71 tru3 pos3
+- action_set:
+  - agent: tru2
+    stage: 3
+    action_name: UnloadTruck obj22 tru2 apt2
+- action_set:
+  - agent: apn1
+    stage: 47
+    action_name: LoadAirplane obj11 apn1 apt1
+- action_set:
+  - agent: tru6
+    stage: 2
+    action_name: DriveTruck tru6 pos6 apt6 cit6
+- action_set:
+  - agent: tru7
+    stage: 2
+    action_name: LoadTruck obj71 tru7 pos7

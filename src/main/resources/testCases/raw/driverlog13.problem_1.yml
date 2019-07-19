@@ -1,0 +1,106 @@
+action_cardinality: 1
+problem_name: driverlog13.problem
+plan_steps_number: 25
+plan_actions_number: 27
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: driver1
+    stage: 8
+    action_name: Load-Truck package1 truck3 s4
+- action_set:
+  - agent: driver1
+    stage: 12
+    action_name: Drive-Truck truck3 s6 s4 driver1
+- action_set:
+  - agent: driver1
+    stage: 5
+    action_name: Unload-Truck package6 truck3 s5
+- action_set:
+  - agent: driver2
+    stage: 0
+    action_name: Board-Truck driver2 truck2 s9
+- action_set:
+  - agent: driver1
+    stage: 11
+    action_name: Load-Truck package2 truck3 s6
+- action_set:
+  - agent: driver1
+    stage: 15
+    action_name: Unload-Truck package2 truck3 s0
+- action_set:
+  - agent: driver2
+    stage: 1
+    action_name: Drive-Truck truck2 s9 s8 driver2
+- action_set:
+  - agent: driver1
+    stage: 14
+    action_name: Drive-Truck truck3 s4 s0 driver1
+- action_set:
+  - agent: driver1
+    stage: 0
+    action_name: Walk driver1 s0 p0-2
+- action_set:
+  - agent: driver1
+    stage: 2
+    action_name: Board-Truck driver1 truck3 s2
+- action_set:
+  - agent: driver1
+    stage: 22
+    action_name: Walk driver1 s4 p11-4
+- action_set:
+  - agent: driver1
+    stage: 23
+    action_name: Walk driver1 p11-4 s11
+- action_set:
+  - agent: driver1
+    stage: 17
+    action_name: Drive-Truck truck3 s0 s4 driver1
+- action_set:
+  - agent: driver1
+    stage: 19
+    action_name: Unload-Truck package1 truck3 s5
+- action_set:
+  - agent: driver1
+    stage: 16
+    action_name: Unload-Truck package4 truck3 s0
+- action_set:
+  - agent: driver1
+    stage: 4
+    action_name: Drive-Truck truck3 s2 s5 driver1
+- action_set:
+  - agent: driver1
+    stage: 1
+    action_name: Walk driver1 p0-2 s2
+- action_set:
+  - agent: driver1
+    stage: 6
+    action_name: Load-Truck package3 truck3 s5
+- action_set:
+  - agent: driver1
+    stage: 3
+    action_name: Load-Truck package6 truck3 s2
+- action_set:
+  - agent: driver1
+    stage: 18
+    action_name: Drive-Truck truck3 s4 s5 driver1
+- action_set:
+  - agent: driver1
+    stage: 20
+    action_name: Drive-Truck truck3 s5 s4 driver1
+- action_set:
+  - agent: driver1
+    stage: 13
+    action_name: Unload-Truck package3 truck3 s4
+- action_set:
+  - agent: driver1
+    stage: 10
+    action_name: Load-Truck package4 truck3 s6
+- action_set:
+  - agent: driver1
+    stage: 9
+    action_name: Drive-Truck truck3 s4 s6 driver1
+- action_set:
+  - agent: driver1
+    stage: 7
+    action_name: Drive-Truck truck3 s5 s4 driver1

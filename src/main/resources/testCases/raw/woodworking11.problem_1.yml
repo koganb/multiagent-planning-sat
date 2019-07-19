@@ -1,0 +1,38 @@
+action_cardinality: 1
+problem_name: woodworking11.problem
+plan_steps_number: 6
+plan_actions_number: 9
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 1
+    action_name: do-saw-small b0 p0 saw0 teak rough s2 s1
+- action_set:
+  - agent: agvarnisher
+    stage: 3
+    action_name: do-immersion-varnish p0 immersion-varnisher0 natural smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 2
+    action_name: do-plane p0 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough blue glazed
+- action_set:
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p2 planer0 verysmooth red varnished
+- action_set:
+  - agent: agsaw
+    stage: 0
+    action_name: do-saw-medium b1 p1 saw0 oak rough s3 s2 s1

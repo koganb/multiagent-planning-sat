@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: satellite20.problem
+plan_steps_number: 78
+plan_actions_number: 102
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+- action_set:
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+- action_set:
+  - agent: satellite3
+    stage: 13
+    action_name: turn_to satellite3 star24 star16
+  - agent: satellite1
+    stage: 53
+    action_name: take_image satellite1 planet7 instrument13 image2
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 54
+    action_name: turn_to satellite1 planet13 planet7
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 54
+    action_name: turn_to satellite1 planet13 planet7
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 16
+    action_name: take_image satellite1 planet18 instrument11 thermograph7
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 54
+    action_name: turn_to satellite1 planet13 planet7
+- action_set:
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 54
+    action_name: turn_to satellite1 planet13 planet7
+  - agent: satellite1
+    stage: 5
+    action_name: take_image satellite1 star11 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 42
+    action_name: turn_to satellite1 star24 phenomenon19
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+  - agent: satellite1
+    stage: 54
+    action_name: turn_to satellite1 planet13 planet7

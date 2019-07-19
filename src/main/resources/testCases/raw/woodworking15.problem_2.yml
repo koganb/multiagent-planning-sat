@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: woodworking15.problem
+plan_steps_number: 11
+plan_actions_number: 22
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+- action_set:
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+  - agent: aggrinder
+    stage: 3
+    action_name: do-grind p2 grinder0 verysmooth natural colourfragments untreated
+- action_set:
+  - agent: agvarnisher
+    stage: 9
+    action_name: do-glaze p3 glazer0 natural
+  - agent: agvarnisher
+    stage: 6
+    action_name: do-glaze p1 glazer0 blue
+- action_set:
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: aggrinder
+    stage: 2
+    action_name: do-grind p2 grinder0 smooth mauve varnished colourfragments
+- action_set:
+  - agent: agsaw
+    stage: 3
+    action_name: do-saw-large b0 p4 saw0 teak smooth s6 s4 s5 s3
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p3 planer0 rough natural glazed
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p4 grinder0 smooth natural untreated untreated
+  - agent: agvarnisher
+    stage: 1
+    action_name: do-immersion-varnish p2 immersion-varnisher0 mauve smooth natural

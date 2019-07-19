@@ -1,0 +1,86 @@
+action_cardinality: 1
+problem_name: satellite6.problem
+plan_steps_number: 12
+plan_actions_number: 21
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: satellite0
+    stage: 3
+    action_name: turn_to satellite0 planet5 star1
+- action_set:
+  - agent: satellite1
+    stage: 7
+    action_name: turn_to satellite1 star7 star6
+- action_set:
+  - agent: satellite1
+    stage: 8
+    action_name: take_image satellite1 star7 instrument2 infrared3
+- action_set:
+  - agent: satellite1
+    stage: 1
+    action_name: turn_to satellite1 star2 star6
+- action_set:
+  - agent: satellite1
+    stage: 5
+    action_name: turn_to satellite1 star6 planet4
+- action_set:
+  - agent: satellite0
+    stage: 7
+    action_name: turn_to satellite0 star9 phenomenon8
+- action_set:
+  - agent: satellite0
+    stage: 8
+    action_name: take_image satellite0 star9 instrument0 infrared1
+- action_set:
+  - agent: satellite1
+    stage: 3
+    action_name: turn_to satellite1 planet4 star2
+- action_set:
+  - agent: satellite1
+    stage: 9
+    action_name: turn_to satellite1 star10 star7
+- action_set:
+  - agent: satellite0
+    stage: 5
+    action_name: turn_to satellite0 phenomenon8 planet5
+- action_set:
+  - agent: satellite0
+    stage: 4
+    action_name: take_image satellite0 planet5 instrument0 spectrograph0
+- action_set:
+  - agent: satellite1
+    stage: 6
+    action_name: take_image satellite1 star6 instrument2 thermograph2
+- action_set:
+  - agent: satellite0
+    stage: 6
+    action_name: take_image satellite0 phenomenon8 instrument0 spectrograph0
+- action_set:
+  - agent: satellite1
+    stage: 0
+    action_name: switch_on instrument2 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 2
+    action_name: calibrate satellite1 instrument2 star2
+- action_set:
+  - agent: satellite0
+    stage: 0
+    action_name: switch_on instrument0 satellite0
+- action_set:
+  - agent: satellite0
+    stage: 2
+    action_name: calibrate satellite0 instrument0 star1
+- action_set:
+  - agent: satellite0
+    stage: 1
+    action_name: turn_to satellite0 star1 phenomenon8
+- action_set:
+  - agent: satellite1
+    stage: 4
+    action_name: take_image satellite1 planet4 instrument2 thermograph2
+- action_set:
+  - agent: satellite1
+    stage: 10
+    action_name: take_image satellite1 star10 instrument2 infrared3

@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: satellite10.problem
+plan_steps_number: 30
+plan_actions_number: 31
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+- action_set:
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 0
+    action_name: turn_to satellite2 star2 star1
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+  - agent: satellite2
+    stage: 16
+    action_name: take_image satellite2 phenomenon14 instrument4 spectrograph1
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 6
+    action_name: take_image satellite2 star7 instrument4 image4
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 6
+    action_name: take_image satellite2 star7 instrument4 image4
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+- action_set:
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 6
+    action_name: take_image satellite2 star7 instrument4 image4
+  - agent: satellite2
+    stage: 17
+    action_name: turn_to satellite2 star15 phenomenon14
+- action_set:
+  - agent: satellite2
+    stage: 3
+    action_name: turn_to satellite2 planet5 star2
+  - agent: satellite2
+    stage: 6
+    action_name: take_image satellite2 star7 instrument4 image4
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2
+- action_set:
+  - agent: satellite2
+    stage: 2
+    action_name: calibrate satellite2 instrument4 star2
+  - agent: satellite2
+    stage: 6
+    action_name: take_image satellite2 star7 instrument4 image4
+  - agent: satellite2
+    stage: 19
+    action_name: switch_off instrument4 satellite2

@@ -1,0 +1,206 @@
+action_cardinality: 3
+problem_name: ma-blocksworld4-2.problem
+plan_steps_number: 6
+plan_actions_number: 7
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+- action_set:
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+- action_set:
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+- action_set:
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+- action_set:
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 1
+    action_name: stack c d r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r1
+    stage: 0
+    action_name: unstack a nob r1
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 0
+    action_name: unstack c b r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1
+- action_set:
+  - agent: r2
+    stage: 3
+    action_name: stack b c r2
+  - agent: r2
+    stage: 2
+    action_name: pickup b r2
+  - agent: r1
+    stage: 4
+    action_name: stack a b r1

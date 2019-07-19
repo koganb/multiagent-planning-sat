@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: os-sequencedstrips-p19_1.problem
+plan_steps_number: 54
+plan_actions_number: 63
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+- action_set:
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+- action_set:
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manager
+    stage: 51
+    action_name: ship-order-o19 n3 n4
+- action_set:
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+  - agent: manager
+    stage: 51
+    action_name: ship-order-o19 n3 n4
+- action_set:
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+  - agent: manager
+    stage: 51
+    action_name: ship-order-o19 n3 n4
+- action_set:
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+  - agent: manager
+    stage: 51
+    action_name: ship-order-o19 n3 n4
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manufacturer
+    stage: 2
+    action_name: make-product-p14
+- action_set:
+  - agent: manufacturer
+    stage: 2
+    action_name: make-product-p14
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+- action_set:
+  - agent: manufacturer
+    stage: 2
+    action_name: make-product-p14
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 2
+    action_name: make-product-p14
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+- action_set:
+  - agent: manufacturer
+    stage: 2
+    action_name: make-product-p14
+  - agent: manager
+    stage: 51
+    action_name: ship-order-o19 n3 n4
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manager
+    stage: 33
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 33
+    action_name: start-order o5 n1 n0
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+- action_set:
+  - agent: manager
+    stage: 33
+    action_name: start-order o5 n1 n0
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+  - agent: manager
+    stage: 33
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 33
+    action_name: start-order o5 n1 n0
+  - agent: manager
+    stage: 51
+    action_name: ship-order-o19 n3 n4
+- action_set:
+  - agent: manufacturer
+    stage: 2
+    action_name: make-product-p14
+  - agent: manager
+    stage: 33
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manufacturer
+    stage: 3
+    action_name: make-product-p12
+  - agent: manufacturer
+    stage: 12
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 29
+    action_name: make-product-p17
+  - agent: manufacturer
+    stage: 12
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 0
+    action_name: open-new-stack n0 n1
+  - agent: manufacturer
+    stage: 12
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 40
+    action_name: make-product-p4
+  - agent: manufacturer
+    stage: 12
+    action_name: open-new-stack n0 n1

@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: ZTRAVEL-3-7.problem
+plan_steps_number: 25
+plan_actions_number: 25
+plan_agent_number: 2
+test_actions:
+- action_set:
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+- action_set:
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+- action_set:
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+- action_set:
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+- action_set:
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+  - agent: plane2
+    stage: 21
+    action_name: refuel plane2 city2 fl0 fl1
+- action_set:
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+  - agent: plane2
+    stage: 21
+    action_name: refuel plane2 city2 fl0 fl1
+- action_set:
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+  - agent: plane2
+    stage: 21
+    action_name: refuel plane2 city2 fl0 fl1
+- action_set:
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+  - agent: plane2
+    stage: 21
+    action_name: refuel plane2 city2 fl0 fl1
+- action_set:
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+  - agent: plane2
+    stage: 5
+    action_name: fly plane2 city3 city4 fl2 fl1
+- action_set:
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+  - agent: plane2
+    stage: 5
+    action_name: fly plane2 city3 city4 fl2 fl1
+- action_set:
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+  - agent: plane2
+    stage: 5
+    action_name: fly plane2 city3 city4 fl2 fl1
+- action_set:
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+  - agent: plane2
+    stage: 5
+    action_name: fly plane2 city3 city4 fl2 fl1
+- action_set:
+  - agent: plane2
+    stage: 21
+    action_name: refuel plane2 city2 fl0 fl1
+  - agent: plane2
+    stage: 5
+    action_name: fly plane2 city3 city4 fl2 fl1
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: fly plane2 city0 city2 fl1 fl0
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: fly plane2 city0 city2 fl1 fl0
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: fly plane2 city0 city2 fl1 fl0
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: fly plane2 city0 city2 fl1 fl0
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: fly plane2 city0 city2 fl1 fl0
+  - agent: plane2
+    stage: 21
+    action_name: refuel plane2 city2 fl0 fl1
+- action_set:
+  - agent: plane2
+    stage: 19
+    action_name: fly plane2 city0 city2 fl1 fl0
+  - agent: plane2
+    stage: 5
+    action_name: fly plane2 city3 city4 fl2 fl1
+- action_set:
+  - agent: plane2
+    stage: 20
+    action_name: debark person1 plane2 city2
+  - agent: plane2
+    stage: 0
+    action_name: board person3 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 0
+    action_name: board person3 plane2 city2
+  - agent: plane2
+    stage: 4
+    action_name: refuel plane2 city3 fl1 fl2
+- action_set:
+  - agent: plane2
+    stage: 14
+    action_name: board person2 plane2 city1
+  - agent: plane2
+    stage: 0
+    action_name: board person3 plane2 city2
+- action_set:
+  - agent: plane2
+    stage: 2
+    action_name: board person6 plane2 city3
+  - agent: plane2
+    stage: 0
+    action_name: board person3 plane2 city2

@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: woodworking6.problem
+plan_steps_number: 9
+plan_actions_number: 24
+plan_agent_number: 5
+test_actions:
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+- action_set:
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: aggrinder
+    stage: 4
+    action_name: do-grind p1 grinder0 smooth natural untreated untreated
+  - agent: agplanner
+    stage: 1
+    action_name: do-plane p6 planer0 verysmooth blue colourfragments
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p4 glazer0 white
+- action_set:
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p4 glazer0 white
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agsaw
+    stage: 4
+    action_name: do-saw-large b1 p2 saw0 oak rough s5 s3 s4 s2
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p4 glazer0 white
+- action_set:
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 0
+    action_name: do-plane p7 planer0 smooth white varnished
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p4 glazer0 white
+- action_set:
+  - agent: agplanner
+    stage: 3
+    action_name: do-plane p1 planer0 rough natural untreated
+  - agent: agplanner
+    stage: 6
+    action_name: do-plane p5 planer0 rough natural untreated
+  - agent: agvarnisher
+    stage: 4
+    action_name: do-glaze p4 glazer0 white

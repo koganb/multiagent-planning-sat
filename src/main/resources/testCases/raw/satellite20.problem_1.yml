@@ -1,0 +1,106 @@
+action_cardinality: 1
+problem_name: satellite20.problem
+plan_steps_number: 78
+plan_actions_number: 102
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: satellite1
+    stage: 33
+    action_name: turn_to satellite1 phenomenon8 planet7
+- action_set:
+  - agent: satellite3
+    stage: 0
+    action_name: turn_to satellite3 star2 star10
+- action_set:
+  - agent: satellite1
+    stage: 58
+    action_name: turn_to satellite1 star23 phenomenon19
+- action_set:
+  - agent: satellite1
+    stage: 36
+    action_name: take_image satellite1 planet13 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 72
+    action_name: take_image satellite1 planet18 instrument12 infrared9
+- action_set:
+  - agent: satellite1
+    stage: 49
+    action_name: take_image satellite1 phenomenon21 instrument13 image2
+- action_set:
+  - agent: satellite3
+    stage: 4
+    action_name: take_image satellite3 phenomenon5 instrument21 image3
+- action_set:
+  - agent: satellite1
+    stage: 76
+    action_name: turn_to satellite1 phenomenon19 star23
+- action_set:
+  - agent: satellite3
+    stage: 14
+    action_name: take_image satellite3 star24 instrument21 infrared5
+- action_set:
+  - agent: satellite1
+    stage: 22
+    action_name: switch_on instrument10 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 65
+    action_name: take_image satellite1 planet7 instrument12 infrared5
+- action_set:
+  - agent: satellite3
+    stage: 5
+    action_name: turn_to satellite3 star6 phenomenon5
+- action_set:
+  - agent: satellite3
+    stage: 6
+    action_name: take_image satellite3 star6 instrument21 image3
+- action_set:
+  - agent: satellite3
+    stage: 11
+    action_name: turn_to satellite3 star16 planet15
+- action_set:
+  - agent: satellite4
+    stage: 6
+    action_name: take_image satellite4 phenomenon5 instrument28 spectrograph0
+- action_set:
+  - agent: satellite1
+    stage: 45
+    action_name: switch_on instrument13 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 34
+    action_name: take_image satellite1 phenomenon8 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 6
+    action_name: turn_to satellite1 phenomenon8 star11
+- action_set:
+  - agent: satellite1
+    stage: 66
+    action_name: turn_to satellite1 phenomenon8 planet7
+- action_set:
+  - agent: satellite1
+    stage: 0
+    action_name: switch_on instrument11 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 10
+    action_name: turn_to satellite1 phenomenon14 phenomenon12
+- action_set:
+  - agent: satellite1
+    stage: 40
+    action_name: take_image satellite1 planet22 instrument10 spectrograph6
+- action_set:
+  - agent: satellite1
+    stage: 21
+    action_name: switch_off instrument11 satellite1
+- action_set:
+  - agent: satellite1
+    stage: 9
+    action_name: take_image satellite1 phenomenon12 instrument11 image4
+- action_set:
+  - agent: satellite1
+    stage: 64
+    action_name: turn_to satellite1 planet7 groundstation3

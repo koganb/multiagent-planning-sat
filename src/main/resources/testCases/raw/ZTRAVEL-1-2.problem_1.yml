@@ -1,0 +1,10 @@
+action_cardinality: 1
+problem_name: ZTRAVEL-1-2.problem
+plan_steps_number: 2
+plan_actions_number: 2
+plan_agent_number: 2
+test_actions:
+- action_set:
+  - agent: plane1
+    stage: 0
+    action_name: fly plane1 city0 city1 fl1 fl0

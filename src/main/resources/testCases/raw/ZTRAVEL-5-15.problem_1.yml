@@ -1,0 +1,106 @@
+action_cardinality: 1
+problem_name: ZTRAVEL-5-15.problem
+plan_steps_number: 44
+plan_actions_number: 44
+plan_agent_number: 2
+test_actions:
+- action_set:
+  - agent: plane5
+    stage: 38
+    action_name: fly plane5 city11 city2 fl1 fl0
+- action_set:
+  - agent: plane5
+    stage: 17
+    action_name: debark person12 plane5 city4
+- action_set:
+  - agent: plane5
+    stage: 28
+    action_name: fly plane5 city10 city4 fl1 fl0
+- action_set:
+  - agent: plane5
+    stage: 2
+    action_name: fly plane5 city5 city1 fl1 fl0
+- action_set:
+  - agent: plane5
+    stage: 35
+    action_name: refuel plane5 city11 fl0 fl1
+- action_set:
+  - agent: plane5
+    stage: 23
+    action_name: debark person11 plane5 city6
+- action_set:
+  - agent: plane5
+    stage: 32
+    action_name: debark person8 plane5 city11
+- action_set:
+  - agent: plane5
+    stage: 33
+    action_name: debark person13 plane5 city11
+- action_set:
+  - agent: plane5
+    stage: 3
+    action_name: refuel plane5 city1 fl0 fl1
+- action_set:
+  - agent: plane5
+    stage: 1
+    action_name: board person12 plane5 city5
+- action_set:
+  - agent: plane5
+    stage: 15
+    action_name: fly plane5 city1 city4 fl1 fl0
+- action_set:
+  - agent: plane5
+    stage: 30
+    action_name: refuel plane5 city4 fl0 fl1
+- action_set:
+  - agent: plane5
+    stage: 40
+    action_name: refuel plane5 city2 fl0 fl1
+- action_set:
+  - agent: plane5
+    stage: 27
+    action_name: board person6 plane5 city10
+- action_set:
+  - agent: plane5
+    stage: 42
+    action_name: debark person10 plane5 city9
+- action_set:
+  - agent: plane5
+    stage: 39
+    action_name: debark person7 plane5 city2
+- action_set:
+  - agent: plane5
+    stage: 29
+    action_name: debark person2 plane5 city4
+- action_set:
+  - agent: plane5
+    stage: 14
+    action_name: refuel plane5 city1 fl0 fl1
+- action_set:
+  - agent: plane5
+    stage: 21
+    action_name: debark person4 plane5 city6
+- action_set:
+  - agent: plane5
+    stage: 31
+    action_name: fly plane5 city4 city11 fl1 fl0
+- action_set:
+  - agent: plane5
+    stage: 8
+    action_name: debark person5 plane5 city8
+- action_set:
+  - agent: plane5
+    stage: 11
+    action_name: board person13 plane5 city8
+- action_set:
+  - agent: plane5
+    stage: 20
+    action_name: fly plane5 city4 city6 fl2 fl1
+- action_set:
+  - agent: plane5
+    stage: 12
+    action_name: fly plane5 city8 city1 fl1 fl0
+- action_set:
+  - agent: plane5
+    stage: 19
+    action_name: refuel plane5 city4 fl1 fl2

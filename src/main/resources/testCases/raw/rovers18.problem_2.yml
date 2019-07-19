@@ -1,0 +1,181 @@
+action_cardinality: 2
+problem_name: rovers18.problem
+plan_steps_number: 21
+plan_actions_number: 50
+plan_agent_number: 4
+test_actions:
+- action_set:
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+- action_set:
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1
+- action_set:
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1
+- action_set:
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+  - agent: rover1
+    stage: 17
+    action_name: navigate rover1 waypoint9 waypoint0
+- action_set:
+  - agent: rover1
+    stage: 17
+    action_name: navigate rover1 waypoint9 waypoint0
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+  - agent: rover1
+    stage: 17
+    action_name: navigate rover1 waypoint9 waypoint0
+- action_set:
+  - agent: rover1
+    stage: 17
+    action_name: navigate rover1 waypoint9 waypoint0
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1
+- action_set:
+  - agent: rover0
+    stage: 12
+    action_name: drop rover0 rover0store
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+- action_set:
+  - agent: rover0
+    stage: 12
+    action_name: drop rover0 rover0store
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover0
+    stage: 12
+    action_name: drop rover0 rover0store
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+- action_set:
+  - agent: rover0
+    stage: 12
+    action_name: drop rover0 rover0store
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1
+- action_set:
+  - agent: rover0
+    stage: 12
+    action_name: drop rover0 rover0store
+  - agent: rover1
+    stage: 17
+    action_name: navigate rover1 waypoint9 waypoint0
+- action_set:
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+  - agent: rover1
+    stage: 9
+    action_name: drop rover1 rover1store
+- action_set:
+  - agent: rover1
+    stage: 9
+    action_name: drop rover1 rover1store
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+  - agent: rover1
+    stage: 9
+    action_name: drop rover1 rover1store
+- action_set:
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1
+  - agent: rover1
+    stage: 9
+    action_name: drop rover1 rover1store
+- action_set:
+  - agent: rover1
+    stage: 17
+    action_name: navigate rover1 waypoint9 waypoint0
+  - agent: rover1
+    stage: 9
+    action_name: drop rover1 rover1store
+- action_set:
+  - agent: rover0
+    stage: 12
+    action_name: drop rover0 rover0store
+  - agent: rover1
+    stage: 9
+    action_name: drop rover1 rover1store
+- action_set:
+  - agent: rover5
+    stage: 4
+    action_name: navigate rover5 waypoint1 waypoint6
+  - agent: rover1
+    stage: 6
+    action_name: communicate_rock_data rover1 general waypoint4 waypoint11 waypoint17
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: communicate_rock_data rover1 general waypoint4 waypoint11 waypoint17
+  - agent: rover1
+    stage: 1
+    action_name: take_image rover1 waypoint9 objective4 camera0 high_res
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: communicate_rock_data rover1 general waypoint4 waypoint11 waypoint17
+  - agent: rover1
+    stage: 10
+    action_name: navigate rover1 waypoint9 waypoint7
+- action_set:
+  - agent: rover1
+    stage: 6
+    action_name: communicate_rock_data rover1 general waypoint4 waypoint11 waypoint17
+  - agent: rover5
+    stage: 3
+    action_name: navigate rover5 waypoint0 waypoint1

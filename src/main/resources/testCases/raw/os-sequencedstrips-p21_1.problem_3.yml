@@ -1,0 +1,256 @@
+action_cardinality: 3
+problem_name: os-sequencedstrips-p21_1.problem
+plan_steps_number: 59
+plan_actions_number: 69
+plan_agent_number: 3
+test_actions:
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 20
+    action_name: start-order o5 n1 n0
+  - agent: manufacturer
+    stage: 21
+    action_name: open-new-stack n0 n1
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 31
+    action_name: start-order o11 n1 n0
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manager
+    stage: 31
+    action_name: start-order o11 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manager
+    stage: 16
+    action_name: start-order o9 n1 n0
+  - agent: manager
+    stage: 31
+    action_name: start-order o11 n1 n0
+- action_set:
+  - agent: manager
+    stage: 55
+    action_name: ship-order-o14 n2 n3
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 31
+    action_name: start-order o11 n1 n0
+- action_set:
+  - agent: manager
+    stage: 26
+    action_name: start-order o4 n1 n0
+  - agent: manufacturer
+    stage: 51
+    action_name: make-product-p11
+  - agent: manager
+    stage: 31
+    action_name: start-order o11 n1 n0
