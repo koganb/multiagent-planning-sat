@@ -1,6 +1,7 @@
 package il.ac.bgu.sat;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import il.ac.bgu.dataModel.Action;
 import il.ac.bgu.dataModel.Formattable;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +39,6 @@ public class SatSolutionSolver implements SatSolutionSolverInter {
         try {
             IProblem problem = reader.parseInstance(IOUtils.toInputStream(cnfPlan, "UTF-8"));
             if (problem.isSatisfiable()) {
-                log.info(" Satisfiable !");
-
                 StringWriter out = new StringWriter();
                 PrintWriter writer = new PrintWriter(out);
                 reader.decode(problem.model(), writer);
@@ -60,7 +59,7 @@ public class SatSolutionSolver implements SatSolutionSolverInter {
                 ImmutableList<Formattable> failedActions = variablesResult.entrySet().stream().
                         filter(entry -> entry.getKey().getValue().matches(Action.State.FAILED.name()) &&
                                 entry.getValue()).map(Map.Entry::getKey).collect(ImmutableList.toImmutableList());
-                return failedActions.isEmpty() ? Optional.empty() : Optional.of(failedActions);
+                return failedActions.isEmpty() ? Optional.of(Lists.newArrayList()) : Optional.of(failedActions);
 
             } else {
                 log.warn(" Unsatisfiable !");

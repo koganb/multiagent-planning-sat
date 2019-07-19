@@ -23,7 +23,7 @@ public class SolutionIterator implements Iterator<Either<Throwable, Optional<Lis
 
     private static final Logger log = LoggerFactory.getLogger(SolutionIterator.class);
 
-    private final static int MAX_SOLUTION_SIZE = 6;
+    private final static int MAX_SOLUTION_SIZE = 4;
 
     private List<List<FormattableValue<? extends Formattable>>> hardConstraints;
     private final List<FormattableValue<Formattable>> softConstraints;
@@ -36,7 +36,7 @@ public class SolutionIterator implements Iterator<Either<Throwable, Optional<Lis
     private List<List<FormattableValue<? extends Formattable>>> solutionConstraints = new ArrayList<>();
 
     private boolean solutionFoundInCurIteration = false;
-    private boolean solutionFound = false;
+    private boolean solutionIsFound = false;
 
     private int currentSolutionSize = 1;
     private boolean exceptionRaised = false;
@@ -99,7 +99,7 @@ public class SolutionIterator implements Iterator<Either<Throwable, Optional<Lis
         solutionFoundInCurIteration = diagnosisCandidates.map(l -> ! l.isEmpty()).orElse(false);
 
             if (solutionFoundInCurIteration) {
-                solutionFound = true;
+                solutionIsFound = true;
             } else {
                 currentSolutionSize++;
             }
@@ -120,10 +120,10 @@ public class SolutionIterator implements Iterator<Either<Throwable, Optional<Lis
         switch (stopIndicator) {
             case FIRST_SOLUTION:
                 //continue to search for solution till it is found
-                return !solutionFound && currentSolutionSize < MAX_SOLUTION_SIZE;
+                return !solutionIsFound && currentSolutionSize < MAX_SOLUTION_SIZE;
             case MINIMAL_CARDINALITY:
                 //continue to search for solution if it is found in current iteration or not found so far
-                return (solutionFoundInCurIteration || !solutionFound) && currentSolutionSize < MAX_SOLUTION_SIZE;
+                return (solutionFoundInCurIteration|| !solutionIsFound) && currentSolutionSize < MAX_SOLUTION_SIZE;
             case MINIMAL_SUBSET:
             default:
                 //continue to search till constraints are valid

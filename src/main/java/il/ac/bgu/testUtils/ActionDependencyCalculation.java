@@ -50,7 +50,7 @@ public class ActionDependencyCalculation {
                                        RetryPlanUpdater conflictRetriesModel) {
         this.normalExecutionFinalState = normalExecutionFinalState;
         Map<VariableKey, Action> effectsToAction = new HashMap<>();
-        Map<ActionKey, Set<Action>> actionDependencies = new HashMap<>();
+        Map<ActionKey, Set<Action>>  actionDependencies = new HashMap<>();
 
         finalVariableStateCalc = new FinalVariableStateCalcImpl(plan, failureModelFunction, conflictRetriesModel);
 

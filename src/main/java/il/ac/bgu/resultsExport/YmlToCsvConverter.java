@@ -33,8 +33,7 @@ public class YmlToCsvConverter {
 
         //for (File ymlFile : FileUtils.listFiles(new File("stats/"), new String[]{"yml"}, false)) {
         for (File ymlFile : Lists.newArrayList(
-                new File("stats/stats.NoEffectsFailureModel_NoRetries.yml"),
-                new File("stats/stats.NoEffectsFailureModel_OneRetry.yml")
+                new File("stats/stats.NoEffectsFailureModel_NoRetries_Raw.yml")
 
                 )) {
             log.info("Start converting {} to csv", ymlFile.getName());
@@ -45,6 +44,22 @@ public class YmlToCsvConverter {
                 Long satSolutionTime = t.getExecutionTime().getSatSolvingMils().stream()
                         .mapToLong(SatSolvingMils::getMils)
                         .sum();
+
+                Long solutionIndex = t.getSolution().getSolutionIndex();
+
+                Long correctSolutionFindingMils = 0L;
+                for (SatSolvingMils satSolvingMils : t.getExecutionTime().getSatSolvingMils()) {
+                    correctSolutionFindingMils += satSolvingMils.getMils();
+
+                    if (satSolvingMils.getIsFound()) {
+                        if (solutionIndex == 0) {
+                            break;
+                        } else {
+                            solutionIndex--;
+                        }
+                    }
+                }
+
                 return new ResultFlat(t.getProblem(),
                         t.getPlanProperties().getNumberOfSteps().toString(),
                         t.getPlanProperties().getNumberOfActions().toString(),
@@ -55,7 +70,8 @@ public class YmlToCsvConverter {
                         t.getSolution().getNumberOfSolutions().toString(),
                         t.getSolution().getSolutionIndex().toString(),
                         t.getSolution().getSolutionCardinality().toString(),
-                        satSolutionTime.toString()
+                        satSolutionTime.toString(),
+                        correctSolutionFindingMils.toString()
                 );
             }).collect(Collectors.toList());
 

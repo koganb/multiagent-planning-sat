@@ -58,7 +58,7 @@ public class CreateTestData {
 //                PlanArgs.of("elevator26.problem", IntStream.rangeClosed(4, 4)),
 //                PlanArgs.of("elevator25.problem", IntStream.rangeClosed(4, 4)),
                // PlanArgs.of("satellite15.problem", IntStream.rangeClosed(4, 4)),
-                PlanArgs.of("deports19.problem", IntStream.rangeClosed(3, 3))
+                PlanArgs.of("zenotravel_pfile20.problem", IntStream.rangeClosed(3, 3))
                 //PlanArgs.of("satellite13.problem", IntStream.rangeClosed(4, 4))
 //                PlanArgs.of("taxi_p08.problem", IntStream.rangeClosed(1, 4)),
 //                PlanArgs.of("taxi_p15.problem", IntStream.rangeClosed(1, 4)),
@@ -91,9 +91,6 @@ public class CreateTestData {
         )
                 .flatMap(planArgs -> {
                     Map<Integer, ImmutableList<PlanAction>> plan = PlanUtils.loadSerializedPlan(format("plans/%s.ser", planArgs.problemName));
-
-                    System.out.println("problem name:" + planArgs);
-                    System.out.println("Action number:" + plan.values().stream().flatMap(Collection::stream).count());
                     return planArgs.failuresCardinality.mapToObj(i -> LoadedPlanParam.of(planArgs.problemName, plan, i));
                 })
                 .forEach(loadedPlanParam -> {

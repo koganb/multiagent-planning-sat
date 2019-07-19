@@ -26,6 +26,7 @@ import il.ac.bgu.variableModel.NoEffectVariableFailureModel;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalc;
 import il.ac.bgu.variablesCalculation.FinalVariableStateCalcImpl;
 import io.bretty.console.view.*;
+import io.vavr.control.Either;
 import one.util.streamex.StreamEx;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Range;
@@ -360,10 +361,13 @@ public class ProblemRunner {
                     PlanSolvingUtils.createPlanHardConstraints(plan, conflictRetriesModel, healthyCnfClausesCreator,
                             conflictClausesCreator, failedClausesCreator);
             List<FormattableValue<Formattable>> softConstraints = PlanUtils.encodeHealthyClauses(plan);
-            PlanSolvingUtils.calculateSolutions(conflictRetriesModel.updatePlan(plan).updatedPlan, hardConstraints,
+            final List<Either<Throwable, List<? extends Formattable>>> solutions = PlanSolvingUtils.calculateSolutions(
+                    conflictRetriesModel.updatePlan(plan).updatedPlan, hardConstraints,
                     softConstraints, finalVariableStateCalc, failedActions,
-                    timeoutMs, stopIndicator)
-                    .forEach(solution -> System.out.println("Found solution: " + solution.right()));
+                    timeoutMs, stopIndicator);
+            solutions.stream()
+                    .filter(Either::isRight)
+                    .forEach(solution -> System.out.println("Found solution: " + solution.right().get()));
 
 
         }

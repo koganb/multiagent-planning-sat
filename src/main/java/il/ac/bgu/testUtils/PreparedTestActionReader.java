@@ -27,12 +27,16 @@ public class PreparedTestActionReader {
         private String actionName;
     }
 
-
     public static List<List<PlanAction>> getTestActions(String problemName, Integer failuresNumber, String failureModel) {
 
         String directoryName = problemName.replaceAll("\\d+$", "");
         String preparedTestFilePath = String.format("testCases/%s/%s/%s.problem_%s_%s.yml",
                 directoryName, problemName, problemName, failuresNumber, failureModel);
+
+        return getTestActions(problemName, preparedTestFilePath);
+    }
+
+    public static List<List<PlanAction>> getTestActions(String problemName,String preparedTestFilePath) {
 
         System.out.println("Loading: " + preparedTestFilePath);
         Object document = new Yaml()

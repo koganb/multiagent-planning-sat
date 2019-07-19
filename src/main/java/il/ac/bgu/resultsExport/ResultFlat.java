@@ -45,5 +45,8 @@ class ResultFlat {
     @JsonProperty("sat_solving_mils")
     private String satSolvingMils;
 
+    @JsonProperty("correct_solution_findind_mils")
+    private String correctSolutionFindingMils;
+
 
 }
