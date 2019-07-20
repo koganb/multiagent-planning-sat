@@ -130,13 +130,38 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                             }
                                         }));
 
-        List<List<FormattableValue<? extends Formattable>>> resultClauses =
+        List<List<FormattableValue<? extends Formattable>>> resultClausesWithoutRetry =
                 StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
                         .append(precClauses1)
                         .append(precClauses2)
                         .append(precClauses3)
                         .append(effectClauses)
                         .collect(ImmutableList.toImmutableList());
+
+
+        List<List<FormattableValue<? extends Formattable>>> resultClauses;
+        if (step.getStepType() == PlanAction.StepType.RETRIED) {
+            assert currentStage > 1;
+
+            List<List<FormattableValue<? extends Formattable>>> resultClausesWithRetry = step.getPreconditions().stream()
+                    .flatMap(v -> {
+
+                        //add preconditions from the previous stage
+                        final FormattableValue<? extends Formattable> retryPrecondition = FormattableValue.<Formattable>of(
+                                Variable.of(v, currentStage - 1), true);
+
+                        return resultClausesWithoutRetry.stream()
+                                .map(r -> StreamEx.<FormattableValue<? extends Formattable>>of()
+                                        .append(retryPrecondition)
+                                        .append(r)
+                                        .toImmutableList());
+                    })
+                    .collect(Collectors.toList());
+            resultClauses = resultClausesWithRetry;
+        }
+        else {
+            resultClauses = resultClausesWithoutRetry;
+        }
 
 
         log.debug("\n{}", resultClauses.stream().
