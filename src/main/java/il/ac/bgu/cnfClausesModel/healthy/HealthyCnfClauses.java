@@ -74,10 +74,11 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                         .collect(ImmutableList.toImmutableList());
 
         List<List<FormattableValue<? extends Formattable>>> resultClauses;
-        if (step.getStepType() == PlanAction.StepType.RETRIED) {
-            assert currentStage > 1;
+ //       if (step.getStepType() == PlanAction.StepType.RETRIED) {
+        if (false) {
+            assert currentStage > 0;
 
-            List<List<FormattableValue<? extends Formattable>>> resultClausesWithRetry = step.getPreconditions().stream()
+            resultClauses = step.getPreconditions().stream()
                     .flatMap(v -> {
 
                         //add preconditions from the previous stage
@@ -91,7 +92,6 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                                         .toImmutableList());
                     })
                     .collect(Collectors.toList());
-            resultClauses = resultClausesWithRetry;
         }
         else {
             resultClauses = resultClausesWithoutRetry;

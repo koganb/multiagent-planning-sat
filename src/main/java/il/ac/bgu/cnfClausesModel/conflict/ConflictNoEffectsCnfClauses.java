@@ -46,6 +46,11 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                 FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)))
                         .append(step.getEffects().stream().map(actionEff ->
                                 FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true)))
+                        //.append((step.getStepType() == PlanAction.StepType.RETRIED) ?
+                        .append((false) ?
+                                step.getPreconditions().stream().map(v -> FormattableValue.of(
+                                        Variable.of(v, currentStage - 1), true)) : Stream.empty()
+)
                         .collect(ImmutableList.toImmutableList()));
 
 
@@ -56,6 +61,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                 .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
                                 .add(FormattableValue.of(Variable.of(actionPrec, currentStage), true))
                                 .build());
+
         // (eff1=LOCKED_FOR_UPDATE) v (eff2=LOCKED_FOR_UPDATE) -> CONDITIONS_NOT_MET => (not eff1=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET) ^  (not eff2=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET)
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses3 = step.getEffects().stream()
                 .flatMap(actionPrec ->
@@ -70,6 +76,20 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                         .add(FormattableValue.of(Variable.of(actionPrec, FREEZED.name(), currentStage), false))
                                         .build()
                         ));
+
+
+        Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses4 =
+                //(step.getStepType() == PlanAction.StepType.RETRIED) ? step.getPreconditions().stream()
+                (false) ? step.getPreconditions().stream()
+                .flatMap(actionPrec ->
+                        Stream.of(
+                                ImmutableList.<FormattableValue<? extends Formattable>>builder()
+                                        .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
+                                        .add(FormattableValue.<Formattable>of(
+                                                Variable.of(actionPrec, currentStage - 1), false))
+                                        .build()
+                         )) : Stream.empty();
+
 
 
         Set<String> actionEffKeys = step.getEffects().stream()
@@ -130,38 +150,14 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                             }
                                         }));
 
-        List<List<FormattableValue<? extends Formattable>>> resultClausesWithoutRetry =
+        List<List<FormattableValue<? extends Formattable>>> resultClauses =
                 StreamEx.<ImmutableList<FormattableValue<? extends Formattable>>>of()
                         .append(precClauses1)
                         .append(precClauses2)
                         .append(precClauses3)
+                        .append(precClauses4)
                         .append(effectClauses)
                         .collect(ImmutableList.toImmutableList());
-
-
-        List<List<FormattableValue<? extends Formattable>>> resultClauses;
-        if (step.getStepType() == PlanAction.StepType.RETRIED) {
-            assert currentStage > 1;
-
-            List<List<FormattableValue<? extends Formattable>>> resultClausesWithRetry = step.getPreconditions().stream()
-                    .flatMap(v -> {
-
-                        //add preconditions from the previous stage
-                        final FormattableValue<? extends Formattable> retryPrecondition = FormattableValue.<Formattable>of(
-                                Variable.of(v, currentStage - 1), true);
-
-                        return resultClausesWithoutRetry.stream()
-                                .map(r -> StreamEx.<FormattableValue<? extends Formattable>>of()
-                                        .append(retryPrecondition)
-                                        .append(r)
-                                        .toImmutableList());
-                    })
-                    .collect(Collectors.toList());
-            resultClauses = resultClausesWithRetry;
-        }
-        else {
-            resultClauses = resultClausesWithoutRetry;
-        }
 
 
         log.debug("\n{}", resultClauses.stream().
