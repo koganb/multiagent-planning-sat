@@ -44,6 +44,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -73,7 +74,7 @@ public class ProblemRunner {
 
         //in case:  java -jar build/libs/multiagent-planning-sat-1.0-SNAPSHOT-all.jar
         //in this case the new plans will be serialized into new plans directory
-        jarMode = !Files.exists(Paths.get("src"));
+        jarMode = ManagementFactory.getRuntimeMXBean().getClassPath().contains("multiagent-planning-sat-1.0-SNAPSHOT.jar");  //Change it!
 
         if (jarMode && !Files.exists(planPath)) {
             try {
