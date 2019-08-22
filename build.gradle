@@ -44,7 +44,7 @@ jar.enabled = false
 //mainClassName = 'il.ac.bgu.SatSolver'
 jar {
     manifest {
-        attributes 'Main-Class': 'il.ac.bgu.CreateTestData'
+        attributes 'Main-Class': 'il.ac.bgu.ProblemRunner'
     }
 
     from {

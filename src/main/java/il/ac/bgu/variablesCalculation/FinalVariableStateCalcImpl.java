@@ -14,10 +14,7 @@ import il.ac.bgu.variableModel.SuccessVariableModel;
 import il.ac.bgu.variableModel.VariableModelFunction;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -39,6 +36,8 @@ public class FinalVariableStateCalcImpl implements FinalVariableStateCalc {
                 .map(Formattable::formatFunctionKey)
                 .collect(Collectors.toSet());
 
+        Map<PlanAction, Action.State> executionStatus = new HashMap<>();
+
         List<FormattableValue<Variable>> currentVars = PlanSolvingUtils.calcInitFacts(plan);
 
 
@@ -46,12 +45,18 @@ public class FinalVariableStateCalcImpl implements FinalVariableStateCalc {
 
             if (stepEntry.getKey() != -1) {
 
-
                 ImmutableList<FormattableValue<Variable>> prevStageVars =
                         CnfCompilationUtils.calcVariableState(currentVars.stream(), stepEntry.getKey())
                                 .collect(ImmutableList.toImmutableList());
 
                 for (PlanAction step : stepEntry.getValue()) {
+
+                    //skip retried action if the original action is HEALTHY or FAILED
+                    if (step.getStepType() == PlanAction.StepType.RETRIED &&
+                            executionStatus.get(new PlanAction(step.getAgentName(),
+                                    step.getIndex() - 1, step.getActionName())) != Action.State.CONDITIONS_NOT_MET) {
+                        continue;
+                    }
 
                     boolean isActionFailed = failedActionsKeys.contains(
                             Action.of(step, stepEntry.getKey()).formatFunctionKey());
@@ -62,7 +67,11 @@ public class FinalVariableStateCalcImpl implements FinalVariableStateCalc {
                                     failureModelFunction, conflictModelFunction,
                                     successModelFunction, currentVars, prevStageVars);
 
+
                     currentVars = actionResult.getRight();
+
+                    executionStatus.put(step, actionResult.left);
+
 
                 }
             }

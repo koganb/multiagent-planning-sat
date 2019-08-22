@@ -46,7 +46,7 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
                                 FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true)))
                         .append(step.getEffects().stream().map(actionEff ->
                                 FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true)))
-                        //.append((step.getStepType() == PlanAction.StepType.RETRIED) ?
+//                        .append((step.getStepType() == PlanAction.StepType.RETRIED) ?
                         .append((false) ?
                                 step.getPreconditions().stream().map(v -> FormattableValue.of(
                                         Variable.of(v, currentStage - 1), true)) : Stream.empty()
@@ -64,16 +64,16 @@ public class ConflictNoEffectsCnfClauses implements CnfClausesFunction, NamedMod
 
         // (eff1=LOCKED_FOR_UPDATE) v (eff2=LOCKED_FOR_UPDATE) -> CONDITIONS_NOT_MET => (not eff1=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET) ^  (not eff2=LOCKED_FOR_UPDATE v CONDITIONS_NOT_MET)
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> precClauses3 = step.getEffects().stream()
-                .flatMap(actionPrec ->
+                .flatMap(actionEff ->
                         Stream.of(
                                 ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                         .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
-                                        .add(FormattableValue.of(Variable.of(actionPrec, LOCKED_FOR_UPDATE.name(), currentStage), false))
+                                        .add(FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), false))
                                         .build()
                                 ,
                                 ImmutableList.<FormattableValue<? extends Formattable>>builder()
                                         .add(FormattableValue.of(Action.of(step, currentStage, CONDITIONS_NOT_MET), true))
-                                        .add(FormattableValue.of(Variable.of(actionPrec, FREEZED.name(), currentStage), false))
+                                        .add(FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), false))
                                         .build()
                         ));
 

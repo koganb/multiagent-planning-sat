@@ -51,9 +51,17 @@ public class OneRetryPlanUpdater implements RetryPlanUpdater {
                                         stepIndexToPreconditionKeys.getOrDefault(futureStep, ImmutableSet.of())
                                                 .contains(key)
                                                 ||
-                                        stepIndexToEffectKeys.getOrDefault(futureStep, ImmutableSet.of())
-                                                .contains(key)
+                                                stepIndexToEffectKeys.getOrDefault(futureStep, ImmutableSet.of())
+                                                        .contains(key)
                                 ) &&
+                                step.getPreconditions().stream()
+                                        .map(Variable::formatFunctionKey)
+
+                                        //check the preconditions are not collide with effects of other actions
+                                        .noneMatch(key ->
+                                                stepIndexToEffectKeys.getOrDefault(futureStep, ImmutableSet.of())
+                                                        .contains(key)
+                                        ) &&
 
                                 //check agent name is not collide
                                 !stepIndexToAgentNames.getOrDefault(futureStep, ImmutableSet.of())
@@ -95,8 +103,8 @@ public class OneRetryPlanUpdater implements RetryPlanUpdater {
                 .forEach(actionList::add);
         Map<Integer, ImmutableList<PlanAction>> updatedPlan =
                 actionList.stream().collect(Collectors.groupingBy(
-                Pair::getKey,
-                Collectors.mapping(Pair::getValue, ImmutableList.toImmutableList())));
+                        Pair::getKey,
+                        Collectors.mapping(Pair::getValue, ImmutableList.toImmutableList())));
         return new RetriesPlanCreatorResult(updatedPlan, actionDependencyMap);
 
     }
@@ -112,7 +120,7 @@ public class OneRetryPlanUpdater implements RetryPlanUpdater {
     }
 
     private Map<Integer, Set<String>> createStepIndexToEffectMap(Map<Integer, ImmutableList<PlanAction>> originalPlan,
-                                                                 Function<PlanAction,List<Variable>> conditionEffectsFunction ) {
+                                                                 Function<PlanAction, List<Variable>> conditionEffectsFunction) {
         return originalPlan.entrySet().stream()
                 .filter(entry -> entry.getKey() >= 0)
                 .flatMap(entry -> entry.getValue().stream()
