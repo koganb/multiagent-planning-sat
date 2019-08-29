@@ -25,7 +25,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static java.util.stream.Collectors.toList;
 import static org.slf4j.MarkerFactory.getMarker;
@@ -148,8 +148,9 @@ public class PlanSolvingUtils {
                 .values().stream()
                 .flatMap(v ->
                         Stream.of(
-                                FormattableValue.of(Variable.of(v.getFormattable(), LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false),
-                                FormattableValue.of(Variable.of(v.getFormattable(), FREEZED.name(), INITIAL_STAGE), false)
+                                FormattableValue.of(Variable.of(v.getFormattable(), LOCKED_FOR_UPDATE.name(), INITIAL_STAGE), false)
+//                                ,
+//                                FormattableValue.of(Variable.of(v.getFormattable(), FREEZED.name(), INITIAL_STAGE), false)
 
                         ))
                 .collect(toList());

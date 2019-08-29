@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 import static il.ac.bgu.dataModel.Action.State.CONDITIONS_NOT_MET;
 import static il.ac.bgu.dataModel.Action.State.FAILED;
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
@@ -87,12 +87,12 @@ public class ActionUtils {
                 .allMatch(prec -> stageVars.stream()
                         .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
                                 prec.formatFunctionKeyWithValue()) && var.getValue()));
-        boolean preconditionsNotFreezed = preconditions.stream()
-                .noneMatch(prec -> stageVars.stream()
-                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
-                                prec.toBuilder().functionValue(FREEZED.name()).build().formatFunctionKeyWithValue())
-                                && var.getValue()));
-        return preconditionsValid && preconditionsNotFreezed;
+//        boolean preconditionsNotFreezed = preconditions.stream()
+//                .noneMatch(prec -> stageVars.stream()
+//                        .anyMatch(var -> var.getFormattable().formatFunctionKeyWithValue().equals(
+//                                prec.toBuilder().functionValue(FREEZED.name()).build().formatFunctionKeyWithValue())
+//                                && var.getValue()));
+        return preconditionsValid /*&& preconditionsNotFreezed*/;
 
     }
 

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.FAILED;
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @Slf4j
@@ -45,14 +45,14 @@ public class FailedNoEffectsCnfClauses implements CnfClausesFunction, NamedModel
                                         StreamEx.<FormattableValue<Formattable>>of()
                                                 .append(FormattableValue.of(
                                                         Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true))
-                                                .append(FormattableValue.of(
-                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true))
+//                                                .append(FormattableValue.of(
+//                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true))
 
                                 )
                 ).collect(ImmutableList.toImmutableList());
 
         Stream<List<FormattableValue<? extends Formattable>>> effectStream =
-                Stream.concat(step.getPreconditions().stream(), step.getEffects().stream())
+                /*Stream.concat(step.getPreconditions().stream(), */step.getEffects().stream()//)
                         .flatMap(variable ->
                                 CnfClausesUtils.applyPassThrough(variable, variableStateMap, currentStage, currentStage + 1));
 

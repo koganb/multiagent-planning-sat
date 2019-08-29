@@ -21,7 +21,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.FAILED;
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @Slf4j
@@ -50,8 +50,8 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
                                         StreamEx.<FormattableValue<Formattable>>of()
                                                 .append(FormattableValue.of(
                                                         Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true))
-                                                .append(FormattableValue.of(
-                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true))
+//                                                .append(FormattableValue.of(
+//                                                        Variable.of(actionEff, FREEZED.name(), currentStage), true))
 
                                 )
                 ).collect(ImmutableList.toImmutableList());
@@ -63,10 +63,10 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
 
 
         Stream<List<FormattableValue<? extends Formattable>>> effectStream =
-                Stream.concat(step.getPreconditions().stream()
+/*                Stream.concat(step.getPreconditions().stream()
                                 .filter(variable ->
-                                        !actionEffKeys.contains(variable.formatFunctionKey())),
-                        step.getEffects().stream())
+                                        !actionEffKeys.contains(variable.formatFunctionKey())),*/
+                        step.getEffects().stream()//)
                         .flatMap(variable ->
                                 StreamEx.<List<FormattableValue<? extends Formattable>>>of()
                                         .append(IntStream.rangeClosed(currentStage + 1, currentStage + STAGE_DELAYED_NUM).boxed()
@@ -74,10 +74,10 @@ public class FailedDelayOneStepCnfClauses implements CnfClausesFunction, NamedMo
                                                         actionEffKeys.contains(variable.formatFunctionKey()) ?
                                                                 CnfClausesUtils.switchTrueExclusive(
                                                                         variable.toBuilder().functionValue(LOCKED_FOR_UPDATE.name()).build(),
-                                                                        variableStateMap, stepAddition) :
-                                                                CnfClausesUtils.addTrue(
-                                                                        variable.toBuilder().functionValue(FREEZED.name()).build(),
-                                                                        variableStateMap, currentStage, stepAddition)
+                                                                        variableStateMap, stepAddition) : Stream.empty()
+//                                                                CnfClausesUtils.addTrue(
+//                                                                        variable.toBuilder().functionValue(FREEZED.name()).build(),
+//                                                                        variableStateMap, currentStage, stepAddition)
                                                 ))
                                         .append(actionEffKeys.contains(variable.formatFunctionKey()) ?
                                                 CnfClausesUtils.switchTrueExclusive(variable, variableStateMap, currentStage + STAGE_DELAYED_NUM + 1) :

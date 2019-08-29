@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.*;
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static java.util.stream.Collectors.toSet;
 
@@ -68,20 +68,30 @@ public class CnfCompilation {
         //calculate "pass through" variables
 
         //get prec & effects keys for stage actions
-        Set<String> precAndEffectKeys = actions.stream()
-                .flatMap(k -> Stream.concat(k.getPreconditions().stream(), k.getEffects().stream()))
+//        Set<String> precAndEffectKeys = actions.stream()
+//                .flatMap(k -> Stream.concat(k.getPreconditions().stream(), k.getEffects().stream()))
+//                .map(Variable::formatFunctionKey)
+//                .collect(toSet());
+
+
+        Set<String> effectKeys = actions.stream()
+                .flatMap(k ->  k.getEffects().stream())
                 .map(Variable::formatFunctionKey)
                 .collect(toSet());
+
 
         log.debug("Start pass through...");
 
         Stream<ImmutableList<FormattableValue<? extends Formattable>>> passThroughValuesStream =
                 this.variableStateMap.entrySet().stream()
-                        .filter(entry -> !precAndEffectKeys.contains(entry.getKey()))
+                        .filter(entry -> !effectKeys.contains(entry.getKey()))
                         .flatMap(entry -> entry.getValue().stream())
                         .flatMap(g -> {
-                            if (g.getValue().equals(LOCKED_FOR_UPDATE.name()) ||
-                                    g.getValue().equals(FREEZED.name())) {
+                            if (
+                                    g.getValue().equals(LOCKED_FOR_UPDATE.name())
+//                                    ||
+//                                    g.getValue().equals(FREEZED.name())
+                            ) {
                                 return Stream.of(
                                         //locked_for_update is set to false on next stage
                                         ImmutableList.of(FormattableValue.of(g.toBuilder().stage(stage + 1).build(), false))

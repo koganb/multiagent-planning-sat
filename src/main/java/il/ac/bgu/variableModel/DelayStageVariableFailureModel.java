@@ -9,7 +9,7 @@ import il.ac.bgu.utils.CnfCompilationUtils;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.EFFECT;
 import static il.ac.bgu.variableModel.VariableModelFunction.VARIABLE_TYPE.PRECONDITION;
@@ -39,21 +39,23 @@ public class DelayStageVariableFailureModel implements VariableModelFunction {
             currentVars = CnfCompilationUtils.updateVariables(currentVars, variable, targetStage)
                     .collect(ImmutableList.toImmutableList());
 
-        } else if (variableType == PRECONDITION) {
-            Builder<FormattableValue<Variable>> currentStateBuilder =
-                    ImmutableList.<FormattableValue<Variable>>builder().addAll(currentVars);
-            for (int stage = currentStage + NEXT_STEP_ADDITION; stage < targetStage; stage++) {
-
-                //add freeze variable to the next stage
-                currentStateBuilder.add(FormattableValue.of(
-                        variable.toBuilder().functionValue(FREEZED.name()).stage(stage).build(), true));
-            }
-            currentStateBuilder.add(FormattableValue.of(
-                    variable.toBuilder().functionValue(FREEZED.name()).stage(targetStage).build(), false));
-
-            currentVars = currentStateBuilder.build();
-        } else {
-            throw new RuntimeException("Unsupported variableType " + variableType);
+//        }
+//        else if (variableType == PRECONDITION) {
+//            Builder<FormattableValue<Variable>> currentStateBuilder =
+//                    ImmutableList.<FormattableValue<Variable>>builder().addAll(currentVars);
+//            for (int stage = currentStage + NEXT_STEP_ADDITION; stage < targetStage; stage++) {
+//
+//                //add freeze variable to the next stage
+//                currentStateBuilder.add(FormattableValue.of(
+//                        variable.toBuilder().functionValue(FREEZED.name()).stage(stage).build(), true));
+//            }
+//            currentStateBuilder.add(FormattableValue.of(
+//                    variable.toBuilder().functionValue(FREEZED.name()).stage(targetStage).build(), false));
+//
+//            currentVars = currentStateBuilder.build();
+//        } else {
+//            throw new RuntimeException("Unsupported variableType " + variableType);
+//        }
         }
 
         return currentVars.stream();

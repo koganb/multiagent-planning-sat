@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static il.ac.bgu.dataModel.Action.State.HEALTHY;
-import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
+//import static il.ac.bgu.dataModel.Variable.SpecialState.FREEZED;
 import static il.ac.bgu.dataModel.Variable.SpecialState.LOCKED_FOR_UPDATE;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -40,24 +40,25 @@ public class HealthyCnfClauses implements CnfClausesFunction, NamedModel {
                         step.getEffects().stream().
                                 flatMap(actionEff ->
                                         StreamEx.<FormattableValue<Formattable>>of()
-                                                .append(FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true))
+                                            //    .append(FormattableValue.of(Variable.of(actionEff, FREEZED.name(), currentStage), true))
                                                 .append(FormattableValue.of(Variable.of(actionEff, LOCKED_FOR_UPDATE.name(), currentStage), true))
                                 )
                 ).collect(ImmutableList.toImmutableList());
 
-
-        Set<String> actionEffKeys = step.getEffects().stream()
-                .map(Variable::formatFunctionKey)
-                .collect(Collectors.toSet());
+//
+//        Set<String> actionEffKeys = step.getEffects().stream()
+//                .map(Variable::formatFunctionKey)
+//                .collect(Collectors.toSet());
 
         //healthy function
         Stream<List<FormattableValue<? extends Formattable>>> effectStream =
-                Stream.concat(
-                        step.getPreconditions().stream()
-                                .filter(prec ->
-                                        !actionEffKeys.contains(prec.formatFunctionKey())),
+//                Stream.concat(
+//                        step.getPreconditions().stream()
+//                                .filter(prec ->
+//                                        !actionEffKeys.contains(prec.formatFunctionKey())),
                         step.getEffects().stream()
-                ).flatMap(actionEff ->
+                //)
+        .flatMap(actionEff ->
                         CnfClausesUtils.switchTrueExclusive(actionEff, variableStateMap, currentStage + 1)
                 );
 

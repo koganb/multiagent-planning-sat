@@ -21,7 +21,7 @@ public class Variable implements Formattable {
         // variable in this state cannot be neither in preconditions nor in effects of other actions
         // (not conditioned on and not updated)
 
-        FREEZED,            // used in delay failure model to freeze action preconditions
+        //FREEZED,            // used in delay failure model to freeze action preconditions
         // variable in this state cannot be in effects of other actions
         // (can be conditioned but not updated)
     }
