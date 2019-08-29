@@ -26,6 +26,22 @@ Clone git repository and set you current directory to it.
 ```
 This will run the program in iterative mode.
 
+### Interactive mode:
+Main Class:  il.ac.bgu.ProblemRunner
+
+This will display the folllowing menu:
+```
+Welcome to SAT problem runner
+1) Fail model: no effect, Conflict model: no retries
+2) Fail model: delay one step, Conflict model: no retries
+3) Fail model: no effect, Conflict model: one retry
+4) Fail model: delay one step, Conflict model: one retry
+5) Quit
+Please select fault and conflict model: 
+```
+
+
+
 ## Code structure
 Code is written using Java 8, tests are written with Groovy(Spock), Build Framework - Gradle 
 
