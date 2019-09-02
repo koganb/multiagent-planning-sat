@@ -48,5 +48,8 @@ class ResultFlat {
     @JsonProperty("correct_solution_findind_mils")
     private String correctSolutionFindingMils;
 
+    @JsonProperty("first_solution_time_mils")
+    private String firstSolutionTime;
+
 
 }

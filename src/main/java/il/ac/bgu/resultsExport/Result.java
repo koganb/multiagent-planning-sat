@@ -117,7 +117,7 @@ class ExecutionTime {
     private Long finalVarStateCalcMils;
 
     @JsonProperty("sat_solving_mils")
-    private List<SatSolvingMils> SatSolvingMils;
+    private List<SatSolvingMils> satSolvingMils;
 }
 
 

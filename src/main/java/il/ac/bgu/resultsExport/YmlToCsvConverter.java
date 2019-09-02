@@ -40,11 +40,20 @@ public class YmlToCsvConverter {
 
             final Result[] results = new ObjectMapper(new YAMLFactory()).readValue(ymlFile, Result[].class);
 
-            final List<ResultFlat> transformedResults = Arrays.stream(results).map(t -> {
+            final List<ResultFlat> transformedResults = Arrays.stream(results).
+                    filter(t -> t.getExecutionTime().getSatSolvingMils() != null).
+                    map(t -> {
                 Long satSolutionTime = t.getExecutionTime().getSatSolvingMils().stream()
                         .mapToLong(SatSolvingMils::getMils)
                         .sum();
 
+                        Long firstSolutionTime = 0L;
+                        for (SatSolvingMils satSolving : t.getExecutionTime().getSatSolvingMils()) {
+                            firstSolutionTime += satSolving.getMils();
+                            if (satSolving.getIsFound()) {
+                                break;
+                            }
+                        }
                 Long solutionIndex = t.getSolution().getSolutionIndex();
 
                 Long correctSolutionFindingMils = 0L;
@@ -71,7 +80,8 @@ public class YmlToCsvConverter {
                         t.getSolution().getSolutionIndex().toString(),
                         t.getSolution().getSolutionCardinality().toString(),
                         satSolutionTime.toString(),
-                        correctSolutionFindingMils.toString()
+                        correctSolutionFindingMils.toString(),
+                        firstSolutionTime.toString()
                 );
             }).collect(Collectors.toList());
 
